@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="b3_select_thingy.png">
+	<!-- Created with Adobe Animate version 20.0.3.25487 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="bar basic0000" x="0" y="0" width="1063" height="210"/>
+	<SubTexture name="bar white0000" x="0" y="210" width="1100" height="259"/>
+	<SubTexture name="bar white0001" x="0" y="210" width="1100" height="259"/>
+	<SubTexture name="bar white0002" x="0" y="210" width="1100" height="259"/>
+	<SubTexture name="bar white0003" x="0" y="210" width="1100" height="259"/>
+	<SubTexture name="bar white0004" x="0" y="469" width="1100" height="259"/>
+	<SubTexture name="bar white0005" x="0" y="728" width="1100" height="259"/>
+	<SubTexture name="bar white0006" x="0" y="987" width="1100" height="259"/>
+	<SubTexture name="bar white0007" x="0" y="987" width="1100" height="259"/>
+	<SubTexture name="bar white0008" x="0" y="987" width="1100" height="259"/>
+	<SubTexture name="bar white0009" x="0" y="987" width="1100" height="259"/>
+	<SubTexture name="bar white0010" x="0" y="987" width="1100" height="259"/>
+	<SubTexture name="bar white0011" x="0" y="987" width="1100" height="259"/>
+	<SubTexture name="bar white0012" x="0" y="987" width="1100" height="259"/>
+	<SubTexture name="bar white0013" x="0" y="987" width="1100" height="259"/>
+	<SubTexture name="bar white0014" x="0" y="987" width="1100" height="259"/>
+</TextureAtlas>
