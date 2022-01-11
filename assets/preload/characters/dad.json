@@ -1,123 +1,123 @@
 {
 	"animations": [
 		{
-			"loop": true,
 			"offsets": [
 				0,
 				0
 			],
-			"anim": "idle-loop",
+			"loop": true,
 			"fps": 24,
-			"name": "Dad idle dance",
+			"anim": "idle-loop",
 			"indices": [
 				10,
 				11,
 				12,
 				12
-			]
+			],
+			"name": "Dad idle dance"
 		},
 		{
-			"loop": true,
 			"offsets": [
 				-9,
 				10
 			],
-			"anim": "singLEFT-loop",
+			"loop": true,
 			"fps": 24,
-			"name": "Dad Sing Note LEFT",
+			"anim": "singLEFT-loop",
 			"indices": [
 				12,
 				13,
 				14,
 				15
-			]
+			],
+			"name": "Dad Sing Note LEFT"
 		},
 		{
-			"loop": true,
 			"offsets": [
 				0,
 				27
 			],
-			"anim": "singRIGHT-loop",
+			"loop": true,
 			"fps": 24,
-			"name": "Dad Sing Note RIGHT",
+			"anim": "singRIGHT-loop",
 			"indices": [
 				15,
 				16,
 				17,
 				18
-			]
+			],
+			"name": "Dad Sing Note RIGHT"
 		},
 		{
-			"loop": true,
 			"offsets": [
 				-6,
 				50
 			],
-			"anim": "singUP-loop",
+			"loop": true,
 			"fps": 24,
-			"name": "Dad Sing Note UP",
+			"anim": "singUP-loop",
 			"indices": [
 				56,
 				57,
 				58,
 				59
-			]
+			],
+			"name": "Dad Sing Note UP"
 		},
 		{
+			"loop": false,
 			"offsets": [
 				70,
 				-135
 			],
-			"indices": [],
-			"fps": 24,
 			"anim": "singDOWN",
-			"loop": false,
-			"name": "down placeholder"
+			"fps": 24,
+			"name": "down placeholder",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				0,
 				0
 			],
-			"indices": [],
-			"fps": 24,
 			"anim": "idle",
-			"loop": false,
-			"name": "Dearest Idle"
+			"fps": 24,
+			"name": "Dearest Idle",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				401,
 				2
 			],
-			"indices": [],
-			"fps": 24,
 			"anim": "singLEFT",
-			"loop": false,
-			"name": "Dearest Left"
+			"fps": 24,
+			"name": "Dearest Left",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				90,
 				170
 			],
-			"indices": [],
-			"fps": 24,
 			"anim": "singUP",
-			"loop": false,
-			"name": "UP Pose"
+			"fps": 24,
+			"name": "UP Pose",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				90,
 				-18
 			],
-			"indices": [],
-			"fps": 24,
 			"anim": "singRIGHT",
-			"loop": false,
-			"name": "Right DD"
+			"fps": 24,
+			"name": "Right DD",
+			"indices": []
 		}
 	],
 	"no_antialiasing": false,
@@ -135,7 +135,7 @@
 	],
 	"camera_position": [
 		0,
-		0
+		180
 	],
 	"sing_duration": 6.1,
 	"scale": 1

@@ -411,32 +411,32 @@ class PlayState extends MusicBeatState
 		switch (curStage)
 		{
 			case 'stage': //Week 1
-				var bg:BGSprite = new BGSprite('stageback', -600, -200, 0.9, 0.9);
+				var bg:BGSprite = new BGSprite('stage/Stadium', -700, -300, 0.9, 0.9);
+				bg.setGraphicSize(Std.int(bg.width * 1));
 				add(bg);
 
-				var stageFront:BGSprite = new BGSprite('stagefront', -650, 600, 0.9, 0.9);
-				stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
-				stageFront.updateHitbox();
-				add(stageFront);
-
-				if(!ClientPrefs.lowQuality) {
-					var stageLight:BGSprite = new BGSprite('stage_light', -125, -100, 0.9, 0.9);
-					stageLight.setGraphicSize(Std.int(stageLight.width * 1.1));
-					stageLight.updateHitbox();
-					add(stageLight);
-					var stageLight:BGSprite = new BGSprite('stage_light', 1225, -100, 0.9, 0.9);
-					stageLight.setGraphicSize(Std.int(stageLight.width * 1.1));
-					stageLight.updateHitbox();
-					stageLight.flipX = true;
-					add(stageLight);
-
-					var stageCurtains:BGSprite = new BGSprite('stagecurtains', -500, -300, 1.3, 1.3);
-					stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
-					stageCurtains.updateHitbox();
-					add(stageCurtains);
-				}
-
 			case 'spooky': //Week 2
+				/*
+					defaultCamZoom = 0.35;
+					var halloweenSky:FlxSprite = new FlxSprite(-1400, -1000).loadGraphic('assets/images/week2bg/Forest.png');
+					halloweenSky.scrollFactor.set(0.3, 0.3);
+					halloweenSky.setGraphicSize(Std.int(halloweenSky.width * 0.8));
+					halloweenSky.updateHitbox();
+
+					var halloweenTrees:FlxSprite = new FlxSprite(-1400, -800).loadGraphic('assets/images/week2bg/bg_trees.png');
+					halloweenTrees.scrollFactor.set(0.6, 0.6);
+					halloweenTrees.setGraphicSize(Std.int(halloweenTrees.width * 0.8));
+					halloweenTrees.updateHitbox();
+
+					var halloweenGround:FlxSprite = new FlxSprite(-1400, -900).loadGraphic('assets/images/week2bg/house.png');
+					halloweenGround.scrollFactor.set(0.9, 0.9);
+					halloweenGround.setGraphicSize(Std.int(halloweenGround.width * 0.8));
+					halloweenGround.updateHitbox();
+
+					add(halloweenSky);
+					add(halloweenTrees);
+					add(halloweenGround);
+				*/
 				if(!ClientPrefs.lowQuality) {
 					halloweenBG = new BGSprite('halloween_bg', -200, -100, ['halloweem bg0', 'halloweem bg lightning strike']);
 				} else {
