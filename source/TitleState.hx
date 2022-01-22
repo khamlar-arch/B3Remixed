@@ -596,7 +596,7 @@ class TitleState extends MusicBeatState
 				// credTextShit.screenCenter();
 				case 5:
 					#if PSYCH_WATERMARKS
-					createCoolText(['Not associated', 'with'], -40);
+					createCoolText(['Created by', 'with'], -40);
 					#else
 					createCoolText(['In association', 'with'], -40);
 					#end
@@ -632,6 +632,8 @@ class TitleState extends MusicBeatState
 					addMoreText('Funkin'); // credTextShit.text += '\nFunkin';
 
 				case 16:
+					addMoreText('B3 REMIXED'); // credTextShit.text += '\nFunkin';
+				case 17:
 					skipIntro();
 			}
 		}
