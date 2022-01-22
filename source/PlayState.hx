@@ -197,6 +197,7 @@ class PlayState extends MusicBeatState
 
 	var halloweenBG:BGSprite;
 	var halloweenWhite:BGSprite;
+	var halloweenForeground:BGSprite;
 
 	var phillyCityLights:FlxTypedGroup<BGSprite>;
 	var phillyTrain:BGSprite;
@@ -416,42 +417,25 @@ class PlayState extends MusicBeatState
 				add(bg);
 
 			case 'spooky': //Week 2
-				/*
-					defaultCamZoom = 0.35;
-					var halloweenSky:FlxSprite = new FlxSprite(-1400, -1000).loadGraphic('assets/images/week2bg/Forest.png');
-					halloweenSky.scrollFactor.set(0.3, 0.3);
-					halloweenSky.setGraphicSize(Std.int(halloweenSky.width * 0.8));
-					halloweenSky.updateHitbox();
+				var halloweenSky:BGSprite = new BGSprite('week2bg/Forest', -1400, -1000, 0.3, 0.3);
+				halloweenSky.setGraphicSize(Std.int(halloweenSky.width * 0.8));
+				halloweenSky.updateHitbox();
 
-					var halloweenTrees:FlxSprite = new FlxSprite(-1400, -800).loadGraphic('assets/images/week2bg/bg_trees.png');
-					halloweenTrees.scrollFactor.set(0.6, 0.6);
-					halloweenTrees.setGraphicSize(Std.int(halloweenTrees.width * 0.8));
-					halloweenTrees.updateHitbox();
+				var halloweenTrees:BGSprite = new BGSprite('week2bg/bg_trees', -1400, -800, 0.6, 0.6);
+				halloweenTrees.setGraphicSize(Std.int(halloweenTrees.width * 0.8));
+				halloweenTrees.updateHitbox();
 
-					var halloweenGround:FlxSprite = new FlxSprite(-1400, -900).loadGraphic('assets/images/week2bg/house.png');
-					halloweenGround.scrollFactor.set(0.9, 0.9);
-					halloweenGround.setGraphicSize(Std.int(halloweenGround.width * 0.8));
-					halloweenGround.updateHitbox();
+				var halloweenGround:BGSprite = new BGSprite('week2bg/house', -1400, -900, 0.9, 0.9);
+				halloweenGround.setGraphicSize(Std.int(halloweenGround.width * 0.8));
+				halloweenGround.updateHitbox();
 
-					add(halloweenSky);
-					add(halloweenTrees);
-					add(halloweenGround);
-				*/
-				if(!ClientPrefs.lowQuality) {
-					halloweenBG = new BGSprite('halloween_bg', -200, -100, ['halloweem bg0', 'halloweem bg lightning strike']);
-				} else {
-					halloweenBG = new BGSprite('halloween_bg_low', -200, -100);
-				}
-				add(halloweenBG);
+				halloweenForeground = new BGSprite('week2bg/foreground_trees', -355, -150, 1.3, 1.3);
+				halloweenForeground.setGraphicSize(Std.int(halloweenGround.width * 0.8));
+				halloweenForeground.updateHitbox();
 
-				halloweenWhite = new BGSprite(null, -FlxG.width, -FlxG.height, 0, 0);
-				halloweenWhite.makeGraphic(Std.int(FlxG.width * 3), Std.int(FlxG.height * 3), FlxColor.WHITE);
-				halloweenWhite.alpha = 0;
-				halloweenWhite.blend = ADD;
-
-				//PRECACHE SOUNDS
-				CoolUtil.precacheSound('thunder_1');
-				CoolUtil.precacheSound('thunder_2');
+				add(halloweenSky);
+				add(halloweenTrees);
+				add(halloweenGround);
 
 			case 'philly': //Week 3
 				if(!ClientPrefs.lowQuality) {
@@ -698,10 +682,15 @@ class PlayState extends MusicBeatState
 
 		add(dadGroup);
 		add(boyfriendGroup);
-		
-		if(curStage == 'spooky') {
-			add(halloweenWhite);
+
+		switch (curStage)
+		{
+			case 'spooky':
+				add(halloweenForeground);
 		}
+		trace(boyfriendGroup);
+		trace(dadGroup);
+		trace(gfGroup);
 
 		#if LUA_ALLOWED
 		luaDebugGroup = new FlxTypedGroup<DebugLuaText>();
@@ -4351,15 +4340,6 @@ class PlayState extends MusicBeatState
 					trainStart();
 				}
 		}
-
-		if (curStage == 'spooky' && FlxG.random.bool(10) && curBeat > lightningStrikeBeat + lightningOffset)
-		{
-			lightningStrikeShit();
-		}
-		lastBeatHit = curBeat;
-
-				setOnLuas('curBeat', curBeat);//DAWGG?????
-		callOnLuas('onBeatHit', []);
 	}
 
 	public var closeLuas:Array<FunkinLua> = [];
