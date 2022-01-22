@@ -12,6 +12,7 @@
 
 	"storyName": "",
 	"weekBefore": "tutorial",
+	"difficulties": "Easy, Normal, Hard, Getreal",
 	"weekName": "Tutorial",
 	"startUnlocked": true,
 
