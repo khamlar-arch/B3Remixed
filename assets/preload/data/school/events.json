@@ -1,0 +1,79 @@
+{
+	"song": {
+		"speed": 2.8,
+		"stage": "philly",
+		"player1": "week3bf",
+		"player2": "pico",
+		"player3": null,
+		"events": [
+			[
+				41481.4814814815,
+				[
+					[
+						"GayStation",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				41485.3395061728,
+				[
+					[
+						"Change Character",
+						"dad",
+						"picogay"
+					]
+				]
+			],
+			[
+				41489.1975308642,
+				[
+					[
+						"Change Character",
+						"bf",
+						"bfgay"
+					]
+				]
+			],
+			[
+				65185.1851851852,
+				[
+					[
+						"GayStation",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				65189.0432098765,
+				[
+					[
+						"Change Character",
+						"dad",
+						"pico"
+					]
+				]
+			],
+			[
+				65192.9012345679,
+				[
+					[
+						"Change Character",
+						"bf",
+						"week3bf"
+					]
+				]
+			]
+		],
+		"notes": [],
+		"splashSkin": null,
+		"validScore": false,
+		"gfVersion": "gf",
+		"bpm": 162,
+		"arrowSkin": null,
+		"needsVoices": true,
+		"song": "School"
+	}
+}
