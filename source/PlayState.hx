@@ -199,6 +199,8 @@ class PlayState extends MusicBeatState
 	var halloweenWhite:BGSprite;
 	var halloweenForeground:BGSprite;
 
+	var gayStation:FlxSprite;
+
 	var phillyCityLights:FlxTypedGroup<BGSprite>;
 	var phillyTrain:BGSprite;
 	var blammedLightsBlack:ModchartSprite;
@@ -437,46 +439,32 @@ class PlayState extends MusicBeatState
 				add(halloweenTrees);
 				add(halloweenGround);
 
-			case 'philly': //Week 3
-				if(!ClientPrefs.lowQuality) {
-					var bg:BGSprite = new BGSprite('philly/sky', -100, 0, 0.1, 0.1);
-					add(bg);
-				}
-				
-				//addShaderToCamera('game', chromAb);
-				//chromAb.setChrome(0.01);
+			case 'philly': //Week 3				
+				var subway:BGSprite = new BGSprite('station/subway', -350,-500, 0.9, 0.9);
+				subway.setGraphicSize(Std.int(subway.width * 1));
+				subway.updateHitbox();
 
-				var city:BGSprite = new BGSprite('philly/city', -10, 0, 0.3, 0.3);
-				city.setGraphicSize(Std.int(city.width * 0.85));
-				city.updateHitbox();
-				add(city);
+				gayStation = new FlxSprite(-350,-500).loadGraphic(Paths.image('station/subway but gay'));
+				gayStation.setGraphicSize(Std.int(gayStation.width * 1));
+				gayStation.scrollFactor.set(0.9, 0.9);
+				gayStation.visible = false;
+				gayStation.updateHitbox();
 
-				phillyCityLights = new FlxTypedGroup<BGSprite>();
-				add(phillyCityLights);
+				var pcameos:BGSprite = new BGSprite('station/pcameos', -335,-551, 0.9, 0.9, ['bop'], true);
+				pcameos.antialiasing = true;
+				pcameos.setGraphicSize(Std.int(pcameos.width * 1.65));
+				pcameos.setGraphicSize(Std.int(pcameos.height * 1.65));
+				pcameos.updateHitbox();
 
-				for (i in 0...5)
-				{
-					var light:BGSprite = new BGSprite('philly/win' + i, city.x, city.y, 0.3, 0.3);
-					light.visible = false;
-					light.setGraphicSize(Std.int(light.width * 0.85));
-					light.updateHitbox();
-					phillyCityLights.add(light);
-				}
+				var stationLights:BGSprite = new BGSprite('station/lightsSheet', -350,-500, 0.9, 0.9, ['Lights'], true);
+				stationLights.antialiasing = true;
+				stationLights.setGraphicSize(Std.int(subway.width * 1));
+				stationLights.updateHitbox();
 
-				if(!ClientPrefs.lowQuality) {
-					var streetBehind:BGSprite = new BGSprite('philly/behindTrain', -40, 50);
-					add(streetBehind);
-				}
-
-				phillyTrain = new BGSprite('philly/train', 2000, 360);
-				add(phillyTrain);
-
-				trainSound = new FlxSound().loadEmbedded(Paths.sound('train_passes'));
-				CoolUtil.precacheSound('train_passes');
-				FlxG.sound.list.add(trainSound);
-
-				var street:BGSprite = new BGSprite('philly/street', -40, 50);
-				add(street);
+				add(subway);
+				add(pcameos);
+				add(stationLights);
+				add(gayStation);
 
 			case 'limo': //Week 4
 				var skyBG:BGSprite = new BGSprite('limo/limoSunset', -120, -50, 0.1, 0.1);
@@ -698,17 +686,6 @@ class PlayState extends MusicBeatState
 		add(luaDebugGroup);
 		#end
 
-		if(curStage == 'philly') {
-			phillyCityLightsEvent = new FlxTypedGroup<BGSprite>();
-			for (i in 0...5)
-			{
-				var light:BGSprite = new BGSprite('philly/win' + i, -10, 0, 0.3, 0.3);
-				light.visible = false;
-				light.setGraphicSize(Std.int(light.width * 0.85));
-				light.updateHitbox();
-				phillyCityLightsEvent.add(light);
-			}
-		}
 
 
 		// "GLOBAL" SCRIPTS
@@ -2029,8 +2006,6 @@ class PlayState extends MusicBeatState
 
 			if(blammedLightsBlackTween != null)
 				blammedLightsBlackTween.active = false;
-			if(phillyCityLightsEventTween != null)
-				phillyCityLightsEventTween.active = false;
 
 			if(carTimer != null) carTimer.active = false;
 
@@ -2070,8 +2045,6 @@ class PlayState extends MusicBeatState
 
 			if(blammedLightsBlackTween != null)
 				blammedLightsBlackTween.active = true;
-			if(phillyCityLightsEventTween != null)
-				phillyCityLightsEventTween.active = true;
 			
 			if(carTimer != null) carTimer.active = true;
 
@@ -2169,18 +2142,6 @@ class PlayState extends MusicBeatState
 				if(!ClientPrefs.lowQuality && bgGhouls.animation.curAnim.finished) {
 					bgGhouls.visible = false;
 				}
-			case 'philly':
-				if (trainMoving)
-				{
-					trainFrameTiming += elapsed;
-
-					if (trainFrameTiming >= 1 / 24)
-					{
-						updateTrainPos();
-						trainFrameTiming = 0;
-					}
-				}
-				phillyCityLights.members[curLight].alpha -= (Conductor.crochet / 1000) * FlxG.elapsed * 1.5;
 			case 'limo':
 				if(!ClientPrefs.lowQuality) {
 					grpLimoParticles.forEach(function(spr:BGSprite) {
@@ -2768,120 +2729,15 @@ class PlayState extends MusicBeatState
 				if(Math.isNaN(value)) value = 1;
 				gfSpeed = value;
 
-			case 'Blammed Lights':
-				var lightId:Int = Std.parseInt(value1);
-				if(Math.isNaN(lightId)) lightId = 0;
-
-				if(lightId > 0 && curLightEvent != lightId) {
-					if(lightId > 5) lightId = FlxG.random.int(1, 5, [curLightEvent]);
-
-					var color:Int = 0xffffffff;
-					switch(lightId) {
-						case 1: //Blue
-							color = 0xff31a2fd;
-						case 2: //Green
-							color = 0xff31fd8c;
-						case 3: //Pink
-							color = 0xfff794f7;
-						case 4: //Red
-							color = 0xfff96d63;
-						case 5: //Orange
-							color = 0xfffba633;
-					}
-					curLightEvent = lightId;
-
-					if(blammedLightsBlack.alpha == 0) {
-						if(blammedLightsBlackTween != null) {
-							blammedLightsBlackTween.cancel();
-						}
-						blammedLightsBlackTween = FlxTween.tween(blammedLightsBlack, {alpha: 1}, 1, {ease: FlxEase.quadInOut,
-							onComplete: function(twn:FlxTween) {
-								blammedLightsBlackTween = null;
-							}
-						});
-
-						var chars:Array<Character> = [boyfriend, gf, dad];
-						for (i in 0...chars.length) {
-							if(chars[i].colorTween != null) {
-								chars[i].colorTween.cancel();
-							}
-							chars[i].colorTween = FlxTween.color(chars[i], 1, FlxColor.WHITE, color, {onComplete: function(twn:FlxTween) {
-								chars[i].colorTween = null;
-							}, ease: FlxEase.quadInOut});
-						}
-					} else {
-						if(blammedLightsBlackTween != null) {
-							blammedLightsBlackTween.cancel();
-						}
-						blammedLightsBlackTween = null;
-						blammedLightsBlack.alpha = 1;
-
-						var chars:Array<Character> = [boyfriend, gf, dad];
-						for (i in 0...chars.length) {
-							if(chars[i].colorTween != null) {
-								chars[i].colorTween.cancel();
-							}
-							chars[i].colorTween = null;
-						}
-						dad.color = color;
-						boyfriend.color = color;
-						gf.color = color;
-					}
-					
-					if(curStage == 'philly') {
-						if(phillyCityLightsEvent != null) {
-							phillyCityLightsEvent.forEach(function(spr:BGSprite) {
-								spr.visible = false;
-							});
-							phillyCityLightsEvent.members[lightId - 1].visible = true;
-							phillyCityLightsEvent.members[lightId - 1].alpha = 1;
-						}
-					}
-				} else {
-					if(blammedLightsBlack.alpha != 0) {
-						if(blammedLightsBlackTween != null) {
-							blammedLightsBlackTween.cancel();
-						}
-						blammedLightsBlackTween = FlxTween.tween(blammedLightsBlack, {alpha: 0}, 1, {ease: FlxEase.quadInOut,
-							onComplete: function(twn:FlxTween) {
-								blammedLightsBlackTween = null;
-							}
-						});
-					}
-
-					if(curStage == 'philly') {
-						phillyCityLights.forEach(function(spr:BGSprite) {
-							spr.visible = false;
-						});
-						phillyCityLightsEvent.forEach(function(spr:BGSprite) {
-							spr.visible = false;
-						});
-
-						var memb:FlxSprite = phillyCityLightsEvent.members[curLightEvent - 1];
-						if(memb != null) {
-							memb.visible = true;
-							memb.alpha = 1;
-							if(phillyCityLightsEventTween != null)
-								phillyCityLightsEventTween.cancel();
-
-							phillyCityLightsEventTween = FlxTween.tween(memb, {alpha: 0}, 1, {onComplete: function(twn:FlxTween) {
-								phillyCityLightsEventTween = null;
-							}, ease: FlxEase.quadInOut});
-						}
-					}
-
-					var chars:Array<Character> = [boyfriend, gf, dad];
-					for (i in 0...chars.length) {
-						if(chars[i].colorTween != null) {
-							chars[i].colorTween.cancel();
-						}
-						chars[i].colorTween = FlxTween.color(chars[i], 1, chars[i].color, FlxColor.WHITE, {onComplete: function(twn:FlxTween) {
-							chars[i].colorTween = null;
-						}, ease: FlxEase.quadInOut});
-					}
-
-					curLight = 0;
-					curLightEvent = 0;
+			case 'GayStation':
+				switch (Std.parseFloat(value1))
+				{
+					case 1:
+						gayStation.visible = true;
+						gfGroup.visible = false;
+					case 2: 
+						gayStation.visible = false;
+						gfGroup.visible = true;
 				}
 
 			case 'Kill Henchmen':
@@ -4048,56 +3904,6 @@ class PlayState extends MusicBeatState
 	var trainFinishing:Bool = false;
 	var trainCooldown:Int = 0;
 
-	function trainStart():Void
-	{
-		trainMoving = true;
-		if (!trainSound.playing)
-			trainSound.play(true);
-	}
-
-	var startedMoving:Bool = false;
-
-	function updateTrainPos():Void
-	{
-		if (trainSound.time >= 4700)
-		{
-			startedMoving = true;
-			gf.playAnim('hairBlow');
-			gf.specialAnim = true;
-		}
-
-		if (startedMoving)
-		{
-			phillyTrain.x -= 400;
-
-			if (phillyTrain.x < -2000 && !trainFinishing)
-			{
-				phillyTrain.x = -1150;
-				trainCars -= 1;
-
-				if (trainCars <= 0)
-					trainFinishing = true;
-			}
-
-			if (phillyTrain.x < -4000 && trainFinishing)
-				trainReset();
-		}
-	}
-
-	function trainReset():Void
-	{
-		gf.danced = false; //Sets head to the correct position once the animation ends
-		gf.playAnim('hairFall');
-		gf.specialAnim = true;
-		phillyTrain.x = FlxG.width + 200;
-		trainMoving = false;
-		// trainSound.stop();
-		// trainSound.time = 0;
-		trainCars = 8;
-		trainFinishing = false;
-		startedMoving = false;
-	}
-
 	function lightningStrikeShit():Void
 	{
 		FlxG.sound.play(Paths.soundRandom('thunder_', 1, 2));
@@ -4317,28 +4123,6 @@ class PlayState extends MusicBeatState
 
 				if (FlxG.random.bool(10) && fastCarCanDrive)
 					fastCarDrive();
-			case "philly":
-				if (!trainMoving)
-					trainCooldown += 1;
-
-				if (curBeat % 4 == 0)
-				{
-					phillyCityLights.forEach(function(light:BGSprite)
-					{
-						light.visible = false;
-					});
-
-					curLight = FlxG.random.int(0, phillyCityLights.length - 1, [curLight]);
-
-					phillyCityLights.members[curLight].visible = true;
-					phillyCityLights.members[curLight].alpha = 1;
-				}
-
-				if (curBeat % 8 == 4 && FlxG.random.bool(30) && !trainMoving && trainCooldown > 8)
-				{
-					trainCooldown = FlxG.random.int(-4, 0);
-					trainStart();
-				}
 		}
 	}
 
