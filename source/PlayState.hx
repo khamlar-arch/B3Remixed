@@ -466,6 +466,23 @@ class PlayState extends MusicBeatState
 				add(stationLights);
 				add(gayStation);
 
+			case 'miaStation':
+				var stadiumBG:BGSprite = new BGSprite('stadium/stadium', -550, -270, 0.9, 0.9);
+				stadiumBG.setGraphicSize(Std.int(stadiumBG.width * 1));
+				stadiumBG.updateHitbox();
+
+				var backBoppers:BGSprite = new BGSprite('stadium/mia_boppers', -550, -327, 0.9, 0.9, ['Back Crowd Bop'], true);
+				backBoppers.setGraphicSize(Std.int(backBoppers.width * 1));
+				backBoppers.updateHitbox();
+
+				var frontBoppers:BGSprite = new BGSprite('stadium/mia_boppers', -550, -335, 0.9, 0.9, ['Front Crowd Bop'], true);
+				frontBoppers.setGraphicSize(Std.int(frontBoppers.width * 1));
+				frontBoppers.updateHitbox();
+
+				add(stadiumBG);
+				add(backBoppers);
+				add(frontBoppers);
+
 			case 'limo': //Week 4
 				var skyBG:BGSprite = new BGSprite('limo/limoSunset', -120, -50, 0.1, 0.1);
 				add(skyBG);
