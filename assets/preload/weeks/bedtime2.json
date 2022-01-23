@@ -1,0 +1,40 @@
+{
+	"songs": [
+		[
+			"Dessert",
+			"fang",
+			[
+				146,
+				53,
+				253
+			]
+		],
+		[
+			"Guh",
+			"succ",
+			[
+				160,
+				0,
+				253
+			]
+		]
+	],
+	"hideFreeplay": false,
+	"weekBackground": "stage",
+	"difficulties": "Easy, Normal, Hard, Getreal",
+	"weekCharacters": [
+		"GF_Phase1",
+		"bf",
+		"gf"
+	],
+	"storyName": "Bloody Bedtime Part 2",
+	"weekName": "Bloody Bedtime",
+	"freeplayColor": [
+		146,
+		113,
+		253
+	],
+	"hideStoryMode": true,
+	"weekBefore": "tutorial",
+	"startUnlocked": true
+}

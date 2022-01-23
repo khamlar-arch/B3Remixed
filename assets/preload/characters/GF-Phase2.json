@@ -1,73 +1,73 @@
 {
 	"animations": [
 		{
+			"loop": false,
 			"offsets": [
 				-102,
 				-167
 			],
-			"indices": [],
-			"fps": 24,
 			"anim": "singRIGHT",
-			"loop": false,
-			"name": "G Right"
+			"fps": 24,
+			"name": "G Right",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				-68,
 				-165
 			],
-			"indices": [],
-			"fps": 24,
 			"anim": "singUP",
-			"loop": false,
-			"name": "G Up"
+			"fps": 24,
+			"name": "G Up",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				-51,
 				-167
 			],
-			"indices": [],
-			"fps": 24,
 			"anim": "singLEFT",
-			"loop": false,
-			"name": "G Left"
+			"fps": 24,
+			"name": "G Left",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				-71,
 				-191
 			],
-			"indices": [],
-			"fps": 24,
 			"anim": "singDOWN",
-			"loop": false,
-			"name": "G Down"
+			"fps": 24,
+			"name": "G Down",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				-69,
 				-163
 			],
-			"indices": [],
-			"fps": 24,
 			"anim": "idle",
-			"loop": false,
-			"name": "G Idle Dance"
+			"fps": 24,
+			"name": "G Idle Dance",
+			"indices": []
 		}
 	],
-	"no_antialiasing": false,
+	"no_antialiasing": true,
 	"image": "characters/B3_GF_Phase_2_Assets",
 	"position": [
 		0,
 		0
 	],
-	"healthicon": "mom",
+	"healthicon": "succ",
 	"flip_x": false,
 	"healthbar_colors": [
-		216,
-		85,
-		142
+		218,
+		20,
+		197
 	],
 	"camera_position": [
 		-100,
