@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				294,
+				298
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "RIGHT SING",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				321,
+				317
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "IDLE",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				342,
+				325
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "UP SING",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				385,
+				337
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "LEFT SING",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				297,
+				284
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "DOWN",
+			"indices": []
+		}
+	],
+	"no_antialiasing": true,
+	"image": "characters/Monster_B3_GF",
+	"position": [
+		0,
+		0
+	],
+	"healthicon": "vamp",
+	"flip_x": false,
+	"healthbar_colors": [
+		218,
+		20,
+		197
+	],
+	"camera_position": [
+		-430,
+		-460
+	],
+	"sing_duration": 4,
+	"scale": 1
+}
