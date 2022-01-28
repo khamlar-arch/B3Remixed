@@ -283,6 +283,7 @@ class TitleState extends MusicBeatState
 		logoBl.animation.addByPrefix('bump', 'logo bumpin', 24, false);
 		logoBl.animation.play('bump');
 		logoBl.updateHitbox();
+		logoBl.setGraphicSize(Std.int(logoBl.width * 0.75));
 		// logoBl.screenCenter();
 		// logoBl.color = FlxColor.BLACK;
 
@@ -307,7 +308,7 @@ class TitleState extends MusicBeatState
 		#end
 			gfDance.animation.addByIndices('danceLeft', 'gfDance', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
 			gfDance.animation.addByIndices('danceRight', 'gfDance', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
-	
+		gfDance.setGraphicSize(Std.int(gfDance.width * 0.75));
 		gfDance.antialiasing = ClientPrefs.globalAntialiasing;
 		add(gfDance);
 		gfDance.shader = swagShader.shader;
@@ -573,68 +574,36 @@ class TitleState extends MusicBeatState
 			switch (sickBeats)
 			{
 				case 1:
-					#if PSYCH_WATERMARKS
-					createCoolText(['Psych Engine by'], 15);
-					#else
-					createCoolText(['ninjamuffin99', 'phantomArcade', 'kawaisprite', 'evilsk8er']);
-					#end
-				// credTextShit.visible = true;
-				case 3:
-					#if PSYCH_WATERMARKS
-					addMoreText('Shadow Mario', 15);
-					addMoreText('RiverOaken', 15);
-					addMoreText('bb-panzu', 15);
-					#else
-					addMoreText('present');
-					#end
-				// credTextShit.text += '\npresent...';
-				// credTextShit.addText();
-				case 4:
-					deleteCoolText();
-				// credTextShit.visible = false;
-				// credTextShit.text = 'In association \nwith';
-				// credTextShit.screenCenter();
-				case 5:
-					#if PSYCH_WATERMARKS
-					createCoolText(['Created by', 'with'], -40);
-					#else
-					createCoolText(['In association', 'with'], -40);
-					#end
-				case 7:
-					addMoreText('newgrounds', -40);
-					ngSpr.visible = true;
-				// credTextShit.text += '\nNewgrounds';
-				case 8:
-					deleteCoolText();
-					ngSpr.visible = false;
-				// credTextShit.visible = false;
-
-				// credTextShit.text = 'Shoutouts Tom Fulp';
-				// credTextShit.screenCenter();
-				case 9:
-					createCoolText([curWacky[0]]);
-				// credTextShit.visible = true;
-				case 11:
-					addMoreText(curWacky[1]);
-				// credTextShit.text += '\nlmao';
-				case 12:
-					deleteCoolText();
-				// credTextShit.visible = false;
-				// credTextShit.text = "Friday";
-				// credTextShit.screenCenter();
-				case 13:
-					addMoreText('Friday');
-				// credTextShit.visible = true;
-				case 14:
-					addMoreText('Night');
-				// credTextShit.text += '\nNight';
-				case 15:
-					addMoreText('Funkin'); // credTextShit.text += '\nFunkin';
-
-				case 16:
-					addMoreText('B3 REMIXED'); // credTextShit.text += '\nFunkin';
-				case 17:
-					skipIntro();
+				createCoolText(['STUDIO BREAKBEAT']);
+			case 3:
+				deleteCoolText();
+				addMoreText('present');
+			case 5:
+				deleteCoolText();
+				addMoreText('Created');
+			case 6:
+				addMoreText('by');
+			case 7:
+				addMoreText('Biddle3');
+				ngSpr.visible = true;
+			case 8:
+				deleteCoolText();
+				ngSpr.visible = false;
+			case 9:
+				createCoolText([curWacky[0]]);
+			case 11:
+				addMoreText(curWacky[1]);
+			case 12:
+				deleteCoolText();
+				addMoreText('Friday');
+			case 13:
+				addMoreText('Night');
+			case 14:
+				addMoreText('Spookin');
+			case 15:
+				addMoreText('B3 REMIXED');
+			case 16:
+				skipIntro();
 			}
 		}
 	}
