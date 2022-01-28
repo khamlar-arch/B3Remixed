@@ -483,6 +483,24 @@ class PlayState extends MusicBeatState
 				add(backBoppers);
 				add(frontBoppers);
 
+			case 'room':
+				var roomBG:BGSprite = new BGSprite('halloween/room', -550, -270, 0.9, 0.9);
+				roomBG.setGraphicSize(Std.int(roomBG.width * 1));
+				roomBG.updateHitbox();
+
+				var windowcity:BGSprite = new BGSprite('halloween/windowcity', -550, -270, 0.9, 0.9);
+				windowcity.active = false;
+				windowcity.setGraphicSize(Std.int(windowcity.width * 1));
+				windowcity.updateHitbox();
+
+				var filterBG:BGSprite = new BGSprite('halloween/filterforbg', -550, -270, 0.9, 0.9);
+				filterBG.setGraphicSize(Std.int(filterBG.width * 1));
+				filterBG.updateHitbox();
+
+				add(roomBG);
+				add(windowcity);
+				add(filterBG);
+
 			case 'limo': //Week 4
 				var skyBG:BGSprite = new BGSprite('limo/limoSunset', -120, -50, 0.1, 0.1);
 				add(skyBG);
@@ -692,6 +710,8 @@ class PlayState extends MusicBeatState
 		{
 			case 'spooky':
 				add(halloweenForeground);
+			case 'room':
+				gfGroup.visible = false;
 		}
 		trace(boyfriendGroup);
 		trace(dadGroup);
@@ -2755,6 +2775,12 @@ class PlayState extends MusicBeatState
 					case 2: 
 						gayStation.visible = false;
 						gfGroup.visible = true;
+					case 3:
+						camGame.shake(0.02,0.5);
+						camHUD.shake(0.02,0.2);
+						dad.playAnim('shoot', true);
+					case 4:
+						dad.playAnim('cock', true);
 				}
 
 			case 'Kill Henchmen':
@@ -3761,11 +3787,8 @@ class PlayState extends MusicBeatState
 				}
 
 				switch(note.noteType) {
-					case 'Hurt Note': //Hurt note
-						if(boyfriend.animation.getByName('hurt') != null) {
-							boyfriend.playAnim('hurt', true);
-							boyfriend.specialAnim = true;
-						}
+					case 'Burger Note':
+						health -= 1258971276; //lmao
 				}
 				
 				note.wasGoodHit = true;
