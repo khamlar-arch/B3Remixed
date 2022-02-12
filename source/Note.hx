@@ -114,31 +114,14 @@ class Note extends FlxSprite
 					} else {
 						missHealth = 0.9;
 					}
-					offset.x= 70;
+					offset.x= 75;
 				case 'Chomp Note':
-					ignoreNote = mustPress;
 					reloadNote('CHOMP');
 					noteSplashTexture = 'noteSplashes';
-					colorSwap.saturation = 0;
-					colorSwap.brightness = 0;
-					if(wasGoodHit) {
-						missHealth = 0.99;
-					} else {
-						missHealth = 0.99;
-					}
 					offset.x= 70;
 				case 'Gay Note':
-					ignoreNote = mustPress;
 					reloadNote('GAY');
-					noteSplashTexture = 'GAYnoteSplashes';
-					colorSwap.saturation = 0;
-					colorSwap.brightness = 0;
-					if(wasGoodHit) {
-						missHealth = 0.99;
-					} else {
-						missHealth = 0.99;
-					}
-					offset.x= 70;
+					noteSplashTexture = 'noteSplashes';
 			}
 			noteType = value;
 		}

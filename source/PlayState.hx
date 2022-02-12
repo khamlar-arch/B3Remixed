@@ -719,8 +719,16 @@ class PlayState extends MusicBeatState
 		if (curStage == 'limo')
 			add(limo);
 
+		if(Paths.formatToSongPath(SONG.song) == 'nom')
+		{
+			add(dadGroup);
+			add(boyfriendGroup);
+		}
+		else
+		{
 		add(dadGroup);
 		add(boyfriendGroup);
+		}
 
 		switch (curStage)
 		{
@@ -3672,6 +3680,19 @@ class PlayState extends MusicBeatState
 				note.destroy();
 			}
 		});
+
+		switch(daNote.noteType)
+		{
+			case "Chomp Note":					
+				health -= 10000; //bruh istfg if this doesnt work
+				trace("munch");
+					
+			case "Gay Note":
+				health -= 5;
+				trace("*raises hand* i have a homophobic slur to say");
+					
+		}
+
 		combo = 0;
 
 		health -= daNote.missHealth * healthLoss;
@@ -3814,11 +3835,6 @@ class PlayState extends MusicBeatState
 				if(!note.noteSplashDisabled && !note.isSustainNote) {
 					spawnNoteSplashOnNote(note);
 				}
-
-				switch(note.noteType) {
-					case 'Burger Note':
-						health -= 100; //lmao
-				}
 				
 				note.wasGoodHit = true;
 				if (!note.isSustainNote)
@@ -3880,6 +3896,20 @@ class PlayState extends MusicBeatState
 					}
 				}
 			}
+		
+			//b3 custom notes lol
+
+			if(note.noteType == 'Burger Note') 
+			{
+				health -= 10000; //haha u died xd
+				trace("h a m b u r g e r");
+			}
+			if(note.noteType == 'Chomp Note')
+			{
+				dad.animation.play('bite');
+				boyfriend.animation.play('dodge');
+			}
+
 
 			if(cpuControlled) {
 				var time:Float = 0.15;
