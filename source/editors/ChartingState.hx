@@ -61,6 +61,8 @@ class ChartingState extends MusicBeatState
 		'Alt Animation',
 		'Hey!',
 		'Burger Note',
+		'Gay Note',
+		'Chomp Note',
 		'No Animation'
 	];
 	private var noteTypeIntMap:Map<Int, String> = new Map<Int, String>();
@@ -83,7 +85,8 @@ class ChartingState extends MusicBeatState
 		['Screen Shake', "Value 1: Camera shake\nValue 2: HUD shake\n\nEvery value works as the following example: \"1, 0.05\".\nThe first number (1) is the duration.\nThe second number (0.05) is the intensity."],
 		['Change Character', "Value 1: Character to change (Dad, BF, GF)\nValue 2: New character's name"],
 		['Change Scroll Speed', "Value 1: Scroll Speed Multiplier (1 is default)\nValue 2: Time it takes to change fully in seconds."],
-		['GayStation', "Value 1: 1 for making it visible, 2 for making it invisible again"]
+		['GayStation', "Value 1: 1 for making it visible, 2 for making it invisible again"],
+		['Dessert', "Value 1: 1 for making it visible, 2 for making it invisible again"]
 	];
 
 	var _file:FileReference;

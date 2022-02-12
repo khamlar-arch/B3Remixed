@@ -109,7 +109,35 @@ class Note extends FlxSprite
 					noteSplashTexture = 'HURTnoteSplashes';
 					colorSwap.saturation = 0;
 					colorSwap.brightness = 0;
-					health -= 83523678;
+					if(isSustainNote) {
+						missHealth = 0.9;
+					} else {
+						missHealth = 0.9;
+					}
+					offset.x= 70;
+				case 'Chomp Note':
+					ignoreNote = mustPress;
+					reloadNote('CHOMP');
+					noteSplashTexture = 'noteSplashes';
+					colorSwap.saturation = 0;
+					colorSwap.brightness = 0;
+					if(wasGoodHit) {
+						missHealth = 0.99;
+					} else {
+						missHealth = 0.99;
+					}
+					offset.x= 70;
+				case 'Gay Note':
+					ignoreNote = mustPress;
+					reloadNote('GAY');
+					noteSplashTexture = 'GAYnoteSplashes';
+					colorSwap.saturation = 0;
+					colorSwap.brightness = 0;
+					if(wasGoodHit) {
+						missHealth = 0.99;
+					} else {
+						missHealth = 0.99;
+					}
 					offset.x= 70;
 			}
 			noteType = value;

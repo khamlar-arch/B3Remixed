@@ -200,6 +200,7 @@ class PlayState extends MusicBeatState
 	var halloweenForeground:BGSprite;
 
 	var gayStation:FlxSprite;
+	var dessert:FlxSprite;
 
 	var phillyCityLights:FlxTypedGroup<BGSprite>;
 	var phillyTrain:BGSprite;
@@ -497,9 +498,24 @@ class PlayState extends MusicBeatState
 				filterBG.setGraphicSize(Std.int(filterBG.width * 1));
 				filterBG.updateHitbox();
 
+				dessert = new FlxSprite(-550,-470).loadGraphic(Paths.image('dead/dream'));
+				dessert.setGraphicSize(Std.int(dessert.width * 1));
+				dessert.scrollFactor.set(0.9, 0.9);
+				dessert.visible = false;
+				dessert.updateHitbox();
+
 				add(roomBG);
 				add(windowcity);
 				add(filterBG);
+				add(dessert);
+
+			case 'dream':
+				var hellBG:BGSprite = new BGSprite('dead/dream', -550, -270, 0.9, 0.9);
+				hellBG.setGraphicSize(Std.int(hellBG.width * 2.5));
+				hellBG.setGraphicSize(Std.int(hellBG.height * 2.5));
+				hellBG.updateHitbox();
+
+				add(hellBG);
 
 			case 'limo': //Week 4
 				var skyBG:BGSprite = new BGSprite('limo/limoSunset', -120, -50, 0.1, 0.1);
@@ -711,6 +727,8 @@ class PlayState extends MusicBeatState
 			case 'spooky':
 				add(halloweenForeground);
 			case 'room':
+				gfGroup.visible = false;
+			case 'dream':
 				gfGroup.visible = false;
 		}
 		trace(boyfriendGroup);
@@ -2783,6 +2801,16 @@ class PlayState extends MusicBeatState
 						dad.playAnim('cock', true);
 				}
 
+			case 'Dessert':
+				switch (Std.parseFloat(value1))
+				{
+					case 1:
+						dessert.visible = true;
+						gfGroup.visible = false;
+					case 2: 
+						dessert.visible = false;
+						gfGroup.visible = false;
+				}
 			case 'Kill Henchmen':
 				killHenchmen();
 
@@ -3733,6 +3761,7 @@ class PlayState extends MusicBeatState
 			dad.playAnim('hey', true);
 			dad.specialAnim = true;
 			dad.heyTimer = 0.6;
+
 		} else if(!note.noAnimation) {
 			var altAnim:String = "";
 
@@ -3788,7 +3817,7 @@ class PlayState extends MusicBeatState
 
 				switch(note.noteType) {
 					case 'Burger Note':
-						health -= 1258971276; //lmao
+						health -= 100; //lmao
 				}
 				
 				note.wasGoodHit = true;
