@@ -719,16 +719,8 @@ class PlayState extends MusicBeatState
 		if (curStage == 'limo')
 			add(limo);
 
-		if(Paths.formatToSongPath(SONG.song) == 'nom')
-		{
-			add(dadGroup);
-			add(boyfriendGroup);
-		}
-		else
-		{
-		add(dadGroup);
 		add(boyfriendGroup);
-		}
+		add(dadGroup);
 
 		switch (curStage)
 		{
