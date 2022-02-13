@@ -87,7 +87,8 @@ class ChartingState extends MusicBeatState
 		['Change Scroll Speed', "Value 1: Scroll Speed Multiplier (1 is default)\nValue 2: Time it takes to change fully in seconds."],
 		['GayStation', "Value 1: 1 for making it visible, 2 for making it invisible again"],
 		['Dessert', "Value 1: 1 for making it visible, 2 for making it invisible again"],
-		['funnystatic', "Does the TT static shit\n1: Dessert becomes visible\nDessert becomes invisible\nTHIS ONLY WORKS ON THE \nSHAYA WEEK STAGE"]
+		['funnystatic', "Does the TT static shit\n1: Dessert becomes visible\nDessert becomes invisible\nTHIS ONLY WORKS ON THE \nSHAYA WEEK STAGE"],
+		['WIN!!!', "WIN!!!"]
 	];
 
 	var _file:FileReference;

@@ -2848,6 +2848,8 @@ class PlayState extends MusicBeatState
 						}
 					}
 			
+			case 'WIN!!!':
+				startVideo('win');
 
 			case 'GayStation':
 				switch (Std.parseFloat(value1))
