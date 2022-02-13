@@ -485,6 +485,10 @@ class PlayState extends MusicBeatState
 				add(frontBoppers);
 
 			case 'room':
+				GameOverSubstate.deathSoundName = 'fnf_loss_sfx-burger';
+                GameOverSubstate.loopSoundName = 'gameOver-burger';
+                GameOverSubstate.endSoundName = 'gameOverEnd-burger';
+                GameOverSubstate.characterName = 'burgerdead';
 				var roomBG:BGSprite = new BGSprite('halloween/room', -550, -270, 0.9, 0.9);
 				roomBG.setGraphicSize(Std.int(roomBG.width * 1));
 				roomBG.updateHitbox();
