@@ -489,7 +489,7 @@ class PlayState extends MusicBeatState
                 GameOverSubstate.loopSoundName = 'gameOver-burger';
                 GameOverSubstate.endSoundName = 'gameOverEnd-burger';
                 GameOverSubstate.characterName = 'burgerdead';
-				
+
 				var roomBG:BGSprite = new BGSprite('halloween/room', -550, -270, 0.9, 0.9);
 				roomBG.setGraphicSize(Std.int(roomBG.width * 1));
 				roomBG.updateHitbox();
@@ -2788,6 +2788,60 @@ class PlayState extends MusicBeatState
 				var value:Int = Std.parseInt(value1);
 				if(Math.isNaN(value)) value = 1;
 				gfSpeed = value;
+
+			case 'funnystatic':
+				switch (Std.parseFloat(value1))
+				{
+					case 1:
+						trace('p3static XDXDXD');
+							var daP3Static:FlxSprite = new FlxSprite().loadGraphic(Paths.image('Phase3Static'));
+							daP3Static.frames = Paths.getSparrowAtlas('Phase3Static');
+							daP3Static.animation.addByPrefix('P3Static', 'Phase3Static instance 1', 24, false);
+							daP3Static.screenCenter();
+					
+							daP3Static.scale.x = 4;
+							daP3Static.scale.y = 4;
+							daP3Static.alpha = 0.5;
+					
+							daP3Static.cameras = [camHUD];
+							add(daP3Static);
+							daP3Static.animation.play('P3Static');
+					
+						daP3Static.animation.finishCallback = function(pog:String)
+						{
+							trace('ended funny static');
+							daP3Static.alpha = 0;
+				
+							remove(daP3Static);
+							dessert.visible = true;
+							gfGroup.visible = false;
+						}
+					case 2:
+						trace('p3static XDXDXD');
+							var daP3Static:FlxSprite = new FlxSprite().loadGraphic(Paths.image('Phase3Static'));
+							daP3Static.frames = Paths.getSparrowAtlas('Phase3Static');
+							daP3Static.animation.addByPrefix('P3Static', 'Phase3Static instance 1', 24, false);
+							daP3Static.screenCenter();
+					
+							daP3Static.scale.x = 4;
+							daP3Static.scale.y = 4;
+							daP3Static.alpha = 0.5;
+					
+							daP3Static.cameras = [camHUD];
+							add(daP3Static);
+							daP3Static.animation.play('P3Static');
+					
+						daP3Static.animation.finishCallback = function(pog:String)
+						{
+							trace('ended funny static');
+							daP3Static.alpha = 0;
+				
+							remove(daP3Static);
+							dessert.visible = false;
+							gfGroup.visible = false;
+						}
+					}
+			
 
 			case 'GayStation':
 				switch (Std.parseFloat(value1))
