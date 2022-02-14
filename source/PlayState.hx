@@ -27,6 +27,9 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
 import flixel.math.FlxRect;
+import Lyric.SwagLyricSection;
+import haxe.Json;
+import lime.utils.Assets;
 import flixel.system.FlxAssets.FlxShader;
 import flixel.system.FlxSound;
 import flixel.text.FlxText;
@@ -198,6 +201,11 @@ class PlayState extends MusicBeatState
 	var halloweenBG:BGSprite;
 	var halloweenWhite:BGSprite;
 	var halloweenForeground:BGSprite;
+	
+	private var lyricSpeakerIcon:HealthIcon;
+	var lyrics:Array<SwagLyricSection>;
+	var hasLyrics:Bool = false;
+	var lyricTxt:FlxText;
 
 	var gayStation:FlxSprite;
 	var dessert:FlxSprite;
@@ -317,7 +325,14 @@ class PlayState extends MusicBeatState
 		shader_chromatic_abberation = new ChromaticAberrationEffect();
 		
 		
-		
+		try {
+			lyrics = cast Json.parse(Assets.getText('data' + SONG.song.toLowerCase() + '/lyrics.json'));
+			trace(lyrics);
+			hasLyrics = true;
+			trace("Found lyrics for " + SONG.song.toLowerCase());
+		} catch(e) {
+			trace("No lyrics for " + SONG.song.toLowerCase());
+		}
 		
 		
 		// var gameCam:FlxCamera = FlxG.camera;
@@ -1047,6 +1062,19 @@ class PlayState extends MusicBeatState
 		add(iconP2);
 		reloadHealthBarColors();
 
+		lyricTxt = new FlxText(healthBar.x, healthBar.y, 320, "[PLACEHOLDER]", 28);
+		lyricTxt.setFormat("assets/fonts/vcr.ttf", 28, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		lyricTxt.scrollFactor.set();
+		lyricSpeakerIcon = new HealthIcon();
+		lyricSpeakerIcon.iconScale = 0.65;
+		lyricSpeakerIcon.visible = false;
+
+		add(lyricTxt);			// (tsg - 7/30/21) small things lyric system port
+		add(lyricSpeakerIcon);	// (tsg - 7/30/21) small things lyric system port
+		// (tsg - 7/30/21) small things lyric system port
+		// by default make this off
+		lyricTxt.text = "";
+
 		scoreTxt = new FlxText(0, healthBarBG.y + 36, FlxG.width, "", 20);
 		scoreTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
@@ -1071,6 +1099,8 @@ class PlayState extends MusicBeatState
 		healthBarBG.cameras = [camHUD];
 		iconP1.cameras = [camHUD];
 		iconP2.cameras = [camHUD];
+		lyricTxt.cameras = [camHUD];
+		lyricSpeakerIcon.cameras = [camHUD];
 		scoreTxt.cameras = [camHUD];
 		botplayTxt.cameras = [camHUD];
 		timeBar.cameras = [camHUD];
@@ -2378,6 +2408,30 @@ class PlayState extends MusicBeatState
 		iconP1.x = healthBar.x + (healthBar.width * (FlxMath.remapToRange(healthBar.percent, 0, 100, 100, 0) * 0.01)) + (150 * iconP1.scale.x - 150) / 2 - iconOffset;
 		iconP2.x = healthBar.x + (healthBar.width * (FlxMath.remapToRange(healthBar.percent, 0, 100, 100, 0) * 0.01)) - (150 * iconP2.scale.x) / 2 - iconOffset * 2;
 
+		lyricTxt.x = (healthBar.getMidpoint().x - 100) - 70;
+		lyricTxt.y = (FlxG.save.data.downscroll ? healthBar.getMidpoint().y + 175 : healthBar.getMidpoint().y - 175);
+		lyricSpeakerIcon.x = (lyricTxt.x + (lyricTxt.width / 2) - 64) + 24;
+		lyricSpeakerIcon.y = (lyricTxt.y - 112) + 28;
+		
+		var lyricFailMargin:Int = 120;
+		
+		// (tsg - 7/30/21) small things lyric system port
+		if (hasLyrics == true) {
+			for (i in lyrics) {
+				if (FlxMath.inBounds(Conductor.songPosition, i.start, i.start + lyricFailMargin)) {
+					lyricTxt.text = i.lyric;
+					lyricSpeakerIcon.animation.play(i.speaker);
+					lyricSpeakerIcon.visible = true;
+				}
+				if (FlxMath.inBounds(Conductor.songPosition, i.end, i.end + lyricFailMargin))
+				{
+					lyricTxt.text = "";
+					lyricSpeakerIcon.visible = false;
+				}
+			}
+		}
+
+
 		if (health > 2)
 			health = 2;
 
@@ -2453,6 +2507,7 @@ class PlayState extends MusicBeatState
 
 		FlxG.watch.addQuick("beatShit", curBeat);
 		FlxG.watch.addQuick("stepShit", curStep);
+		FlxG.watch.addQuick("conductorPos: ", Conductor.songPosition);	// (tsg - 7/30/21) small things lyric system port
 
 		// RESET = Quick Game Over Screen
 		if (!ClientPrefs.noReset && controls.RESET && !inCutscene && !endingSong)
