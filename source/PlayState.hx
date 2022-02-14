@@ -1653,6 +1653,7 @@ class PlayState extends MusicBeatState
 				}
 				else if(dad.danceIdle && dad.animation.curAnim != null && !dad.stunned && !dad.curCharacter.startsWith('gf') && !dad.animation.curAnim.name.startsWith("sing"))
 				{
+					dadCamThing = [0,0];
 					dad.dance();
 				}
 
@@ -2848,8 +2849,6 @@ class PlayState extends MusicBeatState
 						}
 					}
 			
-			case 'WIN!!!':
-				startVideo('win');
 
 			case 'GayStation':
 				switch (Std.parseFloat(value1))
