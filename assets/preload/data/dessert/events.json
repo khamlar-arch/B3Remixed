@@ -7,7 +7,7 @@
 		"player3": null,
 		"events": [
 			[
-				45568.1818181818,
+				45795.4545454545,
 				[
 					[
 						"funnystatic",
@@ -21,28 +21,8 @@
 				[
 					[
 						"Change Character",
-						"1",
+						"dad",
 						"monstergf"
-					]
-				]
-			],
-			[
-				74659.0909090909,
-				[
-					[
-						"funnystatic",
-						"2",
-						""
-					]
-				]
-			],
-			[
-				76363.6363636364,
-				[
-					[
-						"Change Character",
-						"1",
-						"GF-Phase1"
 					]
 				]
 			]
