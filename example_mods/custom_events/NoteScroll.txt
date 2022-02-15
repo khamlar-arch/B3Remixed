@@ -1,0 +1,3 @@
+Put it as downscroll and upscroll for opponent (WARNING): Positions will stack if not used correctly
+value 1: leave it blank for downscroll then type 1 for upscroll again
+if blank will do nothing

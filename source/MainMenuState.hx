@@ -344,6 +344,13 @@ class MainMenuState extends MusicBeatState
 		menuItems.forEach(function(spr:FlxSprite)
 		{
 			spr.screenCenter(X);
+			switch (spr.ID) {
+				case 0: spr.x += 105;
+				case 1: spr.x += 2;
+				case 2: spr.x -= 95;
+				case 3: spr.x -= 175;
+			}
+			spr.x = 0;
 		});
 	}
 
