@@ -8,12 +8,6 @@ using StringTools;
 class HealthIcon extends FlxSprite
 {
 	public var sprTracker:FlxSprite;
-	public var lyricMode:Bool = false;
-
-	public var defualtIconScale:Float = 1;
-	public var iconScale:Float = 1;
-	public var iconSize:Float;
-	
 	private var isOldIcon:Bool = false;
 	private var isPlayer:Bool = false;
 	private var char:String = '';
@@ -30,11 +24,6 @@ class HealthIcon extends FlxSprite
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
-
-		if (lyricMode == false)
-			setGraphicSize(Std.int(iconSize * iconScale));
-
-		updateHitbox();
 
 		if (sprTracker != null)
 			setPosition(sprTracker.x + sprTracker.width + 10, sprTracker.y - 30);

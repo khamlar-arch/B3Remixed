@@ -8974,9 +8974,19 @@
 				"bpm": 155,
 				"changeBPM": false,
 				"mustHitSection": true
+			},
+			{
+				"gfSection": false,
+				"lengthInSteps": 16,
+				"altAnim": false,
+				"typeOfSection": 0,
+				"sectionNotes": [],
+				"bpm": 155,
+				"changeBPM": false,
+				"mustHitSection": true
 			}
 		],
-		"player2": "zombiemia",
+		"player2": "spooky",
 		"gfVersion": "gf",
 		"events": [
 			[
@@ -9012,7 +9022,7 @@
 		],
 		"player3": null,
 		"song": "Endless",
-		"stage": "miaStation",
+		"stage": "spooky",
 		"needsVoices": true,
 		"validScore": true,
 		"bpm": 155,
