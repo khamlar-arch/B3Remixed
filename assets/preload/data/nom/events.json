@@ -1,18 +1,28 @@
 {
 	"song": {
 		"speed": 2.9,
-		"stage": null,
+		"stage": "room",
 		"player1": "screambf",
 		"player2": "GF-Phase3",
 		"player3": null,
 		"events": [
 			[
-				0,
+				5052.63157894737,
 				[
 					[
-						"Play Animation",
-						"talk",
-						"Dad"
+						"Add Camera Zoom",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				5055.92105263158,
+				[
+					[
+						"Add Camera Zoom",
+						"0.15",
+						""
 					]
 				]
 			]

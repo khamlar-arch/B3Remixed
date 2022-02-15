@@ -103,6 +103,25 @@ class Note extends FlxSprite
 					noAnimation = true;
 				case 'GF Sing':
 					gfNote = true;
+				case 'Burger Note':
+					ignoreNote = mustPress;
+					reloadNote('BURGER');
+					noteSplashTexture = 'HURTnoteSplashes';
+					colorSwap.saturation = 0;
+					colorSwap.brightness = 0;
+					if(isSustainNote) {
+						missHealth = 0.9;
+					} else {
+						missHealth = 0.9;
+					}
+					offset.x= 75;
+				case 'Chomp Note':
+					reloadNote('CHOMP');
+					noteSplashTexture = 'noteSplashes';
+					offset.x= 70;
+				case 'Gay Note':
+					reloadNote('GAY');
+					noteSplashTexture = 'noteSplashes';
 			}
 			noteType = value;
 		}
