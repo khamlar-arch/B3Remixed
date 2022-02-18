@@ -753,8 +753,6 @@ class PlayState extends MusicBeatState
 				gfGroup.visible = false;
 			case 'dream':
 				gfGroup.visible = false;
-				var vcr:VCRDistortionShader;
-				vcr = new VCRDistortionShader();
 		}
 		trace(boyfriendGroup);
 		trace(dadGroup);
