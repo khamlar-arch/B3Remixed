@@ -533,11 +533,11 @@ class PlayState extends MusicBeatState
 				add(dessert);
 
 			case 'dream':
-				var hellBG:BGSprite = new BGSprite('dead/dream', -550, -270, 0.9, 0.9);
+				var hellBG:BGSprite = new BGSprite('dead/dream', -1050, -770, 0.9, 0.9);
 				hellBG.setGraphicSize(Std.int(hellBG.width * 2.5));
 				hellBG.setGraphicSize(Std.int(hellBG.height * 2.5));
 				hellBG.updateHitbox();
-
+				
 				add(hellBG);
 
 			case 'limo': //Week 4
