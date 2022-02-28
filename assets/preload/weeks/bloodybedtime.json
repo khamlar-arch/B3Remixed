@@ -29,7 +29,7 @@
 		]
 	],
 	"hideFreeplay": false,
-	"weekBackground": "stage",
+	"weekBackground": "room",
 	"difficulties": "Easy, Normal, Hard, Getreal",
 	"weekCharacters": [
 		"GF-Phase1",

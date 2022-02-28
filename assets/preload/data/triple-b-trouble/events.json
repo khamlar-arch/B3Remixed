@@ -1,0 +1,124 @@
+{
+	"song": {
+		"speed": 2.7,
+		"stage": "dream",
+		"player1": "imsorry",
+		"player2": "pico",
+		"player3": null,
+		"events": [
+			[
+				106849.315068493,
+				[
+					[
+						"Change Character",
+						"1",
+						"monstergf"
+					],
+					[
+						"Change Character",
+						"2",
+						"whydidyoudothis"
+					]
+				]
+			],
+			[
+				106849.315068493,
+				[
+					[
+						"Change Character",
+						"BF",
+						"whydidyoudothis"
+					]
+				]
+			],
+			[
+				133150.684931507,
+				[
+					[
+						"Change Character",
+						"1",
+						"monster"
+					],
+					[
+						"Change Character",
+						"BF",
+						"imsorry"
+					]
+				]
+			],
+			[
+				238356.164383562,
+				[
+					[
+						"Change Character",
+						"1",
+						"monstergf"
+					],
+					[
+						"Change Character",
+						"BF",
+						"whydidyoudothis"
+					]
+				]
+			],
+			[
+				290958.904109589,
+				[
+					[
+						"Change Character",
+						"1",
+						"zombiemia"
+					],
+					[
+						"Change Character",
+						"2",
+						"imsorry"
+					]
+				]
+			],
+			[
+				290958.904109589,
+				[
+					[
+						"Change Character",
+						"BF",
+						"imsorry"
+					],
+					[
+						"Change Scroll Speed",
+						"1.15",
+						"1"
+					]
+				]
+			],
+			[
+				406621.554711998,
+				[
+					[
+						"Change Character",
+						"1",
+						"monstergf"
+					]
+				]
+			],
+			[
+				406621.554711998,
+				[
+					[
+						"Change Character",
+						"BF",
+						"whydidyoudothis"
+					]
+				]
+			]
+		],
+		"notes": [],
+		"splashSkin": null,
+		"validScore": false,
+		"gfVersion": "gf",
+		"bpm": 146,
+		"arrowSkin": "",
+		"needsVoices": true,
+		"song": "Triple B Trouble"
+	}
+}

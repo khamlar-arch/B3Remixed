@@ -533,9 +533,9 @@ class PlayState extends MusicBeatState
 				add(dessert);
 
 			case 'dream':
-				var hellBG:BGSprite = new BGSprite('dead/dream', -1050, -770, 0.9, 0.9);
-				hellBG.setGraphicSize(Std.int(hellBG.width * 2.5));
-				hellBG.setGraphicSize(Std.int(hellBG.height * 2.5));
+				var hellBG:BGSprite = new BGSprite('dead/dream', -750, -370, 0.9, 0.9);
+				hellBG.setGraphicSize(Std.int(hellBG.width * 1.5));
+				hellBG.setGraphicSize(Std.int(hellBG.height * 1.5));
 				hellBG.updateHitbox();
 				
 				add(hellBG);
@@ -1083,7 +1083,7 @@ class PlayState extends MusicBeatState
 		scoreTxt.visible = !ClientPrefs.hideHud;
 		add(scoreTxt);
 
-		botplayTxt = new FlxText(400, timeBarBG.y + 55, FlxG.width - 800, "BOTPLAY", 32);
+		botplayTxt = new FlxText(400, timeBarBG.y + 55, FlxG.width - 800, "PUSSY MODE", 32);
 		botplayTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		botplayTxt.scrollFactor.set();
 		botplayTxt.borderSize = 1.25;
