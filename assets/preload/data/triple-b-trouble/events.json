@@ -13,11 +13,6 @@
 						"Change Character",
 						"1",
 						"monstergf"
-					],
-					[
-						"Change Character",
-						"2",
-						"whydidyoudothis"
 					]
 				]
 			],
@@ -51,13 +46,13 @@
 				[
 					[
 						"Change Character",
-						"1",
-						"monstergf"
+						"BF",
+						"whydidyoudothis"
 					],
 					[
 						"Change Character",
-						"BF",
-						"whydidyoudothis"
+						"1",
+						"monstergf"
 					]
 				]
 			],
@@ -68,11 +63,6 @@
 						"Change Character",
 						"1",
 						"zombiemia"
-					],
-					[
-						"Change Character",
-						"2",
-						"imsorry"
 					]
 				]
 			],
@@ -88,6 +78,126 @@
 						"Change Scroll Speed",
 						"1.15",
 						"1"
+					]
+				]
+			],
+			[
+				296019.145073445,
+				[
+					[
+						"Play Animation",
+						"hehe",
+						"Dad"
+					]
+				]
+			],
+			[
+				296199.867965011,
+				[
+					[
+						"Play Animation",
+						"hehe",
+						"Dad"
+					]
+				]
+			],
+			[
+				296380.590856577,
+				[
+					[
+						"Play Animation",
+						"haha",
+						"Dad"
+					]
+				]
+			],
+			[
+				296561.313748144,
+				[
+					[
+						"Play Animation",
+						"haha",
+						"Dad"
+					]
+				]
+			],
+			[
+				307585.410133686,
+				[
+					[
+						"Play Animation",
+						"hehe",
+						"Dad"
+					]
+				]
+			],
+			[
+				307766.133025252,
+				[
+					[
+						"Play Animation",
+						"hehe",
+						"Dad"
+					]
+				]
+			],
+			[
+				307946.855916818,
+				[
+					[
+						"Play Animation",
+						"haha",
+						"Dad"
+					]
+				]
+			],
+			[
+				308127.578808384,
+				[
+					[
+						"Play Animation",
+						"haha",
+						"Dad"
+					]
+				]
+			],
+			[
+				400115.530615613,
+				[
+					[
+						"Play Animation",
+						"hehe",
+						"Dad"
+					]
+				]
+			],
+			[
+				400296.253507179,
+				[
+					[
+						"Play Animation",
+						"hehe",
+						"Dad"
+					]
+				]
+			],
+			[
+				400476.976398745,
+				[
+					[
+						"Play Animation",
+						"haha",
+						"Dad"
+					]
+				]
+			],
+			[
+				400657.699290311,
+				[
+					[
+						"Play Animation",
+						"haha",
+						"Dad"
 					]
 				]
 			],

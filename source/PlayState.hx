@@ -209,6 +209,7 @@ class PlayState extends MusicBeatState
 
 	var gayStation:FlxSprite;
 	var dessert:FlxSprite;
+	var light:FlxSprite;
 
 	var phillyCityLights:FlxTypedGroup<BGSprite>;
 	var phillyTrain:BGSprite;
@@ -540,6 +541,37 @@ class PlayState extends MusicBeatState
 				
 				add(hellBG);
 
+			case 'sunshine':
+
+				var shadowback:BGSprite = new BGSprite('sunshine/shadowback', -1500, -900, 1.3, 1.3);
+				shadowback.setGraphicSize(Std.int(shadowback.width * 4));
+				shadowback.setGraphicSize(Std.int(shadowback.height * 4));
+				shadowback.updateHitbox();
+
+				var floor:BGSprite = new BGSprite('sunshine/floor', -4000, 780, 0.9, 0.9);
+				floor.setGraphicSize(Std.int(floor.width * 25));
+				floor.setGraphicSize(Std.int(floor.height * 25));
+				floor.updateHitbox();
+				
+				var faces:BGSprite = new BGSprite('sunshine/shadowfaces', -700, 0, 0.9, 0.9);
+				faces.setGraphicSize(Std.int(faces.width * 8));
+				faces.setGraphicSize(Std.int(faces.height * 8));
+				faces.updateHitbox();
+
+				var particles:BGSprite = new BGSprite('sunshine/particles', -600, 0, 1.0, 1.0);
+				particles.setGraphicSize(Std.int(particles.width * 5));
+				particles.setGraphicSize(Std.int(particles.height * 5));
+				particles.updateHitbox();
+
+				light = new BGSprite('sunshine/light', -600, -200, 0.9, 0.9);
+				light.setGraphicSize(Std.int(light.width * 1.5));
+				light.updateHitbox();
+
+				add(shadowback);
+				add(floor);
+				add(faces);
+				add(particles);
+
 			case 'limo': //Week 4
 				var skyBG:BGSprite = new BGSprite('limo/limoSunset', -120, -50, 0.1, 0.1);
 				add(skyBG);
@@ -749,6 +781,9 @@ class PlayState extends MusicBeatState
 		{
 			case 'spooky':
 				add(halloweenForeground);
+			case 'sunshine':
+				add(light);
+				gfGroup.visible = false;
 			case 'room':
 				gfGroup.visible = false;
 			case 'dream':
