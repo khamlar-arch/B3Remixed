@@ -821,7 +821,6 @@ class PlayState extends MusicBeatState
 				gfGroup.visible = false;
 			case 'dream':
 				gfGroup.visible = false;
-			case 'dream':
 				var vcr:DansShader;
 				vcr = new DansShader();
 
@@ -3561,7 +3560,7 @@ class PlayState extends MusicBeatState
 
 		if(daRating == 'sick' && !note.noteSplashDisabled)
 		{
-			spawnNoteSplashOnNote(note);
+			spawnNoteSplashOnNote(note, Math.round(Math.abs(note.noteData)));
 		}
 
 		if(!practiceMode && !cpuControlled) {
@@ -4066,7 +4065,7 @@ class PlayState extends MusicBeatState
 			if(note.hitCausesMiss) {
 				noteMiss(note);
 				if(!note.noteSplashDisabled && !note.isSustainNote) {
-					spawnNoteSplashOnNote(note);
+					spawnNoteSplashOnNote(note, Math.round(Math.abs(note.noteData)));
 				}
 				
 				note.wasGoodHit = true;
@@ -4164,10 +4163,23 @@ class PlayState extends MusicBeatState
 		}
 	}
 
-	function spawnNoteSplashOnNote(note:Note) {
+	function spawnNoteSplashOnNote(note:Note, direction:Int) {
 		if(ClientPrefs.noteSplashes && note != null) {
 			var strum:StrumNote = playerStrums.members[note.noteData];
 			if(strum != null) {
+				if (PlayState.SONG.splashSkin == 'noteSplashes')
+					trace('DOES IT EVEN WORK???');
+					switch (direction) {
+						case 0:
+							spawnNoteSplash(strum.x, strum.y - 15, note.noteData, note);
+						case 1:
+							spawnNoteSplash(strum.x + 5, strum.y - 200, note.noteData, note);
+						case 2:
+							spawnNoteSplash(strum.x + 23, strum.y - 30, note.noteData, note);
+						case 3:
+							spawnNoteSplash(strum.x + 25, strum.y - 15, note.noteData, note);
+					}
+			} else {
 				spawnNoteSplash(strum.x, strum.y, note.noteData, note);
 			}
 		}
