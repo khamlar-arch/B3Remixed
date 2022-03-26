@@ -600,6 +600,7 @@ class PlayState extends MusicBeatState
 				add(floor);
 				add(faces);
 				add(particles);
+				add(alt);
 
 			case 'limo': //Week 4
 				var skyBG:BGSprite = new BGSprite('limo/limoSunset', -120, -50, 0.1, 0.1);

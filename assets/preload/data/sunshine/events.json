@@ -1,24 +1,44 @@
 {
 	"song": {
-		"speed": 3,
+		"speed": 2.9,
 		"stage": "sunshine",
 		"player1": "bf",
 		"player2": "Tails",
 		"player3": null,
 		"events": [
 			[
-				84000,
+				83785.7142857143,
 				[
+					[
+						"Change Character",
+						"1",
+						"Tailsalt"
+					],
 					[
 						"Tails",
 						"1",
 						""
+					],
+					[
+						"Change Scroll Speed",
+						"0.75",
+						"0.2"
 					]
 				]
 			],
 			[
-				122857.142857143,
+				122642.857142857,
 				[
+					[
+						"Change Scroll Speed",
+						"0.75",
+						"0.2"
+					],
+					[
+						"Change Character",
+						"1",
+						"Tails"
+					],
 					[
 						"Tails",
 						"2",
@@ -32,7 +52,7 @@
 		"validScore": false,
 		"gfVersion": "gf",
 		"bpm": 105,
-		"arrowSkin": null,
+		"arrowSkin": "",
 		"needsVoices": true,
 		"song": "sunshine"
 	}
