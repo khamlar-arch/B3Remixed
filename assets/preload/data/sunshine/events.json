@@ -1,6 +1,6 @@
 {
 	"song": {
-		"speed": 2.9,
+		"speed": 3,
 		"stage": "sunshine",
 		"player1": "bf",
 		"player2": "Tails",
@@ -31,7 +31,7 @@
 				[
 					[
 						"Change Scroll Speed",
-						"0.75",
+						"1",
 						"0.2"
 					],
 					[
@@ -52,7 +52,7 @@
 		"validScore": false,
 		"gfVersion": "gf",
 		"bpm": 105,
-		"arrowSkin": "",
+		"arrowSkin": null,
 		"needsVoices": true,
 		"song": "sunshine"
 	}
