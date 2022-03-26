@@ -63,6 +63,7 @@ class ChartingState extends MusicBeatState
 		'Burger Note',
 		'Gay Note',
 		'Chomp Note',
+		'Tails',
 		'No Animation'
 	];
 	private var noteTypeIntMap:Map<Int, String> = new Map<Int, String>();
@@ -86,6 +87,7 @@ class ChartingState extends MusicBeatState
 		['Change Character', "Value 1: Character to change (Dad, BF, GF)\nValue 2: New character's name"],
 		['Change Scroll Speed', "Value 1: Scroll Speed Multiplier (1 is default)\nValue 2: Time it takes to change fully in seconds."],
 		['GayStation', "Value 1: 1 for making it visible, 2 for making it invisible again"],
+		['Tails', "Value 1: 1 for making it visible, 2 for making it invisible again"],
 		['Dessert', "Value 1: 1 for making it visible, 2 for making it invisible again"],
 		['funnystatic', "Does the TT static shit\n1: Dessert becomes visible\nDessert becomes invisible\nTHIS ONLY WORKS ON THE \nSHAYA WEEK STAGE"],
 		['WIN!!!', "WIN!!!"]

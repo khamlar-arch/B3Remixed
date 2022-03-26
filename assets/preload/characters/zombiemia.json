@@ -1,81 +1,81 @@
 {
 	"animations": [
 		{
-			"loop": false,
 			"offsets": [
 				-90,
 				-60
 			],
-			"anim": "idle",
+			"loop": false,
 			"fps": 24,
-			"name": "mia idle",
-			"indices": []
+			"anim": "idle",
+			"indices": [],
+			"name": "mia idle"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				-80,
 				-180
 			],
-			"anim": "singRIGHT",
+			"loop": false,
 			"fps": 24,
-			"name": "mia right",
-			"indices": []
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "mia right"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				-36,
 				-9
 			],
-			"anim": "singUP",
+			"loop": false,
 			"fps": 24,
-			"name": "Mia Up",
-			"indices": []
+			"anim": "singUP",
+			"indices": [],
+			"name": "Mia Up"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				250,
 				-113
 			],
-			"anim": "singLEFT",
+			"loop": false,
 			"fps": 24,
-			"name": "Mia Left",
-			"indices": []
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "Mia Left"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				-37,
 				-170
 			],
-			"anim": "singDOWN",
+			"loop": false,
 			"fps": 24,
-			"name": "Mia Down",
-			"indices": []
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "Mia Down"
 		},
 		{
+			"loop": false,
 			"offsets": [
 				60,
 				-10
 			],
-			"indices": [],
-			"fps": 24,
 			"anim": "hehe",
-			"loop": false,
-			"name": "hehe"
+			"fps": 24,
+			"name": "hehe",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				240,
 				-100
 			],
-			"indices": [],
-			"fps": 24,
 			"anim": "haha",
-			"loop": false,
-			"name": "haha"
+			"fps": 24,
+			"name": "haha",
+			"indices": []
 		}
 	],
 	"no_antialiasing": false,
@@ -84,7 +84,7 @@
 		0,
 		0
 	],
-	"healthicon": "mia",
+	"healthicon": "zombia",
 	"flip_x": false,
 	"healthbar_colors": [
 		255,

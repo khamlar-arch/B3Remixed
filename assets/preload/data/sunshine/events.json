@@ -1,0 +1,39 @@
+{
+	"song": {
+		"speed": 3,
+		"stage": "sunshine",
+		"player1": "bf",
+		"player2": "Tails",
+		"player3": null,
+		"events": [
+			[
+				84000,
+				[
+					[
+						"Tails",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				122857.142857143,
+				[
+					[
+						"Tails",
+						"2",
+						""
+					]
+				]
+			]
+		],
+		"notes": [],
+		"splashSkin": null,
+		"validScore": false,
+		"gfVersion": "gf",
+		"bpm": 105,
+		"arrowSkin": null,
+		"needsVoices": true,
+		"song": "sunshine"
+	}
+}

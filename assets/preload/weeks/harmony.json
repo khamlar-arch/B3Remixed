@@ -1,31 +1,40 @@
 {
-	"songs": [
-		[
-			"Harmony",
-			"pico",
-			[
-				146,
-				0,
-				235
-			]
-		]
-	],
+	"storyName": "Harmony",
+	"difficulties": "Easy, Normal, Hard, Getreal",
 	"hideFreeplay": false,
 	"weekBackground": "philly",
-	"difficulties": "Easy, Normal, Hard, Getreal",
-	"weekCharacters": [
-		"pico",
-		"bf",
-		"gf"
-	],
-	"storyName": "Harmony",
-	"weekName": "Harmony",
+	"weekBefore": "tutorial",
 	"freeplayColor": [
 		146,
 		113,
 		253
 	],
+	"startUnlocked": true,
 	"hideStoryMode": true,
-	"weekBefore": "tutorial",
-	"startUnlocked": true
+	"songs": [
+		[
+			"Harmony",
+			"pico",
+			[
+				255,
+				80,
+				0
+			]
+		],
+		[
+			"F U",
+			"pico",
+			[
+				255,
+				80,
+				0
+			]
+		]
+	],
+	"weekCharacters": [
+		"pico",
+		"bf",
+		"gf"
+	],
+	"weekName": "Harmony"
 }

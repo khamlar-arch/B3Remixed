@@ -1,49 +1,49 @@
 {
-	"songs": [
-		[
-			"Mi-opera",
-			"mom",
-			[
-				255,
-				113,
-				253
-			]
-		],
-		[
-			"Mia battle",
-			"mom",
-			[
-				255,
-				113,
-				253
-			]
-		],
-		[
-			"Diva",
-			"mom",
-			[
-				255,
-				113,
-				253
-			]
-		]
-	],
+	"storyName": "Rhythmic Rage",
+	"difficulties": "Easy, Normal, Hard, Getreal",
 	"hideFreeplay": false,
 	"weekBackground": "stage",
-	"difficulties": "Easy, Normal, Hard, Getreal",
-	"weekCharacters": [
-		"Mia",
-		"bf",
-		"gf"
-	],
-	"storyName": "Rhythmic Rage",
-	"weekName": "Rhythmic Rage",
+	"weekBefore": "tutorial",
 	"freeplayColor": [
 		146,
 		113,
 		253
 	],
+	"startUnlocked": true,
 	"hideStoryMode": false,
-	"weekBefore": "tutorial",
-	"startUnlocked": true
+	"songs": [
+		[
+			"Mi-opera",
+			"mia",
+			[
+				255,
+				0,
+				255
+			]
+		],
+		[
+			"Mia battle",
+			"mia",
+			[
+				255,
+				0,
+				255
+			]
+		],
+		[
+			"Diva",
+			"mia",
+			[
+				255,
+				0,
+				255
+			]
+		]
+	],
+	"weekCharacters": [
+		"Mia",
+		"bf",
+		"gf"
+	],
+	"weekName": "Rhythmic Rage"
 }

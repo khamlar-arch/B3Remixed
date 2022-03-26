@@ -1,26 +1,38 @@
 {
+	"storyName": "B3 x EXE",
+	"difficulties": "Easy, Normal, Hard, Getreal",
+	"hideFreeplay": false,
+	"weekBackground": "stage",
+	"weekBefore": "tutorial",
+	"freeplayColor": [
+		146,
+		113,
+		253
+	],
+	"startUnlocked": true,
+	"hideStoryMode": true,
 	"songs": [
 		[
 			"Endless",
 			"vamp",
 			[
-				146,
-				113,
-				253
+				0,
+				255,
+				0
 			]
 		],
 		[
 			"Sunshine",
-			"vamp",
+			"tails",
 			[
-				146,
-				113,
-				253
+				255,
+				235,
+				155
 			]
 		],
 		[
 			"Triple B Trouble",
-			"vamp",
+			"evil",
 			[
 				0,
 				0,
@@ -28,22 +40,10 @@
 			]
 		]
 	],
-	"hideFreeplay": false,
-	"weekBackground": "stage",
-	"difficulties": "Easy, Normal, Hard, Getreal",
 	"weekCharacters": [
 		"monstergf",
 		"bf",
 		"gf"
 	],
-	"storyName": "B3 x EXE",
-	"weekName": "EXE",
-	"freeplayColor": [
-		146,
-		113,
-		253
-	],
-	"hideStoryMode": true,
-	"weekBefore": "tutorial",
-	"startUnlocked": true
+	"weekName": "EXE"
 }

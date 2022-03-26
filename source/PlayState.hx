@@ -209,7 +209,10 @@ class PlayState extends MusicBeatState
 
 	var gayStation:FlxSprite;
 	var dessert:FlxSprite;
+	var alt:FlxSprite;
 	var light:FlxSprite;
+	var studio:FlxSprite;
+	var glass:FlxSprite;
 
 	var phillyCityLights:FlxTypedGroup<BGSprite>;
 	var phillyTrain:BGSprite;
@@ -541,6 +544,25 @@ class PlayState extends MusicBeatState
 				
 				add(hellBG);
 
+		
+			case 'podcast':
+				var back:BGSprite = new BGSprite('harmony/Back', -350, -100, 0.9, 0.9);
+				back.setGraphicSize(Std.int(back.width * 1));
+				back.setGraphicSize(Std.int(back.height * 1));
+				back.updateHitbox();
+				
+				add(back);
+
+				studio = new FlxSprite(-500, -200).loadGraphic(Paths.image('harmony/Studio'));
+				studio.setGraphicSize(Std.int(studio.width * 0.65));
+				studio.scrollFactor.set(0.9, 0.9);
+				studio.updateHitbox();
+
+				glass = new FlxSprite(-500, -200).loadGraphic(Paths.image('harmony/Glass'));
+				glass.setGraphicSize(Std.int(glass.width * 0.65));
+				glass.scrollFactor.set(0.9, 0.9);
+				glass.updateHitbox();
+
 			case 'sunshine':
 
 				var shadowback:BGSprite = new BGSprite('sunshine/shadowback', -1500, -900, 1.3, 1.3);
@@ -566,6 +588,13 @@ class PlayState extends MusicBeatState
 				light = new BGSprite('sunshine/light', -600, -200, 0.9, 0.9);
 				light.setGraphicSize(Std.int(light.width * 1.5));
 				light.updateHitbox();
+
+				alt = new FlxSprite(-1500, -900).loadGraphic(Paths.image('sunshine/alt'));
+				alt.setGraphicSize(Std.int(alt.width * 4));
+				alt.setGraphicSize(Std.int(alt.height * 4));
+				alt.scrollFactor.set(0.9, 0.9);
+				alt.visible = false;
+				alt.updateHitbox();
 
 				add(shadowback);
 				add(floor);
@@ -781,6 +810,10 @@ class PlayState extends MusicBeatState
 		{
 			case 'spooky':
 				add(halloweenForeground);
+			case 'podcast':
+				add(glass);
+				add(studio);
+				gfGroup.visible = false;
 			case 'sunshine':
 				add(light);
 				gfGroup.visible = false;
@@ -2983,6 +3016,17 @@ class PlayState extends MusicBeatState
 						gfGroup.visible = false;
 					case 2: 
 						dessert.visible = false;
+						gfGroup.visible = false;
+				}
+
+			case 'Tails':
+				switch (Std.parseFloat(value1))
+				{
+					case 1:
+						alt.visible = true;
+						gfGroup.visible = false;
+					case 2: 
+						alt.visible = false;
 						gfGroup.visible = false;
 				}
 			case 'Kill Henchmen':

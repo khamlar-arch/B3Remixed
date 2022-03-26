@@ -116,12 +116,19 @@ class Note extends FlxSprite
 					}
 					offset.x= 75;
 				case 'Chomp Note':
+					canBeHit = mustPress;
 					reloadNote('CHOMP');
 					noteSplashTexture = 'noteSplashes';
-					offset.x= 70;
+					if(tooLate) {
+						missHealth = 0.9;
+					}
 				case 'Gay Note':
+					canBeHit = mustPress;
 					reloadNote('GAY');
 					noteSplashTexture = 'noteSplashes';
+					if(tooLate) {
+						missHealth = 0.4;
+					}
 			}
 			noteType = value;
 		}
