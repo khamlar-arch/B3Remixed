@@ -70,6 +70,13 @@ class VisualsUISubState extends BaseOptionsMenu
 			true);
 		addOption(option);
 
+		var option:Option = new Option('Camera Pan on Hit',
+			'If unchecked, the camera will stay still when\nhitting a note. (ALSO INCREASES CAMERA SPEED.)',
+			'noteCamera',
+			'bool',
+			false);
+		addOption(option);
+
 		var option:Option = new Option('Score Text Zoom on Hit',
 			"If unchecked, disables the Score text zooming\neverytime you hit a note.",
 			'scoreZoom',

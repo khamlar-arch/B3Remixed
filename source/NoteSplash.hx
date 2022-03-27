@@ -37,6 +37,12 @@ class NoteSplash extends FlxSprite
 		if(textureLoaded != texture) {
 			loadAnims(texture);
 		}
+
+		if (texture == 'noteSplashes') {
+			scale.x = 0.75;
+			scale.y = 0.75;
+		}
+
 		colorSwap.hue = hueColor;
 		colorSwap.saturation = satColor;
 		colorSwap.brightness = brtColor;
