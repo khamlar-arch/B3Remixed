@@ -1,66 +1,66 @@
 {
 	"animations": [
 		{
-			"loop": false,
 			"offsets": [
-				89,
-				632
+				0,
+				0
 			],
+			"loop": false,
+			"fps": 24,
 			"anim": "idle",
-			"fps": 24,
-			"name": "Idle",
-			"indices": []
-		},
-		{
-			"loop": false,
-			"offsets": [
-				90,
-				646
-			],
-			"anim": "singRIGHT",
-			"fps": 24,
-			"name": "Right Pose",
-			"indices": []
-		},
-		{
-			"loop": false,
-			"offsets": [
-				91,
-				656
-			],
-			"anim": "singUP",
-			"fps": 24,
-			"name": "Up Pose",
-			"indices": []
-		},
-		{
-			"loop": false,
-			"offsets": [
-				87,
-				665
-			],
-			"anim": "singDOWN",
-			"fps": 24,
-			"name": "Down Pose",
-			"indices": []
-		},
-		{
-			"offsets": [
-				426,
-				631
-			],
-			"loop": false,
-			"fps": 24,
-			"anim": "singLEFT",
 			"indices": [],
-			"name": "Left Pose"
+			"name": "Idle"
+		},
+		{
+			"offsets": [
+				7,
+				11
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "Right Pose"
+		},
+		{
+			"offsets": [
+				11,
+				19
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"indices": [],
+			"name": "Up Pose"
+		},
+		{
+			"offsets": [
+				0,
+				16
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "Down Pose"
+		},
+		{
+			"loop": false,
+			"offsets": [
+				232,
+				11
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "Left Pose",
+			"indices": []
 		}
 	],
-	"no_antialiasing": true,
+	"no_antialiasing": false,
 	"image": "characters/B3_Tails_Doll_Alt",
 	"position": [
-		0,
-		-260
+		-140,
+		-1130
 	],
 	"healthicon": "tails",
 	"flip_x": false,
@@ -70,9 +70,9 @@
 		223
 	],
 	"camera_position": [
-		-380,
-		-130
+		-440,
+		-350
 	],
 	"sing_duration": 4,
-	"scale": 2.5
+	"scale": 1.8
 }

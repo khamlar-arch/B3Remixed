@@ -170,6 +170,8 @@ class PlayState extends MusicBeatState
 	public var goods:Int = 0;
 	public var bads:Int = 0;
 	public var shits:Int = 0;
+
+	public var hideRatings:Bool = false;
 	
 	private var generatedMusic:Bool = false;
 	public var endingSong:Bool = false;
@@ -591,8 +593,8 @@ class PlayState extends MusicBeatState
 				light.updateHitbox();
 
 				alt = new FlxSprite(-1500, -900).loadGraphic(Paths.image('sunshine/alt'));
-				alt.setGraphicSize(Std.int(alt.width * 4));
-				alt.setGraphicSize(Std.int(alt.height * 4));
+				alt.setGraphicSize(Std.int(alt.width * 3.35));
+				alt.setGraphicSize(Std.int(alt.height * 3.35));
 				alt.scrollFactor.set(0.9, 0.9);
 				alt.visible = false;
 				alt.updateHitbox();
@@ -3230,6 +3232,8 @@ class PlayState extends MusicBeatState
 			case 'BG Freaks Expression':
 				if(bgGirls != null) bgGirls.swapDanceType();
 			
+			case 'Hide Ratings':
+				hideRatings = !hideRatings;
 			case 'Change Scroll Speed':
 				if (songSpeedType == "constant")
 					return;
@@ -3660,7 +3664,7 @@ class PlayState extends MusicBeatState
 		rating.acceleration.y = 550;
 		rating.velocity.y -= FlxG.random.int(140, 175);
 		rating.velocity.x -= FlxG.random.int(0, 10);
-		rating.visible = !ClientPrefs.hideHud;
+		rating.visible = !ClientPrefs.hideHud && !hideRatings;
 		rating.x += ClientPrefs.comboOffset[0];
 		rating.y -= ClientPrefs.comboOffset[1];
 
@@ -3671,7 +3675,7 @@ class PlayState extends MusicBeatState
 		comboSpr.x = coolText.x;
 		comboSpr.acceleration.y = 600;
 		comboSpr.velocity.y -= 150;
-		comboSpr.visible = !ClientPrefs.hideHud;
+		comboSpr.visible = !ClientPrefs.hideHud && !hideRatings;
 		comboSpr.x += ClientPrefs.comboOffset[0];
 		comboSpr.y -= ClientPrefs.comboOffset[1];
 
@@ -3730,7 +3734,7 @@ class PlayState extends MusicBeatState
 			numScore.acceleration.y = FlxG.random.int(200, 300);
 			numScore.velocity.y -= FlxG.random.int(140, 160);
 			numScore.velocity.x = FlxG.random.float(-5, 5);
-			numScore.visible = !ClientPrefs.hideHud;
+			numScore.visible = !ClientPrefs.hideHud && !hideRatings;
 
 			if (combo >= 10 || combo == 0)
 				insert(members.indexOf(strumLineNotes), numScore);
