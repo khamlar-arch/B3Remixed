@@ -61,6 +61,7 @@ class TitleState extends MusicBeatState
 	var credTextShit:Alphabet;
 	var textGroup:FlxGroup;
 	var ngSpr:FlxSprite;
+	var comeBackHereNowOrElseYoungMan:Bool = false;
 
 	var curWacky:Array<String> = [];
 
@@ -281,7 +282,6 @@ class TitleState extends MusicBeatState
 		
 		logoBl.antialiasing = ClientPrefs.globalAntialiasing;
 		logoBl.animation.addByPrefix('bump', 'logo bumpin', 24, false);
-		logoBl.animation.play('bump');
 		logoBl.updateHitbox();
 		logoBl.setGraphicSize(Std.int(logoBl.width * 0.75));
 		// logoBl.screenCenter();
@@ -310,7 +310,7 @@ class TitleState extends MusicBeatState
 			gfDance.animation.addByIndices('danceRight', 'gfDance', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
 		gfDance.setGraphicSize(Std.int(gfDance.width * 0.75));
 		gfDance.antialiasing = ClientPrefs.globalAntialiasing;
-		add(gfDance);
+		//add(gfDance);
 		gfDance.shader = swagShader.shader;
 		add(logoBl);
 		//logoBl.shader = swagShader.shader;
@@ -556,9 +556,16 @@ class TitleState extends MusicBeatState
 	override function beatHit()
 	{
 		super.beatHit();
+		comeBackHereNowOrElseYoungMan = true;
 
-		if(logoBl != null) 
-			logoBl.animation.play('bump', true);
+		if(logoBl != null && comeBackHereNowOrElseYoungMan) {
+			FlxTween.tween(logoBl, {"scale.x": (logoBl.scale.x * 1.2), "scale.y": (logoBl.scale.y * 1.2)}, 0.2, {ease: FlxEase.quadInOut, type: PINGPONG, startDelay: 0.16, onComplete: function(twn:FlxTween) 
+			{
+				logoBl.scale.x = 1;
+				logoBl.scale.y = 1;
+			}});
+			comeBackHereNowOrElseYoungMan = false;
+		}
 
 		if(gfDance != null) {
 			danceLeft = !danceLeft;
@@ -568,7 +575,7 @@ class TitleState extends MusicBeatState
 			else
 				gfDance.animation.play('danceLeft');
 		}
-
+ 
 		if(!closedState) {
 			sickBeats++;
 			switch (sickBeats)
