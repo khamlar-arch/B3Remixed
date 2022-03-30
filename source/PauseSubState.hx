@@ -221,6 +221,7 @@ class PauseSubState extends MusicBeatSubstate
 					{
 						PlayState.startOnTime = curTime;
 						restartSong(true);
+						PlayState.startOnTime = 0;
 					}
 					else
 					{

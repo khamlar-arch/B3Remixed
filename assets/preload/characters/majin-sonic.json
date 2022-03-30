@@ -60,14 +60,14 @@
 	"image": "characters/majin_sonic",
 	"position": [
 		-240,
-		0
+		-70
 	],
-	"healthicon": "majin-sonic",
+	"healthicon": "b3geeckoirl",
 	"flip_x": false,
 	"healthbar_colors": [
-		21,
-		61,
-		21
+		58,
+		167,
+		115
 	],
 	"camera_position": [
 		-70,
