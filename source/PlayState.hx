@@ -139,6 +139,14 @@ class PlayState extends MusicBeatState
 	public var unspawnNotes:Array<Note> = [];
 	public var eventNotes:Array<Dynamic> = [];
 
+	var SpinAmount:Float = 0;
+	var windowX:Float = Lib.application.window.x;
+	var windowY:Float = Lib.application.window.y;
+	var Xamount:Float = 0;
+	var Yamount:Float = 0;
+	var isWindowMoving:Bool = false;
+	var IsNoteSpinning:Bool = false;
+
 	private var strumLine:FlxSprite;
 
 	//Handles the new epic mega sexy cam code that i've done
@@ -828,7 +836,7 @@ class PlayState extends MusicBeatState
 				gfGroup.visible = false;
 			case 'room':
 				gfGroup.visible = false;
-			case 'dream':
+			/*case 'dream':
 				gfGroup.visible = false;
 				var vcr:DansShader;
 				vcr = new DansShader();
@@ -840,7 +848,7 @@ class PlayState extends MusicBeatState
 				vcr = new DansShader();
 
 				camGame.setFilters([new ShaderFilter(vcr)]);
-				camHUD.setFilters([new ShaderFilter(vcr)]);
+				camHUD.setFilters([new ShaderFilter(vcr)]);*/
 		}
 		trace(boyfriendGroup);
 		trace(dadGroup);
@@ -2520,6 +2528,15 @@ class PlayState extends MusicBeatState
 		}
 
 		super.update(elapsed);
+		if (isWindowMoving)
+			{
+				var thisX:Float = Math.sin(Xamount * (Xamount)) * 25;
+				var thisY:Float = Math.sin(Yamount * (Yamount)) * 100;
+				var yVal = Std.int(windowY + thisY);
+				var xVal = Std.int(windowX + thisX);
+				Lib.application.window.move(xVal, yVal);
+				Xamount = Xamount + 0.0003;
+			}
 
 		if(ratingName == '?') {
 			scoreTxt.text = 'Score: ' + songScore + ' | Combo Breaks: ' + songMisses + ' | Accuracy: ?';
@@ -3060,7 +3077,14 @@ class PlayState extends MusicBeatState
 						}
 					}
 			
-
+			case 'WindowMove':
+				switch (Std.parseFloat(value1))
+				{
+					case 1:
+						isWindowMoving = true;
+					case 2:
+						isWindowMoving = false;
+				}
 			case 'GayStation':
 				switch (Std.parseFloat(value1))
 				{

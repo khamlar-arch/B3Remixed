@@ -68,7 +68,7 @@ class DansShader extends FlxShader // https://www.shadertoy.com/view/ldjGzV and 
     
     void main()
     {
-        vec2 uv = openfl_TextureCoordv;
+        vec2 fragCoord = openfl_TextureCoordv * iResolution;
 
         vec2 uv = fragCoord.xy / iResolution.xy;
         float disp = dispnoise(.7*uv.y+mod(iTime,200.)*.2);
