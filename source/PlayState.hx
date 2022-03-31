@@ -820,8 +820,8 @@ class PlayState extends MusicBeatState
 		if (curStage == 'limo')
 			add(limo);
 
-		add(boyfriendGroup);
 		add(dadGroup);
+		add(boyfriendGroup);
 
 		switch (curStage)
 		{

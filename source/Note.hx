@@ -72,7 +72,7 @@ class Note extends FlxSprite
 
 	private function set_texture(value:String):String {
 		if(texture != value) {
-			reloadNote('', value);
+			reloadNote(value);
 		}
 		texture = value;
 		return value;
@@ -88,7 +88,7 @@ class Note extends FlxSprite
 			switch(value) {
 				case 'Hurt Note':
 					ignoreNote = mustPress;
-					reloadNote('HURT');
+					reloadNote('noteskins/B3Notes');
 					noteSplashTexture = 'HURTnoteSplashes';
 					colorSwap.hue = 0;
 					colorSwap.saturation = 0;
@@ -105,7 +105,7 @@ class Note extends FlxSprite
 					gfNote = true;
 				case 'Burger Note':
 					ignoreNote = mustPress;
-					reloadNote('BURGER');
+					reloadNote('noteskins/burgerNotes');
 					noteSplashTexture = 'HURTnoteSplashes';
 					colorSwap.saturation = 0;
 					colorSwap.brightness = 0;
@@ -117,14 +117,14 @@ class Note extends FlxSprite
 					offset.x= 75;
 				case 'Chomp Note':
 					canBeHit = mustPress;
-					reloadNote('CHOMP');
+					reloadNote('noteskins/chompNotes');
 					noteSplashTexture = 'noteSplashes';
 					if(tooLate) {
 						missHealth = 0.9;
 					}
 				case 'Gay Note':
 					canBeHit = mustPress;
-					reloadNote('GAY');
+					reloadNote('noteskins/gayNotes');
 					noteSplashTexture = 'noteSplashes';
 					if(tooLate) {
 						missHealth = 0.4;
@@ -247,16 +247,14 @@ class Note extends FlxSprite
 		x += offsetX;
 	}
 
-	function reloadNote(?prefix:String = '', ?texture:String = '', ?suffix:String = '') {
-		if(prefix == null) prefix = '';
+	function reloadNote(?texture:String = '') {
 		if(texture == null) texture = '';
-		if(suffix == null) suffix = '';
 		
 		var skin:String = texture;
 		if(texture.length < 1) {
 			skin = PlayState.SONG.arrowSkin;
 			if(skin == null || skin.length < 1) {
-				skin = 'NOTE_assets';
+				skin = 'noteskins/B3Notes';
 			}
 		}
 
@@ -266,7 +264,7 @@ class Note extends FlxSprite
 		}
 
 		var arraySkin:Array<String> = skin.split('/');
-		arraySkin[arraySkin.length-1] = prefix + arraySkin[arraySkin.length-1] + suffix;
+		arraySkin[arraySkin.length-1] = arraySkin[arraySkin.length-1];
 
 		var lastScaleY:Float = scale.y;
 		var blahblah:String = arraySkin.join('/');
