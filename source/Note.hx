@@ -47,9 +47,6 @@ class Note extends FlxSprite
 	// Lua shit
 	public var noteSplashDisabled:Bool = false;
 	public var noteSplashTexture:String = null;
-	public var noteSplashHue:Float = 0;
-	public var noteSplashSat:Float = 0;
-	public var noteSplashBrt:Float = 0;
 
 	public var offsetX:Float = 0;
 	public var offsetY:Float = 0;
@@ -80,9 +77,6 @@ class Note extends FlxSprite
 
 	private function set_noteType(value:String):String {
 		noteSplashTexture = PlayState.SONG.splashSkin;
-		colorSwap.hue = ClientPrefs.arrowHSV[noteData % 4][0] / 360;
-		colorSwap.saturation = ClientPrefs.arrowHSV[noteData % 4][1] / 100;
-		colorSwap.brightness = ClientPrefs.arrowHSV[noteData % 4][2] / 100;
 
 		if(noteData > -1 && noteType != value) {
 			switch(value) {
@@ -90,9 +84,6 @@ class Note extends FlxSprite
 					ignoreNote = mustPress;
 					reloadNote('noteskins/B3Notes');
 					noteSplashTexture = 'HURTnoteSplashes';
-					colorSwap.hue = 0;
-					colorSwap.saturation = 0;
-					colorSwap.brightness = 0;
 					if(isSustainNote) {
 						missHealth = 0.1;
 					} else {
@@ -114,14 +105,14 @@ class Note extends FlxSprite
 					} else {
 						missHealth = 0.9;
 					}
-					offset.x= 75;
+					offsetX -= 75;
 				case 'Chomp Note':
 					canBeHit = mustPress;
 					reloadNote('noteskins/chompNotes');
-					noteSplashTexture = 'noteSplashes';
 					if(tooLate) {
 						missHealth = 0.9;
 					}
+					offsetX -= 75;
 				case 'Gay Note':
 					canBeHit = mustPress;
 					reloadNote('noteskins/gayNotes');
@@ -132,9 +123,6 @@ class Note extends FlxSprite
 			}
 			noteType = value;
 		}
-		noteSplashHue = colorSwap.hue;
-		noteSplashSat = colorSwap.saturation;
-		noteSplashBrt = colorSwap.brightness;
 		return value;
 	}
 
@@ -254,7 +242,11 @@ class Note extends FlxSprite
 		if(texture.length < 1) {
 			skin = PlayState.SONG.arrowSkin;
 			if(skin == null || skin.length < 1) {
-				skin = 'noteskins/B3Notes';
+				if (ClientPrefs.specialNoteskin == true) {
+					skin = 'noteskins/B3Notes';
+				} else {
+					skin = 'noteskins/vanillaNotes';
+				}
 			}
 		}
 

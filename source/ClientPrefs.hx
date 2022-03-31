@@ -20,6 +20,7 @@ class ClientPrefs {
 	public static var camZooms:Bool = true;
 	public static var noteCamera:Bool = true;
 	public static var hideHud:Bool = false;
+	public static var specialNoteskin:Bool = true;
 	public static var noteOffset:Int = 0;
 	public static var arrowHSV:Array<Array<Int>> = [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]];
 	public static var imagesPersist:Bool = false;
@@ -95,6 +96,7 @@ class ClientPrefs {
 		FlxG.save.data.downScroll = downScroll;
 		FlxG.save.data.middleScroll = middleScroll;
 		FlxG.save.data.showFPS = showFPS;
+		FlxG.save.data.specialNoteskin = specialNoteskin;
 		FlxG.save.data.flashing = flashing;
 		FlxG.save.data.globalAntialiasing = globalAntialiasing;
 		FlxG.save.data.noteSplashes = noteSplashes;
@@ -152,6 +154,9 @@ class ClientPrefs {
 		}
 		if(FlxG.save.data.noteCamera != null) {
 			noteCamera = FlxG.save.data.noteCamera;
+		}
+		if(FlxG.save.data.specialNoteskin != null) {
+			specialNoteskin = FlxG.save.data.specialNoteskin;
 		}
 		if(FlxG.save.data.globalAntialiasing != null) {
 			globalAntialiasing = FlxG.save.data.globalAntialiasing;

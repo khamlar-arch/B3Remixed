@@ -69,7 +69,7 @@ using StringTools;
 
 class PlayState extends MusicBeatState
 {
-	public static var STRUM_X = 42;
+	public static var STRUM_X = 45;
 	public static var STRUM_X_MIDDLESCROLL = -278;
 
 	public static var ratingStuff:Array<Dynamic> = [
@@ -4271,7 +4271,7 @@ class PlayState extends MusicBeatState
 		if(ClientPrefs.noteSplashes && note != null) {
 			var strum:StrumNote = playerStrums.members[note.noteData];
 			if(strum != null) {
-				if (PlayState.SONG.splashSkin == 'noteSplashes')
+				if (ClientPrefs.specialNoteskin == true) {
 					trace('DOES IT EVEN WORK???');
 					switch (direction) {
 						case 0:
@@ -4283,28 +4283,28 @@ class PlayState extends MusicBeatState
 						case 3:
 							spawnNoteSplash(strum.x + 25, strum.y - 15, note.noteData, note);
 					}
-			} else {
-				spawnNoteSplash(strum.x, strum.y, note.noteData, note);
+				} else {
+					spawnNoteSplash(strum.x, strum.y, note.noteData, note);
+				}
 			}
 		}
 	}
 
 	public function spawnNoteSplash(x:Float, y:Float, data:Int, ?note:Note = null) {
-		var skin:String = 'noteSplashes';
+		var skin:String = "";
+		if (ClientPrefs.specialNoteskin == true) {
+			skin = 'noteskins/B3NoteSplashes';
+		} else {
+			skin = 'noteskins/vanillaNoteSplashes';
+		}
 		if(PlayState.SONG.splashSkin != null && PlayState.SONG.splashSkin.length > 0) skin = PlayState.SONG.splashSkin;
 		
-		var hue:Float = ClientPrefs.arrowHSV[data % 4][0] / 360;
-		var sat:Float = ClientPrefs.arrowHSV[data % 4][1] / 100;
-		var brt:Float = ClientPrefs.arrowHSV[data % 4][2] / 100;
 		if(note != null) {
 			skin = note.noteSplashTexture;
-			hue = note.noteSplashHue;
-			sat = note.noteSplashSat;
-			brt = note.noteSplashBrt;
 		}
 
 		var splash:NoteSplash = grpNoteSplashes.recycle(NoteSplash);
-		splash.setupNoteSplash(x, y, data, skin, hue, sat, brt);
+		splash.setupNoteSplash(x, y, data, skin);
 		grpNoteSplashes.add(splash);
 	}
 

@@ -29,25 +29,26 @@ using StringTools;
 
 class OptionsState extends MusicBeatState
 {
-	var options:Array<String> = ['Note Colors', 'Controls', 'Adjust Delay and Combo', 'Graphics', 'Visuals and UI', 'Gameplay'];
+	var options:Array<String> = ['Controls', 'Gameplay', 'Appearance', 'Adjust Offset', 'Miscellaneous', 'Back to Main Menu'];
 	private var grpOptions:FlxTypedGroup<Alphabet>;
 	private static var curSelected:Int = 0;
 	public static var menuBG:FlxSprite;
 
 	function openSelectedSubstate(label:String) {
 		switch(label) {
-			case 'Note Colors':
-				openSubState(new options.NotesSubState());
 			case 'Controls':
 				openSubState(new options.ControlsSubState());
-			case 'Graphics':
-				openSubState(new options.GraphicsSettingsSubState());
-			case 'Visuals and UI':
+			case 'Appearance':
 				openSubState(new options.VisualsUISubState());
 			case 'Gameplay':
 				openSubState(new options.GameplaySettingsSubState());
-			case 'Adjust Delay and Combo':
+			case 'Adjust Offset':
 				LoadingState.loadAndSwitchState(new options.NoteOffsetState());
+			case 'Miscellaneous':
+				openSubState(new options.MiscSubState());
+			case 'Back to Main Menu':
+				FlxG.sound.play(Paths.sound('cancelMenu'));
+				MusicBeatState.switchState(new MainMenuState());
 		}
 	}
 
