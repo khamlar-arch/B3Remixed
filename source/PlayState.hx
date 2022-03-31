@@ -836,19 +836,13 @@ class PlayState extends MusicBeatState
 				gfGroup.visible = false;
 			case 'room':
 				gfGroup.visible = false;
-			/*case 'dream':
+			case 'dream':
 				gfGroup.visible = false;
-				var vcr:DansShader;
-				vcr = new DansShader();
+				//var vcr:DansShader;
+				//vcr = new DansShader();
 
-				camGame.setFilters([new ShaderFilter(vcr)]);
-				camHUD.setFilters([new ShaderFilter(vcr)]);
-			case 'room':
-				var vcr:DansShader;
-				vcr = new DansShader();
-
-				camGame.setFilters([new ShaderFilter(vcr)]);
-				camHUD.setFilters([new ShaderFilter(vcr)]);*/
+				//camGame.setFilters([new ShaderFilter(vcr)]);
+				//camHUD.setFilters([new ShaderFilter(vcr)]);
 		}
 		trace(boyfriendGroup);
 		trace(dadGroup);
