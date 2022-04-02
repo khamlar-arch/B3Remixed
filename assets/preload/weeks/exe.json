@@ -1,5 +1,5 @@
 {
-	"storyName": "B3 x EXE",
+	"storyName": "has",
 	"difficulties": "Easy, Normal, Hard, Getreal",
 	"hideFreeplay": false,
 	"weekBackground": "stage",
@@ -13,24 +13,6 @@
 	"hideStoryMode": true,
 	"songs": [
 		[
-			"Endless",
-			"b3geeckoirl",
-			[
-				58,
-				167,
-				115
-			]
-		],
-		[
-			"Sunshine",
-			"tails",
-			[
-				255,
-				235,
-				155
-			]
-		],
-		[
 			"Triple B Trouble",
 			"evil",
 			[
@@ -41,9 +23,9 @@
 		]
 	],
 	"weekCharacters": [
-		"monstergf",
+		"dad",
 		"bf",
 		"gf"
 	],
-	"weekName": "EXE"
+	"weekName": "Custom Week"
 }

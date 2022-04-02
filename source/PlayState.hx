@@ -552,6 +552,14 @@ class PlayState extends MusicBeatState
 				add(filterBG);
 				add(dessert);
 
+			case 'helphimplease':
+				var hallway:BGSprite = new BGSprite('hi/hallway', -900, -600, 0.9, 0.9);
+				hallway.setGraphicSize(Std.int(hallway.width * 4));
+				hallway.setGraphicSize(Std.int(hallway.height * 4));
+				hallway.updateHitbox();
+				
+				add(hallway);
+		
 			case 'dream':
 				var hellBG:BGSprite = new BGSprite('dead/dream', -750, -370, 0.9, 0.9);
 				hellBG.setGraphicSize(Std.int(hellBG.width * 1.5));
@@ -559,8 +567,7 @@ class PlayState extends MusicBeatState
 				hellBG.updateHitbox();
 				
 				add(hellBG);
-
-		
+			
 			case 'podcast':
 				var back:BGSprite = new BGSprite('harmony/Back', -350, -100, 0.9, 0.9);
 				back.setGraphicSize(Std.int(back.width * 1));
