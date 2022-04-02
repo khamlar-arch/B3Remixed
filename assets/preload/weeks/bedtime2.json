@@ -1,0 +1,58 @@
+{
+	"storyName": "Bloody Bedtime Part 2",
+	"difficulties": "Easy, Normal, Hard, Getreal",
+	"hideFreeplay": false,
+	"weekBackground": "room",
+	"weekBefore": "tutorial",
+	"freeplayColor": [
+		146,
+		113,
+		253
+	],
+	"startUnlocked": true,
+	"hideStoryMode": true,
+	"songs": [
+		[
+			"Dessert",
+			"fang",
+			[
+				255,
+				0,
+				13
+			]
+		],
+		[
+			"Guh",
+			"succ",
+			[
+				255,
+				0,
+				13
+			]
+		],
+		[
+			"Famine",
+			"succ",
+			[
+				255,
+				0,
+				13
+			]
+		],
+		[
+			"Succd",
+			"succ",
+			[
+				255,
+				0,
+				13
+			]
+		]
+	],
+	"weekCharacters": [
+		"GF_Phase1",
+		"bf",
+		"gf"
+	],
+	"weekName": "Bloody Bedtime"
+}
