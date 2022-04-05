@@ -221,7 +221,6 @@ class PauseSubState extends MusicBeatSubstate
 					{
 						PlayState.startOnTime = curTime;
 						restartSong(true);
-						PlayState.startOnTime = 0;
 					}
 					else
 					{
@@ -254,6 +253,7 @@ class PauseSubState extends MusicBeatSubstate
 					FlxG.sound.playMusic(Paths.music('freakyMenu'));
 					PlayState.changedDifficulty = false;
 					PlayState.chartingMode = false;
+					PlayState.startOnTime = 0;
 			}
 		}
 	}
