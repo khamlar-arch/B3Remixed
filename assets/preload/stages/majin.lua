@@ -40,6 +40,11 @@ function onCreate()
 	close(true); --For performance reasons, close this script once the stage is fully loaded, as this script won't be used anymore after loading the stage
 end
 
+function onCreatePost()
+	setProperty('gf.scale.x', 0.75);
+	setProperty('gf.scale.y', 0.75);
+end
+
 function onBeatHit()
 	objectPlayAnimation('backmazins','move',false);
 

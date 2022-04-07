@@ -1,73 +1,73 @@
 {
 	"animations": [
 		{
+			"loop": false,
 			"offsets": [
-				114,
+				77,
 				-135
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singDOWN",
-			"indices": [],
-			"name": "down placeholder"
+			"fps": 24,
+			"name": "down placeholder",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				0,
 				0
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "idle",
-			"indices": [],
-			"name": "Dearest Idle"
+			"fps": 24,
+			"name": "Dearest Idle",
+			"indices": []
 		},
 		{
-			"offsets": [
-				301,
-				2
-			],
 			"loop": false,
-			"fps": 24,
+			"offsets": [
+				395,
+				7
+			],
 			"anim": "singLEFT",
-			"indices": [],
-			"name": "Dearest Left"
-		},
-		{
-			"offsets": [
-				100,
-				180
-			],
-			"loop": false,
 			"fps": 24,
-			"anim": "singUP",
-			"indices": [],
-			"name": "UP Pose"
+			"name": "Dearest Left",
+			"indices": []
 		},
 		{
+			"loop": false,
+			"offsets": [
+				121,
+				177
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "UP Pose",
+			"indices": []
+		},
+		{
+			"loop": false,
 			"offsets": [
 				-19,
 				-11
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singRIGHT",
-			"indices": [],
-			"name": "Right DD"
+			"fps": 24,
+			"name": "Right DD",
+			"indices": []
 		}
 	],
 	"no_antialiasing": false,
 	"image": "characters/DADDY_DEAREST",
 	"position": [
-		0,
-		-200
+		-10,
+		-140
 	],
 	"healthicon": "dad",
 	"flip_x": false,
 	"healthbar_colors": [
-		175,
-		102,
-		206
+		110,
+		93,
+		113
 	],
 	"camera_position": [
 		0,

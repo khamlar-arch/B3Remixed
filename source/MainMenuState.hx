@@ -16,6 +16,7 @@ import flixel.math.FlxMath;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
+import flixel.util.FlxTimer;
 import lime.app.Application;
 import Achievements;
 import editors.MasterEditorMenu;
@@ -38,15 +39,22 @@ class MainMenuState extends MusicBeatState
 		'freeplay',
 		'options',
 		'credits',
-		'discord'
+		'mods'
+	];
+	var scrollTxts:Array<String> = [
+		'Explore all the weeks in B3 Remixed in any order you want, and watch the story as you go!',
+		'Play the songs in any order, without cutscenes, along with bonuses and challenges!',
+		'Configure your game options to the way you like it for the best experience!',
+		'Check out all the cool people that made this mod that you\'re playing!',
+		'Check out the music player and a gallery of images from the development of this mod!'
 	];
 
 	var magenta:FlxSprite;
 	var camFollow:FlxObject;
 	var camFollowPos:FlxObject;
 	var debugKeys:Array<FlxKey>;
-
-	var scrollTxt:FlxSprite;
+	var logoBl:FlxSprite;
+	var scrollTxt:FlxText;
 
 	var blackbar:FlxSprite;
 
@@ -98,26 +106,6 @@ class MainMenuState extends MusicBeatState
 		add(magenta);
 		// magenta.scrollFactor.set();
 
-		var tb:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('textthing'));
-		tb.scrollFactor.x = 0;
-		tb.scrollFactor.y = 0;
-		tb.setGraphicSize(Std.int(tb.width * 1));
-		tb.updateHitbox();
-		tb.screenCenter();
-		tb.antialiasing = true;
-		add(tb);	
-
-		scrollTxt = new FlxSprite(0, 0);
-		scrollTxt.frames = Paths.getSparrowAtlas('backtxt');
-		scrollTxt.animation.addByPrefix('txt', 'backtxt', 0, true);
-		scrollTxt.animation.play('txt', true, false, curSelected);
-		scrollTxt.antialiasing = true;
-		scrollTxt.screenCenter();
-		scrollTxt.y = 0;
-		scrollTxt.scrollFactor.x = 0;
-		scrollTxt.scrollFactor.y = 0;
-		add(scrollTxt);
-
 		var t1:FlxSprite = new FlxSprite(0).loadGraphic(Paths.image('triangles1'));
 		t1.scrollFactor.x = 0;
 		t1.scrollFactor.y = 0;
@@ -136,41 +124,48 @@ class MainMenuState extends MusicBeatState
 		t2.antialiasing = true;
 		add(t2);
 
-		var mf:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('menuframes'));
-		mf.scrollFactor.x = 0;
-		mf.scrollFactor.y = 0;
-		mf.setGraphicSize(Std.int(mf.width * 1));
-		mf.updateHitbox();
-		mf.screenCenter();
-		mf.antialiasing = true;
-		add(mf);
+		var mf1:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('ui/mainmenu/top'));
+		mf1.scrollFactor.x = 0;
+		mf1.scrollFactor.y = 0;
+		mf1.setGraphicSize(Std.int(mf1.width * 1));
+		mf1.updateHitbox();
+		mf1.screenCenter(X);
+		mf1.antialiasing = true;
+		add(mf1);
 
-		var bt1:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('buttonthing2'));
+		logoBl = new FlxSprite(-150, -220);
+		logoBl.frames = Paths.getSparrowAtlas('logoBumpin');
+		logoBl.antialiasing = ClientPrefs.globalAntialiasing;
+		logoBl.animation.addByPrefix('bump', 'logo bumpin', 24, false);
+		logoBl.animation.play('bump');
+		logoBl.updateHitbox();
+		logoBl.scrollFactor.set(0, 0);
+		logoBl.setGraphicSize(Std.int(logoBl.width * 0.68));
+		add(logoBl);
+
+		var bt1:FlxSprite = new FlxSprite(80, 315).loadGraphic(Paths.image('ui/mainmenu/box'));
 		bt1.scrollFactor.x = 0;
 		bt1.scrollFactor.y = 0;
 		bt1.setGraphicSize(Std.int(bt1.width * 1));
 		bt1.updateHitbox();
-		bt1.screenCenter();
 		bt1.antialiasing = true;
 		add(bt1);
 
-		var bt2:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('buttonthing1'));
-		bt2.scrollFactor.x = 0;
-		bt2.scrollFactor.y = 0;
-		bt2.setGraphicSize(Std.int(bt2.width * 1));
-		bt2.updateHitbox();
-		bt2.screenCenter();
-		bt2.antialiasing = true;
-		add(bt2);
-	
-		var bt3:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('buttonthing3'));
-		bt3.scrollFactor.x = 0;
-		bt3.scrollFactor.y = 0;
-		bt3.setGraphicSize(Std.int(bt3.width * 1));
-		bt3.updateHitbox();
-		bt3.screenCenter();
-		bt3.antialiasing = true;
-		add(bt3);
+		var mf2:FlxSprite = new FlxSprite(-80, FlxG.height - 113).loadGraphic(Paths.image('ui/mainmenu/bottom'));
+		mf2.scrollFactor.x = 0;
+		mf2.scrollFactor.y = 0;
+		mf2.setGraphicSize(Std.int(mf2.width * 1));
+		mf2.updateHitbox();
+		mf2.screenCenter(X);
+		mf2.antialiasing = true;
+		add(mf2);
+
+		scrollTxt = new FlxText(12, FlxG.height - 30, 0, "Testing Testing Ring Ring Fuck You ShayReyez", 12);
+		scrollTxt.scrollFactor.set();
+		scrollTxt.setFormat("VCR OSD Mono", 24, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		add(scrollTxt);
+
+		logoBl.angle = -4;
 
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
@@ -186,7 +181,7 @@ class MainMenuState extends MusicBeatState
 
 		for (i in 0...optionShit.length)
 			{
-				var menuItem:FlxSprite = new FlxSprite(15, 180 + (i * 50));
+				var menuItem:FlxSprite = new FlxSprite(300, 350 + (i * 55));
 
 	
 				if(optionShit[i] == "mod") {
@@ -196,9 +191,9 @@ class MainMenuState extends MusicBeatState
 					menuItem.frames = tex;
 				}
 				
-				menuItem.animation.addByIndices('idle', optionShit[i],[0],"", 24);
-				menuItem.animation.addByIndices('selected', optionShit[i],[3],"", 24);
-				menuItem.setGraphicSize(Std.int(menuItem.width * 0.7));
+				menuItem.animation.addByPrefix('idle', optionShit[i] + " basic", 24);
+				menuItem.animation.addByPrefix('selected', optionShit[i] + " white", 24);
+				menuItem.setGraphicSize(Std.int(menuItem.width * 0.68));
 				menuItem.animation.play('idle');
 				menuItem.ID = i;
 				menuItems.add(menuItem);
@@ -211,13 +206,12 @@ class MainMenuState extends MusicBeatState
 		var versionShit:FlxText = new FlxText(12, FlxG.height - 44, 0, "Psych Engine v" + psychEngineVersion, 12);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		add(versionShit);
+		//add(versionShit);
 		var versionShit:FlxText = new FlxText(12, FlxG.height - 24, 0, "Friday Night Funkin' v" + Application.current.meta.get('version'), 12);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		add(versionShit);
+		//add(versionShit);
 
-		FlxTween.tween(versionShit, {y: versionShit.y - 16}, 0.75, {ease: FlxEase.quintOut, startDelay: 10});
 		// NG.core.calls.event.logEvent('swag').send();
 
 		changeItem();
@@ -251,13 +245,21 @@ class MainMenuState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
+		new FlxTimer().start(0.01, function(tmr:FlxTimer)
+		{
+			if (logoBl.angle == -4)
+				FlxTween.angle(logoBl, logoBl.angle, 4, 4, {ease: FlxEase.quartInOut});
+			if (logoBl.angle == 4)
+				FlxTween.angle(logoBl, logoBl.angle, -4, 4, {ease: FlxEase.quartInOut});
+		}, 0);
+
 		if (FlxG.sound.music.volume < 0.8)
 		{
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
 		}
 
 		scrollTxt.x -= 3 * 60 / Lib.current.stage.frameRate;
-		if(scrollTxt.x < -1280) scrollTxt.x = 0;
+		if(scrollTxt.x < 0 - (scrollTxt.text.length * 25)) scrollTxt.x = 1280;
 
 		var lerpVal:Float = CoolUtil.boundTo(elapsed * 7.5, 0, 1);
 		camFollowPos.setPosition(FlxMath.lerp(camFollowPos.x, camFollow.x, lerpVal), FlxMath.lerp(camFollowPos.y, camFollow.y, lerpVal));
@@ -285,7 +287,7 @@ class MainMenuState extends MusicBeatState
 
 			if (controls.ACCEPT)
 			{
-				if (optionShit[curSelected] == 'discord')
+				if (optionShit[curSelected] == 'mods')
 				{
 					CoolUtil.browserLoad('https://discord.gg/b3-remixed');
 				}
@@ -350,7 +352,7 @@ class MainMenuState extends MusicBeatState
 				case 2: spr.x -= 95;
 				case 3: spr.x -= 175;
 			}
-			spr.x = 0;
+			spr.x = 105;
 		});
 	}
 
@@ -363,19 +365,22 @@ class MainMenuState extends MusicBeatState
 		if (curSelected < 0)
 			curSelected = menuItems.length - 1;
 
-		scrollTxt.animation.play('txt', true, false, curSelected);
 		/*if (configSelected > 3)
 			configSelected = 0;
 		if (configSelected < 0)
 			configSelected = 3;*/
 
+		scrollTxt.text = scrollTxts[curSelected];
+
 		menuItems.forEach(function(spr:FlxSprite)
 		{
+			// i dont wanna talk about this code
 			spr.animation.play('idle');
 			spr.updateHitbox();
 
 			if (spr.ID == curSelected)
 			{
+				spr.x = 125;
 				spr.animation.play('selected');
 				var add:Float = 0;
 				if(menuItems.length > 4) {
@@ -383,6 +388,8 @@ class MainMenuState extends MusicBeatState
 				}
 				camFollow.setPosition(spr.getGraphicMidpoint().x, spr.getGraphicMidpoint().y - add);
 				spr.centerOffsets();
+			} else {
+				spr.x = 105;
 			}
 		});
 	}

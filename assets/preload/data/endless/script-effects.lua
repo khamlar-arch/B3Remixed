@@ -99,6 +99,7 @@ function onUpdate()
         doTweenAlpha('funIsINFINITE', 'infiniteFun', 1, 0.25, 'circInOut')
     end
     if curStep == 1160 then
+        cameraFlash('other', 'FFFFFF', 0.2, true)
         -- Completed other fast part
         setProperty('defaultCamZoom', 0.6)
         triggerEvent('Camera Follow Pos', '', '')
