@@ -1,9 +1,9 @@
 {
 	"song": {
-		"speed": 2.7,
+		"speed": 3.1,
 		"stage": "dream",
 		"player1": "imsorry",
-		"player2": "pico",
+		"player2": "zombie_pico",
 		"player3": null,
 		"events": [
 			[
@@ -12,16 +12,11 @@
 					[
 						"Change Character",
 						"1",
-						"monstergf"
-					]
-				]
-			],
-			[
-				106849.315068493,
-				[
+						"torment"
+					],
 					[
 						"Change Character",
-						"BF",
+						"imsorry",
 						"whydidyoudothis"
 					]
 				]
@@ -36,7 +31,7 @@
 					],
 					[
 						"Change Character",
-						"BF",
+						"whydidyoudothis",
 						"imsorry"
 					]
 				]
@@ -46,13 +41,23 @@
 				[
 					[
 						"Change Character",
-						"BF",
-						"whydidyoudothis"
+						"1",
+						"torment"
 					],
 					[
 						"Change Character",
+						"imsorry",
+						"whydidyoudothis"
+					]
+				]
+			],
+			[
+				289315.068493151,
+				[
+					[
+						"MiaTransition",
 						"1",
-						"monstergf"
+						""
 					]
 				]
 			],
@@ -71,13 +76,13 @@
 				[
 					[
 						"Change Character",
-						"BF",
-						"imsorry"
+						"1",
+						"zombiemia"
 					],
 					[
-						"Change Scroll Speed",
-						"1.15",
-						"1"
+						"Change Character",
+						"whydidyoudothis",
+						"imsorry"
 					]
 				]
 			],
@@ -87,7 +92,7 @@
 					[
 						"Play Animation",
 						"hehe",
-						"Dad"
+						"1"
 					]
 				]
 			],
@@ -97,7 +102,7 @@
 					[
 						"Play Animation",
 						"hehe",
-						"Dad"
+						"1"
 					]
 				]
 			],
@@ -107,7 +112,7 @@
 					[
 						"Play Animation",
 						"haha",
-						"Dad"
+						"1"
 					]
 				]
 			],
@@ -117,7 +122,7 @@
 					[
 						"Play Animation",
 						"haha",
-						"Dad"
+						"1"
 					]
 				]
 			],
@@ -127,7 +132,7 @@
 					[
 						"Play Animation",
 						"hehe",
-						"Dad"
+						"1"
 					]
 				]
 			],
@@ -137,7 +142,7 @@
 					[
 						"Play Animation",
 						"hehe",
-						"Dad"
+						"1"
 					]
 				]
 			],
@@ -147,7 +152,7 @@
 					[
 						"Play Animation",
 						"haha",
-						"Dad"
+						"1"
 					]
 				]
 			],
@@ -157,7 +162,7 @@
 					[
 						"Play Animation",
 						"haha",
-						"Dad"
+						"1"
 					]
 				]
 			],
@@ -167,7 +172,7 @@
 					[
 						"Play Animation",
 						"hehe",
-						"Dad"
+						"1"
 					]
 				]
 			],
@@ -177,7 +182,7 @@
 					[
 						"Play Animation",
 						"hehe",
-						"Dad"
+						"1"
 					]
 				]
 			],
@@ -187,7 +192,7 @@
 					[
 						"Play Animation",
 						"haha",
-						"Dad"
+						"1"
 					]
 				]
 			],
@@ -197,7 +202,7 @@
 					[
 						"Play Animation",
 						"haha",
-						"Dad"
+						"1"
 					]
 				]
 			],
@@ -216,8 +221,13 @@
 				[
 					[
 						"Change Character",
-						"BF",
+						"imsorry",
 						"whydidyoudothis"
+					],
+					[
+						"Change Character",
+						"1",
+						"torment"
 					]
 				]
 			]

@@ -3079,6 +3079,33 @@ class PlayState extends MusicBeatState
 					case 2:
 						isWindowMoving = false;
 				}
+			case 'MiaTransition':
+				switch (Std.parseFloat(value1))
+				{
+					case 1:
+						trace('mia trans');
+							var miaStatic:FlxSprite = new FlxSprite().loadGraphic(Paths.image('miatransition'));
+							miaStatic.frames = Paths.getSparrowAtlas('miatransition');
+							miaStatic.animation.addByPrefix('mtrans', 'Phase3Static instance 1', 24, false);
+							miaStatic.screenCenter();
+					
+							miaStatic.scale.x = 4;
+							miaStatic.scale.y = 4;
+							miaStatic.alpha = 0.5;
+					
+							miaStatic.cameras = [camHUD];
+							add(miaStatic);
+							miaStatic.animation.play('mtrans');
+					
+							miaStatic.animation.finishCallback = function(pog:String)
+						{
+							trace('ended funny static');
+							miaStatic.alpha = 0;
+				
+							remove(miaStatic);
+						}
+					}
+				
 			case 'GayStation':
 				switch (Std.parseFloat(value1))
 				{

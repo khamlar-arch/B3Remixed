@@ -91,6 +91,7 @@ class ChartingState extends MusicBeatState
 		['Tails', "Value 1: 1 for making it visible, 2 for making it invisible again"],
 		['Dessert', "Value 1: 1 for making it visible, 2 for making it invisible again"],
 		['funnystatic', "Does the TT static shit\n1: Dessert becomes visible\nDessert becomes invisible\nTHIS ONLY WORKS ON THE \nSHAYA WEEK STAGE"],
+		['MiaTransition', "Does the TT static shit\n1: Mia transition"],
 		['WIN!!!', "WIN!!!"],
 		['WindowMove', "Value 1:\n1 for making it move, 2 for making it stop moving"],
 	];
