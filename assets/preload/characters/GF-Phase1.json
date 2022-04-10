@@ -1,59 +1,59 @@
 {
 	"animations": [
 		{
-			"loop": false,
 			"offsets": [
 				-81,
 				-171
 			],
-			"anim": "singRIGHT",
+			"loop": false,
 			"fps": 24,
-			"name": "G Right",
-			"indices": []
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "G Right"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				-59,
 				-162
 			],
-			"anim": "singUP",
+			"loop": false,
 			"fps": 24,
-			"name": "G Up",
-			"indices": []
+			"anim": "singUP",
+			"indices": [],
+			"name": "G Up"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				-12,
 				-168
 			],
-			"anim": "singLEFT",
+			"loop": false,
 			"fps": 24,
-			"name": "G Left",
-			"indices": []
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "G Left"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				-79,
 				-198
 			],
-			"anim": "singDOWN",
+			"loop": false,
 			"fps": 24,
-			"name": "G Down",
-			"indices": []
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "G Down"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				-69,
 				-163
 			],
-			"anim": "idle",
+			"loop": false,
 			"fps": 24,
-			"name": "G Idle Dance",
-			"indices": []
+			"anim": "idle",
+			"indices": [],
+			"name": "G Idle Dance"
 		}
 	],
 	"no_antialiasing": false,
@@ -67,11 +67,11 @@
 	"healthbar_colors": [
 		218,
 		20,
-		197
+		217
 	],
 	"camera_position": [
-		-100,
-		90
+		-40,
+		170
 	],
 	"sing_duration": 4,
 	"scale": 1
