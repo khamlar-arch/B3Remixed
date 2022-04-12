@@ -116,7 +116,6 @@ class Note extends FlxSprite
 				case 'Gay Note':
 					canBeHit = mustPress;
 					reloadNote('noteskins/gayNotes');
-					noteSplashTexture = 'GaySplash';
 					if(tooLate) {
 						missHealth = 0.4;
 					}

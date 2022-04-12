@@ -3106,6 +3106,87 @@ class PlayState extends MusicBeatState
 						}
 					}
 				
+			case 'PicoTransition':
+				switch (Std.parseFloat(value1))
+				{
+					case 1:
+						trace('pico trans');
+							var picoStatic:FlxSprite = new FlxSprite().loadGraphic(Paths.image('picotransition'));
+							picoStatic.frames = Paths.getSparrowAtlas('picotransition');
+							picoStatic.animation.addByPrefix('ptrans', 'Phase3Static instance 1', 24, false);
+							picoStatic.screenCenter();
+					
+							picoStatic.scale.x = 4;
+							picoStatic.scale.y = 4;
+							picoStatic.alpha = 0.5;
+					
+							picoStatic.cameras = [camHUD];
+							add(picoStatic);
+							picoStatic.animation.play('ptrans');
+					
+							picoStatic.animation.finishCallback = function(pog:String)
+						{
+							trace('ended funny static');
+							picoStatic.alpha = 0;
+				
+							remove(picoStatic);
+						}
+					}
+				
+			case 'PepTransition':
+				switch (Std.parseFloat(value1))
+				{
+					case 1:
+						trace('pep trans');
+							var pepStatic:FlxSprite = new FlxSprite().loadGraphic(Paths.image('peptransition'));
+							pepStatic.frames = Paths.getSparrowAtlas('peptransition');
+							pepStatic.animation.addByPrefix('peptrans', 'Phase3Static instance 1', 24, false);
+							pepStatic.screenCenter();
+					
+							pepStatic.scale.x = 4;
+							pepStatic.scale.y = 4;
+							pepStatic.alpha = 0.5;
+					
+							pepStatic.cameras = [camHUD];
+							add(pepStatic);
+							pepStatic.animation.play('peptrans');
+					
+							pepStatic.animation.finishCallback = function(pog:String)
+						{
+							trace('ended funny static');
+							pepStatic.alpha = 0;
+				
+							remove(pepStatic);
+						}
+					}
+				
+			case 'Transition':
+				switch (Std.parseFloat(value1))
+				{
+					case 1:
+						trace('trans');
+							var tstatic:FlxSprite = new FlxSprite().loadGraphic(Paths.image('transition'));
+							tstatic.frames = Paths.getSparrowAtlas('transition');
+							tstatic.animation.addByPrefix('trans', 'Phase3Static instance 1', 24, false);
+							tstatic.screenCenter();
+					
+							tstatic.scale.x = 4;
+							tstatic.scale.y = 4;
+							tstatic.alpha = 0.5;
+					
+							tstatic.cameras = [camHUD];
+							add(tstatic);
+							tstatic.animation.play('peptrans');
+					
+							tstatic.animation.finishCallback = function(pog:String)
+						{
+							trace('ended funny static');
+							tstatic.alpha = 0;
+				
+							remove(tstatic);
+						}
+					}
+				
 			case 'GayStation':
 				switch (Std.parseFloat(value1))
 				{
