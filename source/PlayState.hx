@@ -3165,25 +3165,25 @@ class PlayState extends MusicBeatState
 				{
 					case 1:
 						trace('trans');
-							var tstatic:FlxSprite = new FlxSprite().loadGraphic(Paths.image('transition'));
-							tstatic.frames = Paths.getSparrowAtlas('transition');
-							tstatic.animation.addByPrefix('trans', 'Phase3Static instance 1', 24, false);
-							tstatic.screenCenter();
+							var tStatic:FlxSprite = new FlxSprite().loadGraphic(Paths.image('transition'));
+							tStatic.frames = Paths.getSparrowAtlas('transition');
+							tStatic.animation.addByPrefix('trans', 'Phase3Static instance 1', 24, false);
+							tStatic.screenCenter();
 					
-							tstatic.scale.x = 4;
-							tstatic.scale.y = 4;
-							tstatic.alpha = 0.5;
+							tStatic.scale.x = 4;
+							tStatic.scale.y = 4;
+							tStatic.alpha = 0.5;
 					
-							tstatic.cameras = [camHUD];
-							add(tstatic);
-							tstatic.animation.play('peptrans');
+							tStatic.cameras = [camHUD];
+							add(tStatic);
+							tStatic.animation.play('trans');
 					
-							tstatic.animation.finishCallback = function(pog:String)
+							tStatic.animation.finishCallback = function(pog:String)
 						{
 							trace('ended funny static');
-							tstatic.alpha = 0;
+							tStatic.alpha = 0;
 				
-							remove(tstatic);
+							remove(tStatic);
 						}
 					}
 				

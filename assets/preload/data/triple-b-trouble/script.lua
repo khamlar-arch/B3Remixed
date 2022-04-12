@@ -18,6 +18,13 @@ function onSongStart()
     end
 end
 
+function opponentNoteHit()
+    health = getProperty('health')
+    if getProperty('health') > 0.05 then
+        setProperty('health', health- 0.02);
+    end
+end
+
 function onUpdate (elapsed)
 	local spin1 = false;
 	local spin2 = false;
