@@ -4342,6 +4342,10 @@ class PlayState extends MusicBeatState
 				dad.animation.play('bite');
 				boyfriend.animation.play('dodge');
 			}
+			if(note.noteType == 'Gay Note')
+			{
+				boyfriend.animation.play('dodge');
+			}
 
 			if(cpuControlled) {
 				var time:Float = 0.15;
