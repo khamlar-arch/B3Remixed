@@ -34,6 +34,7 @@ import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import lime.app.Application;
 import openfl.Assets;
+import flixel.math.FlxMath;
 
 using StringTools;
 typedef TitleData =
@@ -557,7 +558,6 @@ class TitleState extends MusicBeatState
 	override function beatHit()
 	{
 		super.beatHit();
-		comeBackHereNowOrElseYoungMan = true;
 
 		if(logoBl != null)
 			logoBl.animation.play('bump', true);

@@ -121,6 +121,8 @@ class PlayState extends MusicBeatState
 	public var dadGroup:FlxSpriteGroup;
 	public var gfGroup:FlxSpriteGroup;
 
+	public var curFocus:String = "";
+
 	public static var curStage:String = '';
 	public static var isPixelStage:Bool = false;
 	public static var SONG:SwagSong = null;
@@ -3338,11 +3340,13 @@ class PlayState extends MusicBeatState
 
 		if (!SONG.notes[id].mustHitSection)
 		{
+			curFocus = 'dad';
 			moveCamera(true);
 			callOnLuas('onMoveCamera', ['dad']);
 		}
 		else
 		{
+			curFocus = 'bf';
 			moveCamera(false);
 			callOnLuas('onMoveCamera', ['boyfriend']);
 		}
@@ -4133,7 +4137,7 @@ class PlayState extends MusicBeatState
 			char.holdTimer = 0;
 		}
 
-		if ((ClientPrefs.noteCamera) && (!note.isSustainNote)) {
+		if ((ClientPrefs.noteCamera) && (!note.isSustainNote) && (curFocus == 'dad')) {
 			tweenCamOnHit(note.noteData);
 		}
 
@@ -4218,7 +4222,7 @@ class PlayState extends MusicBeatState
 				}
 			}
 
-			if ((ClientPrefs.noteCamera) && (!note.isSustainNote)) {
+			if ((ClientPrefs.noteCamera) && (!note.isSustainNote) && (curFocus == 'bf')) {
 				tweenCamOnHit(note.noteData);
 			}
 		
