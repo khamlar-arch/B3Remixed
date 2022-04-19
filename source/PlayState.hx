@@ -3081,6 +3081,114 @@ class PlayState extends MusicBeatState
 					case 2:
 						isWindowMoving = false;
 				}
+			case 'MiaTransition':
+				switch (Std.parseFloat(value1))
+				{
+					case 1:
+						trace('mia trans');
+							var miaStatic:FlxSprite = new FlxSprite().loadGraphic(Paths.image('miatransition'));
+							miaStatic.frames = Paths.getSparrowAtlas('miatransition');
+							miaStatic.animation.addByPrefix('mtrans', 'Phase3Static instance 1', 24, false);
+							miaStatic.screenCenter();
+					
+							miaStatic.scale.x = 4;
+							miaStatic.scale.y = 4;
+							miaStatic.alpha = 0.5;
+					
+							miaStatic.cameras = [camHUD];
+							add(miaStatic);
+							miaStatic.animation.play('mtrans');
+					
+							miaStatic.animation.finishCallback = function(pog:String)
+						{
+							trace('ended funny static');
+							miaStatic.alpha = 0;
+				
+							remove(miaStatic);
+						}
+					}
+				
+			case 'PicoTransition':
+				switch (Std.parseFloat(value1))
+				{
+					case 1:
+						trace('pico trans');
+							var picoStatic:FlxSprite = new FlxSprite().loadGraphic(Paths.image('picotransition'));
+							picoStatic.frames = Paths.getSparrowAtlas('picotransition');
+							picoStatic.animation.addByPrefix('ptrans', 'Phase3Static instance 1', 24, false);
+							picoStatic.screenCenter();
+					
+							picoStatic.scale.x = 4;
+							picoStatic.scale.y = 4;
+							picoStatic.alpha = 0.5;
+					
+							picoStatic.cameras = [camHUD];
+							add(picoStatic);
+							picoStatic.animation.play('ptrans');
+					
+							picoStatic.animation.finishCallback = function(pog:String)
+						{
+							trace('ended funny static');
+							picoStatic.alpha = 0;
+				
+							remove(picoStatic);
+						}
+					}
+				
+			case 'PepTransition':
+				switch (Std.parseFloat(value1))
+				{
+					case 1:
+						trace('pep trans');
+							var pepStatic:FlxSprite = new FlxSprite().loadGraphic(Paths.image('peptransition'));
+							pepStatic.frames = Paths.getSparrowAtlas('peptransition');
+							pepStatic.animation.addByPrefix('peptrans', 'Phase3Static instance 1', 24, false);
+							pepStatic.screenCenter();
+					
+							pepStatic.scale.x = 4;
+							pepStatic.scale.y = 4;
+							pepStatic.alpha = 0.5;
+					
+							pepStatic.cameras = [camHUD];
+							add(pepStatic);
+							pepStatic.animation.play('peptrans');
+					
+							pepStatic.animation.finishCallback = function(pog:String)
+						{
+							trace('ended funny static');
+							pepStatic.alpha = 0;
+				
+							remove(pepStatic);
+						}
+					}
+				
+			case 'Transition':
+				switch (Std.parseFloat(value1))
+				{
+					case 1:
+						trace('trans');
+							var tStatic:FlxSprite = new FlxSprite().loadGraphic(Paths.image('transition'));
+							tStatic.frames = Paths.getSparrowAtlas('transition');
+							tStatic.animation.addByPrefix('trans', 'Phase3Static instance 1', 24, false);
+							tStatic.screenCenter();
+					
+							tStatic.scale.x = 4;
+							tStatic.scale.y = 4;
+							tStatic.alpha = 0.5;
+					
+							tStatic.cameras = [camHUD];
+							add(tStatic);
+							tStatic.animation.play('trans');
+					
+							tStatic.animation.finishCallback = function(pog:String)
+						{
+							trace('ended funny static');
+							tStatic.alpha = 0;
+				
+							remove(tStatic);
+						}
+					}
+				
 			case 'GayStation':
 				switch (Std.parseFloat(value1))
 				{
@@ -4238,6 +4346,10 @@ class PlayState extends MusicBeatState
 				dad.animation.play('bite');
 				boyfriend.animation.play('dodge');
 			}
+			if(note.noteType == 'Gay Note')
+			{
+				boyfriend.animation.play('dodge');
+			}
 
 			if(cpuControlled) {
 				var time:Float = 0.15;
@@ -4641,9 +4753,9 @@ class PlayState extends MusicBeatState
 
 			// Rating FC
 			ratingFC = "";
-			if (sicks > 0) ratingFC = " [SFC]";
-			if (goods > 0) ratingFC = " [GFC]";
-			if (bads > 0 || shits > 0) ratingFC = " [FC]";
+			if (sicks > 0) ratingFC = " [Absolutely Goated]";
+			if (goods > 0) ratingFC = " [You're a legend]";
+			if (bads > 0 || shits > 0) ratingFC = " [Perfect but could be better]";
 			if (songMisses > 0) ratingFC = "";
 		}
 		setOnLuas('rating', ratingPercent);

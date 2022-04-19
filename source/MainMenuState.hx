@@ -133,7 +133,7 @@ class MainMenuState extends MusicBeatState
 		mf1.antialiasing = true;
 		add(mf1);
 
-		logoBl = new FlxSprite(-150, -220);
+		logoBl = new FlxSprite(-180, -190);
 		logoBl.frames = Paths.getSparrowAtlas('logoBumpin');
 		logoBl.antialiasing = ClientPrefs.globalAntialiasing;
 		logoBl.animation.addByPrefix('bump', 'logo bumpin', 24, false);
@@ -141,6 +141,7 @@ class MainMenuState extends MusicBeatState
 		logoBl.updateHitbox();
 		logoBl.scrollFactor.set(0, 0);
 		logoBl.setGraphicSize(Std.int(logoBl.width * 0.68));
+		logoBl.setGraphicSize(Std.int(logoBl.height * 0.68));
 		add(logoBl);
 
 		var bt1:FlxSprite = new FlxSprite(80, 315).loadGraphic(Paths.image('ui/mainmenu/box'));

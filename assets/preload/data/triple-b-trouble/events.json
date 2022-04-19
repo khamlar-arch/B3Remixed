@@ -1,18 +1,28 @@
 {
 	"song": {
-		"speed": 2.7,
+		"speed": 3.1,
 		"stage": "dream",
 		"player1": "imsorry",
-		"player2": "pico",
+		"player2": "zombie_pico",
 		"player3": null,
 		"events": [
 			[
-				106849.315068493,
+				0,
 				[
 					[
-						"Change Character",
+						"PicoTransition",
 						"1",
-						"monstergf"
+						""
+					]
+				]
+			],
+			[
+				105205.479452055,
+				[
+					[
+						"Transition",
+						"1",
+						""
 					]
 				]
 			],
@@ -21,8 +31,23 @@
 				[
 					[
 						"Change Character",
-						"BF",
+						"1",
+						"torment"
+					],
+					[
+						"Change Character",
+						"imsorry",
 						"whydidyoudothis"
+					]
+				]
+			],
+			[
+				131506.849315069,
+				[
+					[
+						"PepTransition",
+						"1",
+						""
 					]
 				]
 			],
@@ -36,8 +61,18 @@
 					],
 					[
 						"Change Character",
-						"BF",
+						"whydidyoudothis",
 						"imsorry"
+					]
+				]
+			],
+			[
+				236712.328767124,
+				[
+					[
+						"Transition",
+						"1",
+						""
 					]
 				]
 			],
@@ -46,13 +81,23 @@
 				[
 					[
 						"Change Character",
-						"BF",
-						"whydidyoudothis"
+						"1",
+						"torment"
 					],
 					[
 						"Change Character",
+						"imsorry",
+						"whydidyoudothis"
+					]
+				]
+			],
+			[
+				289315.068493151,
+				[
+					[
+						"MiaTransition",
 						"1",
-						"monstergf"
+						""
 					]
 				]
 			],
@@ -71,13 +116,13 @@
 				[
 					[
 						"Change Character",
-						"BF",
-						"imsorry"
+						"1",
+						"zombiemia"
 					],
 					[
-						"Change Scroll Speed",
-						"1.15",
-						"1"
+						"Change Character",
+						"whydidyoudothis",
+						"imsorry"
 					]
 				]
 			],
@@ -87,7 +132,7 @@
 					[
 						"Play Animation",
 						"hehe",
-						"Dad"
+						"dad"
 					]
 				]
 			],
@@ -97,7 +142,7 @@
 					[
 						"Play Animation",
 						"hehe",
-						"Dad"
+						"dad"
 					]
 				]
 			],
@@ -107,7 +152,7 @@
 					[
 						"Play Animation",
 						"haha",
-						"Dad"
+						"dad"
 					]
 				]
 			],
@@ -117,7 +162,7 @@
 					[
 						"Play Animation",
 						"haha",
-						"Dad"
+						"dad"
 					]
 				]
 			],
@@ -127,7 +172,7 @@
 					[
 						"Play Animation",
 						"hehe",
-						"Dad"
+						"dad"
 					]
 				]
 			],
@@ -137,7 +182,7 @@
 					[
 						"Play Animation",
 						"hehe",
-						"Dad"
+						"dad"
 					]
 				]
 			],
@@ -147,7 +192,7 @@
 					[
 						"Play Animation",
 						"haha",
-						"Dad"
+						"dad"
 					]
 				]
 			],
@@ -157,7 +202,27 @@
 					[
 						"Play Animation",
 						"haha",
-						"Dad"
+						"dad"
+					]
+				]
+			],
+			[
+				324211.916157782,
+				[
+					[
+						"MiaTransition",
+						"1",
+						""
+					]
+				]
+			],
+			[
+				347344.446278264,
+				[
+					[
+						"MiaTransition",
+						"1",
+						""
 					]
 				]
 			],
@@ -167,7 +232,7 @@
 					[
 						"Play Animation",
 						"hehe",
-						"Dad"
+						"dad"
 					]
 				]
 			],
@@ -177,7 +242,7 @@
 					[
 						"Play Animation",
 						"hehe",
-						"Dad"
+						"dad"
 					]
 				]
 			],
@@ -187,7 +252,7 @@
 					[
 						"Play Animation",
 						"haha",
-						"Dad"
+						"dad"
 					]
 				]
 			],
@@ -197,7 +262,17 @@
 					[
 						"Play Animation",
 						"haha",
-						"Dad"
+						"dad"
+					]
+				]
+			],
+			[
+				405175.771579468,
+				[
+					[
+						"Transition",
+						"1",
+						""
 					]
 				]
 			],
@@ -216,8 +291,13 @@
 				[
 					[
 						"Change Character",
-						"BF",
+						"imsorry",
 						"whydidyoudothis"
+					],
+					[
+						"Change Character",
+						"1",
+						"torment"
 					]
 				]
 			]

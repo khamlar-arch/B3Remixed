@@ -1,0 +1,95 @@
+local defaultNotePos = {};
+local spin = false;
+local arrowMoveX = 0;
+local arrowMoveY = 0;
+local spin1 = false;
+local spin2 = false;
+local spincenter = false;
+local normal1 = false;
+local normal2 = false;
+
+function onSongStart()
+    for i = 0,7 do 
+        x = getPropertyFromGroup('strumLineNotes', i, 'x')
+ 
+        y = getPropertyFromGroup('strumLineNotes', i, 'y')
+ 
+        table.insert(defaultNotePos, {x,y})
+    end
+end
+
+function opponentNoteHit()
+    health = getProperty('health')
+    if getProperty('health') > 0.05 then
+        setProperty('health', health- 0.02);
+    end
+end
+
+function onUpdate (elapsed)
+	local spin1 = false;
+	local spin2 = false;
+	local spincenter = false;
+	local normal1 = false;
+	local normal2 = false;
+	
+	function onUpdate (elapsed)
+		if spin1 then
+			local currentBeat = (songPos / 1000)*(bpm/60)
+			for i=0,3 do
+				setActorX(_G['defaultStrum'..i..'X'] + 32 * math.sin((currentBeat + i*0.25) * math.pi) + 360, i)
+				setActorY(_G['defaultStrum'..i..'Y'] + 32 * math.cos((currentBeat + i*0.25) * math.pi), i)
+			end
+		end
+		if normal1 then
+			for i=0,3 do
+				setActorX(_G['defaultStrum'..i..'X'],i)
+				setActorY(_G['defaultStrum'..i..'Y'],i)
+			end
+		end
+		if spin2 then
+			local currentBeat = (songPos / 1000)*(bpm/60)
+			for i=4,7 do
+				setActorX(_G['defaultStrum'..i..'X'] + 32 * math.sin((currentBeat + i*0.25) * math.pi) - 275, i)
+				setActorY(_G['defaultStrum'..i..'Y'] + 32 * math.cos((currentBeat + i*0.25) * math.pi), i)
+			end
+		end
+		if normal2 then
+			for i=4,7 do
+				setActorX(_G['defaultStrum'..i..'X'],i)
+				setActorY(_G['defaultStrum'..i..'Y'],i)
+			end
+		end
+		if spincenter then
+			local currentBeat = (songPos / 1000)*(bpm/60)
+			for i=0,3 do
+				setActorX(_G['defaultStrum'..i..'X'] + 300 * math.sin((currentBeat + i*5) * math.pi)+ 360, i)
+				setActorY(_G['defaultStrum'..i..'Y'],i)
+			end
+			for i=4,7 do	
+				setActorX(_G['defaultStrum'..i..'X'] - 300 * math.sin((currentBeat + i*5) * math.pi)- 275, i)
+				setActorY(_G['defaultStrum'..i..'Y'],i)
+			end
+		end
+	end
+	
+	
+	function onStepHit ()
+		if curStep == 1 then
+		end
+		if curStep == 2832 then
+			spin1 = true;
+			normal1 = false;
+			showOnlyStrums = true;
+		end
+		if curStep == 2896 then
+			spin1 = false;
+			spin2 = true;
+		end
+		if curStep == 2959 then
+			normal1 = true;
+			normal2 = true;
+			spin2 = false;
+			showOnlyStrums = false;
+		end
+	end
+end

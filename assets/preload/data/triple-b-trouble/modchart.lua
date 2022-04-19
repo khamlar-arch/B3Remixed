@@ -1,17 +1,31 @@
-local spin1 = false
-local spin2 = false
-local spincenter = false
-local normal1 = false
-local normal2 = false
+local defaultNotePos = {};
+local spin = false;
+local arrowMoveX = 0;
+local arrowMoveY = 0;
+local spin1 = false;
+local spin2 = false;
+local spincenter = false;
+local normal1 = false;
+local normal2 = false;
 
-function update (elapsed)
-	local spin1 = false
-	local spin2 = false
-	local spincenter = false
-	local normal1 = false
-	local normal2 = false
+function onSongStart()
+    for i = 0,7 do 
+        x = getPropertyFromGroup('strumLineNotes', i, 'x')
+ 
+        y = getPropertyFromGroup('strumLineNotes', i, 'y')
+ 
+        table.insert(defaultNotePos, {x,y})
+    end
+end
+
+function onUpdate (elapsed)
+	local spin1 = false;
+	local spin2 = false;
+	local spincenter = false;
+	local normal1 = false;
+	local normal2 = false;
 	
-	function update (elapsed)
+	function onUpdate (elapsed)
 		if spin1 then
 			local currentBeat = (songPos / 1000)*(bpm/60)
 			for i=0,3 do
@@ -52,23 +66,23 @@ function update (elapsed)
 	end
 	
 	
-	function stepHit (step)
-		if step == 1 then
+	function onStepHit ()
+		if curStep == 1 then
 		end
-		if step == 2832 then
-			spin1 = true
-			normal1 = false
-			showOnlyStrums = true
+		if curStep == 2832 then
+			spin1 = true;
+			normal1 = false;
+			showOnlyStrums = true;
 		end
-		if step == 2896 then
-			spin1 = false
-			spin2 = true
+		if curStep == 2896 then
+			spin1 = false;
+			spin2 = true;
 		end
-		if step == 2959 then
-			normal1 = true
-			normal2 = true
-			spin2 = false
-			showOnlyStrums = false
+		if curStep == 2959 then
+			normal1 = true;
+			normal2 = true;
+			spin2 = false;
+			showOnlyStrums = false;
 		end
 	end
 end

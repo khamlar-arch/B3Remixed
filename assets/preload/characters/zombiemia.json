@@ -1,81 +1,81 @@
 {
 	"animations": [
 		{
+			"loop": false,
 			"offsets": [
 				-90,
 				-60
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "idle",
-			"indices": [],
-			"name": "mia idle"
+			"fps": 24,
+			"name": "mia idle",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				-80,
 				-180
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singRIGHT",
-			"indices": [],
-			"name": "mia right"
+			"fps": 24,
+			"name": "mia right",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				-36,
 				-9
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singUP",
-			"indices": [],
-			"name": "Mia Up"
+			"fps": 24,
+			"name": "Mia Up",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				250,
 				-113
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singLEFT",
-			"indices": [],
-			"name": "Mia Left"
+			"fps": 24,
+			"name": "Mia Left",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				-37,
 				-170
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singDOWN",
-			"indices": [],
-			"name": "Mia Down"
+			"fps": 24,
+			"name": "Mia Down",
+			"indices": []
 		},
 		{
-			"loop": false,
 			"offsets": [
 				60,
 				-10
 			],
-			"anim": "hehe",
+			"loop": false,
 			"fps": 24,
-			"name": "hehe",
-			"indices": []
+			"anim": "hehe",
+			"indices": [],
+			"name": "hehe"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				240,
 				-100
 			],
-			"anim": "haha",
+			"loop": false,
 			"fps": 24,
-			"name": "haha",
-			"indices": []
+			"anim": "haha",
+			"indices": [],
+			"name": "haha"
 		}
 	],
 	"no_antialiasing": false,
@@ -92,7 +92,7 @@
 		237
 	],
 	"camera_position": [
-		-120,
+		-180,
 		70
 	],
 	"sing_duration": 4,

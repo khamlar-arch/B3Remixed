@@ -1,13 +1,13 @@
 {
 	"song": {
-		"speed": 2.3,
+		"speed": 2.4,
 		"stage": "room",
 		"player1": "screambf",
 		"player2": "GF-Phase1",
 		"player3": null,
 		"events": [
 			[
-				45795.4545454545,
+				45568.1818181818,
 				[
 					[
 						"funnystatic",
@@ -21,8 +21,38 @@
 				[
 					[
 						"Change Character",
-						"dad",
-						"monstergf"
+						"1",
+						"torment"
+					],
+					[
+						"Change Character",
+						"BF",
+						"whydidyoudothis"
+					]
+				]
+			],
+			[
+				74659.0909090909,
+				[
+					[
+						"funnystatic",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				76363.6363636364,
+				[
+					[
+						"Change Character",
+						"1",
+						"GF-Phase1"
+					],
+					[
+						"Change Character",
+						"BF",
+						"screambf"
 					]
 				]
 			]

@@ -2,69 +2,47 @@
 	"animations": [
 		{
 			"offsets": [
-				59,
-				-2
-			],
-			"loop": true,
-			"fps": 24,
-			"anim": "deathLoop",
-			"indices": [],
-			"name": "BF Dead Loop"
-		},
-		{
-			"loop": false,
-			"offsets": [
-				59,
-				3
-			],
-			"anim": "firstDeath",
-			"fps": 24,
-			"name": "BF dies",
-			"indices": []
-		},
-		{
-			"loop": false,
-			"offsets": [
 				-6,
 				0
 			],
-			"anim": "idle",
+			"indices": [],
 			"fps": 24,
-			"name": "BF idle dance",
-			"indices": []
+			"anim": "idle",
+			"loop": true,
+			"name": "BF idle dance instance 1"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				-11,
 				35
 			],
-			"anim": "singRIGHTmiss",
+			"indices": [],
 			"fps": 24,
-			"name": "BF NOTE RIGHT MISS",
-			"indices": []
+			"anim": "singRIGHTmiss",
+			"loop": false,
+			"name": "BF NOTE RIGHT MISS instance 1"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				-11,
 				0
 			],
-			"anim": "singLEFTmiss",
+			"indices": [],
 			"fps": 24,
-			"name": "BF NOTE LEFT MISS",
-			"indices": []
+			"anim": "singLEFTmiss",
+			"loop": false,
+			"name": "BF NOTE LEFT MISS instance 1"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				-12,
 				26
 			],
-			"anim": "singUPmiss",
+			"indices": [],
 			"fps": 24,
-			"name": "BF NOTE UP MISS",
-			"indices": []
+			"anim": "singUPmiss",
+			"loop": false,
+			"name": "BF NOTE UP MISS instance 1"
 		},
 		{
 			"offsets": [
@@ -82,7 +60,7 @@
 			"fps": 24,
 			"anim": "singDOWN",
 			"loop": false,
-			"name": "BF NOTE DOWN"
+			"name": "BF NOTE DOWN instance 1"
 		},
 		{
 			"offsets": [
@@ -101,7 +79,7 @@
 			"fps": 24,
 			"anim": "singLEFT",
 			"loop": false,
-			"name": "BF NOTE LEFT"
+			"name": "BF NOTE LEFT instance 1"
 		},
 		{
 			"offsets": [
@@ -120,7 +98,7 @@
 			"fps": 24,
 			"anim": "singRIGHT",
 			"loop": false,
-			"name": "BF NOTE RIGHT"
+			"name": "BF NOTE RIGHT instance 1"
 		},
 		{
 			"offsets": [
@@ -139,7 +117,7 @@
 			"fps": 24,
 			"anim": "singUP",
 			"loop": false,
-			"name": "BF NOTE UP"
+			"name": "BF NOTE UP instance 1"
 		},
 		{
 			"offsets": [
@@ -150,7 +128,18 @@
 			"fps": 24,
 			"anim": "singDOWNmiss",
 			"loop": false,
-			"name": "BF NOTE DOWN MISS"
+			"name": "BF NOTE DOWN MISS instance 1"
+		},
+		{
+			"offsets": [
+				40,
+				-10
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "dodge",
+			"loop": false,
+			"name": "boyfriend dodge instance 1"
 		}
 	],
 	"no_antialiasing": false,

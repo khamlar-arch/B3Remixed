@@ -1,81 +1,81 @@
 {
 	"animations": [
 		{
+			"loop": false,
 			"offsets": [
 				78,
 				-27
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singRIGHT",
-			"indices": [],
-			"name": "GF_Right"
+			"fps": 24,
+			"name": "GF_Right",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				242,
 				255
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singUP",
-			"indices": [],
-			"name": "GF_Up"
+			"fps": 24,
+			"name": "GF_Up",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				559,
 				23
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singLEFT",
-			"indices": [],
-			"name": "GF_Left"
+			"fps": 24,
+			"name": "GF_Left",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				59,
 				-191
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singDOWN",
-			"indices": [],
-			"name": "GF_Down"
+			"fps": 24,
+			"name": "GF_Down",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				-160
+			],
+			"anim": "talk",
+			"fps": 24,
+			"name": "GF_TALK_START",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				10,
+				-120
+			],
+			"anim": "bite",
+			"fps": 24,
+			"name": "GF_Bite_FIXED",
+			"indices": []
 		},
 		{
 			"offsets": [
 				171,
 				87
 			],
-			"loop": false,
+			"indices": [],
 			"fps": 24,
 			"anim": "idle",
-			"indices": [],
+			"loop": true,
 			"name": "GF_Idle"
-		},
-		{
-			"offsets": [
-				0,
-				-160
-			],
-			"loop": false,
-			"fps": 24,
-			"anim": "talk",
-			"indices": [],
-			"name": "GF_TALK_START"
-		},
-		{
-			"offsets": [
-				10,
-				-120
-			],
-			"loop": false,
-			"fps": 24,
-			"anim": "bite",
-			"indices": [],
-			"name": "GF_Bite_FIXED"
 		}
 	],
 	"no_antialiasing": true,
