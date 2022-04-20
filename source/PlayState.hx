@@ -4753,9 +4753,9 @@ class PlayState extends MusicBeatState
 
 			// Rating FC
 			ratingFC = "";
-			if (sicks > 0) ratingFC = " [Absolutely Goated]";
-			if (goods > 0) ratingFC = " [You're a legend]";
-			if (bads > 0 || shits > 0) ratingFC = " [Perfect but could be better]";
+			if (sicks > 0) ratingFC = " [SFC]";
+			if (goods > 0) ratingFC = " [GFC]";
+			if (bads > 0 || shits > 0) ratingFC = " [FC]";
 			if (songMisses > 0) ratingFC = "";
 		}
 		setOnLuas('rating', ratingPercent);

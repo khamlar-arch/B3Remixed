@@ -19,7 +19,8 @@ class CoolUtil
 	public static var defaultDifficulties:Array<String> = [
 		'Easy',
 		'Normal',
-		'Hard'
+		'Hard',
+		'Get Real'
 	];
 	public static var defaultDifficulty:String = 'Normal'; //The chart that has no suffix and starting difficulty on Freeplay/Story Mode
 
@@ -32,7 +33,11 @@ class CoolUtil
 		var fileSuffix:String = difficulties[num];
 		if(fileSuffix != defaultDifficulty)
 		{
-			fileSuffix = '-' + fileSuffix;
+			if (fileSuffix == 'Get Real') {
+				fileSuffix = '-getreal';
+			} else {
+				fileSuffix = '-' + fileSuffix;
+			}
 		}
 		else
 		{

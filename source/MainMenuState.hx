@@ -361,10 +361,10 @@ class MainMenuState extends MusicBeatState
 	{
 		curSelected += huh;
 
-		if (curSelected >= menuItems.length)
+		if (curSelected >= menuItems.length - 1)
 			curSelected = 0;
 		if (curSelected < 0)
-			curSelected = menuItems.length - 1;
+			curSelected = menuItems.length - 2;
 
 		/*if (configSelected > 3)
 			configSelected = 0;
