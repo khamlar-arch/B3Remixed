@@ -82,11 +82,12 @@ class MainMenuState extends MusicBeatState
 		persistentUpdate = persistentDraw = true;
 
 		var yScroll:Float = Math.max(0.25 - (0.05 * (optionShit.length - 4)), 0.1);
-		var bg:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('menuBG'));
+		var bg:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('ui/menu/menuBG'));
 		bg.scrollFactor.set(0, yScroll);
 		bg.setGraphicSize(Std.int(bg.width * 1.175));
 		bg.updateHitbox();
 		bg.screenCenter();
+		bg.color = 0x03FC73;
 		bg.antialiasing = ClientPrefs.globalAntialiasing;
 		add(bg);
 
@@ -95,14 +96,14 @@ class MainMenuState extends MusicBeatState
 		add(camFollow);
 		add(camFollowPos);
 
-		magenta = new FlxSprite(-80).loadGraphic(Paths.image('menuDesat'));
+		magenta = new FlxSprite(-80).loadGraphic(Paths.image('ui/menu/menuBG'));
 		magenta.scrollFactor.set(0, yScroll);
 		magenta.setGraphicSize(Std.int(magenta.width * 1.175));
 		magenta.updateHitbox();
 		magenta.screenCenter();
 		magenta.visible = false;
 		magenta.antialiasing = ClientPrefs.globalAntialiasing;
-		magenta.color = 0xFFfd719b;
+		magenta.color = 0xE84DEB;
 		add(magenta);
 		// magenta.scrollFactor.set();
 
@@ -124,7 +125,7 @@ class MainMenuState extends MusicBeatState
 		t2.antialiasing = true;
 		add(t2);
 
-		var mf1:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('ui/mainmenu/top'));
+		var mf1:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('ui/menu/main/top'));
 		mf1.scrollFactor.x = 0;
 		mf1.scrollFactor.y = 0;
 		mf1.setGraphicSize(Std.int(mf1.width * 1));
@@ -144,7 +145,7 @@ class MainMenuState extends MusicBeatState
 		logoBl.setGraphicSize(Std.int(logoBl.height * 0.68));
 		add(logoBl);
 
-		var bt1:FlxSprite = new FlxSprite(80, 315).loadGraphic(Paths.image('ui/mainmenu/box'));
+		var bt1:FlxSprite = new FlxSprite(80, 315).loadGraphic(Paths.image('ui/menu/main/box'));
 		bt1.scrollFactor.x = 0;
 		bt1.scrollFactor.y = 0;
 		bt1.setGraphicSize(Std.int(bt1.width * 1));
@@ -152,7 +153,7 @@ class MainMenuState extends MusicBeatState
 		bt1.antialiasing = true;
 		add(bt1);
 
-		var mf2:FlxSprite = new FlxSprite(-80, FlxG.height - 113).loadGraphic(Paths.image('ui/mainmenu/bottom'));
+		var mf2:FlxSprite = new FlxSprite(-80, FlxG.height - 113).loadGraphic(Paths.image('ui/menu/main/bottom'));
 		mf2.scrollFactor.x = 0;
 		mf2.scrollFactor.y = 0;
 		mf2.setGraphicSize(Std.int(mf2.width * 1));
@@ -171,7 +172,7 @@ class MainMenuState extends MusicBeatState
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
 		
-		var tex = Paths.getSparrowAtlas('FNF_main_menu_assets');
+		var tex = Paths.getSparrowAtlas('ui/menu/main/FNF_main_menu_assets');
 		var texBg = Paths.getSparrowAtlas('b3_select_thingy');
 		var texMod = Paths.getSparrowAtlas('FNF_mod_menu_assets');
 
@@ -183,14 +184,7 @@ class MainMenuState extends MusicBeatState
 		for (i in 0...optionShit.length)
 			{
 				var menuItem:FlxSprite = new FlxSprite(300, 350 + (i * 55));
-
-	
-				if(optionShit[i] == "mod") {
-					menuItem.frames = texMod;
-				}
-				else {
-					menuItem.frames = tex;
-				}
+				menuItem.frames = tex;
 				
 				menuItem.animation.addByPrefix('idle', optionShit[i] + " basic", 24);
 				menuItem.animation.addByPrefix('selected', optionShit[i] + " white", 24);
