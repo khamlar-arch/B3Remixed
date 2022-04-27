@@ -1,4 +1,4 @@
-package options;
+package options.substates;
 
 #if desktop
 import Discord.DiscordClient;
@@ -41,11 +41,37 @@ class VisualsUISubState extends BaseOptionsMenu
 			true);
 		addOption(option);
 
+		var option:Option = new Option('Judgement Counter',
+			"If checked, a counter showing your current amount of\n\"Sick!\"s, \"Good\"s, \"Bad\"s, and \"Shit\"s will be shown.",
+			'judgementCounter',
+			'bool',
+			true);
+		addOption(option);
+
+		var option:Option = new Option('Lane Transparency',
+			'Changes how transparent the lanes behind the notes should be.',
+			'laneUnderlay',
+			'percent',
+			1);
+		option.scrollSpeed = 1.6;
+		option.minValue = 0.0;
+		option.maxValue = 1;
+		option.changeValue = 0.1;
+		option.decimals = 1;
+		addOption(option);
+
 		var option:Option = new Option('Hide HUD',
 			'If checked, hides most HUD elements.',
 			'hideHud',
 			'bool',
 			false);
+		addOption(option);
+
+		var option:Option = new Option('Custom Noteskin',
+			'Change the noteskin between the custom B3 \nnoteskin and the default noteskin. Also affects notesplashes.',
+			'specialNoteskin',
+			'bool',
+			true);
 		addOption(option);
 		
 		var option:Option = new Option('Time Bar:',
@@ -54,13 +80,6 @@ class VisualsUISubState extends BaseOptionsMenu
 			'string',
 			'Time Left',
 			['Time Left', 'Time Elapsed', 'Song Name', 'Disabled']);
-		addOption(option);
-
-		var option:Option = new Option('Flashing Lights',
-			"Uncheck this if you're sensitive to flashing lights!",
-			'flashing',
-			'bool',
-			true);
 		addOption(option);
 
 		var option:Option = new Option('Camera Zooms',
@@ -95,16 +114,6 @@ class VisualsUISubState extends BaseOptionsMenu
 		option.changeValue = 0.1;
 		option.decimals = 1;
 		addOption(option);
-		
-		#if !mobile
-		var option:Option = new Option('FPS Counter',
-			'If unchecked, hides FPS Counter.',
-			'showFPS',
-			'bool',
-			true);
-		addOption(option);
-		option.onChange = onChangeFPSCounter;
-		#end
 
 		//I'd suggest using "Low Quality" as an example for making your own option since it is the simplest here
 		var option:Option = new Option('Low Quality', //Name
@@ -123,29 +132,8 @@ class VisualsUISubState extends BaseOptionsMenu
 		option.onChange = onChangeAntiAliasing; //Changing onChange is only needed if you want to make a special interaction after it changes the value
 		addOption(option);
 
-		#if !html5 //Apparently other framerates isn't correctly supported on Browser? Probably it has some V-Sync shit enabled by default, idk
-		var option:Option = new Option('Framerate',
-			"Pretty self explanatory, isn't it?",
-			'framerate',
-			'int',
-			60);
-		addOption(option);
-		option.minValue = 60;
-		option.maxValue = 240;
-		option.displayFormat = '%v FPS';
-		option.onChange = onChangeFramerate;
-		#end
-
 		super();
 	}
-
-	#if !mobile
-	function onChangeFPSCounter()
-	{
-		if(Main.fpsVar != null)
-			Main.fpsVar.visible = ClientPrefs.showFPS;
-	}
-	#end
 
 	function onChangeAntiAliasing()
 	{
@@ -156,20 +144,6 @@ class VisualsUISubState extends BaseOptionsMenu
 			if(sprite != null && (sprite is FlxSprite) && !(sprite is FlxText)) {
 				sprite.antialiasing = ClientPrefs.globalAntialiasing;
 			}
-		}
-	}
-
-	function onChangeFramerate()
-	{
-		if(ClientPrefs.framerate > FlxG.drawFramerate)
-		{
-			FlxG.updateFramerate = ClientPrefs.framerate;
-			FlxG.drawFramerate = ClientPrefs.framerate;
-		}
-		else
-		{
-			FlxG.drawFramerate = ClientPrefs.framerate;
-			FlxG.updateFramerate = ClientPrefs.framerate;
 		}
 	}
 }

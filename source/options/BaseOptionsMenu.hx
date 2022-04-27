@@ -105,6 +105,8 @@ class BaseOptionsMenu extends MusicBeatSubstate
 				checkbox.sprTracker = optionText;
 				checkbox.ID = i;
 				checkboxGroup.add(checkbox);
+			} else if (optionsArray[i].type == 'state') {
+				//nothin
 			} else {
 				optionText.x -= 80;
 				optionText.xAdd -= 80;

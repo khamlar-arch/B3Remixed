@@ -66,7 +66,7 @@ class EditorPlayState extends MusicBeatState
 	{
 		instance = this;
 
-		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
+		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('ui/menu/menuBG'));
 		bg.scrollFactor.set();
 		bg.color = FlxColor.fromHSB(FlxG.random.int(0, 359), FlxG.random.float(0, 0.8), FlxG.random.float(0.3, 1));
 		add(bg);
@@ -182,7 +182,7 @@ class EditorPlayState extends MusicBeatState
 
 	//var songScore:Int = 0;
 	var songHits:Int = 0;
-	var songMisses:Int = 0;
+	var songBreaks:Int = 0;
 	var startingSong:Bool = true;
 	private function generateSong(dataPath:String):Void
 	{
@@ -470,7 +470,7 @@ class EditorPlayState extends MusicBeatState
 							});
 
 							if(!daNote.ignoreNote) {
-								songMisses++;
+								songBreaks++;
 								vocals.volume = 0;
 							}
 						}
@@ -487,7 +487,7 @@ class EditorPlayState extends MusicBeatState
 		}
 
 		keyShit();
-		scoreTxt.text = 'Hits: ' + songHits + ' | Misses: ' + songMisses;
+		scoreTxt.text = 'Hits: ' + songHits + ' | Misses: ' + songBreaks;
 		beatTxt.text = 'Beat: ' + curBeat;
 		stepTxt.text = 'Step: ' + curStep;
 		super.update(elapsed);
@@ -704,7 +704,7 @@ class EditorPlayState extends MusicBeatState
 			switch(note.noteType) {
 				case 'Hurt Note': //Hurt note
 					noteMiss(note.noteData);
-					--songMisses;
+					--songBreaks;
 					if(!note.isSustainNote) {
 						if(!note.noteSplashDisabled) {
 							spawnNoteSplashOnNote(note);
@@ -756,7 +756,7 @@ class EditorPlayState extends MusicBeatState
 		combo = 0;
 
 		//songScore -= 10;
-		songMisses++;
+		songBreaks++;
 
 		FlxG.sound.play(Paths.soundRandom('missnote', 1, 3), FlxG.random.float(0.1, 0.2));
 		vocals.volume = 0;

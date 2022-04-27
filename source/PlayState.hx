@@ -257,7 +257,11 @@ class PlayState extends MusicBeatState
 	public var songScore:Int = 0;
 	public var songHits:Int = 0;
 	public var songMisses:Int = 0;
+	public var songBreaks:Int = 0;
 	public var scoreTxt:FlxText;
+	public var judgementCounter:FlxText;
+	public var laneUnderlayP1:FlxSprite;
+	public var laneUnderlayP2:FlxSprite;
 	var timeTxt:FlxText;
 	var scoreTxtTween:FlxTween;
 
@@ -290,6 +294,12 @@ class PlayState extends MusicBeatState
 	var detailsText:String = "";
 	var detailsPausedText:String = "";
 	#end
+
+	//Note Variables
+	var hungerMeter:Float = 0.5;
+	var hpDraining:Float = 0;
+	var hpDrainTime:Float = 0;
+	var maxDrainTime:Float = 1; // how long it takes to drain the hp
 
 	//Achievement shit
 	var keysPressed:Array<Bool> = [];
@@ -1035,6 +1045,18 @@ class PlayState extends MusicBeatState
 		add(timeTxt);
 		timeBarBG.sprTracker = timeBar;
 
+		laneUnderlayP1 = new FlxSprite(0, 0).makeGraphic((112 * 4) + 2, FlxG.height);
+		laneUnderlayP1.alpha = ClientPrefs.laneUnderlay;
+		laneUnderlayP1.color = FlxColor.BLACK;
+		laneUnderlayP1.scrollFactor.set();
+		add(laneUnderlayP1);
+
+		laneUnderlayP2 = new FlxSprite(0, 0).makeGraphic((112 * 4) + 2, FlxG.height);
+		laneUnderlayP2.alpha = ClientPrefs.laneUnderlay;
+		laneUnderlayP2.color = FlxColor.BLACK;
+		laneUnderlayP2.scrollFactor.set();
+		add(laneUnderlayP2);
+
 		strumLineNotes = new FlxTypedGroup<StrumNote>();
 		add(strumLineNotes);
 		add(grpNoteSplashes);
@@ -1128,12 +1150,12 @@ class PlayState extends MusicBeatState
 		healthBarBG.screenCenter(X);
 		healthBarBG.scrollFactor.set();
 		healthBarBG.visible = !ClientPrefs.hideHud;
-		healthBarBG.xAdd = -4;
+		healthBarBG.xAdd = -25;
 		healthBarBG.yAdd = -4;
 		add(healthBarBG);
 		if(ClientPrefs.downScroll) healthBarBG.y = 0.11 * FlxG.height;
 
-		healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
+		healthBar = new FlxBar(healthBarBG.x + 25, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 50), Std.int(healthBarBG.height - 8), this,
 			'health', 0, 2);
 		healthBar.scrollFactor.set();
 		// healthBar
@@ -1185,9 +1207,22 @@ class PlayState extends MusicBeatState
 			botplayTxt.y = timeBarBG.y - 78;
 		}
 
+		judgementCounter = new FlxText(5, 360, 1280, "", 20);
+		judgementCounter.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		judgementCounter.borderSize = 1.25;
+		judgementCounter.scrollFactor.set();
+		judgementCounter.screenCenter(Y);
+		judgementCounter.visible = !ClientPrefs.hideHud;
+		judgementCounter.offset.y = 40;
+		judgementCounter.text = 'Sicks: ' + sicks +'\nGoods: '+ goods +'\nBads: ' + bads + '\nShits: ' + shits + '\nMisses: ' + songMisses + '\n';
+		if(ClientPrefs.judgementCounter) add(judgementCounter);
+
 		strumLineNotes.cameras = [camHUD];
 		grpNoteSplashes.cameras = [camHUD];
 		notes.cameras = [camHUD];
+		laneUnderlayP1.cameras = [camHUD];
+		laneUnderlayP2.cameras = [camHUD];
+		judgementCounter.cameras = [camHUD];
 		healthBar.cameras = [camHUD];
 		healthBarBG.cameras = [camHUD];
 		iconP1.cameras = [camHUD];
@@ -1775,6 +1810,10 @@ class PlayState extends MusicBeatState
 				return;
 			}
 
+			laneUnderlayP1.x = playerStrums.members[0].x;
+			laneUnderlayP2.x = opponentStrums.members[0].x;
+			//setup laneUnderlay!!!
+
 			startTimer = new FlxTimer().start(Conductor.crochet / 1000, function(tmr:FlxTimer)
 			{
 				if (gf != null && tmr.loopsLeft % Math.round(gfSpeed * gf.danceEveryNumBeats) == 0 && !gf.stunned && gf.animation.curAnim.name != null && !gf.animation.curAnim.name.startsWith("sing") && !gf.stunned)
@@ -1995,6 +2034,63 @@ class PlayState extends MusicBeatState
 			FlxG.sound.music.pause();
 			vocals.pause();
 		}
+
+		var creditBehind:FlxSprite;
+		if (Paths.formatToSongPath(SONG.song).toLowerCase() == 'triple-b-trouble') {
+			creditBehind = new FlxSprite(-1280).makeGraphic(1280, 250, FlxColor.BLACK);
+		} else {
+			creditBehind = new FlxSprite(-1280).makeGraphic(1280, 200, FlxColor.BLACK);
+		}
+		creditBehind.scrollFactor.set();
+		creditBehind.alpha = 0.6;
+		creditBehind.cameras = [camHUD];
+		creditBehind.screenCenter(Y);
+		add(creditBehind);
+
+		var creditTxt:FlxText = new FlxText(1280, 0, 0, StringTools.replace(Paths.formatToSongPath(SONG.song).toUpperCase(), '-', ' '), 120);
+		creditTxt.setFormat(Paths.font("mplus.ttf"), 120, 0xFFFFFFFF, 'center');
+		creditTxt.cameras = [camHUD];
+		creditTxt.screenCenter();
+		creditTxt.offset.y = 30;
+		creditTxt.offset.x = 1280;
+		add(creditTxt);
+		if (Paths.formatToSongPath(SONG.song).toLowerCase() == 'triple-b-trouble') creditTxt.color = 0xFF910000;
+
+		var composeTxt:FlxText = new FlxText(1280, 0, 0, 'BIDDLE3', 40);
+		switch (Paths.formatToSongPath(SONG.song).toLowerCase()) {
+			case 'mi-opera': composeTxt.text = 'FOODIETI';
+			case 'mia-battle': composeTxt.text = 'BIDDLE3, JAMS3D';
+			case 'fang' | 'succ' | 'problem' | 'succd': composeTxt.text = 'BENLAB CRIMSON DIABLO';
+			case 'dessert' | 'guh' | 'famine': composeTxt.text = 'SIRFITNESS';
+			case 'triple-b-trouble': composeTxt.text = 'BIDDLE3, BENLAB CRIMSON DIABLO, JAMS3D, DEGEN DAN,';
+			case 'f-u': composeTxt.text = 'PENKARU';
+			case 'endless' | 'sunshine': composeTxt.text = 'BIDDLE3, MARSTARBRO';
+		}
+		composeTxt.setFormat(Paths.font("mplus.ttf"), 40, 0xFFFFFFFF, 'center');
+		composeTxt.cameras = [camHUD];
+		if (Paths.formatToSongPath(SONG.song).toLowerCase() == 'triple-b-trouble') composeTxt.size = 28;
+		composeTxt.screenCenter();
+		composeTxt.offset.y = -50;
+		composeTxt.offset.x = 1280;
+		add(composeTxt);
+		if (Paths.formatToSongPath(SONG.song).toLowerCase() == 'triple-b-trouble') composeTxt.color = 0xFF910000;
+
+		var composeTxt2:FlxText = new FlxText(1280, 0, 0, 'MARSTARBRO, UPTAUNT, PUNKETT', 20);
+		composeTxt2.setFormat(Paths.font("mplus.ttf"), 28, 0xFFFFFFFF, 'center');
+		composeTxt2.cameras = [camHUD];
+		composeTxt2.screenCenter();
+		composeTxt2.offset.y = -90;
+		composeTxt2.color = 0xFF910000;
+		composeTxt2.offset.x = 1280;
+		if (Paths.formatToSongPath(SONG.song).toLowerCase() == 'triple-b-trouble') add(composeTxt2);
+
+		var delayT:Int = 2;
+		if (Paths.formatToSongPath(SONG.song).toLowerCase() == 'triple-b-trouble') delayT = 5;
+
+		FlxTween.tween(creditBehind, {x: 0}, 0.5, {ease: FlxEase.circOut, onComplete: function (twn:FlxTween) {FlxTween.tween(creditBehind, {x: 1280}, 0.5, {ease: FlxEase.circOut, startDelay: delayT});}});
+		FlxTween.tween(creditTxt.offset, {x: 0}, 0.5, {ease: FlxEase.circOut, onComplete: function (twn:FlxTween) {FlxTween.tween(creditTxt.offset, {x: -1280}, 0.5, {ease: FlxEase.circOut, startDelay: delayT});}});
+		FlxTween.tween(composeTxt.offset, {x: 0}, 0.5, {ease: FlxEase.circOut, onComplete: function (twn:FlxTween) {FlxTween.tween(composeTxt.offset, {x: -1280}, 0.5, {ease: FlxEase.circOut, startDelay: delayT});}});
+		FlxTween.tween(composeTxt2.offset, {x: 0}, 0.5, {ease: FlxEase.circOut, onComplete: function (twn:FlxTween) {FlxTween.tween(composeTxt2.offset, {x: -1280}, 0.5, {ease: FlxEase.circOut, startDelay: delayT});}});
 
 		// Song duration in a float, useful for the time left feature
 		songLength = FlxG.sound.music.length;
@@ -2523,6 +2619,14 @@ class PlayState extends MusicBeatState
 			}
 		}
 
+		if(hpDrainTime > 0) {
+			hpDrainTime -= elapsed;
+			health -= hpDraining * (elapsed/maxDrainTime);
+		} else {
+			hpDraining = 0;
+			hpDrainTime = 0;
+		}
+
 		super.update(elapsed);
 		if (isWindowMoving)
 			{
@@ -2535,10 +2639,12 @@ class PlayState extends MusicBeatState
 			}
 
 		if(ratingName == '?') {
-			scoreTxt.text = 'Score: ' + songScore + ' | Combo Breaks: ' + songMisses + ' | Accuracy: ?';
+			scoreTxt.text = 'Score: ' + songScore + ' | Combo Breaks: ' + songBreaks + ' | Accuracy: ?';
 		} else {
-			scoreTxt.text = 'Score: ' + songScore + ' | Combo Breaks: ' + songMisses + ' | Accuracy: ' + Highscore.floorDecimal(ratingPercent * 100, 2) + '%' + ratingFC;
+			scoreTxt.text = 'Score: ' + songScore + ' | Combo Breaks: ' + songBreaks + ' | Accuracy: ' + Highscore.floorDecimal(ratingPercent * 100, 2) + '%' + ratingFC;
 		}
+
+		judgementCounter.text = 'Sicks: ' + sicks +'\nGoods: '+ goods +'\nBads: ' + bads + '\nShits: ' + shits + '\nMisses: ' + songMisses + '\n';
 
 		if(botplayTxt.visible) {
 			botplaySine += 180 * elapsed;
@@ -3612,7 +3718,7 @@ class PlayState extends MusicBeatState
 			if (isStoryMode)
 			{
 				campaignScore += songScore;
-				campaignMisses += songMisses;
+				campaignMisses += songBreaks;
 
 				storyPlaylist.remove(storyPlaylist[0]);
 
@@ -3754,6 +3860,8 @@ class PlayState extends MusicBeatState
 		{
 			case "shit": // shit
 				totalNotesHit += 0;
+				songBreaks++;
+				if(!practiceMode) songScore -= 10;
 				shits++;
 			case "bad": // bad
 				totalNotesHit += 0.5;
@@ -4125,13 +4233,22 @@ class PlayState extends MusicBeatState
 		switch(daNote.noteType)
 		{
 			case "Chomp Note":					
-				health -= 10000; //bruh istfg if this doesnt work
-				trace("munch");
-					
+				for (i in 0...4)
+				{
+					playerStrums.members[i].x += FlxG.random.int(70, -70);
+					playerStrums.members[i].y += FlxG.random.int(70, -70);
+					opponentStrums.members[i].x += (i - 1.5) * 25;
+					FlxTween.tween(opponentStrums.members[i], {x: STRUM_X + 52 + (i * 112)}, 0.1);
+					FlxTween.tween(playerStrums.members[i], {x: STRUM_X + 239 + ((i + 4) * 112), y: 50}, 0.1, {startDelay: 4});
+				}
+				health -= 0.25;
 			case "Gay Note":
-				health -= 5;
-				trace("*raises hand* i have a homophobic slur to say");
-					
+				health -= 0.5;
+				hpDraining += 0.5;
+				if(hpDrainTime > 0)
+					hpDrainTime = maxDrainTime/2;
+				else
+					hpDrainTime = maxDrainTime;		
 		}
 
 		combo = 0;
@@ -4146,6 +4263,7 @@ class PlayState extends MusicBeatState
 		//For testing purposes
 		//trace(daNote.missHealth);
 		songMisses++;
+		songBreaks++;
 		vocals.volume = 0;
 		if(!practiceMode) songScore -= 10;
 		
@@ -4191,6 +4309,7 @@ class PlayState extends MusicBeatState
 			if(!practiceMode) songScore -= 10;
 			if(!endingSong) {
 				songMisses++;
+				songBreaks++;
 			}
 			totalPlayed++;
 			RecalculateRating();
@@ -4218,6 +4337,9 @@ class PlayState extends MusicBeatState
 	{
 		if (Paths.formatToSongPath(SONG.song) != 'tutorial')
 			camZooming = true;
+
+		if ((Paths.formatToSongPath(SONG.song) == 'triple-b-trouble') && (!note.isSustainNote) && (health > 0.05))
+			health -= 0.008;
 
 		if(note.noteType == 'Hey!' && dad.animOffsets.exists('hey')) {
 			dad.playAnim('hey', true);
@@ -4293,6 +4415,7 @@ class PlayState extends MusicBeatState
 
 			if (!note.isSustainNote)
 			{
+				//FlxG.sound.play(Paths.sound('killJohnLennon' + ((songHits % 4) + 1)), 0.9, false);
 				combo += 1;
 				popUpScore(note);
 				if(combo > 9999) combo = 9999;
@@ -4336,19 +4459,16 @@ class PlayState extends MusicBeatState
 		
 			//b3 custom notes lol
 
-			if(note.noteType == 'Burger Note') 
-			{
-				health -= 10000; //haha u died xd
-				trace("h a m b u r g e r");
-			}
-			if(note.noteType == 'Chomp Note')
-			{
-				dad.animation.play('bite');
-				boyfriend.animation.play('dodge');
-			}
-			if(note.noteType == 'Gay Note')
-			{
-				boyfriend.animation.play('dodge');
+			switch (note.noteType) {
+				case 'Burger Note':
+					health -= hungerMeter * 2;
+					trace('Burger Note: Removed' + hungerMeter * 2 + ' health');
+					hungerMeter = hungerMeter + 0.1;
+				case 'Chomp Note':
+					dad.animation.play('bite');
+					boyfriend.animation.play('dodge');
+				case 'Gay Note':
+					boyfriend.animation.play('dodge');
 			}
 
 			if(cpuControlled) {
@@ -4388,7 +4508,6 @@ class PlayState extends MusicBeatState
 			var strum:StrumNote = playerStrums.members[note.noteData];
 			if(strum != null) {
 				if (ClientPrefs.specialNoteskin == true) {
-					trace('DOES IT EVEN WORK???');
 					switch (direction) {
 						case 0:
 							spawnNoteSplash(strum.x, strum.y - 15, note.noteData, note);
@@ -4719,7 +4838,7 @@ class PlayState extends MusicBeatState
 	public var ratingFC:String;
 	public function RecalculateRating() {
 		setOnLuas('score', songScore);
-		setOnLuas('misses', songMisses);
+		setOnLuas('misses', songBreaks);
 		setOnLuas('hits', songHits);
 
 		var ret:Dynamic = callOnLuas('onRecalculateRating', []);
@@ -4756,7 +4875,7 @@ class PlayState extends MusicBeatState
 			if (sicks > 0) ratingFC = " [SFC]";
 			if (goods > 0) ratingFC = " [GFC]";
 			if (bads > 0 || shits > 0) ratingFC = " [FC]";
-			if (songMisses > 0) ratingFC = "";
+			if (songBreaks > 0) ratingFC = "";
 		}
 		setOnLuas('rating', ratingPercent);
 		setOnLuas('ratingName', ratingName);
@@ -4775,7 +4894,7 @@ class PlayState extends MusicBeatState
 				switch(achievementName)
 				{
 					case 'week1_nomiss' | 'week2_nomiss' | 'week3_nomiss' | 'week4_nomiss' | 'week5_nomiss' | 'week6_nomiss' | 'week7_nomiss':
-						if(isStoryMode && campaignMisses + songMisses < 1 && CoolUtil.difficultyString() == 'HARD' && storyPlaylist.length <= 1 && !changedDifficulty && !usedPractice)
+						if(isStoryMode && campaignMisses + songBreaks < 1 && CoolUtil.difficultyString() == 'HARD' && storyPlaylist.length <= 1 && !changedDifficulty && !usedPractice)
 						{
 							var weekName:String = WeekData.getWeekFileName();
 							switch(weekName) //I know this is a lot of duplicated code, but it's easier readable and you can add weeks with different names than the achievement tag
