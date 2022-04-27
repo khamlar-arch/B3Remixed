@@ -1,6 +1,6 @@
 {
 	"song": {
-		"player1": "imsorry",
+		"player1": "bf-sad",
 		"sectionLengths": [],
 		"events": [
 			[
@@ -9,12 +9,12 @@
 					[
 						"Change Character",
 						"1",
-						"torment"
+						"gf-torment"
 					],
 					[
 						"Change Character",
-						"imsorry",
-						"whydidyoudothis"
+						"bf-sad",
+						"bf-pained"
 					]
 				]
 			],
@@ -28,8 +28,8 @@
 					],
 					[
 						"Change Character",
-						"whydidyoudothis",
-						"imsorry"
+						"bf-pained",
+						"bf-sad"
 					]
 				]
 			],
@@ -39,12 +39,12 @@
 					[
 						"Change Character",
 						"1",
-						"torment"
+						"gf-torment"
 					],
 					[
 						"Change Character",
-						"imsorry",
-						"whydidyoudothis"
+						"bf-sad",
+						"bf-pained"
 					]
 				]
 			],
@@ -54,7 +54,7 @@
 					[
 						"Change Character",
 						"1",
-						"zombiemia"
+						"mia-zombie"
 					]
 				]
 			],
@@ -64,12 +64,12 @@
 					[
 						"Change Character",
 						"1",
-						"zombiemia"
+						"mia-zombie"
 					],
 					[
 						"Change Character",
-						"whydidyoudothis",
-						"imsorry"
+						"bf-pained",
+						"bf-sad"
 					]
 				]
 			],
@@ -88,13 +88,13 @@
 				[
 					[
 						"Change Character",
-						"imsorry",
-						"whydidyoudothis"
+						"bf-sad",
+						"bf-pained"
 					],
 					[
 						"Change Character",
 						"1",
-						"torment"
+						"gf-torment"
 					]
 				]
 			]
@@ -20204,7 +20204,7 @@
 				"mustHitSection": true
 			}
 		],
-		"player2": "zombie_pico",
+		"player2": "pico-zombie",
 		"player3": null,
 		"song": "Triple B Trouble",
 		"stage": "dream",

@@ -1,6 +1,6 @@
 {
 	"song": {
-		"player1": "imsorry",
+		"player1": "bf-sad",
 		"sectionLengths": [],
 		"events": [
 			[
@@ -19,7 +19,7 @@
 					[
 						"Change Character",
 						"BF",
-						"whydidyoudothis"
+						"bf-pained"
 					]
 				]
 			],
@@ -34,7 +34,7 @@
 					[
 						"Change Character",
 						"BF",
-						"imsorry"
+						"bf-sad"
 					]
 				]
 			],
@@ -44,7 +44,7 @@
 					[
 						"Change Character",
 						"BF",
-						"whydidyoudothis"
+						"bf-pained"
 					],
 					[
 						"Change Character",
@@ -59,7 +59,7 @@
 					[
 						"Change Character",
 						"1",
-						"zombiemia"
+						"mia-zombie"
 					]
 				]
 			],
@@ -69,7 +69,7 @@
 					[
 						"Change Character",
 						"BF",
-						"imsorry"
+						"bf-sad"
 					],
 					[
 						"Change Scroll Speed",
@@ -216,7 +216,7 @@
 					[
 						"Change Character",
 						"BF",
-						"whydidyoudothis"
+						"bf-pained"
 					]
 				]
 			]

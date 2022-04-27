@@ -1,8 +1,8 @@
 {
 	"song": {
 		"sectionLengths": [],
-		"player1": "imsorry",
-		"player2": "zombie_pico",
+		"player1": "bf-sad",
+		"player2": "pico-zombie",
 		"events": [
 			[
 				0,
@@ -30,12 +30,12 @@
 					[
 						"Change Character",
 						"1",
-						"torment"
+						"gf-torment"
 					],
 					[
 						"Change Character",
-						"imsorry",
-						"whydidyoudothis"
+						"bf-sad",
+						"bf-pained"
 					]
 				]
 			],
@@ -59,8 +59,8 @@
 					],
 					[
 						"Change Character",
-						"whydidyoudothis",
-						"imsorry"
+						"bf-pained",
+						"bf-sad"
 					]
 				]
 			],
@@ -80,12 +80,12 @@
 					[
 						"Change Character",
 						"1",
-						"torment"
+						"gf-torment"
 					],
 					[
 						"Change Character",
-						"imsorry",
-						"whydidyoudothis"
+						"bf-sad",
+						"bf-pained"
 					]
 				]
 			],
@@ -105,7 +105,7 @@
 					[
 						"Change Character",
 						"1",
-						"zombiemia"
+						"mia-zombie"
 					]
 				]
 			],
@@ -115,12 +115,12 @@
 					[
 						"Change Character",
 						"1",
-						"zombiemia"
+						"mia-zombie"
 					],
 					[
 						"Change Character",
-						"whydidyoudothis",
-						"imsorry"
+						"bf-pained",
+						"bf-sad"
 					]
 				]
 			],
@@ -289,13 +289,13 @@
 				[
 					[
 						"Change Character",
-						"imsorry",
-						"whydidyoudothis"
+						"bf-sad",
+						"bf-pained"
 					],
 					[
 						"Change Character",
 						"1",
-						"torment"
+						"gf-torment"
 					]
 				]
 			]

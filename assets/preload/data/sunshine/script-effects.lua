@@ -28,7 +28,7 @@ function onUpdate()
 
     if curStep == 586 then
         triggerEvent('Hide Ratings', '', '')
-        triggerEvent('Change Character', '0', 'Tailsalt')
+        triggerEvent('Change Character', '0', 'tails-alt')
         triggerEvent('Change Scroll Speed', 0.75, 0.2)
         triggerEvent('Tails', '1', '')
         setProperty('boyfriendGroup.visible', false)

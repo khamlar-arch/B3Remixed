@@ -1,6 +1,6 @@
 {
 	"song": {
-		"player1": "week3bf",
+		"player1": "bf-shaded-w3",
 		"sectionLengths": [],
 		"notes": [
 			{
@@ -4204,7 +4204,7 @@
 			}
 		],
 		"player2": "pico",
-		"gfVersion": "week3gf",
+		"gfVersion": "gf-shaded-w3",
 		"events": [],
 		"player3": null,
 		"song": "School",
@@ -4214,6 +4214,6 @@
 		"sections": 0,
 		"bpm": 162,
 		"speed": 2.8,
-		"gf": "week3gf"
+		"gf": "gf-shaded-w3"
 	}
 }

@@ -30752,7 +30752,7 @@
 				"mustHitSection": true
 			}
 		],
-		"player2": "Tails",
+		"player2": "tails",
 		"isHey": false,
 		"mania": 0,
 		"convertMineToNuke": false,
@@ -30773,10 +30773,10 @@
 					[
 						"Change Character",
 						"1",
-						"Tailsalt"
+						"tails-alt"
 					],
 					[
-						"Tails",
+						"tails",
 						"1",
 						""
 					],
@@ -30798,10 +30798,10 @@
 					[
 						"Change Character",
 						"1",
-						"Tails"
+						"tails"
 					],
 					[
-						"Tails",
+						"tails",
 						"2",
 						""
 					]

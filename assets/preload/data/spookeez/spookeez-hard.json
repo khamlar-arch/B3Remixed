@@ -1,6 +1,6 @@
 {
 	"song": {
-		"player1": "week_2_bf",
+		"player1": "bf-shaded-w2",
 		"sectionLengths": [],
 		"notes": [
 			{
@@ -2983,7 +2983,7 @@
 			}
 		],
 		"player2": "spooky",
-		"gfVersion": "gf_week2",
+		"gfVersion": "gf-shaded-w2",
 		"events": [],
 		"player3": null,
 		"song": "Spookeez",

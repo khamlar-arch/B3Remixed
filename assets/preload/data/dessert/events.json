@@ -2,8 +2,8 @@
 	"song": {
 		"speed": 2.4,
 		"stage": "room",
-		"player1": "screambf",
-		"player2": "GF-Phase1",
+		"player1": "bf-pajamas",
+		"player2": "gf-hungry-1",
 		"player3": null,
 		"events": [
 			[
@@ -22,12 +22,12 @@
 					[
 						"Change Character",
 						"1",
-						"torment"
+						"gf-torment"
 					],
 					[
 						"Change Character",
 						"BF",
-						"whydidyoudothis"
+						"bf-pained"
 					]
 				]
 			],
@@ -47,12 +47,12 @@
 					[
 						"Change Character",
 						"1",
-						"GF-Phase1"
+						"gf-hungry-1"
 					],
 					[
 						"Change Character",
 						"BF",
-						"screambf"
+						"bf-pajamas"
 					]
 				]
 			]

@@ -1,6 +1,6 @@
 {
 	"song": {
-		"player1": "screambf",
+		"player1": "bf-pajamas",
 		"sectionLengths": [],
 		"events": [
 			[
@@ -11219,7 +11219,7 @@
 				"mustHitSection": true
 			}
 		],
-		"player2": "GF-Phase3",
+		"player2": "gf-hungry-3",
 		"player3": null,
 		"song": "Nom",
 		"stage": "room",

@@ -1,6 +1,6 @@
 {
 	"song": {
-		"player1": "miabf",
+		"player1": "bf",
 		"sectionLengths": [],
 		"events": [],
 		"gfVersion": "gf",
@@ -9938,7 +9938,7 @@
 				"mustHitSection": true
 			}
 		],
-		"player2": "Mia",
+		"player2": "mia",
 		"player3": null,
 		"song": "diva",
 		"stage": "miaStation",

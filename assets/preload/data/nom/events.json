@@ -2,8 +2,8 @@
 	"song": {
 		"speed": 2.9,
 		"stage": "room",
-		"player1": "screambf",
-		"player2": "GF-Phase3",
+		"player1": "bf-pajamas",
+		"player2": "gf-hungry-3",
 		"player3": null,
 		"events": [
 			[

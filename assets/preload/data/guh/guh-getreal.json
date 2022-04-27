@@ -1,6 +1,6 @@
 {
 	"song": {
-		"player1": "whydidyoudothis",
+		"player1": "bf-pained",
 		"sectionLengths": [],
 		"notes": [
 			{
@@ -7138,7 +7138,7 @@
 				"mustHitSection": true
 			}
 		],
-		"player2": "torment",
+		"player2": "gf-torment",
 		"gfVersion": "gf",
 		"events": [],
 		"player3": null,

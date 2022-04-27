@@ -1,6 +1,6 @@
 {
 	"song": {
-		"player1": "screambf",
+		"player1": "bf-pajamas",
 		"sectionLengths": [],
 		"events": [
 			[
@@ -19,12 +19,12 @@
 					[
 						"Change Character",
 						"1",
-						"torment"
+						"gf-torment"
 					],
 					[
 						"Change Character",
-						"screambf",
-						"imsorry"
+						"bf-pajamas",
+						"bf-sad"
 					]
 				]
 			],
@@ -44,12 +44,12 @@
 					[
 						"Change Character",
 						"1",
-						"GF-Phase1"
+						"gf-hungry-1"
 					],
 					[
 						"Change Character",
-						"imsorry",
-						"screambf"
+						"bf-sad",
+						"bf-pajamas"
 					]
 				]
 			]
@@ -3059,7 +3059,7 @@
 				"mustHitSection": true
 			}
 		],
-		"player2": "GF-Phase1",
+		"player2": "gf-hungry-1",
 		"player3": null,
 		"song": "Dessert",
 		"validScore": true,

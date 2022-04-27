@@ -1,7 +1,7 @@
 {
 	"song": {
 		"player1": "bf",
-		"player2": "Tails",
+		"player2": "tails",
 		"notes": [
 			{
 				"endTime": 2285.71428571429,
@@ -29811,10 +29811,10 @@
 					[
 						"Change Character",
 						"1",
-						"Tailsalt"
+						"tails-alt"
 					],
 					[
-						"Tails",
+						"tails",
 						"1",
 						""
 					],
@@ -29836,10 +29836,10 @@
 					[
 						"Change Character",
 						"1",
-						"Tails"
+						"tails"
 					],
 					[
-						"Tails",
+						"tails",
 						"2",
 						""
 					]

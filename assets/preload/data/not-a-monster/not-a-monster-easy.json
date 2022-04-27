@@ -1,6 +1,6 @@
 {
 	"song": {
-		"player1": "week_2_bf",
+		"player1": "bf-shaded-w2",
 		"notes": [
 			{
 				"sectionNotes": [],
@@ -2774,7 +2774,7 @@
 			}
 		],
 		"player2": "monster",
-		"gfVersion": "gf_week2",
+		"gfVersion": "gf-shaded-w2",
 		"events": [],
 		"player3": null,
 		"song": "Not A Monster",

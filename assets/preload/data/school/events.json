@@ -2,7 +2,7 @@
 	"song": {
 		"speed": 3,
 		"stage": "philly",
-		"player1": "week3bf",
+		"player1": "bf-shaded-w3",
 		"player2": "pico",
 		"player3": null,
 		"events": [
@@ -22,7 +22,7 @@
 					[
 						"Change Character",
 						"dad",
-						"picogay"
+						"pico-rainbow"
 					]
 				]
 			],
@@ -32,7 +32,7 @@
 					[
 						"Change Character",
 						"bf",
-						"bfgay"
+						"bf-rainbow"
 					]
 				]
 			],
@@ -722,7 +722,7 @@
 					[
 						"Change Character",
 						"bf",
-						"week3bf"
+						"bf-shaded-w3"
 					]
 				]
 			]
@@ -730,7 +730,7 @@
 		"notes": [],
 		"splashSkin": null,
 		"validScore": false,
-		"gfVersion": "week3gf",
+		"gfVersion": "gf-shaded-w3",
 		"bpm": 162,
 		"arrowSkin": null,
 		"needsVoices": true,

@@ -4415,7 +4415,7 @@ class PlayState extends MusicBeatState
 
 			if (!note.isSustainNote)
 			{
-				//FlxG.sound.play(Paths.sound('killJohnLennon' + ((songHits % 4) + 1)), 0.9, false);
+				FlxG.sound.play(Paths.sound('ChartingTick'), ClientPrefs.hitsoundVolume, false);
 				combo += 1;
 				popUpScore(note);
 				if(combo > 9999) combo = 9999;
