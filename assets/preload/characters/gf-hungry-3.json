@@ -1,99 +1,99 @@
 {
 	"animations": [
 		{
-			"loop": false,
 			"offsets": [
 				78,
 				-27
 			],
-			"anim": "singRIGHT",
+			"loop": false,
 			"fps": 24,
-			"name": "GF_Right",
-			"indices": []
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "GF_Right"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				242,
 				255
 			],
-			"anim": "singUP",
+			"loop": false,
 			"fps": 24,
-			"name": "GF_Up",
-			"indices": []
+			"anim": "singUP",
+			"indices": [],
+			"name": "GF_Up"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				559,
 				23
 			],
-			"anim": "singLEFT",
+			"loop": false,
 			"fps": 24,
-			"name": "GF_Left",
-			"indices": []
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "GF_Left"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				59,
 				-191
 			],
+			"loop": false,
+			"fps": 24,
 			"anim": "singDOWN",
-			"fps": 24,
-			"name": "GF_Down",
-			"indices": []
+			"indices": [],
+			"name": "GF_Down"
 		},
 		{
-			"loop": false,
 			"offsets": [
-				0,
-				-160
+				50,
+				-201
 			],
-			"anim": "talk",
+			"loop": false,
 			"fps": 24,
-			"name": "GF_TALK_START",
-			"indices": []
+			"anim": "talk",
+			"indices": [],
+			"name": "GF_TALK_START"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				10,
 				-120
 			],
-			"anim": "bite",
+			"loop": false,
 			"fps": 24,
-			"name": "GF_Bite_FIXED",
-			"indices": []
+			"anim": "bite",
+			"indices": [],
+			"name": "GF_Bite_FIXED"
 		},
 		{
+			"loop": true,
 			"offsets": [
 				171,
 				87
 			],
-			"indices": [],
-			"fps": 24,
 			"anim": "idle",
-			"loop": true,
-			"name": "GF_Idle"
+			"fps": 24,
+			"name": "GF_Idle",
+			"indices": []
 		}
 	],
 	"no_antialiasing": true,
 	"image": "characters/b3_gf_phase_3",
 	"position": [
-		0,
+		90,
 		0
 	],
 	"healthicon": "vamp",
 	"flip_x": false,
 	"healthbar_colors": [
-		218,
-		20,
-		197
+		235,
+		38,
+		186
 	],
 	"camera_position": [
-		-490,
-		90
+		-600,
+		-20
 	],
 	"sing_duration": 4,
 	"scale": 1

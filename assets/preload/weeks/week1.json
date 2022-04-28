@@ -1,52 +1,58 @@
 {
-	"storyName": "Daddy Dearest",
+	"storyName": "Your New Week",
+	"difficulties": "",
 	"hideFreeplay": false,
 	"weekBackground": "stage",
 	"weekBefore": "tutorial",
+	"freeplayColor": [
+		146,
+		113,
+		253
+	],
 	"startUnlocked": true,
 	"hideStoryMode": false,
-	"weekCharacters": [
-		"dad",
-		"bf",
-		"gf"
-	],
 	"songs": [
 		[
 			"Bopeebo",
 			"dad",
 			[
-				146,
-				113,
-				253
+				110,
+				93,
+				113
 			]
 		],
 		[
 			"Fresh",
 			"dad",
 			[
-				146,
-				113,
-				253
+				110,
+				93,
+				113
 			]
 		],
 		[
 			"Dad Battle",
 			"dad",
 			[
-				146,
-				113,
-				253
+				110,
+				93,
+				113
 			]
 		],
 		[
 			"Problem",
 			"dad",
 			[
-				146,
-				113,
-				253
+				110,
+				93,
+				113
 			]
 		]
 	],
-	"weekName": "Week 1"
+	"weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],
+	"weekName": "Custom Week"
 }

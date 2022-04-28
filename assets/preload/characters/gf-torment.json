@@ -1,66 +1,66 @@
 {
 	"animations": [
 		{
+			"loop": false,
 			"offsets": [
 				290,
 				295
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singRIGHT",
-			"indices": [],
-			"name": "RIGHT SING"
+			"fps": 24,
+			"name": "RIGHT SING",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				345,
 				340
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singUP",
-			"indices": [],
-			"name": "UP SING"
+			"fps": 24,
+			"name": "UP SING",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				389,
 				339
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singLEFT",
-			"indices": [],
-			"name": "LEFT SING"
+			"fps": 24,
+			"name": "LEFT SING",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				297,
 				285
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singDOWN",
-			"indices": [],
-			"name": "DOWN"
+			"fps": 24,
+			"name": "DOWN",
+			"indices": []
 		},
 		{
+			"loop": true,
 			"offsets": [
 				321,
 				317
 			],
-			"indices": [],
-			"fps": 24,
 			"anim": "idle",
-			"loop": true,
-			"name": "IDLE"
+			"fps": 24,
+			"name": "IDLE",
+			"indices": []
 		}
 	],
 	"no_antialiasing": true,
 	"image": "characters/Monster_B3_GF",
 	"position": [
-		0,
-		0
+		-40,
+		40
 	],
 	"healthicon": "evil",
 	"flip_x": false,

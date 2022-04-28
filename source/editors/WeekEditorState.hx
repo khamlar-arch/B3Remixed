@@ -67,10 +67,10 @@ class WeekEditorState extends MusicBeatState
 		weekThing = new MenuItem(0, bgSprite.y + 396, weekFileName);
 		weekThing.y += weekThing.height + 20;
 		weekThing.antialiasing = ClientPrefs.globalAntialiasing;
-		add(weekThing);
+		//add(weekThing);
 
 		var blackBarThingie:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, 56, FlxColor.BLACK);
-		add(blackBarThingie);
+		//add(blackBarThingie);
 		
 		grpWeekCharacters = new FlxTypedGroup<MenuCharacter>();
 		
@@ -79,36 +79,36 @@ class WeekEditorState extends MusicBeatState
 		lock.animation.addByPrefix('lock', 'lock');
 		lock.animation.play('lock');
 		lock.antialiasing = ClientPrefs.globalAntialiasing;
-		add(lock);
+		//add(lock);
 		
 		missingFileText = new FlxText(0, 0, FlxG.width, "");
 		missingFileText.setFormat(Paths.font("vcr.ttf"), 24, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		missingFileText.borderSize = 2;
 		missingFileText.visible = false;
-		add(missingFileText); 
+		//add(missingFileText); 
 		
 		var charArray:Array<String> = weekFile.weekCharacters;
 		for (char in 0...3)
 		{
-			var weekCharacterThing:MenuCharacter = new MenuCharacter((FlxG.width * 0.25) * (1 + char) - 150, charArray[char]);
-			weekCharacterThing.y += 70;
-			grpWeekCharacters.add(weekCharacterThing);
+			//var weekCharacterThing:MenuCharacter = new MenuCharacter((FlxG.width * 0.25) * (1 + char) - 150, charArray[char]);
+			//weekCharacterThing.y += 70;
+			//grpWeekCharacters.add(weekCharacterThing);
 		}
 
-		add(bgYellow);
-		add(bgSprite);
-		add(grpWeekCharacters);
+		// add(bgYellow);
+		// add(bgSprite);
+		// add(grpWeekCharacters);
 
 		var tracksSprite:FlxSprite = new FlxSprite(FlxG.width * 0.07, bgSprite.y + 435).loadGraphic(Paths.image('Menu_Tracks'));
 		tracksSprite.antialiasing = ClientPrefs.globalAntialiasing;
-		add(tracksSprite);
+		//add(tracksSprite);
 
 		txtTracklist = new FlxText(FlxG.width * 0.05, tracksSprite.y + 60, 0, "", 32);
 		txtTracklist.alignment = CENTER;
 		txtTracklist.font = Paths.font("vcr.ttf");
 		txtTracklist.color = 0xFFe55777;
-		add(txtTracklist);
-		add(txtWeekTitle);
+		//add(txtTracklist);
+		//add(txtWeekTitle);
 
 		addEditorBox();
 		reloadAllShit();
@@ -683,6 +683,16 @@ class WeekEditorFreeplayState extends MusicBeatState
 		var copyColor:FlxButton = new FlxButton(10, bgColorStepperR.y + 25, "Copy Color", function() {
 			Clipboard.text = bg.color.red + ',' + bg.color.green + ',' + bg.color.blue;
 		});
+		var decideIconColor:FlxButton = new FlxButton(140, copyColor.y + 70, "Get Icon Color", function()
+		{
+			var coolColor = FlxColor.fromInt(CoolUtil.dominantColor(iconArray[curSelected]));
+			bgColorStepperR.value = coolColor.red;
+			bgColorStepperG.value = coolColor.green;
+			bgColorStepperB.value = coolColor.blue;
+			getEvent(FlxUINumericStepper.CHANGE_EVENT, bgColorStepperR, null);
+			getEvent(FlxUINumericStepper.CHANGE_EVENT, bgColorStepperG, null);
+			getEvent(FlxUINumericStepper.CHANGE_EVENT, bgColorStepperB, null); 
+		});
 		var pasteColor:FlxButton = new FlxButton(140, copyColor.y, "Paste Color", function() {
 			if(Clipboard.text != null) {
 				var leColor:Array<Int> = [];
@@ -720,6 +730,7 @@ class WeekEditorFreeplayState extends MusicBeatState
 		tab_group.add(bgColorStepperG);
 		tab_group.add(bgColorStepperB);
 		tab_group.add(copyColor);
+		tab_group.add(decideIconColor);
 		tab_group.add(pasteColor);
 		tab_group.add(iconInputText);
 		tab_group.add(hideFreeplayCheckbox);

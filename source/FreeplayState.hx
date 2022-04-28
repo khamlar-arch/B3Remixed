@@ -345,6 +345,7 @@ class FreeplayState extends MusicBeatState
 
 		else if (accepted)
 		{
+			iconArray[curSelected].animation.curAnim.curFrame = 1;
 			var songLowercase:String = Paths.formatToSongPath(songs[curSelected].songName);
 			var poop:String = Highscore.formatSong(songLowercase, curDifficulty);
 			/*#if MODS_ALLOWED

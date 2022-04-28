@@ -2,19 +2,8 @@
 	"animations": [
 		{
 			"offsets": [
-				3,
-				190
-			],
-			"loop": false,
-			"anim": "idle",
-			"fps": 24,
-			"name": "monster idle",
-			"indices": []
-		},
-		{
-			"offsets": [
-				50,
-				774
+				-14,
+				634
 			],
 			"loop": false,
 			"anim": "singUP",
@@ -24,8 +13,8 @@
 		},
 		{
 			"offsets": [
-				236,
-				196
+				226,
+				14
 			],
 			"loop": false,
 			"anim": "singLEFT",
@@ -35,8 +24,8 @@
 		},
 		{
 			"offsets": [
-				-61,
-				130
+				-75,
+				-40
 			],
 			"loop": false,
 			"anim": "singRIGHT",
@@ -46,8 +35,8 @@
 		},
 		{
 			"offsets": [
-				71,
-				19
+				91,
+				-151
 			],
 			"loop": false,
 			"anim": "singDOWN",
@@ -58,7 +47,7 @@
 		{
 			"offsets": [
 				3,
-				190
+				0
 			],
 			"loop": true,
 			"fps": 24,
@@ -129,24 +118,35 @@
 				29
 			],
 			"name": "monster down"
+		},
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "idle",
+			"loop": false,
+			"name": "monster idle000"
 		}
 	],
 	"no_antialiasing": false,
 	"image": "characters/Monster_Assets",
 	"position": [
-		0,
-		100
+		-40,
+		-90
 	],
 	"healthicon": "monster",
 	"flip_x": false,
 	"healthbar_colors": [
-		255,
+		220,
 		0,
-		100
+		0
 	],
 	"camera_position": [
-		0,
-		-510
+		-150,
+		-170
 	],
 	"sing_duration": 4,
 	"scale": 1

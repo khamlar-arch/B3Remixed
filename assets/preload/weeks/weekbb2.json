@@ -2,13 +2,18 @@
 	"storyName": "Bloody Bedtime Part 2",
 	"hideFreeplay": false,
 	"weekBackground": "room",
-	"weekBefore": "tutorial",
 	"freeplayColor": [
 		146,
 		113,
 		253
 	],
+	"weekBefore": "tutorial",
 	"startUnlocked": true,
+	"weekCharacters": [
+		"GF_Phase1",
+		"bf",
+		"gf"
+	],
 	"hideStoryMode": true,
 	"songs": [
 		[
@@ -16,8 +21,8 @@
 			"fang",
 			[
 				255,
-				0,
-				13
+				18,
+				146
 			]
 		],
 		[
@@ -25,8 +30,8 @@
 			"succ",
 			[
 				255,
-				0,
-				13
+				18,
+				166
 			]
 		],
 		[
@@ -34,8 +39,8 @@
 			"succ",
 			[
 				255,
-				0,
-				13
+				18,
+				166
 			]
 		],
 		[
@@ -43,15 +48,10 @@
 			"succ",
 			[
 				255,
-				0,
-				13
+				18,
+				126
 			]
 		]
-	],
-	"weekCharacters": [
-		"GF_Phase1",
-		"bf",
-		"gf"
 	],
 	"weekName": "Bloody Bedtime"
 }

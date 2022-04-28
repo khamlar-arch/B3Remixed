@@ -2,47 +2,47 @@
 	"storyName": "Bloody Bedtime",
 	"hideFreeplay": false,
 	"weekBackground": "room",
-	"weekBefore": "tutorial",
 	"freeplayColor": [
 		146,
 		113,
 		253
 	],
+	"weekBefore": "tutorial",
 	"startUnlocked": true,
+	"weekCharacters": [
+		"GF-Phase1",
+		"bf",
+		"gf"
+	],
 	"hideStoryMode": false,
 	"songs": [
 		[
 			"Fang",
 			"fang",
 			[
-				255,
-				0,
-				255
+				235,
+				38,
+				186
 			]
 		],
 		[
 			"Succ",
 			"succ",
 			[
-				255,
-				0,
-				255
+				235,
+				38,
+				186
 			]
 		],
 		[
 			"Nom",
 			"vamp",
 			[
-				255,
-				0,
-				255
+				235,
+				38,
+				186
 			]
 		]
-	],
-	"weekCharacters": [
-		"GF-Phase1",
-		"bf",
-		"gf"
 	],
 	"weekName": "Bloody Bedtime"
 }
