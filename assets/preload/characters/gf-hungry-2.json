@@ -1,66 +1,66 @@
 {
 	"animations": [
 		{
-			"offsets": [
-				-102,
-				-167
-			],
 			"loop": false,
-			"fps": 24,
+			"offsets": [
+				-34,
+				-4
+			],
 			"anim": "singRIGHT",
-			"indices": [],
-			"name": "G Right"
+			"fps": 24,
+			"name": "G Right",
+			"indices": []
 		},
 		{
-			"offsets": [
-				-68,
-				-165
-			],
 			"loop": false,
-			"fps": 24,
+			"offsets": [
+				-2,
+				2
+			],
 			"anim": "singUP",
-			"indices": [],
-			"name": "G Up"
+			"fps": 24,
+			"name": "G Up",
+			"indices": []
 		},
 		{
-			"offsets": [
-				-51,
-				-167
-			],
 			"loop": false,
-			"fps": 24,
+			"offsets": [
+				18,
+				-3
+			],
 			"anim": "singLEFT",
-			"indices": [],
-			"name": "G Left"
+			"fps": 24,
+			"name": "G Left",
+			"indices": []
 		},
 		{
-			"offsets": [
-				-71,
-				-191
-			],
 			"loop": false,
-			"fps": 24,
+			"offsets": [
+				0,
+				-27
+			],
 			"anim": "singDOWN",
-			"indices": [],
-			"name": "G Down"
+			"fps": 24,
+			"name": "G Down",
+			"indices": []
 		},
 		{
-			"offsets": [
-				-69,
-				-163
-			],
 			"loop": false,
-			"fps": 24,
+			"offsets": [
+				0,
+				0
+			],
 			"anim": "idle",
-			"indices": [],
-			"name": "G Idle Dance"
+			"fps": 24,
+			"name": "G Idle Dance",
+			"indices": []
 		}
 	],
 	"no_antialiasing": true,
 	"image": "characters/B3_GF_Phase_2_Assets",
 	"position": [
-		0,
-		50
+		80,
+		212
 	],
 	"healthicon": "succ",
 	"flip_x": false,
@@ -70,8 +70,8 @@
 		186
 	],
 	"camera_position": [
-		-30,
-		170
+		-100,
+		10
 	],
 	"sing_duration": 4,
 	"scale": 1

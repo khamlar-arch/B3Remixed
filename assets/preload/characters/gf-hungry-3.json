@@ -1,88 +1,88 @@
 {
 	"animations": [
 		{
-			"offsets": [
-				78,
-				-27
-			],
 			"loop": false,
-			"fps": 24,
+			"offsets": [
+				-162,
+				-107
+			],
 			"anim": "singRIGHT",
-			"indices": [],
-			"name": "GF_Right"
-		},
-		{
-			"offsets": [
-				242,
-				255
-			],
-			"loop": false,
 			"fps": 24,
-			"anim": "singUP",
-			"indices": [],
-			"name": "GF_Up"
-		},
-		{
-			"offsets": [
-				559,
-				23
-			],
-			"loop": false,
-			"fps": 24,
-			"anim": "singLEFT",
-			"indices": [],
-			"name": "GF_Left"
-		},
-		{
-			"offsets": [
-				59,
-				-191
-			],
-			"loop": false,
-			"fps": 24,
-			"anim": "singDOWN",
-			"indices": [],
-			"name": "GF_Down"
-		},
-		{
-			"offsets": [
-				50,
-				-201
-			],
-			"loop": false,
-			"fps": 24,
-			"anim": "talk",
-			"indices": [],
-			"name": "GF_TALK_START"
-		},
-		{
-			"offsets": [
-				10,
-				-120
-			],
-			"loop": false,
-			"fps": 24,
-			"anim": "bite",
-			"indices": [],
-			"name": "GF_Bite_FIXED"
-		},
-		{
-			"loop": true,
-			"offsets": [
-				171,
-				87
-			],
-			"anim": "idle",
-			"fps": 24,
-			"name": "GF_Idle",
+			"name": "GF_Right",
 			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				72,
+				235
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "GF_Up",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				339,
+				-77
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "GF_Left",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-111,
+				-261
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "GF_Down",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-210,
+				-300
+			],
+			"anim": "talk",
+			"fps": 24,
+			"name": "GF_TALK_START",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				80,
+				-60
+			],
+			"anim": "bite",
+			"fps": 24,
+			"name": "GF_Bite_FIXED",
+			"indices": []
+		},
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": true,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "GF_Idle"
 		}
 	],
 	"no_antialiasing": true,
 	"image": "characters/b3_gf_phase_3",
 	"position": [
-		90,
-		0
+		-110,
+		-100
 	],
 	"healthicon": "vamp",
 	"flip_x": false,
@@ -92,8 +92,8 @@
 		186
 	],
 	"camera_position": [
-		-600,
-		-20
+		-430,
+		40
 	],
 	"sing_duration": 4,
 	"scale": 1

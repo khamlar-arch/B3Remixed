@@ -1,88 +1,88 @@
 {
 	"animations": [
 		{
-			"offsets": [
-				-90,
-				-60
-			],
 			"loop": false,
-			"fps": 24,
+			"offsets": [
+				0,
+				0
+			],
 			"anim": "idle",
-			"indices": [],
-			"name": "mia idle"
+			"fps": 24,
+			"name": "mia idle",
+			"indices": []
 		},
 		{
-			"offsets": [
-				-80,
-				-180
-			],
 			"loop": false,
-			"fps": 24,
+			"offsets": [
+				-10,
+				-110
+			],
 			"anim": "singRIGHT",
-			"indices": [],
-			"name": "mia right"
+			"fps": 24,
+			"name": "mia right",
+			"indices": []
 		},
 		{
-			"offsets": [
-				-36,
-				-9
-			],
 			"loop": false,
-			"fps": 24,
+			"offsets": [
+				-3,
+				71
+			],
 			"anim": "singUP",
-			"indices": [],
-			"name": "Mia Up"
+			"fps": 24,
+			"name": "Mia Up",
+			"indices": []
 		},
 		{
-			"offsets": [
-				250,
-				-113
-			],
 			"loop": false,
-			"fps": 24,
+			"offsets": [
+				310,
+				-33
+			],
 			"anim": "singLEFT",
-			"indices": [],
-			"name": "Mia Left"
+			"fps": 24,
+			"name": "Mia Left",
+			"indices": []
 		},
 		{
-			"offsets": [
-				-37,
-				-170
-			],
 			"loop": false,
-			"fps": 24,
+			"offsets": [
+				52,
+				-84
+			],
 			"anim": "singDOWN",
-			"indices": [],
-			"name": "Mia Down"
+			"fps": 24,
+			"name": "Mia Down",
+			"indices": []
 		},
 		{
-			"loop": false,
 			"offsets": [
-				60,
-				-10
+				80,
+				80
 			],
+			"loop": false,
+			"fps": 24,
 			"anim": "hehe",
-			"fps": 24,
-			"name": "hehe",
-			"indices": []
+			"indices": [],
+			"name": "hehe"
 		},
 		{
-			"loop": false,
 			"offsets": [
-				240,
-				-100
+				306,
+				-32
 			],
-			"anim": "haha",
+			"loop": false,
 			"fps": 24,
-			"name": "haha",
-			"indices": []
+			"anim": "haha",
+			"indices": [],
+			"name": "haha"
 		}
 	],
 	"no_antialiasing": false,
 	"image": "characters/Zombie_Mia",
 	"position": [
-		30,
-		50
+		110,
+		120
 	],
 	"healthicon": "zombia",
 	"flip_x": false,
@@ -92,8 +92,8 @@
 		221
 	],
 	"camera_position": [
-		-120,
-		70
+		-210,
+		10
 	],
 	"sing_duration": 4,
 	"scale": 1

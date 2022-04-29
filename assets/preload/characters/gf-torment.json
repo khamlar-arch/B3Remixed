@@ -1,66 +1,66 @@
 {
 	"animations": [
 		{
-			"loop": false,
 			"offsets": [
-				290,
-				295
+				-30,
+				-26
 			],
+			"loop": false,
+			"fps": 24,
 			"anim": "singRIGHT",
-			"fps": 24,
-			"name": "RIGHT SING",
-			"indices": []
+			"indices": [],
+			"name": "RIGHT SING"
 		},
 		{
-			"loop": false,
 			"offsets": [
-				345,
-				340
+				19,
+				18
 			],
+			"loop": false,
+			"fps": 24,
 			"anim": "singUP",
-			"fps": 24,
-			"name": "UP SING",
-			"indices": []
+			"indices": [],
+			"name": "UP SING"
 		},
 		{
-			"loop": false,
 			"offsets": [
-				389,
-				339
+				65,
+				23
 			],
+			"loop": false,
+			"fps": 24,
 			"anim": "singLEFT",
-			"fps": 24,
-			"name": "LEFT SING",
-			"indices": []
+			"indices": [],
+			"name": "LEFT SING"
 		},
 		{
+			"offsets": [
+				-21,
+				-30
+			],
 			"loop": false,
-			"offsets": [
-				297,
-				285
-			],
-			"anim": "singDOWN",
 			"fps": 24,
-			"name": "DOWN",
-			"indices": []
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "DOWN"
 		},
 		{
-			"loop": true,
 			"offsets": [
-				321,
-				317
+				0,
+				0
 			],
-			"anim": "idle",
+			"loop": true,
 			"fps": 24,
-			"name": "IDLE",
-			"indices": []
+			"anim": "idle",
+			"indices": [],
+			"name": "IDLE"
 		}
 	],
 	"no_antialiasing": true,
 	"image": "characters/Monster_B3_GF",
 	"position": [
-		-40,
-		40
+		-390,
+		-270
 	],
 	"healthicon": "evil",
 	"flip_x": false,
@@ -70,8 +70,8 @@
 		136
 	],
 	"camera_position": [
-		-430,
-		-460
+		-40,
+		-20
 	],
 	"sing_duration": 4,
 	"scale": 0.999999999999999
