@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "idle"
+		},
+		{
+			"offsets": [
+				324,
+				6
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "left sing"
+		},
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "right sing"
+		},
+		{
+			"offsets": [
+				82,
+				330
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"indices": [],
+			"name": "up sing"
+		},
+		{
+			"offsets": [
+				98,
+				-101
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "down sing"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/monster_zombie",
+	"position": [
+		-20,
+		-230
+	],
+	"healthicon": "zompep",
+	"flip_x": false,
+	"healthbar_colors": [
+		255,
+		25,
+		29
+	],
+	"camera_position": [
+		-140,
+		-130
+	],
+	"sing_duration": 4,
+	"scale": 1
+}

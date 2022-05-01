@@ -191,7 +191,7 @@
 	"image": "characters/gf_week2",
 	"position": [
 		-110,
-		-30
+		-10
 	],
 	"healthicon": "gf",
 	"flip_x": false,

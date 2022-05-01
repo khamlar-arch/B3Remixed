@@ -3,7 +3,7 @@
 		"speed": 2.9,
 		"stage": "room",
 		"player1": "bf-pajamas",
-		"player2": "gf-hungry-3",
+		"player2": "p-gf-hungry-3",
 		"player3": null,
 		"events": [
 			[

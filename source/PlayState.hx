@@ -249,6 +249,10 @@ class PlayState extends MusicBeatState
 	var grpLimoDancers:FlxTypedGroup<BackgroundDancer>;
 	var fastCar:BGSprite;
 
+	var frontBed:BGSprite;
+
+	var stadiumBoppers:BGSprite;
+
 	var upperBoppers:BGSprite;
 	var bottomBoppers:BGSprite;
 	var santa:BGSprite;
@@ -490,9 +494,14 @@ class PlayState extends MusicBeatState
 		switch (curStage)
 		{
 			case 'stage': //Week 1
-				var bg:BGSprite = new BGSprite('stage/Stadium', -700, -300, 0.9, 0.9);
-				bg.setGraphicSize(Std.int(bg.width * 1));
+				var bg:BGSprite = new BGSprite('stages/stadium/bg', -15, 160, 0.95, 0.95);
+				bg.setGraphicSize(Std.int(bg.width * 2.2222));
 				add(bg);
+
+				stadiumBoppers = new BGSprite('stages/stadium/chars', -800, -550,  0.95, 0.95, ['bop']);
+				stadiumBoppers.setGraphicSize(Std.int(stadiumBoppers.width * 2.2));
+				stadiumBoppers.updateHitbox();
+				add(stadiumBoppers);
 
 			case 'spooky': //Week 2
 				var halloweenSky:BGSprite = new BGSprite('week2bg/Forest', -1400, -1000, 0.3, 0.3);
@@ -845,6 +854,17 @@ class PlayState extends MusicBeatState
 					bg.antialiasing = false;
 					add(bg);
 				}
+			case 'bedroom': //Week 1
+				var bgBed:BGSprite = new BGSprite('stages/bedroom/bg', -15, 160, 0.95, 0.95);
+				bgBed.setGraphicSize(Std.int(bgBed.width * 2.2222));
+				add(bgBed);
+
+				var lightsBed:BGSprite = new BGSprite('stages/bedroom/lights', -15, 160, 0.95, 0.95);
+				lightsBed.setGraphicSize(Std.int(lightsBed.width * 2.2222));
+				add(lightsBed);
+
+				frontBed = new BGSprite('stages/bedroom/front', -15, 160, 0.95, 0.95);
+				frontBed.setGraphicSize(Std.int(frontBed.width * 2.2222));
 		}
 
 		if(isPixelStage) {
@@ -856,6 +876,9 @@ class PlayState extends MusicBeatState
 		// Shitty layering but whatev it works LOL
 		if (curStage == 'limo')
 			add(limo);
+
+		if (curStage == 'bedroom')
+			add(frontBed);
 
 		add(dadGroup);
 		add(boyfriendGroup);
@@ -1874,6 +1897,10 @@ class PlayState extends MusicBeatState
 	
 					bottomBoppers.dance(true);
 					santa.dance(true);
+				}
+
+				if(curStage == 'stadium') {
+					stadiumBoppers.dance(true);
 				}
 
 				switch (swagCounter)
@@ -4812,6 +4839,9 @@ class PlayState extends MusicBeatState
 
 		switch (curStage)
 		{
+			case 'stage':
+				stadiumBoppers.dance(true);
+			
 			case 'school':
 				if(!ClientPrefs.lowQuality) {
 					bgGirls.dance();

@@ -2,8 +2,8 @@
 	"song": {
 		"speed": 3.1,
 		"stage": "dream",
-		"player1": "bf-sad",
-		"player2": "pico-zombie",
+		"player1": "imsorry",
+		"player2": "zombie_pico",
 		"player3": null,
 		"events": [
 			[
@@ -32,7 +32,7 @@
 					[
 						"Change Character",
 						"1",
-						"gf-torment"
+						"torment"
 					],
 					[
 						"Change Character",
@@ -57,7 +57,7 @@
 					[
 						"Change Character",
 						"1",
-						"monster"
+						"monster-zombie"
 					],
 					[
 						"Change Character",
@@ -82,7 +82,7 @@
 					[
 						"Change Character",
 						"1",
-						"gf-torment"
+						"torment"
 					],
 					[
 						"Change Character",
@@ -297,7 +297,7 @@
 					[
 						"Change Character",
 						"1",
-						"gf-torment"
+						"torment"
 					]
 				]
 			]

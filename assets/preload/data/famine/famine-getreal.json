@@ -5502,7 +5502,7 @@
 				"mustHitSection": true
 			}
 		],
-		"player2": "gf-hungry-2",
+		"player2": "p-gf-hungry-alt",
 		"player3": null,
 		"song": "Famine",
 		"stage": "room",

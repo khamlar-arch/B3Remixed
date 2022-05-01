@@ -19,7 +19,7 @@
 					[
 						"Change Character",
 						"1",
-						"gf-torment"
+						"torment"
 					],
 					[
 						"Change Character",
@@ -44,7 +44,7 @@
 					[
 						"Change Character",
 						"1",
-						"gf-hungry-1"
+						"p-gf-hungry-1"
 					],
 					[
 						"Change Character",
@@ -59,7 +59,7 @@
 					[
 						"Change Character",
 						"1",
-						"gf-hungry-1"
+						"p-gf-hungry-1"
 					],
 					[
 						"Change Character",
@@ -4204,7 +4204,7 @@
 				"mustHitSection": true
 			}
 		],
-		"player2": "gf-hungry-1",
+		"player2": "p-gf-hungry-1",
 		"player3": null,
 		"song": "Dessert",
 		"validScore": true,
