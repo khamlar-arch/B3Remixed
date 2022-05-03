@@ -1,9 +1,9 @@
 {
 	"song": {
-		"speed": 3.1,
+		"speed": 2.9,
 		"stage": "dream",
-		"player1": "imsorry",
-		"player2": "zombie_pico",
+		"player1": "bf-sad",
+		"player2": "pico-zombie",
 		"player3": null,
 		"events": [
 			[
@@ -62,7 +62,7 @@
 					[
 						"Change Character",
 						"bf-pained",
-						"bf-sad"
+						"bf-sad-alt"
 					]
 				]
 			],
@@ -87,7 +87,7 @@
 					[
 						"Change Character",
 						"bf-sad",
-						"bf-pained"
+						"bf-pained-alt"
 					]
 				]
 			],

@@ -43,8 +43,8 @@ class DiscordClient
 		DiscordRpc.presence({
 			details: "In the Menus",
 			state: null,
-			largeImageKey: 'b3_rpc',
-			largeImageText: "Friday Night Funkin': B3 Remixed"
+			largeImageKey: 'icon',
+			largeImageText: "FNF: B3 Remixed"
 		});
 	}
 

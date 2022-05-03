@@ -18,6 +18,7 @@ class ClientPrefs {
 	public static var cursing:Bool = true;
 	public static var violence:Bool = true;
 	public static var camZooms:Bool = true;
+	public static var hideChars:Bool = false;
 	public static var noteCamera:Bool = true;
 	public static var judgementCounter:Bool = false;
 	public static var laneUnderlay:Float = 0;
@@ -110,6 +111,7 @@ class ClientPrefs {
 		//FlxG.save.data.violence = violence;
 		FlxG.save.data.camZooms = camZooms;
 		FlxG.save.data.noteCamera = noteCamera;
+		FlxG.save.data.hideChars = hideChars;
 		FlxG.save.data.noteOffset = noteOffset;
 		FlxG.save.data.hideHud = hideHud;
 		FlxG.save.data.arrowHSV = arrowHSV;
@@ -148,6 +150,9 @@ class ClientPrefs {
 		}
 		if(FlxG.save.data.middleScroll != null) {
 			middleScroll = FlxG.save.data.middleScroll;
+		}
+		if(FlxG.save.data.hideChars != null) {
+			hideChars = FlxG.save.data.hideChars;
 		}
 		if(FlxG.save.data.judgementCounter != null) {
 			judgementCounter = FlxG.save.data.judgementCounter;

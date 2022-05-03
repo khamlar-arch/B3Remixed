@@ -60,7 +60,9 @@ import StageData;
 import FunkinLua;
 import DialogueBoxPsych;
 import Shaders;
-
+#if MODS_ALLOWED
+import sys.io.File;
+#end
 #if sys
 import sys.FileSystem;
 #end
@@ -366,7 +368,7 @@ class PlayState extends MusicBeatState
 		
 		
 		try {
-			lyrics = cast Json.parse(Assets.getText('data' + SONG.song.toLowerCase() + '/lyrics.json'));
+			lyrics = cast Json.parse(File.getContent('data/' + SONG.song.toLowerCase() + '/lyrics.json'));
 			trace(lyrics);
 			hasLyrics = true;
 			trace("Found lyrics for " + SONG.song.toLowerCase());
@@ -871,7 +873,8 @@ class PlayState extends MusicBeatState
 			introSoundsSuffix = '-pixel';
 		}
 
-		add(gfGroup);
+		if (!ClientPrefs.hideChars)
+			add(gfGroup);
 
 		// Shitty layering but whatev it works LOL
 		if (curStage == 'limo')
@@ -880,8 +883,10 @@ class PlayState extends MusicBeatState
 		if (curStage == 'bedroom')
 			add(frontBed);
 
-		add(dadGroup);
-		add(boyfriendGroup);
+		if (!ClientPrefs.hideChars) {
+			add(dadGroup);
+			add(boyfriendGroup);
+		}
 
 		switch (curStage)
 		{
@@ -1403,7 +1408,7 @@ class PlayState extends MusicBeatState
 
 		#if desktop
 		// Updating Discord Rich Presence.
-		DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
+		DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter());
 		#end
 
 		if(!ClientPrefs.controllerMode)
@@ -2153,7 +2158,7 @@ class PlayState extends MusicBeatState
 		
 		#if desktop
 		// Updating Discord Rich Presence (with Time Left)
-		DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter(), true, songLength);
+		DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter(), true, songLength);
 		#end
 		setOnLuas('songLength', songLength);
 		callOnLuas('onSongStart', []);
@@ -2379,6 +2384,7 @@ class PlayState extends MusicBeatState
 			if (player < 1 && ClientPrefs.middleScroll) targetAlpha = 0.35;
 
 			var babyArrow:StrumNote = new StrumNote(ClientPrefs.middleScroll ? STRUM_X_MIDDLESCROLL : STRUM_X, strumLine.y, i, player);
+			babyArrow.downScroll = ClientPrefs.downScroll;
 			if (!isStoryMode && !skipArrowStartTween)
 			{
 				babyArrow.y -= 10;
@@ -2491,11 +2497,11 @@ class PlayState extends MusicBeatState
 			#if desktop
 			if (startTimer != null && startTimer.finished)
 			{
-				DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter(), true, songLength - Conductor.songPosition - ClientPrefs.noteOffset);
+				DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter(), true, songLength - Conductor.songPosition - ClientPrefs.noteOffset);
 			}
 			else
 			{
-				DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
+				DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter());
 			}
 			#end
 		}
@@ -2510,11 +2516,11 @@ class PlayState extends MusicBeatState
 		{
 			if (Conductor.songPosition > 0.0)
 			{
-				DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter(), true, songLength - Conductor.songPosition - ClientPrefs.noteOffset);
+				DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter(), true, songLength - Conductor.songPosition - ClientPrefs.noteOffset);
 			}
 			else
 			{
-				DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
+				DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter());
 			}
 		}
 		#end
@@ -2527,7 +2533,7 @@ class PlayState extends MusicBeatState
 		#if desktop
 		if (health > 0 && !paused)
 		{
-			DiscordClient.changePresence(detailsPausedText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
+			DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter());
 		}
 		#end
 
@@ -2730,7 +2736,7 @@ class PlayState extends MusicBeatState
 				//}
 		
 				#if desktop
-				DiscordClient.changePresence(detailsPausedText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
+				DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter());
 				#end
 			}
 		}
@@ -2902,16 +2908,22 @@ class PlayState extends MusicBeatState
 				var strumY:Float = 0;
 				var strumAngle:Float = 0;
 				var strumAlpha:Float = 0;
+				var strumDirection:Float = 0;
+				var strumScroll:Bool = false;
 				if(daNote.mustPress) {
 					strumX = playerStrums.members[daNote.noteData].x;
 					strumY = playerStrums.members[daNote.noteData].y;
 					strumAngle = playerStrums.members[daNote.noteData].angle;
+					strumDirection = playerStrums.members[daNote.noteData].direction;
 					strumAlpha = playerStrums.members[daNote.noteData].alpha;
+					strumScroll = playerStrums.members[daNote.noteData].downScroll;
 				} else {
 					strumX = opponentStrums.members[daNote.noteData].x;
 					strumY = opponentStrums.members[daNote.noteData].y;
 					strumAngle = opponentStrums.members[daNote.noteData].angle;
+					strumDirection = opponentStrums.members[daNote.noteData].direction;
 					strumAlpha = opponentStrums.members[daNote.noteData].alpha;
+					strumScroll = opponentStrums.members[daNote.noteData].downScroll;
 				}
 
 				strumX += daNote.offsetX;
@@ -2920,9 +2932,9 @@ class PlayState extends MusicBeatState
 				strumAlpha *= daNote.multAlpha;
 				var center:Float = strumY + Note.swagWidth / 2;
 
-				if(daNote.copyX) {
-					daNote.x = strumX;
-				}
+				//if(daNote.copyX) {
+				//	daNote.x = strumX;
+				//}
 				if(daNote.copyAngle) {
 					daNote.angle = strumAngle;
 				}
@@ -2930,8 +2942,16 @@ class PlayState extends MusicBeatState
 					daNote.alpha = strumAlpha;
 				}
 				if(daNote.copyY) {
-					if (ClientPrefs.downScroll) {
-						daNote.y = (strumY + 0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);
+					if (strumScroll) {
+						//daNote.y = (strumY + 0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);
+						daNote.distance = (0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);
+
+						var angleDir = strumDirection * Math.PI / 180;
+						daNote.x = strumX + Math.cos(angleDir) * daNote.distance;
+						daNote.y = strumY + Math.sin(angleDir) * daNote.distance;
+						if (daNote.isSustainNote){
+							daNote.angle = strumDirection-90;
+						}
 						if (daNote.isSustainNote && !ClientPrefs.keSustains) {
 							//Jesus fuck this took me so much mother fucking time AAAAAAAAAA
 							if (daNote.animation.curAnim.name.endsWith('end')) {
@@ -2960,7 +2980,16 @@ class PlayState extends MusicBeatState
 							}
 						}
 					} else {
-						daNote.y = (strumY - 0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);
+						//daNote.y = (strumY - 0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);
+
+						daNote.distance = (-0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);
+
+						var angleDir = strumDirection * Math.PI / 180;
+						daNote.x = strumX + Math.cos(angleDir) * daNote.distance;
+						daNote.y = strumY + Math.sin(angleDir) * daNote.distance;
+						if (daNote.isSustainNote){
+							daNote.angle = strumDirection-90;
+						}
 
 						if(!ClientPrefs.keSustains)
 						{
@@ -2999,8 +3028,8 @@ class PlayState extends MusicBeatState
 				// WIP interpolation shit? Need to fix the pause issue
 				// daNote.y = (strumLine.y - (songTime - daNote.strumTime) * (0.45 * songSpeed));
 
-				var doKill:Bool = daNote.y < -daNote.height;
-				if(ClientPrefs.downScroll) doKill = daNote.y > FlxG.height;
+				var doKill:Bool = Conductor.songPosition > daNote.strumTime + ClientPrefs.badWindow + 30;//daNote.y < -daNote.height;
+				//if(strumScroll) doKill = //daNote.y > FlxG.height;
 
 				if(ClientPrefs.keSustains && daNote.isSustainNote && daNote.wasGoodHit) doKill = true;
 
@@ -3104,7 +3133,7 @@ class PlayState extends MusicBeatState
 				
 				#if desktop
 				// Game Over doesn't get his own variable because it's only used here
-				DiscordClient.changePresence("Game Over - " + detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
+				DiscordClient.changePresence("Game Over - " + SONG.song  + " (" + storyDifficultyText + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter());
 				#end
 				isDead = true;
 				return true;

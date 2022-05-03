@@ -2,77 +2,77 @@
 	"animations": [
 		{
 			"offsets": [
-				0,
-				0
-			],
-			"loop": false,
-			"fps": 24,
-			"anim": "idle",
-			"indices": [],
-			"name": "idle"
-		},
-		{
-			"offsets": [
-				44,
-				1
-			],
-			"loop": false,
-			"fps": 24,
-			"anim": "singLEFT",
-			"indices": [],
-			"name": "left sing"
-		},
-		{
-			"offsets": [
-				404,
-				-46
+				102,
+				-23
 			],
 			"loop": false,
 			"fps": 24,
 			"anim": "singRIGHT",
 			"indices": [],
-			"name": "right sing"
+			"name": "RIGHT SING"
 		},
 		{
 			"offsets": [
-				-94,
-				323
+				-26,
+				23
 			],
 			"loop": false,
 			"fps": 24,
 			"anim": "singUP",
 			"indices": [],
-			"name": "up sing"
+			"name": "UP SING"
 		},
 		{
 			"offsets": [
-				37,
-				-96
+				-54,
+				22
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "LEFT SING"
+		},
+		{
+			"offsets": [
+				15,
+				-33
 			],
 			"loop": false,
 			"fps": 24,
 			"anim": "singDOWN",
 			"indices": [],
-			"name": "down sing"
+			"name": "DOWN"
+		},
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": true,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "IDLE"
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/monster_zombie",
+	"image": "characters/Monster_B3_GF",
 	"position": [
-		-20,
-		-230
+		-220,
+		-300
 	],
-	"healthicon": "zompep",
+	"healthicon": "evil",
 	"flip_x": false,
 	"healthbar_colors": [
-		255,
-		25,
-		29
+		174,
+		43,
+		136
 	],
 	"camera_position": [
-		30,
-		-130
+		-40,
+		-20
 	],
 	"sing_duration": 4,
-	"scale": 1
+	"scale": 0.999999999999999
 }

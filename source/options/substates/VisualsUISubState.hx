@@ -89,6 +89,13 @@ class VisualsUISubState extends BaseOptionsMenu
 			true);
 		addOption(option);
 
+		var option:Option = new Option('Hide Characters',
+			"Hides the characters. (This can also help with optimization.)",
+			'hideChars',
+			'bool',
+			true);
+		addOption(option);
+
 		var option:Option = new Option('Camera Pan on Hit',
 			'If unchecked, the camera will stay still when\nhitting a note. (ALSO INCREASES CAMERA SPEED.)',
 			'noteCamera',
