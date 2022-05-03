@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="backmazins.png">
+	<!-- Created with Adobe Animate version 21.0.6.41649 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="backmazins0000" x="0" y="0" width="2078" height="256" pivotX="0" pivotY="-0.05"/>
+	<SubTexture name="backmazins0001" x="0" y="0" width="2078" height="256"/>
+	<SubTexture name="backmazins0002" x="0" y="271" width="2078" height="256"/>
+	<SubTexture name="backmazins0003" x="0" y="271" width="2078" height="256"/>
+	<SubTexture name="backmazins0004" x="0" y="542" width="2078" height="256"/>
+	<SubTexture name="backmazins0005" x="0" y="542" width="2078" height="256"/>
+	<SubTexture name="backmazins0006" x="0" y="813" width="2078" height="256"/>
+	<SubTexture name="backmazins0007" x="0" y="813" width="2078" height="256"/>
+	<SubTexture name="backmazins0008" x="0" y="1084" width="2078" height="256"/>
+	<SubTexture name="backmazins0009" x="0" y="1084" width="2078" height="256"/>
+	<SubTexture name="backmazins0010" x="0" y="1355" width="2078" height="256"/>
+	<SubTexture name="backmazins0011" x="0" y="1355" width="2078" height="256"/>
+	<SubTexture name="backmazins0012" x="0" y="1355" width="2078" height="256"/>
+	<SubTexture name="backmazins0013" x="0" y="1355" width="2078" height="256"/>
+</TextureAtlas>
