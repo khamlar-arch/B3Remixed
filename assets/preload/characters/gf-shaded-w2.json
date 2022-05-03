@@ -1,69 +1,68 @@
 {
 	"animations": [
 		{
+			"loop": false,
 			"offsets": [
 				0,
 				2
 			],
-			"loop": false,
-			"anim": "cheer",
 			"fps": 24,
-			"name": "GF Cheer",
-			"indices": []
+			"anim": "cheer",
+			"indices": [],
+			"name": "GF Cheer"
 		},
 		{
+			"loop": false,
 			"offsets": [
 				0,
 				-27
 			],
-			"loop": false,
-			"anim": "singLEFT",
 			"fps": 24,
-			"name": "GF left note",
-			"indices": []
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "GF left note"
 		},
 		{
+			"loop": false,
 			"offsets": [
 				0,
 				-30
 			],
-			"loop": false,
-			"anim": "singDOWN",
 			"fps": 24,
-			"name": "GF Down Note",
-			"indices": []
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "GF Down Note"
 		},
 		{
+			"loop": false,
 			"offsets": [
 				0,
 				0
 			],
-			"loop": false,
-			"anim": "singUP",
 			"fps": 24,
-			"name": "GF Up Note",
-			"indices": []
+			"anim": "singUP",
+			"indices": [],
+			"name": "GF Up Note"
 		},
 		{
+			"loop": false,
 			"offsets": [
 				0,
 				-20
 			],
-			"loop": false,
-			"anim": "singRIGHT",
 			"fps": 24,
-			"name": "GF Right Note",
-			"indices": []
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "GF Right Note"
 		},
 		{
+			"loop": false,
 			"offsets": [
 				-2,
 				-31
 			],
-			"loop": false,
-			"anim": "sad",
 			"fps": 24,
-			"name": "gf sad",
+			"anim": "sad",
 			"indices": [
 				0,
 				1,
@@ -78,33 +77,33 @@
 				10,
 				11,
 				12
-			]
+			],
+			"name": "gf sad"
 		},
 		{
+			"loop": true,
 			"offsets": [
 				2,
 				-4
 			],
-			"loop": true,
-			"anim": "hairBlow",
 			"fps": 24,
-			"name": "GF Dancing Beat Hair blowing",
+			"anim": "hairBlow",
 			"indices": [
 				0,
 				1,
 				2,
 				3
-			]
+			],
+			"name": "GF Dancing Beat Hair blowing"
 		},
 		{
+			"loop": false,
 			"offsets": [
 				0,
 				-11
 			],
-			"loop": false,
-			"anim": "hairFall",
 			"fps": 24,
-			"name": "GF Dancing Beat Hair Landing",
+			"anim": "hairFall",
 			"indices": [
 				0,
 				1,
@@ -118,28 +117,28 @@
 				9,
 				10,
 				11
-			]
+			],
+			"name": "GF Dancing Beat Hair Landing"
 		},
 		{
+			"loop": true,
 			"offsets": [
 				-2,
 				-17
 			],
-			"loop": true,
-			"anim": "scared",
 			"fps": 24,
-			"name": "GF FEAR",
-			"indices": []
+			"anim": "scared",
+			"indices": [],
+			"name": "GF FEAR"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				0,
 				-18
 			],
-			"anim": "danceLeft",
+			"loop": false,
 			"fps": 24,
-			"name": "GF Dancing Beat",
+			"anim": "danceLeft",
 			"indices": [
 				30,
 				0,
@@ -157,17 +156,17 @@
 				12,
 				13,
 				14
-			]
+			],
+			"name": "GF Dancing Beat"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				0,
 				-17
 			],
-			"anim": "danceRight",
+			"loop": false,
 			"fps": 24,
-			"name": "GF Dancing Beat",
+			"anim": "danceRight",
 			"indices": [
 				15,
 				16,
@@ -184,14 +183,15 @@
 				27,
 				28,
 				29
-			]
+			],
+			"name": "GF Dancing Beat"
 		}
 	],
-	"no_antialiasing": true,
+	"no_antialiasing": false,
 	"image": "characters/gf_week2",
 	"position": [
-		-110,
-		-10
+		-80,
+		140
 	],
 	"healthicon": "gf",
 	"flip_x": false,

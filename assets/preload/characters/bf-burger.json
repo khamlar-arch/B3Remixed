@@ -1,40 +1,40 @@
 {
 	"animations": [
 		{
+			"loop": false,
 			"offsets": [
 				190,
 				111
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "firstDeath",
-			"indices": [],
-			"name": "BF Dies"
+			"fps": 24,
+			"name": "BF Dies",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				-63,
 				58
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "deathConfirm",
-			"indices": [],
-			"name": "BF Death Confirm"
+			"fps": 24,
+			"name": "BF Death Confirm",
+			"indices": []
 		},
 		{
+			"loop": true,
 			"offsets": [
 				-90,
 				-31
 			],
-			"loop": true,
-			"fps": 24,
 			"anim": "deathLoop",
-			"indices": [],
-			"name": "BF Dead Loop"
+			"fps": 24,
+			"name": "BF Dead Loop",
+			"indices": []
 		}
 	],
-	"no_antialiasing": true,
+	"no_antialiasing": false,
 	"image": "characters/burgerdeath",
 	"position": [
 		0,
