@@ -276,18 +276,20 @@ class Paths
 	}
 
 	inline static public function getSparrowAtlas(key:String, ?library:String):FlxAtlasFrames
-	{
-		#if MODS_ALLOWED
-		var graphic:FlxGraphic = Paths.image(key, library);
-		var xmlExists:Bool = false;
-		if(FileSystem.exists(modsXml(key))) {
-			xmlExists = true;
+		{
+			#if MODS_ALLOWED
+			var imageLoaded:FlxGraphic = returnGraphic(key);
+			var xmlExists:Bool = false;
+			if(FileSystem.exists(modsXml(key))) {
+				xmlExists = true;
+			}
+	
+			return FlxAtlasFrames.fromSparrow((imageLoaded != null ? imageLoaded : image(key, library)), (xmlExists ? File.getContent(modsXml(key)) : file('images/$key.xml', library)));
+			#else
+			return FlxAtlasFrames.fromSparrow(image(key, library), file('images/$key.xml', library));
+			#end
 		}
-		return FlxAtlasFrames.fromSparrow(graphic, (xmlExists ? File.getContent(modsXml(key)) : file('images/$key.xml', library)));
-		#else
-		return FlxAtlasFrames.fromSparrow(image(key, library), file('images/$key.xml', library));
-		#end
-	}
+	
 
 
 	inline static public function getPackerAtlas(key:String, ?library:String)
@@ -313,29 +315,32 @@ class Paths
 	public static var currentTrackedAssets:Map<String, FlxGraphic> = [];
 	public static function returnGraphic(key:String, ?library:String) {
 		#if MODS_ALLOWED
-		if(FileSystem.exists(modsImages(key))) {
-			if(!currentTrackedAssets.exists(key)) {
-				var newBitmap:BitmapData = BitmapData.fromFile(modsImages(key));
-				var newGraphic:FlxGraphic = FlxGraphic.fromBitmapData(newBitmap, false, key);
-				currentTrackedAssets.set(key, newGraphic);
-				
+		var modKey:String = modsImages(key);
+		if(FileSystem.exists(modKey)) {
+			if(!currentTrackedAssets.exists(modKey)) {
+				var newBitmap:BitmapData = BitmapData.fromFile(modKey);
+				var newGraphic:FlxGraphic = FlxGraphic.fromBitmapData(newBitmap, false, modKey);
+				newGraphic.persist = true;
+				currentTrackedAssets.set(modKey, newGraphic);
 			}
-			localTrackedAssets.push(key);
-			return currentTrackedAssets.get(key);
+			localTrackedAssets.push(modKey);
+			return currentTrackedAssets.get(modKey);
 		}
 		#end
+
 		var path = getPath('images/$key.png', IMAGE, library);
 		if (OpenFlAssets.exists(path, IMAGE)) {
-			if(!currentTrackedAssets.exists(key)) {
-				var newGraphic:FlxGraphic = FlxG.bitmap.add(path, false, key);
-				currentTrackedAssets.set(key, newGraphic);
+			if(!currentTrackedAssets.exists(path)) {
+				var newGraphic:FlxGraphic = FlxG.bitmap.add(path, false, path);
+				newGraphic.persist = true;
+				currentTrackedAssets.set(path, newGraphic);
 			}
-			localTrackedAssets.push(key);
-			return currentTrackedAssets.get(key);
+			localTrackedAssets.push(path);
+			return currentTrackedAssets.get(path);
 		}
 		trace('oh no its returning null NOOOO');
 		return null;
-	}
+	};
 
 	public static var currentTrackedSounds:Map<String, Sound> = [];
 	public static function returnSound(path:String, key:String, ?library:String) {

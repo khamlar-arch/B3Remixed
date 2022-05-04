@@ -33,6 +33,9 @@ class MainMenuState extends MusicBeatState
 	var menuItems:FlxTypedGroup<FlxSprite>;
 	private var camGame:FlxCamera;
 	private var camAchievement:FlxCamera;
+	var easterEgg:String = 'GUH';
+	var allowedKeys:String = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	var easterEggKeysBuffer:String = '';
 	
 	var optionShit:Array<String> = [
 		'story mode',
@@ -278,6 +281,46 @@ class MainMenuState extends MusicBeatState
 				selectedSomethin = true;
 				FlxG.sound.play(Paths.sound('cancelMenu'));
 				MusicBeatState.switchState(new TitleState());
+			}
+
+			if (FlxG.keys.firstJustPressed() != FlxKey.NONE)
+			{
+				var keyPressed:FlxKey = FlxG.keys.firstJustPressed();
+				var keyName:String = Std.string(keyPressed);
+				if(allowedKeys.contains(keyName)) {
+					easterEggKeysBuffer += keyName;
+					if(easterEggKeysBuffer.length >= 32) 
+						easterEggKeysBuffer = easterEggKeysBuffer.substring(1);
+					var word:String = 'GUH';
+					if (easterEggKeysBuffer.contains(word))
+					{
+						FlxG.save.data.guhUnlocked = true;
+						FlxG.save.flush();
+						trace('YOU DID IT');
+
+						// Nevermind that's stupid lmao
+						var songArray:Array<String> = ['Guh', 'Famine', 'Succd'];
+
+						PlayState.storyPlaylist = songArray;
+						PlayState.isStoryMode = true;
+
+						var diffic = CoolUtil.getDifficultyFilePath(2);
+						if(diffic == null) diffic = '';
+
+						PlayState.storyDifficulty = 2;
+
+						PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase() + diffic, PlayState.storyPlaylist[0].toLowerCase());
+						PlayState.campaignScore = 0;
+						PlayState.campaignMisses = 0;
+						new FlxTimer().start(1, function(tmr:FlxTimer)
+						{
+							LoadingState.loadAndSwitchState(new PlayState(), true);
+							FreeplayState.destroyFreeplayVocals();
+						});
+
+						easterEggKeysBuffer = '';
+					}
+				}
 			}
 
 			if (controls.ACCEPT)

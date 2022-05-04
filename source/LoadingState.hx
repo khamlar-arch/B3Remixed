@@ -14,6 +14,8 @@ import lime.utils.Assets as LimeAssets;
 import lime.utils.AssetLibrary;
 import lime.utils.AssetManifest;
 import haxe.io.Path;
+import PlayState;
+import Song.SwagSong;
 
 class LoadingState extends MusicBeatState
 {
@@ -68,6 +70,7 @@ class LoadingState extends MusicBeatState
 					checkLibrary(directory);
 					trace('we there yet ' + directory);
 				}
+	
 
 				var fadeTime = 0.5;
 				FlxG.camera.fade(FlxG.camera.bgColor, fadeTime, true);
@@ -130,6 +133,11 @@ class LoadingState extends MusicBeatState
 	static function getSongPath()
 	{
 		return Paths.inst(PlayState.SONG.song);
+	}
+
+	static function getImagePath(image:String)
+	{
+		return Paths.image(image);
 	}
 	
 	static function getVocalPath()
