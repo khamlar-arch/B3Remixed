@@ -13,13 +13,17 @@ function onCreate()
     makeGraphic('lightShut', 1280, 720, '000000')
     setObjectCamera('lightShut', 'other')
     setProperty('lightShut.visible', false)
-    addLuaSprite('lightShut', true)
+   -- addLuaSprite('lightShut', true)
 
     makeLuaSprite('vignette', 'vignette', 0, 0)
     setObjectCamera('vignette', 'other')
     scaleObject('vignette', 2, 2)
     setProperty('vignette.visible', false)
     addLuaSprite('vignette', true)
+end
+
+function onSongStart()
+    oldlaneX = getProperty('laneUnderlayP1.x')
 end
 
 function onUpdate()
@@ -32,7 +36,7 @@ function onUpdate()
         triggerEvent('Change Scroll Speed', 0.75, 0.2)
         triggerEvent('Tails', '1', '')
         setProperty('boyfriendGroup.visible', false)
-        setProperty('lightShut.visible', true)
+        --setProperty('lightShut.visible', true)
         for i = 0,3 do
             setPropertyFromGroup('strumLineNotes', i, 'x', -1000)
         end
@@ -41,6 +45,8 @@ function onUpdate()
         end
         setProperty('vignette.visible', true)
         showUI(false)
+        setProperty('laneUnderlayP1.x', 415)
+        setProperty('laneUnderlayP2.visible', false)
     end
     if curStep < 856 and curStep >= 587 then
         for i = 4,7 do 
@@ -49,24 +55,26 @@ function onUpdate()
         doTweenAlpha('vignetteThing', 'vignette', math.abs(math.sin((currentBeat+1*0.035)*math.pi)) + 0.25, 2)
     end
     if curStep == 592 or curStep == 861 then
-        setProperty('lightShut.visible', false)
+        --setProperty('lightShut.visible', false)
     end
     if curStep == 858 then
         triggerEvent('Hide Ratings', '', '')
-        triggerEvent('Change Character', '0', 'Tails')
+        triggerEvent('Change Character', 1, 'tails')
         triggerEvent('Tails', '2', '')
         triggerEvent('Change Scroll Speed', 1, 0.2)
+        for i = 0,7 do
+            setPropertyFromGroup('strumLineNotes', i, 'x', defaultNotePos[i + 1][1])
+        end
         setProperty('boyfriendGroup.visible', true)
         for i = 4,7 do 
             cancelTween('superCoolEffectThingLol' .. i)
             setPropertyFromGroup('strumLineNotes', i, 'alpha', 1)
         end
-        setProperty('lightShut.visible', true)
+        --setProperty('lightShut.visible', true)
         setProperty('vignette.visible', false)
         showUI(true)
-        for i = 0,7 do
-            setPropertyFromGroup('strumLineNotes', i, 'x', defaultNotePos[i + 1][1])
-        end
+        setProperty('laneUnderlayP1.x', oldlaneX)
+        setProperty('laneUnderlayP2.visible', true)
     end
 end
 
