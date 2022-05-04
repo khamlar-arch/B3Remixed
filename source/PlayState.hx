@@ -862,7 +862,7 @@ class PlayState extends MusicBeatState
 				bgBed.setGraphicSize(Std.int(bgBed.width * 2.2222));
 				add(bgBed);
 
-				var lightsBed:BGSprite = new BGSprite('stages/bedroom/lights', -15, 160, 0.95, 0.95);
+				var lightsBed:BGSprite = new BGSprite('stages/bedroom/light', -15, 160, 0.95, 0.95);
 				lightsBed.setGraphicSize(Std.int(lightsBed.width * 2.2222));
 				add(lightsBed);
 

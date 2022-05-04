@@ -1,6 +1,6 @@
 {
 	"song": {
-		"player1": "bf-pained",
+		"player1": "bf-pajamas-alt",
 		"sectionLengths": [],
 		"notes": [
 			{
@@ -7138,12 +7138,12 @@
 				"mustHitSection": true
 			}
 		],
-		"player2": "torment",
+		"player2": "p-gf-hungry-alt",
 		"gfVersion": "gf",
 		"events": [],
 		"player3": null,
 		"song": "Guh",
-		"stage": "dream",
+		"stage": "bedroom",
 		"needsVoices": true,
 		"sections": 0,
 		"validScore": true,

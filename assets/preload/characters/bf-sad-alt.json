@@ -1,98 +1,98 @@
 {
 	"animations": [
 		{
+			"loop": false,
 			"offsets": [
-				-7,
+				-6,
+				0
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "BF Idle Dance",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				60,
+				11
+			],
+			"anim": "singRIGHTmiss",
+			"fps": 24,
+			"name": "Right Miss",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				23,
+				-2
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "BF Up",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				17,
 				-12
 			],
-			"loop": false,
+			"anim": "singDOWN",
 			"fps": 24,
-			"anim": "singLEFT",
-			"indices": [],
-			"name": "BF Left"
+			"name": "BF Down",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-5,
+				-11
+			],
+			"anim": "singLEFTmiss",
+			"fps": 24,
+			"name": "Left MISS",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				16,
+				0
+			],
+			"anim": "singUPmiss",
+			"fps": 24,
+			"name": "Up Miss",
+			"indices": []
 		},
 		{
 			"offsets": [
 				59,
 				7
 			],
-			"loop": false,
-			"fps": 24,
-			"anim": "singRIGHT",
 			"indices": [],
+			"fps": 24,
+			"anim": "singLEFT",
+			"loop": false,
 			"name": "BF Right"
 		},
 		{
 			"offsets": [
-				-6,
-				0
+				-10,
+				-8
 			],
-			"loop": false,
-			"fps": 24,
-			"anim": "idle",
 			"indices": [],
-			"name": "BF Idle Dance"
-		},
-		{
-			"offsets": [
-				65,
-				6
-			],
-			"loop": false,
 			"fps": 24,
-			"anim": "singRIGHTmiss",
-			"indices": [],
-			"name": "Right Miss"
-		},
-		{
-			"offsets": [
-				26,
-				-5
-			],
+			"anim": "singRIGHT",
 			"loop": false,
-			"fps": 24,
-			"anim": "singUP",
-			"indices": [],
-			"name": "BF Up"
-		},
-		{
-			"offsets": [
-				17,
-				-12
-			],
-			"loop": false,
-			"fps": 24,
-			"anim": "singDOWN",
-			"indices": [],
-			"name": "BF Down"
-		},
-		{
-			"offsets": [
-				-4,
-				-12
-			],
-			"loop": false,
-			"fps": 24,
-			"anim": "singLEFTmiss",
-			"indices": [],
-			"name": "Left MISS"
-		},
-		{
-			"offsets": [
-				25,
-				-4
-			],
-			"loop": false,
-			"fps": 24,
-			"anim": "singUPmiss",
-			"indices": [],
-			"name": "Up Miss"
+			"name": "BF Left"
 		}
 	],
-	"no_antialiasing": false,
+	"no_antialiasing": true,
 	"image": "characters/B3_BF_SAD",
 	"position": [
-		40,
+		120,
 		330
 	],
 	"healthicon": "pain",

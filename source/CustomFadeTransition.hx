@@ -19,8 +19,9 @@ class CustomFadeTransition extends MusicBeatSubstate {
 	public static var finishCallback:Void->Void;
 	private var leTween:FlxTween = null;
 	public static var nextCamera:FlxCamera;
-	var isTransIn:Bool = false;
-	var transBlack:FlxSprite;
+	public var isTransIn:Bool = false; 
+	//what could go wrong making this public?
+	var transBlack:FlxSprite; 
 	var transGradient:FlxSprite;
 
 	public function new(duration:Float, isTransIn:Bool) {

@@ -1,8 +1,8 @@
 {
 	"song": {
 		"sectionLengths": [],
-		"player1": "bf-pained",
-		"player2": "torment",
+		"player1": "bf-pajamas-alt",
+		"player2": "p-gf-hungry-alt",
 		"notes": [
 			{
 				"sectionNotes": [],
@@ -5111,7 +5111,7 @@
 		"needsVoices": true,
 		"sections": 0,
 		"validScore": true,
-		"stage": "dream",
+		"stage": "bedroom",
 		"speed": 2.7,
 		"bpm": 145
 	}

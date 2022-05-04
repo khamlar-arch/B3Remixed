@@ -1,6 +1,6 @@
 {
 	"song": {
-		"player1": "bf-pajamas",
+		"player1": "bf-pajamas-alt",
 		"sectionLengths": [],
 		"events": [],
 		"gfVersion": "gf",
@@ -6724,7 +6724,7 @@
 		"player2": "p-gf-hungry-alt",
 		"player3": null,
 		"song": "Succd",
-		"stage": "room",
+		"stage": "bedroom",
 		"validScore": true,
 		"sections": 0,
 		"needsVoices": true,

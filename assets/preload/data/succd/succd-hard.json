@@ -1,7 +1,7 @@
 {
 	"song": {
 		"sectionLengths": [],
-		"player1": "bf-pajamas",
+		"player1": "bf-pajamas-alt",
 		"player2": "p-gf-hungry-alt",
 		"notes": [
 			{
@@ -10481,7 +10481,7 @@
 		"needsVoices": true,
 		"sections": 0,
 		"validScore": true,
-		"stage": "room",
+		"stage": "bedroom",
 		"speed": 3.1,
 		"bpm": 160
 	}
