@@ -52,12 +52,20 @@ class MainMenuState extends MusicBeatState
 		'Check out the music player and a gallery of images from the development of this mod!'
 	];
 
-	var magenta:FlxSprite;
 	var camFollow:FlxObject;
 	var camFollowPos:FlxObject;
 	var debugKeys:Array<FlxKey>;
-	var logoBl:FlxSprite;
 	var scrollTxt:FlxText;
+
+	var bg:FlxSprite;
+	var bg2:FlxSprite;
+
+	var menuBox:FlxSprite;
+	var logoBl:FlxSprite;
+
+	var topSec:FlxSprite;
+	var bottomSec:FlxSprite;
+	var sideSec:FlxSprite;
 
 	var blackbar:FlxSprite;
 
@@ -84,14 +92,10 @@ class MainMenuState extends MusicBeatState
 
 		persistentUpdate = persistentDraw = true;
 
-		var yScroll:Float = Math.max(0.25 - (0.05 * (optionShit.length - 4)), 0.1);
-		var bg:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('ui/menu/menuBG'));
-		bg.scrollFactor.set(0, yScroll);
-		bg.setGraphicSize(Std.int(bg.width * 1.175));
-		bg.updateHitbox();
-		bg.screenCenter();
-		bg.color = 0x03FC73;
+		bg = new FlxSprite().loadGraphic(Paths.image('ui/menu/menuBG'));
 		bg.antialiasing = ClientPrefs.globalAntialiasing;
+		bg.scrollFactor.set(0, 0);
+		bg.color = 0xFF4AC290;
 		add(bg);
 
 		camFollow = new FlxObject(0, 0, 1, 1);
@@ -99,43 +103,29 @@ class MainMenuState extends MusicBeatState
 		add(camFollow);
 		add(camFollowPos);
 
-		magenta = new FlxSprite(-80).loadGraphic(Paths.image('ui/menu/menuBG'));
-		magenta.scrollFactor.set(0, yScroll);
-		magenta.setGraphicSize(Std.int(magenta.width * 1.175));
-		magenta.updateHitbox();
-		magenta.screenCenter();
-		magenta.visible = false;
-		magenta.antialiasing = ClientPrefs.globalAntialiasing;
-		magenta.color = 0xE84DEB;
-		add(magenta);
-		// magenta.scrollFactor.set();
+		bg2 = new FlxSprite().loadGraphic(Paths.image('ui/menu/menuBG'));
+		bg2.antialiasing = ClientPrefs.globalAntialiasing;
+		bg2.scrollFactor.set(0, 0);
+		bg2.color = 0xFFB550A2;
+		//add(bg2);
 
-		var t1:FlxSprite = new FlxSprite(0).loadGraphic(Paths.image('triangles1'));
-		t1.scrollFactor.x = 0;
-		t1.scrollFactor.y = 0;
-		t1.setGraphicSize(Std.int(t1.width * 1));
-		t1.updateHitbox();
-		t1.screenCenter();
-		t1.antialiasing = true;
-		add(t1);
+		sideSec = new FlxSprite(1203).loadGraphic(Paths.image('ui/menu/main/side'));
+		sideSec.scrollFactor.x = 0;
+		sideSec.scrollFactor.y = 0;
+		sideSec.setGraphicSize(Std.int(sideSec.width * 1));
+		sideSec.updateHitbox();
+		sideSec.screenCenter(Y);
+		sideSec.antialiasing = true;
+		add(sideSec);
 
-		var t2:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('triangles2'));
-		t2.scrollFactor.x = 0;
-		t2.scrollFactor.y = 0;
-		t2.setGraphicSize(Std.int(t2.width * 1));
-		t2.updateHitbox();
-		t2.screenCenter();
-		t2.antialiasing = true;
-		add(t2);
-
-		var mf1:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('ui/menu/main/top'));
-		mf1.scrollFactor.x = 0;
-		mf1.scrollFactor.y = 0;
-		mf1.setGraphicSize(Std.int(mf1.width * 1));
-		mf1.updateHitbox();
-		mf1.screenCenter(X);
-		mf1.antialiasing = true;
-		add(mf1);
+		topSec = new FlxSprite().loadGraphic(Paths.image('ui/menu/main/top'));
+		topSec.scrollFactor.x = 0;
+		topSec.scrollFactor.y = 0;
+		topSec.setGraphicSize(Std.int(topSec.width * 1));
+		topSec.updateHitbox();
+		topSec.screenCenter(X);
+		topSec.antialiasing = ClientPrefs.globalAntialiasing;
+		add(topSec);
 
 		logoBl = new FlxSprite(-180, -190);
 		logoBl.frames = Paths.getSparrowAtlas('logoBumpin');
@@ -144,26 +134,26 @@ class MainMenuState extends MusicBeatState
 		logoBl.animation.play('bump');
 		logoBl.updateHitbox();
 		logoBl.scrollFactor.set(0, 0);
-		logoBl.setGraphicSize(Std.int(logoBl.width * 0.68));
-		logoBl.setGraphicSize(Std.int(logoBl.height * 0.68));
+		logoBl.setGraphicSize(Std.int(logoBl.width * 0.77));
+		logoBl.setGraphicSize(Std.int(logoBl.height * 0.77));
 		add(logoBl);
 
-		var bt1:FlxSprite = new FlxSprite(80, 315).loadGraphic(Paths.image('ui/menu/main/box'));
-		bt1.scrollFactor.x = 0;
-		bt1.scrollFactor.y = 0;
-		bt1.setGraphicSize(Std.int(bt1.width * 1));
-		bt1.updateHitbox();
-		bt1.antialiasing = true;
-		add(bt1);
+		menuBox = new FlxSprite(80, 315).loadGraphic(Paths.image('ui/menu/main/box'));
+		menuBox.scrollFactor.x = 0;
+		menuBox.scrollFactor.y = 0;
+		menuBox.setGraphicSize(Std.int(menuBox.width * 1));
+		menuBox.updateHitbox();
+		menuBox.antialiasing = true;
+		add(menuBox);
 
-		var mf2:FlxSprite = new FlxSprite(-80, FlxG.height - 113).loadGraphic(Paths.image('ui/menu/main/bottom'));
-		mf2.scrollFactor.x = 0;
-		mf2.scrollFactor.y = 0;
-		mf2.setGraphicSize(Std.int(mf2.width * 1));
-		mf2.updateHitbox();
-		mf2.screenCenter(X);
-		mf2.antialiasing = true;
-		add(mf2);
+		bottomSec = new FlxSprite(-80, FlxG.height - 113).loadGraphic(Paths.image('ui/menu/main/bottom'));
+		bottomSec.scrollFactor.x = 0;
+		bottomSec.scrollFactor.y = 0;
+		bottomSec.setGraphicSize(Std.int(bottomSec.width * 1));
+		bottomSec.updateHitbox();
+		bottomSec.screenCenter(X);
+		bottomSec.antialiasing = true;
+		add(bottomSec);
 
 		scrollTxt = new FlxText(12, FlxG.height - 30, 0, "Testing Testing Ring Ring Fuck You ShayReyez", 12);
 		scrollTxt.scrollFactor.set();
@@ -176,8 +166,6 @@ class MainMenuState extends MusicBeatState
 		add(menuItems);
 		
 		var tex = Paths.getSparrowAtlas('ui/menu/main/FNF_main_menu_assets');
-		var texBg = Paths.getSparrowAtlas('b3_select_thingy');
-		var texMod = Paths.getSparrowAtlas('FNF_mod_menu_assets');
 
 		var scale:Float = 1;
 		/*if(optionShit.length > 6) {
@@ -334,7 +322,7 @@ class MainMenuState extends MusicBeatState
 					selectedSomethin = true;
 					FlxG.sound.play(Paths.sound('confirmMenu'));
 
-					if(ClientPrefs.flashing) FlxFlicker.flicker(magenta, 1.1, 0.15, false);
+					//if(ClientPrefs.flashing) FlxFlicker.flicker(bg2, 1.1, 0.15, false);
 
 					menuItems.forEach(function(spr:FlxSprite)
 					{
