@@ -39,7 +39,7 @@ class OptionsState extends MusicBeatState
 	private var descBox:FlxSprite;
 	private var descText:FlxText;
 
-	var backdrop:FlxBackdrop = new FlxBackdrop(Paths.image('ui/menu/menuCheckerboard'), 0.2, 0.2, true, true);
+	var backdrop:FlxBackdrop = new FlxBackdrop(Paths.image('menus/menuCheckerboard'), 0.2, 0.2, true, true);
 
 	function openSelectedSubstate(label:String) {
 		switch(label) {
@@ -64,7 +64,7 @@ class OptionsState extends MusicBeatState
 		DiscordClient.changePresence("Options Menu", null);
 		#end
 
-		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('ui/menu/menuBG'));
+		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menus/menuBG'));
 		bg.color = 0xFFea71fd;
 		bg.setGraphicSize(Std.int(bg.width * 1.1));
 		bg.updateHitbox();
@@ -112,7 +112,7 @@ class OptionsState extends MusicBeatState
 		add(topBox);
 
 		var menuItem:FlxSprite = new FlxSprite(0, 55);
-		menuItem.frames = Paths.getSparrowAtlas('ui/menu/main/FNF_main_menu_assets');	
+		menuItem.frames = Paths.getSparrowAtlas('menus/main/FNF_main_menu_assets');	
 		menuItem.animation.addByPrefix('idle', "options basic", 24);
 		menuItem.setGraphicSize(Std.int(menuItem.width * 1.5));
 		menuItem.screenCenter(X);

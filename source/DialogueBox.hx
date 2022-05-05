@@ -7,6 +7,7 @@ import flixel.tweens.FlxTween;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.addons.text.FlxTypeText;
+import flixel.addons.display.FlxBackdrop;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.group.FlxSpriteGroup;
 import flixel.input.FlxKeyManager;
@@ -99,6 +100,7 @@ class DialogueBox extends FlxSpriteGroup
 	
 	var timeBeforeSkip:FlxTimer;
 	
+	var backdrop:FlxBackdrop = new FlxBackdrop(Paths.image('menus/menuCheckerboard'), 0.2, 0.2, true, true);
 	
 	var cusswords:Array<Array<String>> = [
 	["fuck","f***"],
@@ -151,10 +153,13 @@ class DialogueBox extends FlxSpriteGroup
 		cutsceneImage.visible = false;
 		add(cutsceneImage);	
 		
-		
-		var bgg:FlxSprite = new FlxSprite( -175.8, -124.2).loadGraphic("assets/images/dialoguecheckerboard.png");
-		FlxTween.tween(bgg, {x:0, y:0}, 2, {type:LOOPING});
-		add(bgg);
+		add(backdrop);
+		backdrop.alpha = 0.5;
+		backdrop.scale.x = 5;
+		backdrop.scale.y = 5;
+		backdrop.color = 0xFF00FFF2;
+		backdrop.scrollFactor.set(0, 0.07);
+		backdrop.updateHitbox();
 
 		//if (PlayState.SONG.song.toLowerCase() == 'tutorial')
 		//bgFade.visible = false;
@@ -170,13 +175,13 @@ class DialogueBox extends FlxSpriteGroup
 			default:
 				hasDialog = true;
 				//box.frames = FlxAtlasFrames.fromSparrow('assets/images/speech_bubble_talking.png','assets/images/speech_bubble_talking.xml');
-				box.loadGraphic("assets/images/dialogueui.png", true,1280,720);
+				box.loadGraphic("assets/images/menus/dialogue/box.png", true,1280,720);
 				box.animation.add('normalOpen',[0], 24, false);
 				box.animation.add('normal', [0], 24);
 				box.y = 0;
 				box.x = 0;
 				arrow = new FlxSprite(1198.85, 606.45);
-				arrow.frames = FlxAtlasFrames.fromSparrow('assets/images/diawait.png', 'assets/images/diawait.xml');
+				arrow.frames = FlxAtlasFrames.fromSparrow('assets/images/menus/dialogue/loading.png', 'assets/images/menus/dialogue/loading.xml');
 				arrow.animation.addByIndices("wait", "wait", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19], "");
 				arrow.animation.addByIndices("go", "wait", [20, 21, 22, 23], "", 24,false);
 				//trace("loaded "+)
@@ -360,6 +365,10 @@ class DialogueBox extends FlxSpriteGroup
 
 	override function update(elapsed:Float)
 	{
+		//i feel like this could be done better but i trust peak
+		backdrop.x -= 70 * elapsed;
+		backdrop.y -= 70 * elapsed;
+
 		// HARD CODING CUZ IM STUPDI
 		if (PlayState.SONG.song.toLowerCase() == 'roses')
 			portraitLeft.visible = false;

@@ -129,6 +129,7 @@ class PlayState extends MusicBeatState
 	public static var isPixelStage:Bool = false;
 	public static var SONG:SwagSong = null;
 	public static var isStoryMode:Bool = false;
+	public static var isGuhWeek:Bool = false;
 	public static var storyWeek:Int = 0;
 	public static var storyPlaylist:Array<String> = [];
 	public static var storyDifficulty:Int = 1;
@@ -409,7 +410,11 @@ class PlayState extends MusicBeatState
 		// String that contains the mode defined here so it isn't necessary to call changePresence for each mode
 		if (isStoryMode)
 		{
-			detailsText = "Story Mode: " + WeekData.getCurrentWeek().weekName;
+			if (isGuhWeek) {
+				detailsText = "Story Mode: Week [REDACTED]";
+			} else {
+				detailsText = "Story Mode: " + WeekData.getCurrentWeek().weekName;
+			}
 		}
 		else
 		{

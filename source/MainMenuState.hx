@@ -92,7 +92,7 @@ class MainMenuState extends MusicBeatState
 
 		persistentUpdate = persistentDraw = true;
 
-		bg = new FlxSprite().loadGraphic(Paths.image('ui/menu/menuBG'));
+		bg = new FlxSprite().loadGraphic(Paths.image('menus/menuBG'));
 		bg.antialiasing = ClientPrefs.globalAntialiasing;
 		bg.scrollFactor.set(0, 0);
 		bg.color = 0xFF4AC290;
@@ -103,13 +103,13 @@ class MainMenuState extends MusicBeatState
 		add(camFollow);
 		add(camFollowPos);
 
-		bg2 = new FlxSprite().loadGraphic(Paths.image('ui/menu/menuBG'));
+		bg2 = new FlxSprite().loadGraphic(Paths.image('menus/menuBG'));
 		bg2.antialiasing = ClientPrefs.globalAntialiasing;
 		bg2.scrollFactor.set(0, 0);
 		bg2.color = 0xFFB550A2;
 		//add(bg2);
 
-		sideSec = new FlxSprite(1203).loadGraphic(Paths.image('ui/menu/main/side'));
+		sideSec = new FlxSprite(1203).loadGraphic(Paths.image('menus/main/side'));
 		sideSec.scrollFactor.x = 0;
 		sideSec.scrollFactor.y = 0;
 		sideSec.setGraphicSize(Std.int(sideSec.width * 1));
@@ -118,7 +118,7 @@ class MainMenuState extends MusicBeatState
 		sideSec.antialiasing = true;
 		add(sideSec);
 
-		topSec = new FlxSprite().loadGraphic(Paths.image('ui/menu/main/top'));
+		topSec = new FlxSprite().loadGraphic(Paths.image('menus/main/top'));
 		topSec.scrollFactor.x = 0;
 		topSec.scrollFactor.y = 0;
 		topSec.setGraphicSize(Std.int(topSec.width * 1));
@@ -138,7 +138,7 @@ class MainMenuState extends MusicBeatState
 		logoBl.setGraphicSize(Std.int(logoBl.height * 0.77));
 		add(logoBl);
 
-		menuBox = new FlxSprite(80, 315).loadGraphic(Paths.image('ui/menu/main/box'));
+		menuBox = new FlxSprite(80, 315).loadGraphic(Paths.image('menus/main/box'));
 		menuBox.scrollFactor.x = 0;
 		menuBox.scrollFactor.y = 0;
 		menuBox.setGraphicSize(Std.int(menuBox.width * 1));
@@ -146,7 +146,7 @@ class MainMenuState extends MusicBeatState
 		menuBox.antialiasing = true;
 		add(menuBox);
 
-		bottomSec = new FlxSprite(-80, FlxG.height - 113).loadGraphic(Paths.image('ui/menu/main/bottom'));
+		bottomSec = new FlxSprite(-80, FlxG.height - 113).loadGraphic(Paths.image('menus/main/bottom'));
 		bottomSec.scrollFactor.x = 0;
 		bottomSec.scrollFactor.y = 0;
 		bottomSec.setGraphicSize(Std.int(bottomSec.width * 1));
@@ -165,7 +165,7 @@ class MainMenuState extends MusicBeatState
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
 		
-		var tex = Paths.getSparrowAtlas('ui/menu/main/FNF_main_menu_assets');
+		var tex = Paths.getSparrowAtlas('menus/main/FNF_main_menu_assets');
 
 		var scale:Float = 1;
 		/*if(optionShit.length > 6) {
@@ -291,13 +291,14 @@ class MainMenuState extends MusicBeatState
 
 						PlayState.storyPlaylist = songArray;
 						PlayState.isStoryMode = true;
+						PlayState.isGuhWeek = true;
 
 						var diffic = CoolUtil.getDifficultyFilePath(2);
-						if(diffic == null) diffic = '';
+						if(diffic == null) diffic = '-hard';
 
 						PlayState.storyDifficulty = 2;
 
-						PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase() + diffic, PlayState.storyPlaylist[0].toLowerCase());
+						PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase() + '-hard', PlayState.storyPlaylist[0].toLowerCase());
 						PlayState.campaignScore = 0;
 						PlayState.campaignMisses = 0;
 						new FlxTimer().start(1, function(tmr:FlxTimer)

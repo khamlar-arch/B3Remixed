@@ -582,7 +582,7 @@ class WeekEditorFreeplayState extends MusicBeatState
 	var curSelected = 0;
 
 	override function create() {
-		bg = new FlxSprite().loadGraphic(Paths.image('ui/menu/menuBG'));
+		bg = new FlxSprite().loadGraphic(Paths.image('menus/menuBG'));
 		bg.antialiasing = ClientPrefs.globalAntialiasing;
 
 		bg.color = FlxColor.WHITE;

@@ -40,7 +40,7 @@ class CreditsState extends MusicBeatState
 		DiscordClient.changePresence("In the Menus", null);
 		#end
 
-		bg = new FlxSprite().loadGraphic(Paths.image('ui/menu/menuBG'));
+		bg = new FlxSprite().loadGraphic(Paths.image('menus/menuBG'));
 		add(bg);
 
 		grpOptions = new FlxTypedGroup<Alphabet>();
@@ -125,7 +125,7 @@ class CreditsState extends MusicBeatState
 					Paths.currentModDirectory = creditsStuff[i][5];
 				}
 
-				var icon:AttachedSprite = new AttachedSprite('credits/' + creditsStuff[i][1]);
+				var icon:AttachedSprite = new AttachedSprite('icons/credit/' + creditsStuff[i][1]);
 				icon.xAdd = optionText.width + 10;
 				icon.sprTracker = optionText;
 	

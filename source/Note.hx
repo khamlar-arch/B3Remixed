@@ -83,7 +83,6 @@ class Note extends FlxSprite
 				case 'Hurt Note':
 					ignoreNote = mustPress;
 					reloadNote('noteskins/B3Notes');
-					noteSplashTexture = 'HURTnoteSplashes';
 					if(isSustainNote) {
 						missHealth = 0.1;
 					} else {
@@ -97,7 +96,6 @@ class Note extends FlxSprite
 				case 'Burger Note':
 					ignoreNote = mustPress;
 					reloadNote('noteskins/burgerNotes');
-					noteSplashTexture = 'HURTnoteSplashes';
 					colorSwap.saturation = 0;
 					colorSwap.brightness = 0;
 					if(isSustainNote) {
