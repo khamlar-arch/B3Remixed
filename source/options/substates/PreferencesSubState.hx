@@ -91,38 +91,46 @@ class PreferencesSubState extends BaseOptionsMenu
 
 	function onResetSave()
 	{
-		FlxG.save.data.downScroll = null;
-		FlxG.save.data.middleScroll = null;
-		FlxG.save.data.hideChars = null;
-		FlxG.save.data.judgementCounter = null;
-		FlxG.save.data.showFPS = null;
-		FlxG.save.data.flashing = null;
-		FlxG.save.data.hitsoundVolume = null;
-		FlxG.save.data.noteCamera = null;
-		FlxG.save.data.specialNoteskin = null;
-		FlxG.save.data.globalAntialiasing = null;
-		FlxG.save.data.laneUnderlay = null;
-		FlxG.save.data.noteSplashes = null;
-		FlxG.save.data.lowQuality = null;
-		FlxG.save.data.framerate = null;
-		FlxG.save.data.camZooms = null;
-		FlxG.save.data.hideHud = null;
-		FlxG.save.data.noteOffset = null;
-		FlxG.save.data.arrowHSV = null;
-		FlxG.save.data.ghostTapping = null;
-		FlxG.save.data.timeBarType = null;
-		FlxG.save.data.scoreZoom = null;
-		FlxG.save.data.noReset = null;
-		FlxG.save.data.healthBarAlpha = null;
-		FlxG.save.data.comboOffset = null;
-		FlxG.save.data.ratingOffset = null;
-		FlxG.save.data.sickWindow = null;
-		FlxG.save.data.goodWindow = null;
-		FlxG.save.data.badWindow = null;
-		FlxG.save.data.safeFrames = null;
-		FlxG.save.data.controllerMode = null;
-		FlxG.save.data.gameplaySettings = null;
-		FlxG.save.data.guhUnlocked = null;
+		ClientPrefs.downScroll = false;
+		ClientPrefs.middleScroll = false;
+		ClientPrefs.hideChars = false;
+		ClientPrefs.judgementCounter = false;
+		ClientPrefs.showFPS = true;
+		ClientPrefs.hitsoundVolume = 0;
+		ClientPrefs.noteCamera = true;
+		ClientPrefs.specialNoteskin = true;
+		ClientPrefs.globalAntialiasing = true;
+		ClientPrefs.laneUnderlay = 0;
+		ClientPrefs.noteSplashes = true;
+		ClientPrefs.lowQuality = false;
+		ClientPrefs.camZooms = true;
+		ClientPrefs.hideHud = false;
+		ClientPrefs.noteOffset = 0;
+		ClientPrefs.arrowHSV = [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]];
+		ClientPrefs.ghostTapping = true;
+		ClientPrefs.timeBarType = 'Time Left';
+		ClientPrefs.scoreZoom = true;
+		ClientPrefs.noReset = false;
+		ClientPrefs.healthBarAlpha = 1;
+		ClientPrefs.comboOffset = [0, 0, 0, 0];
+		ClientPrefs.ratingOffset = 0;
+		ClientPrefs.sickWindow = 45;
+		ClientPrefs.goodWindow = 90;
+		ClientPrefs.badWindow = 135;
+		ClientPrefs.safeFrames = 10;
+		ClientPrefs.controllerMode = false;
+		ClientPrefs.gameplaySettings = [
+			'scrollspeed' => 1.0,
+			'scrolltype' => 'multiplicative',
+			'songspeed' => 1.0,
+			'healthgain' => 1.0,
+			'healthloss' => 1.0,
+			'instakill' => false,
+			'practice' => false,
+			'botplay' => false,
+			'opponentplay' => false
+		];
+		ClientPrefs.guhUnlocked = false;
 		FlxG.save.flush();
 	}
 

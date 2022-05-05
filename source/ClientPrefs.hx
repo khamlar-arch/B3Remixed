@@ -19,6 +19,7 @@ class ClientPrefs {
 	public static var violence:Bool = true;
 	public static var camZooms:Bool = true;
 	public static var hideChars:Bool = false;
+	public static var guhUnlocked:Bool = false;
 	public static var noteCamera:Bool = true;
 	public static var judgementCounter:Bool = false;
 	public static var laneUnderlay:Float = 0;
@@ -118,6 +119,7 @@ class ClientPrefs {
 		FlxG.save.data.judgementCounter = judgementCounter;
 		FlxG.save.data.imagesPersist = imagesPersist;
 		FlxG.save.data.hitsoundVolume = hitsoundVolume;
+		FlxG.save.data.guhUnlocked = guhUnlocked;
 		FlxG.save.data.ghostTapping = ghostTapping;
 		FlxG.save.data.timeBarType = timeBarType;
 		FlxG.save.data.scoreZoom = scoreZoom;
@@ -165,6 +167,9 @@ class ClientPrefs {
 		}
 		if(FlxG.save.data.flashing != null) {
 			flashing = FlxG.save.data.flashing;
+		}
+		if(FlxG.save.data.guhUnlocked != null) {
+			guhUnlocked = FlxG.save.data.guhUnlocked;
 		}
 		if(FlxG.save.data.hitsoundVolume != null) {
 			hitsoundVolume = FlxG.save.data.hitsoundVolume;

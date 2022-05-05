@@ -70,7 +70,10 @@ class LoadingState extends MusicBeatState
 					checkLibrary(directory);
 					trace('we there yet ' + directory);
 				}
-	
+
+				if (Paths.formatToSongPath(PlayState.SONG.song) == 'triple-b-trouble') {
+					Paths.returnGraphic('monster_zombie');
+				}
 
 				var fadeTime = 0.5;
 				FlxG.camera.fade(FlxG.camera.bgColor, fadeTime, true);
