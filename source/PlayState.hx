@@ -2729,12 +2729,13 @@ class PlayState extends MusicBeatState
 		super.update(elapsed);
 		if (isWindowMoving)
 			{
-				var thisX:Float = Math.sin(Xamount * (Xamount)) * 25;
+				var thisX:Float = Math.sin(Xamount * (Xamount)) * 100;
 				var thisY:Float = Math.sin(Yamount * (Yamount)) * 100;
 				var yVal = Std.int(windowY + thisY);
 				var xVal = Std.int(windowX + thisX);
 				Lib.application.window.move(xVal, yVal);
-				Xamount = Xamount + 0.0003;
+				Yamount = Yamount + 0.0015;
+				Xamount = Xamount + 0.00075;
 			}
 
 		if(ratingName == '?') {
