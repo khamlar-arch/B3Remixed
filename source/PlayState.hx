@@ -58,11 +58,9 @@ import openfl.events.KeyboardEvent;
 import Achievements;
 import StageData;
 import FunkinLua;
+import DynamicShaderHandler;
 import DialogueBoxPsych;
 import Shaders;
-#if MODS_ALLOWED
-import sys.io.File;
-#end
 #if sys
 import sys.FileSystem;
 #end
@@ -86,7 +84,7 @@ class PlayState extends MusicBeatState
 		['Sick!', 1], //From 90% to 99%
 		['Perfect!!', 1] //The value on this one isn't used actually, since Perfect is always "1"
 	];
-	
+	public static var animatedShaders:Map<String, DynamicShaderHandler> = new Map<String, DynamicShaderHandler>();
 	public var modchartTweens:Map<String, FlxTween> = new Map<String, FlxTween>();
 	public var modchartSprites:Map<String, ModchartSprite> = new Map<String, ModchartSprite>();
 	public var modchartTimers:Map<String, FlxTimer> = new Map<String, FlxTimer>();
@@ -122,6 +120,7 @@ class PlayState extends MusicBeatState
 	public var boyfriendGroup:FlxSpriteGroup;
 	public var dadGroup:FlxSpriteGroup;
 	public var gfGroup:FlxSpriteGroup;
+	public var shaderUpdates:Array<Float->Void> = [];
 
 	public var curFocus:String = "";
 
@@ -326,6 +325,7 @@ class PlayState extends MusicBeatState
 	public var luaArray:Array<FunkinLua> = [];
 	private var luaDebugGroup:FlxTypedGroup<DebugLuaText>;
 	public var introSoundsSuffix:String = '';
+	public var luaShaders:Map<String, DynamicShaderHandler> = new Map<String, DynamicShaderHandler>();
 
 	// Debug buttons
 	private var debugKeysChart:Array<FlxKey>;
@@ -366,6 +366,7 @@ class PlayState extends MusicBeatState
 		instakillOnMiss = ClientPrefs.getGameplaySetting('instakill', false);
 		practiceMode = ClientPrefs.getGameplaySetting('practice', false);
 		cpuControlled = ClientPrefs.getGameplaySetting('botplay', false);
+		shader_chromatic_abberation = new ChromaticAberrationEffect();
 
 		
 		
@@ -615,6 +616,11 @@ class PlayState extends MusicBeatState
 				add(dessert);
 
 			case 'dream':
+				GameOverSubstate.deathSoundName = 'fnf_loss_sfx-hell';
+                GameOverSubstate.loopSoundName = 'gameOver-hell';
+                GameOverSubstate.endSoundName = 'gameOverEnd-hell';
+                GameOverSubstate.characterName = 'trapped';
+
 				var hellBG:BGSprite = new BGSprite('dead/dream', -750, -370, 0.9, 0.9);
 				hellBG.setGraphicSize(Std.int(hellBG.width * 1.5));
 				hellBG.setGraphicSize(Std.int(hellBG.height * 1.5));
@@ -624,6 +630,11 @@ class PlayState extends MusicBeatState
 
 		
 			case 'podcast':
+				GameOverSubstate.deathSoundName = 'fnf_loss_sfx-shaya';
+                GameOverSubstate.loopSoundName = 'gameOver-shaya';
+                GameOverSubstate.endSoundName = 'gameOverEnd-shaya';
+                GameOverSubstate.characterName = 'shayover';
+
 				var back:BGSprite = new BGSprite('harmony/Back', -350, -100, 0.9, 0.9);
 				back.setGraphicSize(Std.int(back.width * 1));
 				back.setGraphicSize(Std.int(back.height * 1));
@@ -1373,6 +1384,25 @@ class PlayState extends MusicBeatState
 		}
 		#end
 		
+		// RALT MODCHARTT
+		#if debug
+		var path:String = '../../../../assets/preload/modcharts/' + songName;
+		#else
+		var debugPath:String = '../../../../assets/preload/modcharts/' + songName;
+		var path:String = Paths.getPreloadPath('modcharts/' + songName);
+		if (FileSystem.exists('../../windows') && FileSystem.exists(debugPath)) {
+			trace("ayo nice source code");
+			path = debugPath;
+		}
+		#end
+		if (FileSystem.exists(path)) {
+			trace("found lua " + path);
+			luaArray.push(new FunkinLua(Paths.getPreloadPath("modcharts/InitRaltModchart.lua")));
+		}
+		else {
+			trace("didn't find lua " + path + "\n" + FileSystem.absolutePath(path));
+		}
+		
 		var daSong:String = Paths.formatToSongPath(curSong);
 		if (isStoryMode && !seenCutscene)
 		{
@@ -1559,6 +1589,111 @@ class PlayState extends MusicBeatState
 		}
 	}
 
+	public function addShaderToCamera(cam:String,effect:Dynamic){
+
+
+
+		switch(cam.toLowerCase()) {
+			case 'camhud' | 'hud':
+					camHUDShaders.push(effect);
+					var newCamEffects:Array<BitmapFilter>=[]; 
+					for(i in camHUDShaders){
+					  newCamEffects.push(new ShaderFilter(i.shader));
+					}
+					camHUD.setFilters(newCamEffects);
+			case 'camother' | 'other':
+					camOtherShaders.push(effect);
+					var newCamEffects:Array<BitmapFilter>=[]; 
+					for(i in camOtherShaders){
+					  newCamEffects.push(new ShaderFilter(i.shader));
+					}
+					camOther.setFilters(newCamEffects);
+			case 'camgame' | 'game':
+						camGameShaders.push(effect);
+					var newCamEffects:Array<BitmapFilter>=[]; 
+					for(i in camGameShaders){
+					  newCamEffects.push(new ShaderFilter(i.shader));
+					}
+					camGame.setFilters(newCamEffects);
+
+			default:
+				if(modchartSprites.exists(cam)) {
+					Reflect.setProperty(modchartSprites.get(cam),"shader",effect.shader);
+				} else if(modchartTexts.exists(cam)) {
+					Reflect.setProperty(modchartTexts.get(cam),"shader",effect.shader);
+				} else {
+					var OBJ = Reflect.getProperty(PlayState.instance,cam);
+					Reflect.setProperty(OBJ,"shader", effect.shader);
+				}
+
+
+
+
+		}
+
+
+
+
+  }
+
+  public function removeShaderFromCamera(cam:String,effect:ShaderEffect){
+
+
+		switch(cam.toLowerCase()) {
+			case 'camhud' | 'hud': 
+    camHUDShaders.remove(effect);
+    var newCamEffects:Array<BitmapFilter>=[];
+    for(i in camHUDShaders){
+      newCamEffects.push(new ShaderFilter(i.shader));
+    }
+    camHUD.setFilters(newCamEffects);
+			case 'camother' | 'other': 
+					camOtherShaders.remove(effect);
+					var newCamEffects:Array<BitmapFilter>=[];
+					for(i in camOtherShaders){
+					  newCamEffects.push(new ShaderFilter(i.shader));
+					}
+					camOther.setFilters(newCamEffects);
+			default: 
+				if(modchartSprites.exists(cam)) {
+					Reflect.setProperty(modchartSprites.get(cam),"shader",null);
+				} else if(modchartTexts.exists(cam)) {
+					Reflect.setProperty(modchartTexts.get(cam),"shader",null);
+				} else {
+					var OBJ = Reflect.getProperty(PlayState.instance,cam);
+					Reflect.setProperty(OBJ,"shader", null);
+				}
+		}
+
+
+  }
+
+
+  public function clearShaderFromCamera(cam:String){
+
+
+	switch(cam.toLowerCase()) {
+		case 'camhud' | 'hud': 
+			camHUDShaders = [];
+			var newCamEffects:Array<BitmapFilter>=[];
+			camHUD.setFilters(newCamEffects);
+		case 'camother' | 'other': 
+			camOtherShaders = [];
+			var newCamEffects:Array<BitmapFilter>=[];
+			camOther.setFilters(newCamEffects);
+		case 'camgame' | 'game': 
+				camGameShaders = [];
+				var newCamEffects:Array<BitmapFilter>=[];
+				camGame.setFilters(newCamEffects);
+		default: 
+			camGameShaders = [];
+			var newCamEffects:Array<BitmapFilter>=[];
+			camGame.setFilters(newCamEffects);
+	}
+
+
+}
+
 	function startCharacterLua(name:String)
 	{
 		#if LUA_ALLOWED
@@ -1586,92 +1721,7 @@ class PlayState extends MusicBeatState
 	}
 
 	
-	
-  public function addShaderToCamera(cam:String,effect:ShaderEffect){//STOLE FROM ANDROMEDA
 	  
-	  
-	  
-		switch(cam.toLowerCase()) {
-			case 'camhud' | 'hud':
-					camHUDShaders.push(effect);
-					var newCamEffects:Array<BitmapFilter>=[]; // IT SHUTS HAXE UP IDK WHY BUT WHATEVER IDK WHY I CANT JUST ARRAY<SHADERFILTER>
-					for(i in camHUDShaders){
-					  newCamEffects.push(new ShaderFilter(i.shader));
-					}
-					camHUD.setFilters(newCamEffects);
-			case 'camother' | 'other':
-					camOtherShaders.push(effect);
-					var newCamEffects:Array<BitmapFilter>=[]; // IT SHUTS HAXE UP IDK WHY BUT WHATEVER IDK WHY I CANT JUST ARRAY<SHADERFILTER>
-					for(i in camOtherShaders){
-					  newCamEffects.push(new ShaderFilter(i.shader));
-					}
-					camOther.setFilters(newCamEffects);
-			default:
-					camGameShaders.push(effect);
-					var newCamEffects:Array<BitmapFilter>=[]; // IT SHUTS HAXE UP IDK WHY BUT WHATEVER IDK WHY I CANT JUST ARRAY<SHADERFILTER>
-					for(i in camGameShaders){
-					  newCamEffects.push(new ShaderFilter(i.shader));
-					}
-					camGame.setFilters(newCamEffects);
-		}
-	  
-	  
-	  
-	  
-  }
-
-  public function removeShaderFromCamera(cam:String,effect:ShaderEffect){
-	  
-	  
-		switch(cam.toLowerCase()) {
-			case 'camhud' | 'hud': 
-    camHUDShaders.remove(effect);
-    var newCamEffects:Array<BitmapFilter>=[];
-    for(i in camHUDShaders){
-      newCamEffects.push(new ShaderFilter(i.shader));
-    }
-    camHUD.setFilters(newCamEffects);
-			case 'camother' | 'other': 
-					camOtherShaders.remove(effect);
-					var newCamEffects:Array<BitmapFilter>=[];
-					for(i in camOtherShaders){
-					  newCamEffects.push(new ShaderFilter(i.shader));
-					}
-					camOther.setFilters(newCamEffects);
-			default: 
-				camGameShaders.remove(effect);
-				var newCamEffects:Array<BitmapFilter>=[];
-				for(i in camGameShaders){
-				  newCamEffects.push(new ShaderFilter(i.shader));
-				}
-				camGame.setFilters(newCamEffects);
-		}
-		
-	  
-  }
-	
-	
-	
-  public function clearShaderFromCamera(cam:String){
-	  
-	  
-		switch(cam.toLowerCase()) {
-			case 'camhud' | 'hud': 
-				camHUDShaders = [];
-				var newCamEffects:Array<BitmapFilter>=[];
-				camHUD.setFilters(newCamEffects);
-			case 'camother' | 'other': 
-				camOtherShaders = [];
-				var newCamEffects:Array<BitmapFilter>=[];
-				camOther.setFilters(newCamEffects);
-			default: 
-				camGameShaders = [];
-				var newCamEffects:Array<BitmapFilter>=[];
-				camGame.setFilters(newCamEffects);
-		}
-		
-	  
-  }
 	
 	
 	
@@ -2624,7 +2674,8 @@ class PlayState extends MusicBeatState
 	var startedCountdown:Bool = false;
 	var canPause:Bool = true;
 	var limoSpeed:Float = 0;
-
+	public var updateNotes:Bool = true;
+	
 	override public function update(elapsed:Float)
 	{
 		/*if (FlxG.keys.justPressed.NINE)
@@ -2961,118 +3012,120 @@ class PlayState extends MusicBeatState
 			var fakeCrochet:Float = (60 / SONG.bpm) * 1000;
 			notes.forEachAlive(function(daNote:Note)
 			{
-				/*if (daNote.y > FlxG.height)
-				{
-					daNote.active = false;
-					daNote.visible = false;
-				}
-				else
-				{
-					daNote.visible = true;
-					daNote.active = true;
-				}*/
+				if (updateNotes) {
+					/*if (daNote.y > FlxG.height)
+					{
+						daNote.active = false;
+						daNote.visible = false;
+					}
+					else
+					{
+						daNote.visible = true;
+						daNote.active = true;
+					}*/
 
-				// i am so fucking sorry for this if condition
-				var strumX:Float = 0;
-				var strumY:Float = 0;
-				var strumAngle:Float = 0;
-				var strumAlpha:Float = 0;
-				var strumDirection:Float = 0;
-				var strumScroll:Bool = false;
-				if(daNote.mustPress) {
-					strumX = playerStrums.members[daNote.noteData].x;
-					strumY = playerStrums.members[daNote.noteData].y;
-					strumAngle = playerStrums.members[daNote.noteData].angle;
-					strumDirection = playerStrums.members[daNote.noteData].direction;
-					strumAlpha = playerStrums.members[daNote.noteData].alpha;
-					strumScroll = playerStrums.members[daNote.noteData].downScroll;
-				} else {
-					strumX = opponentStrums.members[daNote.noteData].x;
-					strumY = opponentStrums.members[daNote.noteData].y;
-					strumAngle = opponentStrums.members[daNote.noteData].angle;
-					strumDirection = opponentStrums.members[daNote.noteData].direction;
-					strumAlpha = opponentStrums.members[daNote.noteData].alpha;
-					strumScroll = opponentStrums.members[daNote.noteData].downScroll;
-				}
+					// i am so fucking sorry for this if condition
+					var strumX:Float = 0;
+					var strumY:Float = 0;
+					var strumAngle:Float = 0;
+					var strumAlpha:Float = 0;
+					var strumDirection:Float = 0;
+					var strumScroll:Bool = false;
+					if(daNote.mustPress) {
+						strumX = playerStrums.members[daNote.noteData].x;
+						strumY = playerStrums.members[daNote.noteData].y;
+						strumAngle = playerStrums.members[daNote.noteData].angle;
+						strumDirection = playerStrums.members[daNote.noteData].direction;
+						strumAlpha = playerStrums.members[daNote.noteData].alpha;
+						strumScroll = playerStrums.members[daNote.noteData].downScroll;
+					} else {
+						strumX = opponentStrums.members[daNote.noteData].x;
+						strumY = opponentStrums.members[daNote.noteData].y;
+						strumAngle = opponentStrums.members[daNote.noteData].angle;
+						strumDirection = opponentStrums.members[daNote.noteData].direction;
+						strumAlpha = opponentStrums.members[daNote.noteData].alpha;
+						strumScroll = opponentStrums.members[daNote.noteData].downScroll;
+					}
 
-				strumX += daNote.offsetX;
-				strumY += daNote.offsetY;
-				strumAngle += daNote.offsetAngle;
-				strumAlpha *= daNote.multAlpha;
-				var center:Float = strumY + Note.swagWidth / 2;
+					strumX += daNote.offsetX;
+					strumY += daNote.offsetY;
+					strumAngle += daNote.offsetAngle;
+					strumAlpha *= daNote.multAlpha;
+					var center:Float = strumY + Note.swagWidth / 2;
 
-				//if(daNote.copyX) {
-				//	daNote.x = strumX;
-				//}
-				if(daNote.copyAngle) {
-					daNote.angle = strumAngle;
-				}
-				if(daNote.copyAlpha) {
-					daNote.alpha = strumAlpha;
-				}
-				if(daNote.copyY) {
-					if (strumScroll) {
-						//daNote.y = (strumY + 0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);
-						daNote.distance = (0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);
+					//if(daNote.copyX) {
+					//	daNote.x = strumX;
+					//}
+					if(daNote.copyAngle) {
+						daNote.angle = strumAngle;
+					}
+					if(daNote.copyAlpha) {
+						daNote.alpha = strumAlpha;
+					}
+					if(daNote.copyY) {
+						if (strumScroll) {
+							//daNote.y = (strumY + 0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);
+							daNote.distance = (0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);
 
-						var angleDir = strumDirection * Math.PI / 180;
-						daNote.x = strumX + Math.cos(angleDir) * daNote.distance;
-						daNote.y = strumY + Math.sin(angleDir) * daNote.distance;
-						if (daNote.isSustainNote){
-							daNote.angle = strumDirection-90;
-						}
-						if (daNote.isSustainNote && !ClientPrefs.keSustains) {
-							//Jesus fuck this took me so much mother fucking time AAAAAAAAAA
-							if (daNote.animation.curAnim.name.endsWith('end')) {
-								daNote.y += 10.5 * (fakeCrochet / 400) * 1.5 * roundedSpeed + (46 * (roundedSpeed - 1));
-								daNote.y -= 46 * (1 - (fakeCrochet / 600)) * roundedSpeed;
-								if(PlayState.isPixelStage) {
-									daNote.y += 8;
-								} else {
-									daNote.y -= 19;
-								}
-							} 
-							daNote.y += (Note.swagWidth / 2) - (60.5 * (roundedSpeed - 1));
-							daNote.y += 27.5 * ((SONG.bpm / 100) - 1) * (roundedSpeed - 1);
+							var angleDir = strumDirection * Math.PI / 180;
+							daNote.x = strumX + Math.cos(angleDir) * daNote.distance;
+							daNote.y = strumY + Math.sin(angleDir) * daNote.distance;
+							if (daNote.isSustainNote){
+								daNote.angle = strumDirection-90;
+							}
+							if (daNote.isSustainNote && !ClientPrefs.keSustains) {
+								//Jesus fuck this took me so much mother fucking time AAAAAAAAAA
+								if (daNote.animation.curAnim.name.endsWith('end')) {
+									daNote.y += 10.5 * (fakeCrochet / 400) * 1.5 * roundedSpeed + (46 * (roundedSpeed - 1));
+									daNote.y -= 46 * (1 - (fakeCrochet / 600)) * roundedSpeed;
+									if(PlayState.isPixelStage) {
+										daNote.y += 8;
+									} else {
+										daNote.y -= 19;
+									}
+								} 
+								daNote.y += (Note.swagWidth / 2) - (60.5 * (roundedSpeed - 1));
+								daNote.y += 27.5 * ((SONG.bpm / 100) - 1) * (roundedSpeed - 1);
 
-							if(daNote.mustPress || !daNote.ignoreNote)
-							{
-								if(daNote.y - daNote.offset.y * daNote.scale.y + daNote.height >= center
-									&& (!daNote.mustPress || (daNote.wasGoodHit || (daNote.prevNote.wasGoodHit && !daNote.canBeHit))))
+								if(daNote.mustPress || !daNote.ignoreNote)
 								{
-									var swagRect = new FlxRect(0, 0, daNote.frameWidth, daNote.frameHeight);
-									swagRect.height = (center - daNote.y) / daNote.scale.y;
-									swagRect.y = daNote.frameHeight - swagRect.height;
+									if(daNote.y - daNote.offset.y * daNote.scale.y + daNote.height >= center
+										&& (!daNote.mustPress || (daNote.wasGoodHit || (daNote.prevNote.wasGoodHit && !daNote.canBeHit))))
+									{
+										var swagRect = new FlxRect(0, 0, daNote.frameWidth, daNote.frameHeight);
+										swagRect.height = (center - daNote.y) / daNote.scale.y;
+										swagRect.y = daNote.frameHeight - swagRect.height;
 
-									daNote.clipRect = swagRect;
+										daNote.clipRect = swagRect;
+									}
 								}
 							}
-						}
-					} else {
-						//daNote.y = (strumY - 0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);
+						} else {
+							//daNote.y = (strumY - 0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);
 
-						daNote.distance = (-0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);
+							daNote.distance = (-0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);
 
-						var angleDir = strumDirection * Math.PI / 180;
-						daNote.x = strumX + Math.cos(angleDir) * daNote.distance;
-						daNote.y = strumY + Math.sin(angleDir) * daNote.distance;
-						if (daNote.isSustainNote){
-							daNote.angle = strumDirection-90;
-						}
+							var angleDir = strumDirection * Math.PI / 180;
+							daNote.x = strumX + Math.cos(angleDir) * daNote.distance;
+							daNote.y = strumY + Math.sin(angleDir) * daNote.distance;
+							if (daNote.isSustainNote){
+								daNote.angle = strumDirection-90;
+							}
 
-						if(!ClientPrefs.keSustains)
-						{
-							if(daNote.mustPress || !daNote.ignoreNote)
+							if(!ClientPrefs.keSustains)
 							{
-								if (daNote.isSustainNote
-									&& daNote.y + daNote.offset.y * daNote.scale.y <= center
-									&& (!daNote.mustPress || (daNote.wasGoodHit || (daNote.prevNote.wasGoodHit && !daNote.canBeHit))))
+								if(daNote.mustPress || !daNote.ignoreNote)
 								{
-									var swagRect = new FlxRect(0, 0, daNote.width / daNote.scale.x, daNote.height / daNote.scale.y);
-									swagRect.y = (center - daNote.y) / daNote.scale.y;
-									swagRect.height -= swagRect.y;
+									if (daNote.isSustainNote
+										&& daNote.y + daNote.offset.y * daNote.scale.y <= center
+										&& (!daNote.mustPress || (daNote.wasGoodHit || (daNote.prevNote.wasGoodHit && !daNote.canBeHit))))
+									{
+										var swagRect = new FlxRect(0, 0, daNote.width / daNote.scale.x, daNote.height / daNote.scale.y);
+										swagRect.y = (center - daNote.y) / daNote.scale.y;
+										swagRect.height -= swagRect.y;
 
-									daNote.clipRect = swagRect;
+										daNote.clipRect = swagRect;
+									}
 								}
 							}
 						}
@@ -3144,7 +3197,24 @@ class PlayState extends MusicBeatState
 		setOnLuas('cameraX', camFollowPos.x);
 		setOnLuas('cameraY', camFollowPos.y);
 		setOnLuas('botPlay', cpuControlled);
+
+		for (shader in animatedShaders)
+			{
+				shader.update(elapsed);
+			}
+			#if LUA_ALLOWED
+	
+	for (key => value in luaShaders)
+	{
+		value.update(elapsed);
+	}
+	#end
+
 		callOnLuas('onUpdatePost', [elapsed]);
+
+		for (i in shaderUpdates){
+			i(elapsed);
+		}	
 	}
 
 	function openChartEditor()
@@ -4093,7 +4163,8 @@ class PlayState extends MusicBeatState
 		rating.y -= ClientPrefs.comboOffset[1];
 
 
-		var comboSpr:FlxSprite = new FlxSprite().loadGraphic(Paths.image(pixelShitPart1 + 'combo' + pixelShitPart2));
+		var comboSpr:FlxSprite = new FlxSprite();//.loadGraphic(Paths.image(pixelShitPart1 + 'combo' + pixelShitPart2));
+		comboSpr.visible = false;
 		comboSpr.cameras = [camHUD];
 		comboSpr.screenCenter();
 		comboSpr.x = coolText.x;

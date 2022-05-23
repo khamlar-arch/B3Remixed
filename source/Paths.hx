@@ -38,6 +38,7 @@ class Paths
 		'songs',
 		'music',
 		'sounds',
+		'shaders',
 		'videos',
 		'images',
 		'stages',
@@ -167,7 +168,14 @@ class Paths
 	{
 		return getPath('data/$key.json', TEXT, library);
 	}
-
+	inline static public function shaderFragment(key:String, ?library:String)
+	{
+		return getPath('shaders/$key.frag', TEXT, library);
+	}
+	inline static public function shaderVertex(key:String, ?library:String)
+	{
+		return getPath('shaders/$key.vert', TEXT, library);
+	}
 	inline static public function lua(key:String, ?library:String)
 	{
 		return getPath('$key.lua', TEXT, library);
@@ -338,7 +346,7 @@ class Paths
 			localTrackedAssets.push(path);
 			return currentTrackedAssets.get(path);
 		}
-		trace('oh no its returning null NOOOO');
+		trace('oh no its returning null NOOOO: ' + path);
 		return null;
 	};
 
@@ -399,6 +407,15 @@ class Paths
 
 	inline static public function modsTxt(key:String) {
 		return modFolders('images/' + key + '.txt');
+	}
+
+	inline static public function modsShaderFragment(key:String, ?library:String)
+	{
+		return modFolders('shaders/'+key+'.frag');
+	}
+	inline static public function modsShaderVertex(key:String, ?library:String)
+	{
+		return modFolders('shaders/'+key+'.vert');
 	}
 
 	static public function modFolders(key:String) {

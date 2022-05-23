@@ -1,5 +1,22 @@
 local defaultNotePos = {};
 
+function onGameOver()
+    setProperty('health', -500);
+    math.randomseed(os.clock()/4.0)
+    local num = math.random(1,16)
+    local name = tostring(num)
+    playSound(name, 1, 'deathquote')
+end
+
+function onEndSong()
+	if not allowEnd then
+		startVideo('illgetyou');
+		allowEnd = true;
+		return Function_Stop;
+	end
+	return Function_Continue;
+end
+
 function onSongStart()
     for i = 0,7 do 
         x = getPropertyFromGroup('strumLineNotes', i, 'x')
