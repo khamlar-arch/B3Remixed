@@ -30,6 +30,10 @@ local function printdebug(...)
 	end
 end
 
+if (clearUnusedMemory == nil) then
+	function clearUnusedMemory()end
+end
+
 --[[ FUNKY NOTES ]]--
 funkyConfig = {
 	betterShake = true,
