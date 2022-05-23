@@ -27,7 +27,6 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
 import flixel.math.FlxRect;
-import Lyric.SwagLyricSection;
 import haxe.Json;
 import lime.utils.Assets;
 import flixel.system.FlxAssets.FlxShader;
@@ -203,6 +202,7 @@ class PlayState extends MusicBeatState
 	public var healthGain:Float = 1;
 	public var healthLoss:Float = 1;
 	public var instakillOnMiss:Bool = false;
+	public var mirrorMode:Bool = false;
 	public var cpuControlled:Bool = false;
 	public var practiceMode:Bool = false;
 
@@ -222,11 +222,6 @@ class PlayState extends MusicBeatState
 	var halloweenBG:BGSprite;
 	var halloweenWhite:BGSprite;
 	var halloweenForeground:BGSprite;
-	
-	private var lyricSpeakerIcon:HealthIcon;
-	var lyrics:Array<SwagLyricSection>;
-	var hasLyrics:Bool = false;
-	var lyricTxt:FlxText;
 
 	var gayStation:FlxSprite;
 	var dessert:FlxSprite;
@@ -365,6 +360,7 @@ class PlayState extends MusicBeatState
 		healthLoss = ClientPrefs.getGameplaySetting('healthloss', 1);
 		instakillOnMiss = ClientPrefs.getGameplaySetting('instakill', false);
 		practiceMode = ClientPrefs.getGameplaySetting('practice', false);
+		mirrorMode = ClientPrefs.getGameplaySetting('mirror', false);
 		cpuControlled = ClientPrefs.getGameplaySetting('botplay', false);
 		shader_chromatic_abberation = new ChromaticAberrationEffect();
 
@@ -1281,19 +1277,6 @@ class PlayState extends MusicBeatState
 		add(iconP2);
 		reloadHealthBarColors();
 
-		lyricTxt = new FlxText(healthBar.x, healthBar.y, 320, "[PLACEHOLDER]", 28);
-		lyricTxt.setFormat("assets/fonts/vcr.ttf", 28, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		lyricTxt.scrollFactor.set();
-		lyricSpeakerIcon = new HealthIcon();
-		lyricSpeakerIcon.iconScale = 0.65;
-		lyricSpeakerIcon.visible = false;
-
-		add(lyricTxt);			// (tsg - 7/30/21) small things lyric system port
-		add(lyricSpeakerIcon);	// (tsg - 7/30/21) small things lyric system port
-		// (tsg - 7/30/21) small things lyric system port
-		// by default make this off
-		lyricTxt.text = "";
-
 		scoreTxt = new FlxText(0, healthBarBG.y + 36, FlxG.width, "", 20);
 		scoreTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
@@ -1331,8 +1314,6 @@ class PlayState extends MusicBeatState
 		healthBarBG.cameras = [camHUD];
 		iconP1.cameras = [camHUD];
 		iconP2.cameras = [camHUD];
-		lyricTxt.cameras = [camHUD];
-		lyricSpeakerIcon.cameras = [camHUD];
 		scoreTxt.cameras = [camHUD];
 		botplayTxt.cameras = [camHUD];
 		timeBar.cameras = [camHUD];
@@ -2872,29 +2853,6 @@ class PlayState extends MusicBeatState
 		iconP1.x = healthBar.x + (healthBar.width * (FlxMath.remapToRange(healthBar.percent, 0, 100, 100, 0) * 0.01)) + (150 * iconP1.scale.x - 150) / 2 - iconOffset;
 		iconP2.x = healthBar.x + (healthBar.width * (FlxMath.remapToRange(healthBar.percent, 0, 100, 100, 0) * 0.01)) - (150 * iconP2.scale.x) / 2 - iconOffset * 2;
 
-		lyricTxt.x = (healthBar.getMidpoint().x - 100) - 70;
-		lyricTxt.y = (FlxG.save.data.downscroll ? healthBar.getMidpoint().y + 175 : healthBar.getMidpoint().y - 175);
-		lyricSpeakerIcon.x = (lyricTxt.x + (lyricTxt.width / 2) - 64) + 24;
-		lyricSpeakerIcon.y = (lyricTxt.y - 112) + 28;
-		
-		var lyricFailMargin:Int = 120;
-		
-		// (tsg - 7/30/21) small things lyric system port
-		if (hasLyrics == true) {
-			for (i in lyrics) {
-				if (FlxMath.inBounds(Conductor.songPosition, i.start, i.start + lyricFailMargin)) {
-					lyricTxt.text = i.lyric;
-					lyricSpeakerIcon.animation.play(i.speaker);
-					lyricSpeakerIcon.visible = true;
-				}
-				if (FlxMath.inBounds(Conductor.songPosition, i.end, i.end + lyricFailMargin))
-				{
-					lyricTxt.text = "";
-					lyricSpeakerIcon.visible = false;
-				}
-			}
-		}
-
 
 		if (health > 2)
 			health = 2;
@@ -2913,6 +2871,7 @@ class PlayState extends MusicBeatState
 			persistentUpdate = false;
 			paused = true;
 			cancelMusicFadeTween();
+			mirrorMode = !mirrorMode;
 			CustomFadeTransition.nextCamera = camOther;
 			MusicBeatState.switchState(new CharacterEditorState(SONG.player2));
 		}
@@ -2971,7 +2930,7 @@ class PlayState extends MusicBeatState
 
 		FlxG.watch.addQuick("beatShit", curBeat);
 		FlxG.watch.addQuick("stepShit", curStep);
-		FlxG.watch.addQuick("conductorPos: ", Conductor.songPosition);	// (tsg - 7/30/21) small things lyric system port
+		FlxG.watch.addQuick("conductorPos: ", Conductor.songPosition);
 
 		// RESET = Quick Game Over Screen
 		if (!ClientPrefs.noReset && controls.RESET && !inCutscene && !endingSong)
@@ -3093,7 +3052,7 @@ class PlayState extends MusicBeatState
 						} else {
 							//daNote.y = (strumY - 0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);
 
-							daNote.distance = (-0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);
+							daNote.distance = (-0.45 * (Conductor.songPosition - daNote.strumTime) * roundedSpeed);	
 
 							var angleDir = strumDirection * Math.PI / 180;
 							daNote.x = strumX + Math.cos(angleDir) * daNote.distance;
@@ -4073,6 +4032,7 @@ class PlayState extends MusicBeatState
 		//
 
 		var rating:FlxSprite = new FlxSprite();
+		var lastRating:FlxSprite = new FlxSprite();
 		var score:Int = 350;
 
 		//tryna do MS based judgment due to popular demand
@@ -4145,27 +4105,29 @@ class PlayState extends MusicBeatState
 		rating.screenCenter();
 		rating.x = coolText.x - 40;
 		rating.y -= 60;
-		rating.acceleration.y = 550;
-		rating.velocity.y -= FlxG.random.int(140, 175);
-		rating.velocity.x -= FlxG.random.int(0, 10);
+		if (!ClientPrefs.cleanJudgements) {
+			rating.acceleration.y = 550;
+			rating.velocity.y -= FlxG.random.int(140, 175);
+			rating.velocity.x -= FlxG.random.int(0, 10);
+		}
 		rating.visible = !ClientPrefs.hideHud && !hideRatings;
 		rating.x += ClientPrefs.comboOffset[0];
 		rating.y -= ClientPrefs.comboOffset[1];
-
 
 		var comboSpr:FlxSprite = new FlxSprite();//.loadGraphic(Paths.image(pixelShitPart1 + 'combo' + pixelShitPart2));
 		comboSpr.visible = false;
 		comboSpr.cameras = [camHUD];
 		comboSpr.screenCenter();
 		comboSpr.x = coolText.x;
-		comboSpr.acceleration.y = 600;
-		comboSpr.velocity.y -= 150;
+		if (!ClientPrefs.cleanJudgements) {
+			comboSpr.acceleration.y = 600;
+			comboSpr.velocity.y -= 150;
+			comboSpr.velocity.x += FlxG.random.int(1, 10);
+		}
 		comboSpr.visible = !ClientPrefs.hideHud && !hideRatings;
 		comboSpr.x += ClientPrefs.comboOffset[0];
 		comboSpr.y -= ClientPrefs.comboOffset[1];
 
-
-		comboSpr.velocity.x += FlxG.random.int(1, 10);
 		insert(members.indexOf(strumLineNotes), rating);
 
 		if (!PlayState.isPixelStage)
@@ -4196,10 +4158,12 @@ class PlayState extends MusicBeatState
 		var daLoop:Int = 0;
 		for (i in seperatedScore)
 		{
+			var lastNum:FlxSprite = new FlxSprite();
+
 			var numScore:FlxSprite = new FlxSprite().loadGraphic(Paths.image(pixelShitPart1 + 'num' + Std.int(i) + pixelShitPart2));
 			numScore.cameras = [camHUD];
 			numScore.screenCenter();
-			numScore.x = coolText.x + (43 * daLoop) - 90;
+			numScore.x = coolText.x + (52 * daLoop) - 90;
 			numScore.y += 80;
 
 			numScore.x += ClientPrefs.comboOffset[2];
@@ -4216,21 +4180,42 @@ class PlayState extends MusicBeatState
 			}
 			numScore.updateHitbox();
 
-			numScore.acceleration.y = FlxG.random.int(200, 300);
-			numScore.velocity.y -= FlxG.random.int(140, 160);
-			numScore.velocity.x = FlxG.random.float(-5, 5);
+			if (!ClientPrefs.cleanJudgements) {
+				numScore.acceleration.y = FlxG.random.int(200, 300);
+				numScore.velocity.y -= FlxG.random.int(140, 160);
+				numScore.velocity.x = FlxG.random.float(-5, 5);
+			}
 			numScore.visible = !ClientPrefs.hideHud && !hideRatings;
 
-			if (combo >= 10 || combo == 0)
+			//if (combo >= 10 || combo == 0)
+			insert(members.indexOf(strumLineNotes), numScore);
+
+			if (!ClientPrefs.cleanJudgements) {
+				FlxTween.tween(numScore, {alpha: 0}, 0.2, {
+					onComplete: function(tween:FlxTween)
+					{
+						numScore.destroy();
+					},
+					startDelay: Conductor.crochet * 0.002
+				});
+			} else {
+				if (lastNum != null) {
+					lastNum.destroy();
+					trace('0 found.');
+				}
+				lastNum = numScore;
 				insert(members.indexOf(strumLineNotes), numScore);
 
-			FlxTween.tween(numScore, {alpha: 0}, 0.2, {
-				onComplete: function(tween:FlxTween)
-				{
-					numScore.destroy();
-				},
-				startDelay: Conductor.crochet * 0.002
-			});
+				FlxTween.tween(numScore, {y: numScore.y + 20}, 0.2, {type: FlxTweenType.BACKWARD, ease: FlxEase.circOut});
+
+				FlxTween.tween(numScore.scale, {x: 0, y: 0}, 0.1, {
+					onComplete: function(tween:FlxTween)
+					{
+						numScore.destroy();
+					},
+					startDelay: Conductor.crochet * 0.00125
+				});
+			}
 
 			daLoop++;
 		}
@@ -4242,20 +4227,47 @@ class PlayState extends MusicBeatState
 		coolText.text = Std.string(seperatedScore);
 		// add(coolText);
 
-		FlxTween.tween(rating, {alpha: 0}, 0.2, {
-			startDelay: Conductor.crochet * 0.001
-		});
+		if (!ClientPrefs.cleanJudgements) {
+			FlxTween.tween(rating, {alpha: 0}, 0.2, {
+				startDelay: Conductor.crochet * 0.001
+			});
 
-		FlxTween.tween(comboSpr, {alpha: 0}, 0.2, {
-			onComplete: function(tween:FlxTween)
-			{
-				coolText.destroy();
-				comboSpr.destroy();
+			FlxTween.tween(comboSpr, {alpha: 0}, 0.2, {
+				onComplete: function(tween:FlxTween)
+				{
+					coolText.destroy();
+					comboSpr.destroy();
+	
+					rating.destroy();
+				},
+				startDelay: Conductor.crochet * 0.001
+			});
+		} else {
+			if (lastRating != null) {
+				lastRating.destroy();
+				trace('39 buried.');
+			}
+			lastRating = rating;
+			insert(members.indexOf(strumLineNotes) - 1, rating);
 
-				rating.destroy();
-			},
-			startDelay: Conductor.crochet * 0.001
-		});
+			FlxTween.tween(rating, {y: rating.y + 20}, 0.2, {type: FlxTweenType.BACKWARD, ease: FlxEase.circOut});
+			FlxTween.tween(comboSpr, {y: comboSpr.y + 20}, 0.2, {type: FlxTweenType.BACKWARD, ease: FlxEase.circOut});
+
+			FlxTween.tween(rating.scale, {x: 0, y: 0}, 0.1, {
+				startDelay: Conductor.crochet * 0.00125
+			});
+
+			FlxTween.tween(comboSpr.scale, {x: 0, y: 0}, 0.1, {
+				onComplete: function(tween:FlxTween)
+				{
+					coolText.destroy();
+					comboSpr.destroy();
+	
+					rating.destroy();
+				},
+				startDelay: Conductor.crochet * 0.00125
+			});
+		}
 	}
 
 	private function onKeyPress(event:KeyboardEvent):Void

@@ -48,6 +48,13 @@ class VisualsUISubState extends BaseOptionsMenu
 			true);
 		addOption(option);
 
+		var option:Option = new Option('Simple Judgements',
+			"If checked, judgements will only be shown one at a time and will not fall apart. (May help with memory usage.)",
+			'cleanJudgements',
+			'bool',
+			true);
+		addOption(option);
+
 		var option:Option = new Option('Lane Transparency',
 			'Changes how transparent the lanes behind the notes should be.',
 			'laneUnderlay',

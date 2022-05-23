@@ -21,6 +21,7 @@ class ClientPrefs {
 	public static var hideChars:Bool = false;
 	public static var guhUnlocked:Bool = false;
 	public static var noteCamera:Bool = true;
+	public static var cleanJudgements:Bool = false;
 	public static var judgementCounter:Bool = false;
 	public static var laneUnderlay:Float = 0;
 	public static var hideHud:Bool = false;
@@ -104,6 +105,7 @@ class ClientPrefs {
 		FlxG.save.data.specialNoteskin = specialNoteskin;
 		FlxG.save.data.flashing = flashing;
 		FlxG.save.data.globalAntialiasing = globalAntialiasing;
+		FlxG.save.data.cleanJudgements = cleanJudgements;
 		FlxG.save.data.noteSplashes = noteSplashes;
 		FlxG.save.data.lowQuality = lowQuality;
 		FlxG.save.data.laneUnderlay = laneUnderlay;
@@ -176,6 +178,9 @@ class ClientPrefs {
 		}
 		if(FlxG.save.data.noteCamera != null) {
 			noteCamera = FlxG.save.data.noteCamera;
+		}
+		if(FlxG.save.data.cleanJudgements != null) {
+			cleanJudgements = FlxG.save.data.cleanJudgements;
 		}
 		if(FlxG.save.data.specialNoteskin != null) {
 			specialNoteskin = FlxG.save.data.specialNoteskin;
