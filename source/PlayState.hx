@@ -2655,11 +2655,13 @@ class PlayState extends MusicBeatState
 		//vocals.pause();
 
 		if (!FlxG.sound.music.playing) FlxG.sound.music.play();
-		if (!vocals.playing) vocals.play();
 		
 		Conductor.songPosition = FlxG.sound.music.time;
-		if (Conductor.songPosition < vocals.length) vocals.time = Conductor.songPosition;
-		if (vocals.pitch != FlxG.sound.music.pitch) vocals.pitch = FlxG.sound.music.pitch;
+		if (Conductor.songPosition < vocals.length - 10) {
+			if (vocals.pitch != FlxG.sound.music.pitch) vocals.pitch = FlxG.sound.music.pitch;
+			if (!vocals.playing) vocals.play();
+			vocals.time = Conductor.songPosition;
+		}
 		//vocals.play();
 	}
 
