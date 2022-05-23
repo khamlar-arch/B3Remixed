@@ -607,6 +607,11 @@ class PlayState extends MusicBeatState
 				add(dessert);
 
 			case 'dream':
+				GameOverSubstate.deathSoundName = 'fnf_loss_sfx-hell';
+                GameOverSubstate.loopSoundName = 'gameOver-hell';
+                GameOverSubstate.endSoundName = 'gameOverEnd-hell';
+                GameOverSubstate.characterName = 'trapped';
+
 				var hellBG:BGSprite = new BGSprite('dead/dream', -750, -370, 0.9, 0.9);
 				hellBG.setGraphicSize(Std.int(hellBG.width * 1.5));
 				hellBG.setGraphicSize(Std.int(hellBG.height * 1.5));
@@ -616,6 +621,11 @@ class PlayState extends MusicBeatState
 
 		
 			case 'podcast':
+				GameOverSubstate.deathSoundName = 'fnf_loss_sfx-shaya';
+                GameOverSubstate.loopSoundName = 'gameOver-shaya';
+                GameOverSubstate.endSoundName = 'gameOverEnd-shaya';
+                GameOverSubstate.characterName = 'shayover';
+
 				var back:BGSprite = new BGSprite('harmony/Back', -350, -100, 0.9, 0.9);
 				back.setGraphicSize(Std.int(back.width * 1));
 				back.setGraphicSize(Std.int(back.height * 1));
