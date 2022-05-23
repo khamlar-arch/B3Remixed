@@ -164,7 +164,10 @@ class PlayState extends MusicBeatState
 	private static var prevCamFollow:FlxPoint;
 	private static var prevCamFollowPos:FlxObject;
 
+	public var isPlayerThree:Bool = false;
+
 	public var strumLineNotes:FlxTypedGroup<StrumNote>;
+	public var otherStrums:FlxTypedGroup<StrumNote>;
 	public var opponentStrums:FlxTypedGroup<StrumNote>;
 	public var playerStrums:FlxTypedGroup<StrumNote>;
 	public var grpNoteSplashes:FlxTypedGroup<NoteSplash>;
@@ -450,6 +453,11 @@ class PlayState extends MusicBeatState
 				default:
 					curStage = 'stage';
 			}
+		}
+
+		if (PlayState.SONG.song.toLowerCase() == 'threemixed')
+		{
+			isPlayerThree = true;
 		}
 
 		var stageData:StageFile = StageData.getStageFile(curStage);
@@ -1167,6 +1175,7 @@ class PlayState extends MusicBeatState
 
 		opponentStrums = new FlxTypedGroup<StrumNote>();
 		playerStrums = new FlxTypedGroup<StrumNote>();
+		otherStrums = new FlxTypedGroup<StrumNote>();
 
 		// startCountdown();
 
@@ -1880,6 +1889,7 @@ class PlayState extends MusicBeatState
 
 			generateStaticArrows(0);
 			generateStaticArrows(1);
+			generateStaticArrows(2);
 			for (i in 0...playerStrums.length) {
 				setOnLuas('defaultPlayerStrumX' + i, playerStrums.members[i].x);
 				setOnLuas('defaultPlayerStrumY' + i, playerStrums.members[i].y);
@@ -1888,6 +1898,11 @@ class PlayState extends MusicBeatState
 				setOnLuas('defaultOpponentStrumX' + i, opponentStrums.members[i].x);
 				setOnLuas('defaultOpponentStrumY' + i, opponentStrums.members[i].y);
 				//if(ClientPrefs.middleScroll) opponentStrums.members[i].visible = false;
+			}
+			for (i in 0...otherStrums.length) {
+				setOnLuas('defaultThirdStrumX' + i, otherStrums.members[i].x);
+				setOnLuas('defaultThirdStrumY' + i, otherStrums.members[i].y);
+				//if(ClientPrefs.middleScroll) otherStrums.members[i].visible = false;
 			}
 
 			startedCountdown = true;
@@ -2435,12 +2450,21 @@ class PlayState extends MusicBeatState
 				babyArrow.alpha = targetAlpha;
 			}
 
+			if (isPlayerThree) {
+				babyArrow.scale.x = 0.65;
+				babyArrow.scale.y = 0.65;
+			}
+
 			if (player == 1)
 			{
+				if (isPlayerThree)
+					babyArrow.x -= 305 + (i * 10);
 				playerStrums.add(babyArrow);
 			}
-			else
+			else if (player == 0)
 			{
+				if (isPlayerThree)
+					babyArrow.x -= 90 + (i * 10);
 				if(ClientPrefs.middleScroll)
 				{
 					babyArrow.x += 310;
@@ -2449,6 +2473,11 @@ class PlayState extends MusicBeatState
 					}
 				}
 				opponentStrums.add(babyArrow);
+			} else if (player == 2) {
+				if (isPlayerThree)
+					babyArrow.x -= 515 + (i * 10);
+				otherStrums.add(babyArrow);
+				trace('strum added');
 			}
 
 			strumLineNotes.add(babyArrow);
