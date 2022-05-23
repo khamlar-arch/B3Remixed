@@ -373,16 +373,6 @@ class PlayState extends MusicBeatState
 		shader_chromatic_abberation = new ChromaticAberrationEffect();
 		
 		
-		try {
-			lyrics = cast Json.parse(File.getContent('data/' + SONG.song.toLowerCase() + '/lyrics.json'));
-			trace(lyrics);
-			hasLyrics = true;
-			trace("Found lyrics for " + SONG.song.toLowerCase());
-		} catch(e) {
-			trace("No lyrics for " + SONG.song.toLowerCase());
-		}
-		
-		
 		// var gameCam:FlxCamera = FlxG.camera;
 		camGame = new FlxCamera();
 		camHUD = new FlxCamera();
