@@ -2637,6 +2637,8 @@ class PlayState extends MusicBeatState
 
 		callOnLuas('onUpdate', [elapsed]);
 
+		if (ClientPrefs.hideChars) isCameraOnForcedPos = true;
+
 		switch (curStage)
 		{
 			case 'schoolEvil':
@@ -4588,7 +4590,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if ((ClientPrefs.noteCamera) && (!note.isSustainNote) && (curFocus == 'dad')) {
+		if ((ClientPrefs.noteCamera) && (!ClientPrefs.hideChars) && (!note.isSustainNote) && (curFocus == 'dad')) {
 			tweenCamOnHit(note.noteData);
 		}
 
@@ -4680,7 +4682,7 @@ class PlayState extends MusicBeatState
 				}
 			}
 
-			if ((ClientPrefs.noteCamera) && (!note.isSustainNote) && (curFocus == 'bf')) {
+			if ((ClientPrefs.noteCamera) && (!ClientPrefs.hideChars) && (!note.isSustainNote) && (curFocus == 'bf')) {
 				tweenCamOnHit(note.noteData);
 			}
 		

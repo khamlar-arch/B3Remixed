@@ -77,14 +77,6 @@ class PreferencesSubState extends BaseOptionsMenu
 		option.displayFormat = '%v FPS';
 		option.onChange = onChangeFramerate;
 		#end
-		
-		var option:Option = new Option('Hardware Caching',
-			'If checked, the game will uploads images to GPU \nRestart your game in order for this to work.\n[UNCHECK THIS IF IMAGES NOT SHOWING]',
-			'fakeHardC',
-			'bool',
-			false);
-		addOption(option);
-		option.onChange = onChangeHardC;
 
 		var option:Option = new Option('Flashing Lights',
 			"Uncheck this if you're sensitive to flashing lights!",
@@ -92,6 +84,14 @@ class PreferencesSubState extends BaseOptionsMenu
 			'bool',
 			true);
 		addOption(option);
+
+		var option:Option = new Option('Hardware Caching',
+			'If checked, the game will uploads images to GPU \nRestart your game in order for this to work.\n[UNCHECK THIS IF IMAGES NOT SHOWING]',
+			'fakeHardC',
+			'bool',
+			false);
+		addOption(option);
+		option.onChange = onChangeHardC;
 
 		addOption(new Option('Save Data', '', '', 'filler', null));
 
