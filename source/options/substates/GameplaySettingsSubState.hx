@@ -31,8 +31,10 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 {
 	public function new()
 	{
-		title = 'Gameplay Settings';
+		title = 'Gameplay';
 		rpcTitle = 'Gameplay Settings Menu'; //for Discord Rich Presence
+
+		addOption(new Option('Notes', '', '', 'filler', null));
 
 		//I'd suggest using "Downscroll" as an example for making your own option since it is the simplest here
 		var option:Option = new Option('Downscroll', //Name
@@ -56,17 +58,31 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 			true);
 		addOption(option);
 
-		var option:Option = new Option('Hitsound Volume',
-			'How loud the hitsound is.',
-			'hitsoundVolume',
-			'percent',
-			1);
-		option.scrollSpeed = 1.6;
-		option.minValue = 0.0;
-		option.maxValue = 1.5;
-		option.changeValue = 0.1;
-		option.decimals = 1;
+		var option:Option = new Option('Modcharts',
+			"If checked, the notes won't move around when a modchart is active.",
+			'modCharts',
+			'bool',
+			true);
 		addOption(option);
+
+		addOption(new Option('Key Bindings', '', '', 'filler', null));
+
+		var option:Option = new Option('Change Controls',
+		"Change your keybinds for both ingame play and HUD movement, along with other keys such as debug menu keys!", 
+		'',
+		'none',
+		null);
+		addOption(option);
+		option.onChange = onLoadControls;
+
+		var option:Option = new Option('Disable Reset Button',
+			"If checked, pressing Reset won't do anything.",
+			'noReset',
+			'bool',
+			false);
+		addOption(option);
+
+		addOption(new Option('Player Input', '', '', 'filler', null));
 
 		var option:Option = new Option('Rating Offset',
 			'Changes how late/early you have to hit for a "Sick!"\nHigher values mean you have to hit later.',
@@ -123,6 +139,43 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 		option.changeValue = 0.1;
 		addOption(option);
 
+		var option:Option = new Option('Adjust Delay and Combo',
+		"Edit the song\'s offset to match up with your headphones, or\nadjust your combo sprites and where they show up!", 
+		'',
+		'none',
+		null);
+		addOption(option);
+		option.onChange = onLoadOffset;
+
 		super();
+	}
+
+	function onLoadState(state)
+	{
+		var transBlack:FlxSprite = new FlxSprite(-1280).makeGraphic(1280, 720, FlxColor.BLACK);
+		transBlack.scrollFactor.set();
+		add(transBlack);
+		FlxTween.tween(transBlack, {x: 0}, 0.4, {ease: FlxEase.circInOut, 
+			onComplete: function(twn:FlxTween) {
+				FlxG.camera.visible = false;
+				switch (state) {
+					case 'offset':
+						LoadingState.loadAndSwitchState(new options.substates.NoteOffsetState());
+					case 'controls':
+						openSubState(new options.substates.ControlsSubState());
+						FlxG.camera.visible = true;
+				}
+			}
+		});
+	}
+
+	function onLoadOffset()
+	{
+		onLoadState('offset');
+	}
+
+	function onLoadControls()
+	{
+		openSubState(new options.substates.ControlsSubState());
 	}
 }

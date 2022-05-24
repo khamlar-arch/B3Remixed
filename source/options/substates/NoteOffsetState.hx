@@ -62,8 +62,8 @@ class NoteOffsetState extends MusicBeatState
 		persistentUpdate = true;
 		FlxG.sound.pause();
 		// Stage
-		var bg:BGSprite = new BGSprite('stage/Stadium', -700, -300, 0.9, 0.9);
-		bg.setGraphicSize(Std.int(bg.width * 1));
+		var bg:BGSprite = new BGSprite('stages/stadium/bg', 143, 160.5, 0.9, 0.9);
+		bg.setGraphicSize(Std.int(bg.width * 2));
 		add(bg);
 
 		// Characters

@@ -340,7 +340,7 @@ class Alphabet extends FlxSpriteGroup
 
 			var lerpVal:Float = CoolUtil.boundTo(elapsed * 9.6, 0, 1);
 			if (isOptionBase) {
-				y = FlxMath.lerp(y, (2.8 * (scaledY * yMult) + (FlxG.height * 0.48) + yAdd), lerpVal);
+				y = FlxMath.lerp(y, (1.15 * (scaledY * yMult) + (FlxG.height * 0.48) + yAdd), lerpVal);
 				screenCenter(X);
 			} else {
 				y = FlxMath.lerp(y, (scaledY * yMult) + (FlxG.height * 0.48) + yAdd, lerpVal);
@@ -357,7 +357,7 @@ class Alphabet extends FlxSpriteGroup
 			var scaledY = FlxMath.remapToRange(targetY, 0, 1, 0, 1.3);
 			var lerpVal:Float = CoolUtil.boundTo(elapsed * 9.6, 0, 1);
 
-			y = FlxMath.lerp(y, (scaledY * 85) + (FlxG.height * 0.48) + yAdd, lerpVal);
+			y = FlxMath.lerp(y, (scaledY * 85) + (FlxG.height * 0.38) + yAdd, lerpVal);
 			x = 185; 
 		}
 

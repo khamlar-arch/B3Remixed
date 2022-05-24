@@ -4,6 +4,7 @@ import flixel.FlxG;
 import flixel.util.FlxSave;
 import flixel.input.keyboard.FlxKey;
 import flixel.graphics.FlxGraphic;
+import lime.app.Application;
 import Controls;
 
 class ClientPrefs {
@@ -15,12 +16,17 @@ class ClientPrefs {
 	public static var noteSplashes:Bool = true;
 	public static var lowQuality:Bool = false;
 	public static var framerate:Int = 60;
+	public static var mitigateIconBop:Bool = false;
+	public static var camSpeed:Float = 1.5;
 	public static var cursing:Bool = true;
 	public static var violence:Bool = true;
 	public static var camZooms:Bool = true;
+	public static var scoreDetail:Bool = true;
 	public static var hideChars:Bool = false;
 	public static var noteCamera:Bool = true;
+	public static var modCharts:Bool = true;
 	public static var cleanJudgements:Bool = false;
+	public static var autoPause:Bool = true;
 	public static var judgementCounter:Bool = false;
 	public static var laneUnderlay:Float = 0;
 	public static var hideHud:Bool = false;
@@ -106,14 +112,19 @@ class ClientPrefs {
 		FlxG.save.data.globalAntialiasing = globalAntialiasing;
 		FlxG.save.data.cleanJudgements = cleanJudgements;
 		FlxG.save.data.noteSplashes = noteSplashes;
+		FlxG.save.data.mitigateIconBop = mitigateIconBop;
 		FlxG.save.data.lowQuality = lowQuality;
 		FlxG.save.data.laneUnderlay = laneUnderlay;
 		FlxG.save.data.framerate = framerate;
+		FlxG.save.data.autoPause = autoPause;
 		//FlxG.save.data.cursing = cursing;
 		//FlxG.save.data.violence = violence;
 		FlxG.save.data.camZooms = camZooms;
+		FlxG.save.data.camSpeed = camSpeed;
 		FlxG.save.data.noteCamera = noteCamera;
 		FlxG.save.data.hideChars = hideChars;
+		FlxG.save.data.scoreDetail = scoreDetail;
+		FlxG.save.data.modCharts = modCharts;
 		FlxG.save.data.noteOffset = noteOffset;
 		FlxG.save.data.hideHud = hideHud;
 		FlxG.save.data.arrowHSV = arrowHSV;
@@ -159,14 +170,29 @@ class ClientPrefs {
 		if(FlxG.save.data.judgementCounter != null) {
 			judgementCounter = FlxG.save.data.judgementCounter;
 		}
+		if(FlxG.save.data.autoPause != null) {
+			autoPause = FlxG.save.data.autoPause;
+		}
+		if(FlxG.save.data.mitigateIconBop != null) {
+			mitigateIconBop = FlxG.save.data.mitigateIconBop;
+		}
 		if(FlxG.save.data.showFPS != null) {
 			showFPS = FlxG.save.data.showFPS;
 			if(Main.fpsVar != null) {
 				Main.fpsVar.visible = showFPS;
 			}
 		}
+		if(FlxG.save.data.camSpeed != null) {
+			camSpeed = FlxG.save.data.camSpeed;
+		}
 		if(FlxG.save.data.flashing != null) {
 			flashing = FlxG.save.data.flashing;
+		}
+		if(FlxG.save.data.scoreDetail != null) {
+			scoreDetail = FlxG.save.data.scoreDetail;
+		}
+		if(FlxG.save.data.modCharts != null) {
+			modCharts = FlxG.save.data.modCharts;
 		}
 		if(FlxG.save.data.hitsoundVolume != null) {
 			hitsoundVolume = FlxG.save.data.hitsoundVolume;
@@ -194,13 +220,23 @@ class ClientPrefs {
 		}
 		if(FlxG.save.data.framerate != null) {
 			framerate = FlxG.save.data.framerate;
-			if(framerate > FlxG.drawFramerate) {
-				FlxG.updateFramerate = framerate;
-				FlxG.drawFramerate = framerate;
-			} else {
-				FlxG.drawFramerate = framerate;
-				FlxG.updateFramerate = framerate;
+		}
+		#if !html5
+		else {
+			var refreshRate:Int = Application.current.window.displayMode.refreshRate;
+			if(framerate != refreshRate) {
+				framerate = refreshRate;
+				if(framerate < 60) {
+					framerate = 60;
+				} else if(framerate > 240) {
+					framerate = 240;
+				}
 			}
+		}
+		#end
+		if(framerate != FlxG.drawFramerate) {
+			FlxG.updateFramerate = framerate;
+			FlxG.drawFramerate = framerate;
 		}
 		/*if(FlxG.save.data.cursing != null) {
 			cursing = FlxG.save.data.cursing;

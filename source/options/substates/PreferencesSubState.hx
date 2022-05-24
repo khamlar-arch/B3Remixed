@@ -33,26 +33,14 @@ class PreferencesSubState extends BaseOptionsMenu
 	{
 		title = 'Preferences';
 		rpcTitle = 'Preferences Menu'; //for Discord Rich Presence
+
+		addOption(new Option('General', '', '', 'filler', null));
 		
 		var option:Option = new Option('Controller Mode',
 			'Check this if you want to play with\na controller instead of using your Keyboard.',
 			'controllerMode',
 			'bool',
 			false);
-		addOption(option);
-
-		var option:Option = new Option('Disable Reset Button',
-			"If checked, pressing Reset won't do anything.",
-			'noReset',
-			'bool',
-			false);
-		addOption(option);
-
-		var option:Option = new Option('Flashing Lights',
-			"Uncheck this if you're sensitive to flashing lights!",
-			'flashing',
-			'bool',
-			true);
 		addOption(option);
 
 		#if !mobile
@@ -64,6 +52,18 @@ class PreferencesSubState extends BaseOptionsMenu
 		addOption(option);
 		option.onChange = onChangeFPSCounter;
 		#end
+
+		#if !html5
+		var option:Option = new Option('Auto Pause',
+			'Automatically pauses the game when the window loses focus.',
+			'autoPause',
+			'bool',
+			true);
+		addOption(option);
+		option.onChange = onSetupAutoPause;
+		#end
+
+		addOption(new Option('Accessibility', '', '', 'filler', null));
 
 		#if !html5 //Apparently other framerates isn't correctly supported on Browser? Probably it has some V-Sync shit enabled by default, idk
 		var option:Option = new Option('Framerate',
@@ -78,11 +78,20 @@ class PreferencesSubState extends BaseOptionsMenu
 		option.onChange = onChangeFramerate;
 		#end
 
+		var option:Option = new Option('Flashing Lights',
+			"Uncheck this if you're sensitive to flashing lights!",
+			'flashing',
+			'bool',
+			true);
+		addOption(option);
+
+		addOption(new Option('Save Data', '', '', 'filler', null));
+
 		var option:Option = new Option('Lock Unlocked Weeks',
 		"Locks all weeks that aren't already unlocked.\nBe careful! [THIS IS NOT REVERSIBLE.]", 
-		'thisisntimportantgoodbyesavedata',
+		'',
 		'none',
-		true);
+		null);
 		addOption(option);
 		option.onChange = onResetSave;
 
@@ -100,6 +109,10 @@ class PreferencesSubState extends BaseOptionsMenu
 		});
 	}
 
+	function onSetupAutoPause() {
+		FlxG.autoPause = ClientPrefs.autoPause;
+	}
+
 	#if !mobile
 	function onChangeFPSCounter()
 	{
@@ -110,8 +123,7 @@ class PreferencesSubState extends BaseOptionsMenu
 
 	function onChangeFramerate()
 	{
-		if(ClientPrefs.framerate > FlxG.drawFramerate)
-		{
+		if(ClientPrefs.framerate != FlxG.drawFramerate) {
 			FlxG.updateFramerate = ClientPrefs.framerate;
 			FlxG.drawFramerate = ClientPrefs.framerate;
 		}

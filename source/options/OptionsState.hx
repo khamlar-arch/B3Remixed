@@ -30,14 +30,14 @@ using StringTools;
 
 class OptionsState extends MusicBeatState
 {
-	var options:Array<String> = ['Controls', 'Gameplay', 'Offset', 'Appearance', 'Preferences'];
-	var descs:Array<String> = ['Change your keybinds for both in\ngame play and HUD movement here.', 'Adjust how the gameplay feels\nto fit your perfect match!', 'Edit the song\'s offset to match up with your headphones, or\nadjust your combo sprites and where they show up!', 'Change how your game looks and make\nit look perfect to your standards.', 'Play with the options to edit your\ngame for the best experience.'];
+	var options:Array<String> = ['Gameplay', 'Appearance', 'Preferences'];
+	var descs:Array<String> = ['Adjust how the gameplay feels\nto fit your perfect match!', 'Change how your game looks and make\nit look perfect to your standards.', 'Play with the options to edit your\ngame for the best experience.'];
 	private var grpOptions:FlxTypedGroup<Alphabet>;
 	private static var curSelected:Int = 0;
 	public static var menuBG:FlxSprite;
-
-	private var descBox:FlxSprite;
 	private var descText:FlxText;
+
+	public static var forceSong:Bool = false;
 
 	var backdrop:FlxBackdrop = new FlxBackdrop(Paths.image('menus/menuCheckerboard'), 0.2, 0.2, true, true);
 
@@ -80,53 +80,36 @@ class OptionsState extends MusicBeatState
 		backdrop.scrollFactor.set(0, 0.07);
 		backdrop.updateHitbox();
 
+		var frame:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menus/options/menuframes'));
+		frame.scrollFactor.set();
+		frame.setGraphicSize(Std.int(frame.width * 1));
+		frame.updateHitbox();
+		frame.screenCenter();
+		frame.antialiasing = ClientPrefs.globalAntialiasing;
+		add(frame);
+
 		grpOptions = new FlxTypedGroup<Alphabet>();
 		add(grpOptions);
 
 		for (i in 0...options.length)
 		{
-			var optionText:Alphabet = new Alphabet(0, 200 * i, options[i], true, false);
-			optionText.isMenuItem = true;
-			optionText.isOptionBase = true;
-			/*optionText.forceX = 300;
-			optionText.yMult = 90;*/
-			optionText.targetY = i;
+			var optionText:Alphabet = new Alphabet(0, 0, options[i], true, false);
+			optionText.screenCenter();
+			optionText.y += (125 * (i - (options.length / 2))) + 68.5;
 			grpOptions.add(optionText);
 		}
 
-		selectorLeft = new Alphabet(100, 250, '>', true, false);
-		selectorLeft.angle = -90;
-		selectorLeft.screenCenter(X);
-		add(selectorLeft);
-		selectorRight = new Alphabet(100, 420, '<', true, false);
-		selectorRight.angle = -90;
-		selectorRight.screenCenter(X);
-		add(selectorRight);
+		var topTxt:FlxText = new FlxText(50, 10, 1180, "B3 Remixed - Options Menu", 32);
+		topTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		topTxt.scrollFactor.set();
+		topTxt.borderSize = 2.4;
+		add(topTxt);
 
-		descBox = new FlxSprite().makeGraphic(1, 1, FlxColor.BLACK);
-		descBox.alpha = 0.6;
-		add(descBox);
-
-		var topBox:FlxSprite = new FlxSprite(50, 50).makeGraphic(1180, 125, FlxColor.BLACK);
-		topBox.alpha = 0.6;
-		add(topBox);
-
-		var menuItem:FlxSprite = new FlxSprite(0, 55);
-		menuItem.frames = Paths.getSparrowAtlas('menus/main/FNF_main_menu_assets');	
-		menuItem.animation.addByPrefix('idle', "options basic", 24);
-		menuItem.setGraphicSize(Std.int(menuItem.width * 1.5));
-		menuItem.screenCenter(X);
-		menuItem.animation.play('idle');
-		add(menuItem);
-		menuItem.scrollFactor.set();
-		menuItem.antialiasing = true;
-
-		descText = new FlxText(50, 600, 1180, "2 Lines\nYeah", 32);
+		descText = new FlxText(50, 700, 1180, "2 Lines\nYeah", 32);
 		descText.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		descText.scrollFactor.set();
 		descText.borderSize = 2.4;
 		add(descText);
-
 
 		changeSelection();
 		ClientPrefs.saveSettings();
@@ -147,6 +130,11 @@ class OptionsState extends MusicBeatState
 		backdrop.x -= 70 * elapsed;
 		backdrop.y -= 70 * elapsed;
 
+		if (forceSong) {
+			trace('movin on');
+			openSubState(new options.substates.ControlsSubState());
+		}
+
 		if (controls.UI_UP_P) {
 			changeSelection(-1);
 		}
@@ -166,7 +154,7 @@ class OptionsState extends MusicBeatState
 	
 	function changeSelection(change:Int = 0) {
 		descText.screenCenter(Y);
-		descText.y += 270;
+		descText.y += 320;
 
 		curSelected += change;
 		if (curSelected < 0)
@@ -179,11 +167,11 @@ class OptionsState extends MusicBeatState
 		for (item in grpOptions.members) {
 			item.targetY = bullShit - curSelected;
 			bullShit++;
+
+			item.alpha = 0.6;
+			if (item.targetY == 0)
+				item.alpha = 1;
 		}
 		FlxG.sound.play(Paths.sound('scrollMenu'));
-
-		descBox.setPosition(descText.x - 10, descText.y - 10);
-		descBox.setGraphicSize(Std.int(descText.width + 20), Std.int(descText.height + 25));
-		descBox.updateHitbox();
 	}
 }

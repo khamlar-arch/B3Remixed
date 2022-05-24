@@ -7,6 +7,7 @@ import flixel.FlxSubState;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.input.keyboard.FlxKey;
+import flixel.util.FlxTimer;
 import flixel.system.FlxSound;
 import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
@@ -20,7 +21,7 @@ class PauseSubState extends MusicBeatSubstate
 	var grpMenuShit:FlxTypedGroup<Alphabet>;
 
 	var menuItems:Array<String> = [];
-	var menuItemsOG:Array<String> = ['Resume', 'Restart Song', 'Change Difficulty', 'Your Mom', 'Exit to menu'];
+	var menuItemsOG:Array<String> = ['Resume', 'Restart Song', 'Change Difficulty', 'Change Keybinds', 'Exit to menu', 'Your Mom'];
 	var difficultyChoices = [];
 	var curSelected:Int = 0;
 
@@ -29,6 +30,7 @@ class PauseSubState extends MusicBeatSubstate
 	var skipTimeText:FlxText;
 	var skipTimeTracker:Alphabet;
 	var curTime:Float = Math.max(0, Conductor.songPosition);
+	var transBlack:FlxSprite;
 	//var botplayText:FlxText;
 
 	public function new(x:Float, y:Float)
@@ -125,6 +127,10 @@ class PauseSubState extends MusicBeatSubstate
 
 		regenMenu();
 		cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
+
+		transBlack = new FlxSprite(-1280).makeGraphic(1280, 720, FlxColor.BLACK);
+		transBlack.scrollFactor.set();
+		add(transBlack);
 	}
 
 	var holdTime:Float = 0;
@@ -212,14 +218,21 @@ class PauseSubState extends MusicBeatSubstate
 					PlayState.changedDifficulty = true;
 					practiceText.visible = PlayState.instance.practiceMode;
 				case "Restart Song":
+					FlxTween.tween(transBlack, {x: 0}, 0.4, {ease: FlxEase.circInOut});
 					restartSong();
+				case "Change Keybinds":
+					options.OptionsState.forceSong = true;
+					options.substates.ControlsSubState.weed = true;
+					FlxG.switchState(new options.OptionsState());
 				case "Leave Charting Mode":
+					FlxTween.tween(transBlack, {x: 0}, 0.4, {ease: FlxEase.circInOut});
 					restartSong();
 					PlayState.chartingMode = false;
 				case 'Skip Time':
 					if(curTime < Conductor.songPosition)
 					{
 						PlayState.startOnTime = curTime;
+						FlxTween.tween(transBlack, {x: 0}, 0.4, {ease: FlxEase.circInOut});
 						restartSong(true);
 					}
 					else
@@ -229,9 +242,11 @@ class PauseSubState extends MusicBeatSubstate
 							PlayState.instance.clearNotesBefore(curTime);
 							PlayState.instance.setSongTime(curTime);
 						}
+						FlxTween.tween(transBlack, {x: 0}, 0.4, {ease: FlxEase.circInOut});
 						close();
 					}
 				case "End Song":
+					FlxTween.tween(transBlack, {x: 0}, 0.4, {ease: FlxEase.circInOut});
 					close();
 					PlayState.instance.finishSong(true);
 				case 'Toggle Botplay':
@@ -243,17 +258,23 @@ class PauseSubState extends MusicBeatSubstate
 				case 'Your Mom':
 					FlxG.sound.play(Paths.sound('vineboom'), 0.5);
 				case "Exit to menu":
-					PlayState.deathCounter = 0;
-					PlayState.seenCutscene = false;
-					if(PlayState.isStoryMode) {
-						MusicBeatState.switchState(new MainMenuState());
-					} else {
-						MusicBeatState.switchState(new FreeplayState());
-					}
-					FlxG.sound.playMusic(Paths.music('freakyMenu'));
-					PlayState.changedDifficulty = false;
-					PlayState.chartingMode = false;
-					PlayState.startOnTime = 0;
+					FlxTween.tween(transBlack, {x: 0}, 0.4, {ease: FlxEase.circInOut});
+					new FlxTimer().start(0.5, function(deeznuts:FlxTimer) {
+						FlxG.camera.visible = false;
+						PlayState.instance.camHUD.visible = false;
+						PlayState.instance.camOther.visible = false;
+						PlayState.deathCounter = 0;
+						PlayState.seenCutscene = false;
+						if(PlayState.isStoryMode) {
+							MusicBeatState.switchState(new MainMenuState());
+						} else {
+							MusicBeatState.switchState(new FreeplayState());
+						}
+						FlxG.sound.playMusic(Paths.music('freakyMenu'));
+						PlayState.changedDifficulty = false;
+						PlayState.chartingMode = false;
+						PlayState.startOnTime = 0;
+					});
 			}
 		}
 	}
@@ -267,11 +288,23 @@ class PauseSubState extends MusicBeatSubstate
 		if(noTrans)
 		{
 			FlxTransitionableState.skipNextTransOut = true;
-			MusicBeatState.resetState();
+			
+			new FlxTimer().start(0.5, function(deeznuts:FlxTimer) {
+				FlxG.camera.visible = false;
+				PlayState.instance.camHUD.visible = false;
+				PlayState.instance.camOther.visible = false;
+				FlxTransitionableState.skipNextTransOut = false;
+				MusicBeatState.resetState();
+			});
 		}
 		else
 		{
-			MusicBeatState.resetState();
+			new FlxTimer().start(0.5, function(deeznuts:FlxTimer) {
+				FlxG.camera.visible = false;
+				PlayState.instance.camHUD.visible = false;
+				PlayState.instance.camOther.visible = false;
+				MusicBeatState.resetState();
+			});
 		}
 	}
 

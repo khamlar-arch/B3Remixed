@@ -90,6 +90,8 @@ class Main extends Sprite
 		}
 		#end
 
+		FlxG.sound.volume = FlxG.save.data.volume;
+		FlxG.sound.muted = FlxG.save.data.mute;
 		#if html5
 		FlxG.autoPause = false;
 		FlxG.mouse.visible = false;

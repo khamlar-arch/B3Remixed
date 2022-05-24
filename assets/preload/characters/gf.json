@@ -14,50 +14,6 @@
 		{
 			"loop": false,
 			"offsets": [
-				0,
-				-124
-			],
-			"fps": 24,
-			"anim": "singLEFT",
-			"indices": [],
-			"name": "GF left note"
-		},
-		{
-			"loop": false,
-			"offsets": [
-				5,
-				-111
-			],
-			"fps": 24,
-			"anim": "singDOWN",
-			"indices": [],
-			"name": "GF Down Note"
-		},
-		{
-			"loop": false,
-			"offsets": [
-				1,
-				-107
-			],
-			"fps": 24,
-			"anim": "singUP",
-			"indices": [],
-			"name": "GF Up Note"
-		},
-		{
-			"loop": false,
-			"offsets": [
-				1,
-				-116
-			],
-			"fps": 24,
-			"anim": "singRIGHT",
-			"indices": [],
-			"name": "GF Right Note"
-		},
-		{
-			"loop": false,
-			"offsets": [
 				-2,
 				-115
 			],
@@ -138,46 +94,6 @@
 		{
 			"loop": true,
 			"offsets": [
-				0,
-				-73
-			],
-			"fps": 24,
-			"anim": "hairBlow",
-			"indices": [
-				0,
-				1,
-				2,
-				3
-			],
-			"name": "GF Dancing Beat Hair blowing"
-		},
-		{
-			"loop": false,
-			"offsets": [
-				0,
-				-96
-			],
-			"fps": 24,
-			"anim": "hairFall",
-			"indices": [
-				0,
-				1,
-				2,
-				3,
-				4,
-				5,
-				6,
-				7,
-				8,
-				9,
-				10,
-				11
-			],
-			"name": "GF Dancing Beat Hair Landing"
-		},
-		{
-			"loop": true,
-			"offsets": [
 				-1,
 				-89
 			],
@@ -188,7 +104,7 @@
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/GF_assets",
+	"image": "characters/shaya_mini",
 	"position": [
 		-120,
 		60

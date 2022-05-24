@@ -203,6 +203,7 @@ class PlayState extends MusicBeatState
 	public var healthLoss:Float = 1;
 	public var instakillOnMiss:Bool = false;
 	public var mirrorMode:Bool = false;
+	public var randomNotes:Bool = false;
 	public var cpuControlled:Bool = false;
 	public var practiceMode:Bool = false;
 
@@ -361,6 +362,7 @@ class PlayState extends MusicBeatState
 		instakillOnMiss = ClientPrefs.getGameplaySetting('instakill', false);
 		practiceMode = ClientPrefs.getGameplaySetting('practice', false);
 		mirrorMode = ClientPrefs.getGameplaySetting('mirror', false);
+		randomNotes = ClientPrefs.getGameplaySetting('random', false);
 		cpuControlled = ClientPrefs.getGameplaySetting('botplay', false);
 		shader_chromatic_abberation = new ChromaticAberrationEffect();
 
@@ -507,20 +509,20 @@ class PlayState extends MusicBeatState
 				add(stadiumBoppers);
 
 			case 'spooky': //Week 2
-				var halloweenSky:BGSprite = new BGSprite('week2bg/Forest', -1400, -1000, 0.3, 0.3);
-				halloweenSky.setGraphicSize(Std.int(halloweenSky.width * 0.8));
+				var halloweenSky:BGSprite = new BGSprite('stages/forest/sky', -1400, -1000, 0.3, 0.3);
+				halloweenSky.setGraphicSize(Std.int(halloweenSky.width * 3.2));
 				halloweenSky.updateHitbox();
 
-				var halloweenTrees:BGSprite = new BGSprite('week2bg/bg_trees', -1400, -800, 0.6, 0.6);
-				halloweenTrees.setGraphicSize(Std.int(halloweenTrees.width * 0.8));
+				var halloweenTrees:BGSprite = new BGSprite('stages/forest/treesB', -1400, -800, 0.6, 0.6);
+				halloweenTrees.setGraphicSize(Std.int(halloweenTrees.width * 3.2));
 				halloweenTrees.updateHitbox();
 
-				var halloweenGround:BGSprite = new BGSprite('week2bg/house', -1400, -900, 0.9, 0.9);
-				halloweenGround.setGraphicSize(Std.int(halloweenGround.width * 0.8));
+				var halloweenGround:BGSprite = new BGSprite('stages/forest/house', -1400, -900, 0.9, 0.9);
+				halloweenGround.setGraphicSize(Std.int(halloweenGround.width * 3.2));
 				halloweenGround.updateHitbox();
 
-				halloweenForeground = new BGSprite('week2bg/foreground_trees', -355, -150, 1.3, 1.3);
-				halloweenForeground.setGraphicSize(Std.int(halloweenGround.width * 0.8));
+				halloweenForeground = new BGSprite('stages/forest/treesF', 1770, -400, 1.3, 1.3);
+				halloweenForeground.setGraphicSize(Std.int(halloweenGround.width * 0.25));
 				halloweenForeground.updateHitbox();
 
 				add(halloweenSky);
@@ -555,16 +557,16 @@ class PlayState extends MusicBeatState
 				add(gayStation);
 
 			case 'miaStation':
-				var stadiumBG:BGSprite = new BGSprite('stadium/stadium', -550, -270, 0.9, 0.9);
-				stadiumBG.setGraphicSize(Std.int(stadiumBG.width * 1));
+				var stadiumBG:BGSprite = new BGSprite('stages/stage/stadium', -550, -270, 0.9, 0.9);
+				stadiumBG.setGraphicSize(Std.int(stadiumBG.width * 2));
 				stadiumBG.updateHitbox();
 
-				var backBoppers:BGSprite = new BGSprite('stadium/mia_boppers', -550, -327, 0.9, 0.9, ['Back Crowd Bop'], true);
-				backBoppers.setGraphicSize(Std.int(backBoppers.width * 1));
+				var backBoppers:BGSprite = new BGSprite('stages/stage/mia_boppers', -550, -327, 0.9, 0.9, ['Back Crowd Bop'], true);
+				backBoppers.setGraphicSize(Std.int(backBoppers.width * 2));
 				backBoppers.updateHitbox();
 
-				var frontBoppers:BGSprite = new BGSprite('stadium/mia_boppers', -550, -335, 0.9, 0.9, ['Front Crowd Bop'], true);
-				frontBoppers.setGraphicSize(Std.int(frontBoppers.width * 1));
+				var frontBoppers:BGSprite = new BGSprite('stages/stage/mia_boppers', -550, -335, 0.9, 0.9, ['Front Crowd Bop'], true);
+				frontBoppers.setGraphicSize(Std.int(frontBoppers.width * 2));
 				frontBoppers.updateHitbox();
 
 				add(stadiumBG);
@@ -1154,7 +1156,7 @@ class PlayState extends MusicBeatState
 		laneUnderlayP2.alpha = ClientPrefs.laneUnderlay;
 		laneUnderlayP2.color = FlxColor.BLACK;
 		laneUnderlayP2.scrollFactor.set();
-		if (ClientPrefs.middleScroll) add(laneUnderlayP2);
+		if (!ClientPrefs.middleScroll) add(laneUnderlayP2);
 
 		strumLineNotes = new FlxTypedGroup<StrumNote>();
 		add(strumLineNotes);
@@ -1366,7 +1368,7 @@ class PlayState extends MusicBeatState
 			path = debugPath;
 		}
 		#end
-		if (FileSystem.exists(path)) {
+		if (FileSystem.exists(path) && ClientPrefs.modCharts) {
 			trace("found lua " + path);
 			luaArray.push(new FunkinLua(Paths.getPreloadPath("modcharts/InitRaltModchart.lua")));
 		}
@@ -1469,8 +1471,7 @@ class PlayState extends MusicBeatState
 		Conductor.safeZoneOffset = (ClientPrefs.safeFrames / 60) * 1000;
 		callOnLuas('onCreatePost', []);
 		
-		if (ClientPrefs.noteCamera)
-			cameraSpeed = 2;
+		cameraSpeed = ClientPrefs.camSpeed;
 
 		super.create();
 
@@ -2769,10 +2770,14 @@ class PlayState extends MusicBeatState
 				Xamount = Xamount + 0.00075;
 			}
 
-		if(ratingName == '?') {
-			scoreTxt.text = 'Score: ' + songScore + ' | Combo Breaks: ' + songBreaks + ' | Accuracy: ?';
+		if (ClientPrefs.scoreDetail) {
+			if(ratingName == '?') {
+				scoreTxt.text = 'Score: ' + songScore + ' | Combo Breaks: ' + songBreaks + ' | Accuracy: ?';
+			} else {
+				scoreTxt.text = 'Score: ' + songScore + ' | Combo Breaks: ' + songBreaks + ' | Accuracy: ' + Highscore.floorDecimal(ratingPercent * 100, 2) + '%' + ratingFC;
+			}
 		} else {
-			scoreTxt.text = 'Score: ' + songScore + ' | Combo Breaks: ' + songBreaks + ' | Accuracy: ' + Highscore.floorDecimal(ratingPercent * 100, 2) + '%' + ratingFC;
+			scoreTxt.text = 'Score: ' + songScore;
 		}
 
 		judgementCounter.text = 'Sicks: ' + sicks +'\nGoods: '+ goods +'\nBads: ' + bads + '\nShits: ' + shits + '\nMisses: ' + songMisses + '\n';
@@ -2820,13 +2825,15 @@ class PlayState extends MusicBeatState
 		// FlxG.watch.addQuick('VOL', vocals.amplitudeLeft);
 		// FlxG.watch.addQuick('VOLRight', vocals.amplitudeRight);
 
-		var mult:Float = FlxMath.lerp(1, iconP1.scale.x, CoolUtil.boundTo(1 - (elapsed * 9), 0, 1));
-		iconP1.scale.set(mult, mult);
-		iconP1.updateHitbox();
+		if (!ClientPrefs.mitigateIconBop) {
+			var mult:Float = FlxMath.lerp(1, iconP1.scale.x, CoolUtil.boundTo(1 - (elapsed * 9), 0, 1));
+			iconP1.scale.set(mult, mult);
+			iconP1.updateHitbox();
 
-		var mult:Float = FlxMath.lerp(1, iconP2.scale.x, CoolUtil.boundTo(1 - (elapsed * 9), 0, 1));
-		iconP2.scale.set(mult, mult);
-		iconP2.updateHitbox();
+			var mult:Float = FlxMath.lerp(1, iconP2.scale.x, CoolUtil.boundTo(1 - (elapsed * 9), 0, 1));
+			iconP2.scale.set(mult, mult);
+			iconP2.updateHitbox();
+		}
 
 		var iconOffset:Int = 26;
 
@@ -2852,6 +2859,7 @@ class PlayState extends MusicBeatState
 			paused = true;
 			cancelMusicFadeTween();
 			mirrorMode = !mirrorMode;
+			randomNotes = !randomNotes;
 			CustomFadeTransition.nextCamera = camOther;
 			MusicBeatState.switchState(new CharacterEditorState(SONG.player2));
 		}
@@ -4630,8 +4638,8 @@ class PlayState extends MusicBeatState
 			{
 				FlxG.sound.play(Paths.sound('ChartingTick'), ClientPrefs.hitsoundVolume, false);
 				combo += 1;
-				popUpScore(note);
 				if(combo > 9999) combo = 9999;
+				popUpScore(note);
 			}
 			health += note.hitHealth * healthGain;
 
@@ -4964,8 +4972,10 @@ class PlayState extends MusicBeatState
 			camHUD.zoom += 0.03;
 		}
 
-		iconP1.scale.set(1.2, 1.2);
-		iconP2.scale.set(1.2, 1.2);
+		if (!ClientPrefs.mitigateIconBop) {
+			iconP1.scale.set(1.2, 1.2);
+			iconP2.scale.set(1.2, 1.2);
+		}
 
 		iconP1.updateHitbox();
 		iconP2.updateHitbox();

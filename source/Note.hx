@@ -44,6 +44,8 @@ class Note extends FlxSprite
 	public static var BLUE_NOTE:Int = 1;
 	public static var RED_NOTE:Int = 3;
 
+	public var oldRand:Int = 0;
+
 	// Lua shit
 	public var noteSplashDisabled:Bool = false;
 	public var noteSplashTexture:String = null;
@@ -147,6 +149,17 @@ class Note extends FlxSprite
 		{
 			this.noteData = Std.int(Math.abs(3 - noteData)); // FlipX notes to be hit.
 			noteData = Std.int(Math.abs(3 - noteData)); // FlipX noteData sprite (0 = purple, 1 = blue, 2 = green, 3 = red).
+		}
+
+		if (PlayState.instance.randomNotes) 
+		{
+			if (!isSustainNote) {
+				this.noteData = FlxG.random.int(0, 3); // Random NoteData.
+				noteData = this.noteData; // Da Sprite
+			} else {
+				this.noteData = prevNote.noteData;
+				noteData = prevNote.noteData;
+			}
 		}
 
 		if(noteData > -1) {

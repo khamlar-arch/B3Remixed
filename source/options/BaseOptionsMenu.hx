@@ -12,6 +12,7 @@ import flixel.math.FlxMath;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import lime.utils.Assets;
+import flixel.addons.display.FlxBackdrop;
 import flixel.FlxSubState;
 import flash.text.TextField;
 import flixel.FlxG;
@@ -37,9 +38,11 @@ class BaseOptionsMenu extends MusicBeatSubstate
 	private var checkboxGroup:FlxTypedGroup<CheckboxThingie>;
 	private var grpTexts:FlxTypedGroup<AttachedText>;
 
-	private var boyfriend:Character = null;
+	private var boyfriend:FlxSprite = null;
 	private var descBox:FlxSprite;
 	private var descText:FlxText;
+
+	var backdrop:FlxBackdrop = new FlxBackdrop(Paths.image('menus/menuCheckerboard'), 0.2, 0.2, true, true);
 
 	public var title:String;
 	public var rpcTitle:String;
@@ -63,6 +66,23 @@ class BaseOptionsMenu extends MusicBeatSubstate
 		bg.antialiasing = ClientPrefs.globalAntialiasing;
 		add(bg);
 
+		add(backdrop);
+		backdrop.alpha = 0.5;
+		backdrop.scale.x = 5;
+		backdrop.scale.y = 5;
+		backdrop.color = 0xFF00FFF2;
+		backdrop.scrollFactor.set(0, 0.07);
+		backdrop.updateHitbox();
+
+		var frame2:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menus/options/fade'));
+		frame2.scrollFactor.set();
+		frame2.setGraphicSize(Std.int(frame2.width * 1));
+		frame2.updateHitbox();
+		frame2.screenCenter();
+		frame2.antialiasing = ClientPrefs.globalAntialiasing;
+		add(frame2);
+
+
 		// avoids lagspikes while scrolling through menus!
 		grpOptions = new FlxTypedGroup<Alphabet>();
 		add(grpOptions);
@@ -73,13 +93,20 @@ class BaseOptionsMenu extends MusicBeatSubstate
 		checkboxGroup = new FlxTypedGroup<CheckboxThingie>();
 		add(checkboxGroup);
 
+		var frame:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('menus/main/top'));
+		frame.scrollFactor.set();
+		frame.setGraphicSize(Std.int(frame.width * 1));
+		frame.updateHitbox();
+		frame.antialiasing = ClientPrefs.globalAntialiasing;
+		add(frame);
+
 		descBox = new FlxSprite().makeGraphic(1, 1, FlxColor.BLACK);
 		descBox.alpha = 0.6;
 		add(descBox);
 
 		var titleText:Alphabet = new Alphabet(0, 0, title, true, false, 0, 0.6);
-		titleText.x += 60;
-		titleText.y += 40;
+		titleText.x += 1260 - titleText.width;
+		titleText.y += 65;
 		titleText.alpha = 0.4;
 		add(titleText);
 
@@ -91,7 +118,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 
 		for (i in 0...optionsArray.length)
 		{
-			var optionText:Alphabet = new Alphabet(0, 70 * i, optionsArray[i].name, false, false);
+			var optionText:Alphabet = new Alphabet(0, 70 * i, optionsArray[i].name, (optionsArray[i].type == 'filler' ? true : false), false);
 			optionText.isMenuItem = true;
 			optionText.isOption = true;
 			optionText.x += 300;
@@ -99,6 +126,8 @@ class BaseOptionsMenu extends MusicBeatSubstate
 			optionText.yMult = 90;*/
 			optionText.xAdd = 200;
 			optionText.targetY = i;
+			if (optionsArray[i].type == 'filler') optionText.yAdd = 75;
+			if (optionsArray[i].type != 'bool' && optionsArray[i].type != 'state') optionText.offset.x = 120;
 			grpOptions.add(optionText);
 
 			if(optionsArray[i].type == 'bool') {
@@ -109,9 +138,9 @@ class BaseOptionsMenu extends MusicBeatSubstate
 			} else if (optionsArray[i].type == 'state') {
 				//nothin
 			} else {
-				optionText.x -= 80;
-				optionText.xAdd -= 80;
-				var valueText:AttachedText = new AttachedText('' + optionsArray[i].getValue(), optionText.width + 80);
+				optionText.x -= 215;
+				optionText.xAdd -= 215;
+				var valueText:AttachedText = new AttachedText('' + optionsArray[i].getValue(), optionText.width - 45);
 				valueText.sprTracker = optionText;
 				valueText.copyAlpha = true;
 				valueText.ID = i;
@@ -126,7 +155,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 			updateTextFrom(optionsArray[i]);
 		}
 
-		changeSelection();
+		changeSelection(1);
 		reloadCheckboxes();
 	}
 
@@ -140,13 +169,25 @@ class BaseOptionsMenu extends MusicBeatSubstate
 	var holdValue:Float = 0;
 	override function update(elapsed:Float)
 	{
+		//i feel like this could be done better but i trust peak
+		backdrop.x -= 70 * elapsed;
+		backdrop.y -= 70 * elapsed;
+		
 		if (controls.UI_UP_P)
 		{
 			changeSelection(-1);
+			if (curOption.type == 'filler')
+			{
+				changeSelection(-1);
+			}
 		}
 		if (controls.UI_DOWN_P)
 		{
 			changeSelection(1);
+			if (curOption.type == 'filler')
+			{
+				changeSelection(1);
+			}
 		}
 
 		if (controls.BACK) {
@@ -157,7 +198,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 		if(nextAccept <= 0)
 		{
 			var usesCheckbox = true;
-			if(curOption.type != 'bool' && curOption.type != 'none')
+			if(curOption.type != 'bool' && curOption.type != 'none' && curOption.type != 'filler')
 			{
 				usesCheckbox = false;
 			}
@@ -265,7 +306,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 		}
 
 		if(boyfriend != null && boyfriend.animation.curAnim.finished) {
-			boyfriend.dance();
+			boyfriend.animation.play('bump');
 		}
 
 		if(nextAccept > 0) {
@@ -342,12 +383,14 @@ class BaseOptionsMenu extends MusicBeatSubstate
 			boyfriend.destroy();
 		}
 
-		boyfriend = new Character(840, 170, 'bf', true);
-		boyfriend.setGraphicSize(Std.int(boyfriend.width * 0.75));
+		boyfriend = new FlxSprite(450, 55);
+		boyfriend.frames = Paths.getSparrowAtlas('logoBumpin');		
+		boyfriend.antialiasing = ClientPrefs.globalAntialiasing;
+		boyfriend.animation.addByPrefix('bump', 'logo bumpin', 24, false);
+		boyfriend.animation.play('bump');
 		boyfriend.updateHitbox();
-		boyfriend.dance();
-		insert(1, boyfriend);
-		boyfriend.visible = wasVisible;
+		boyfriend.setGraphicSize(Std.int(boyfriend.width * 0.5));
+		add(boyfriend);
 	}
 
 	function reloadCheckboxes() {

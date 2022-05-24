@@ -15,6 +15,7 @@ import lime.utils.Assets;
 import flixel.FlxSubState;
 import flash.text.TextField;
 import flixel.FlxG;
+import flixel.addons.display.FlxBackdrop;
 import flixel.FlxSprite;
 import flixel.util.FlxSave;
 import haxe.Json;
@@ -67,6 +68,8 @@ class ControlsSubState extends MusicBeatSubstate {
 	private var grpInputsAlt:Array<AttachedText> = [];
 	var rebindingKey:Bool = false;
 	var nextAccept:Int = 5;
+	public static var weed:Bool = false;
+	var backdrop:FlxBackdrop = new FlxBackdrop(Paths.image('menus/menuCheckerboard'), 0.2, 0.2, true, true);
 
 	public function new() {
 		super();
@@ -78,6 +81,22 @@ class ControlsSubState extends MusicBeatSubstate {
 		bg.screenCenter();
 		bg.antialiasing = ClientPrefs.globalAntialiasing;
 		add(bg);
+
+		add(backdrop);
+		backdrop.alpha = 0.5;
+		backdrop.scale.x = 5;
+		backdrop.scale.y = 5;
+		backdrop.color = 0xFF00FFF2;
+		backdrop.scrollFactor.set(0, 0.07);
+		backdrop.updateHitbox();
+
+		var frame2:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menus/options/fade'));
+		frame2.scrollFactor.set();
+		frame2.setGraphicSize(Std.int(frame2.width * 1));
+		frame2.updateHitbox();
+		frame2.screenCenter();
+		frame2.antialiasing = ClientPrefs.globalAntialiasing;
+		add(frame2);
 
 		grpOptions = new FlxTypedGroup<Alphabet>();
 		add(grpOptions);
@@ -112,11 +131,22 @@ class ControlsSubState extends MusicBeatSubstate {
 			}
 		}
 		changeSelection();
+
+		var frame:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('menus/main/top'));
+		frame.scrollFactor.set();
+		frame.setGraphicSize(Std.int(frame.width * 1));
+		frame.updateHitbox();
+		frame.antialiasing = ClientPrefs.globalAntialiasing;
+		add(frame);
 	}
 
 	var leaving:Bool = false;
 	var bindingTime:Float = 0;
 	override function update(elapsed:Float) {
+		//i feel like this could be done better but i trust peak
+		backdrop.x -= 70 * elapsed;
+		backdrop.y -= 70 * elapsed;
+
 		if(!rebindingKey) {
 			if (controls.UI_UP_P) {
 				changeSelection(-1);
@@ -130,7 +160,17 @@ class ControlsSubState extends MusicBeatSubstate {
 
 			if (controls.BACK) {
 				ClientPrefs.reloadControls();
-				close();
+				if (weed) {
+					FlxG.camera.fade(0xff000000, 0.5, function() {
+						options.OptionsState.forceSong = false;
+						FlxG.camera.visible = false;
+						weed = false;
+						close();
+						LoadingState.loadAndSwitchState(new PlayState(), true);
+					});
+				} else {
+					close();
+				}
 				FlxG.sound.play(Paths.sound('cancelMenu'));
 			}
 
