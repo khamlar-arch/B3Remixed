@@ -29,6 +29,8 @@ events = {
 		EVUF1 = onUpdate(EVF1)
 	end},
 	{"s264", function()
+		clearUnusedMemory()
+		
 		tweenNumber(strums.bf, "x", defaultStrums.bf.x, defaultStrums.bf.x + 100, stepC * 8, stepC * 264, easing.outCubic)
 		tweenNumber(strums.bf.scale.proxy, "x", 1, .7, stepC * 8, stepC * 264, easing.outCubic)
 		tweenNumber(strums.bf.scale.proxy, "y", 1, .7, stepC * 8, stepC * 264, easing.outCubic)
@@ -72,6 +74,8 @@ events = {
 		end)
 	end},
 	{"s512", function()
+		clearUnusedMemory()
+		
 		strums.dad.rotation = Vector3.new(0, 0, 0)
 		strums.bf.rotation = Vector3.new(0, 0, 0)
 		
@@ -282,6 +286,8 @@ events = {
 		doTweenAlpha('funIsINFINITE', 'infiniteFun', 1, 0.25, 'circInOut')
 	end},
 	{"s1160", function()
+		clearUnusedMemory()
+		
 		cams.game.zoomBeatSteps = 16
 		cams.hud.zoomBeatSteps = 16
 		cams.other.zoomBeatSteps = 16
@@ -487,6 +493,7 @@ events = {
 			tweenNumber(v, "drift", .2, 0, stepC * 16, nil, easing.outCubic)
 		end
 		
+		clearUnusedMemory()
 		EVUF3()
 	end}
 }
@@ -505,4 +512,6 @@ onCreate(function()
 	setObjectCamera('infiniteFun', 'hud')
 	screenCenter('infiniteFun', 'X')
 	setTextSize('infiniteFun', 20)
+	
+	clearUnusedMemory()
 end)

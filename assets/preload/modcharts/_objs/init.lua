@@ -30,6 +30,10 @@ local function printdebug(...)
 	end
 end
 
+if (clearUnusedMemory == nil) then
+	function clearUnusedMemory()end
+end
+
 --[[ FUNKY NOTES ]]--
 funkyConfig = {
 	betterShake = true,
@@ -462,34 +466,16 @@ function updateNotes(...)
 			local hW = width / 2
 			local hH = height / 2
 			
+			local endN
+			local canCrop = false
 			if (isSustainNote) then
-				local endN = getPropertyFromGroup("notes", i, "animation.curAnim.name"):endsWith("end")
+				endN = getPropertyFromGroup("notes", i, "animation.curAnim.name"):endsWith("end")
 				if (endN) then
 					distance = distance - hH
 				end
-			end
-			
-			if (strumScroll) then distance = -distance end
-			
-			local notePos1 = strumPos:toWorldSpace(
-				CFrame.new(0, (distance - hH) * scrollScaleY, 0)
-			)
-			notePos1 = applyNoteMod(t, nI, notePos1, distance - hH)
-			
-			local notePos2 = strumPos:toWorldSpace(
-				CFrame.new(0, (distance + hH) * scrollScaleY, 0)
-			)
-			notePos2 = applyNoteMod(t, nI, notePos2, distance + hH)
-			
-			local notePos = notePos1:lerp(notePos2, .5)
-			local angle = isSustainNote and pointTowards(notePos2, notePos1) - 90 or strumAngle
-			local alpha = r.alpha * l.alpha * t.alpha
-			
-			-- WIP
-			
-			-- IM TRYING HARD TO OPTIMIZE THIS SHIT WITH USING FEWER GETPROPERTY FUNCTIONS
-			-- omfg it looks so bad
-			if (isSustainNote) then
+				
+				if (strumScroll) then distance = -distance end
+				
 				local ignoreNote = true
 				if (not mustPress) then
 					ignoreNote = getPropertyFromGroup("notes", i, "ignoreNote")
@@ -510,37 +496,62 @@ function updateNotes(...)
 					end
 					
 					if (not mustPress or (wasGoodHit or (prevWasGoodHit or not canBeHit))) then
-						local offY = getPropertyFromGroup("notes", i, "offset.y")
-						local scY = getPropertyFromGroup("notes", i, "scale.y")
-						
-						local x, y, w, h
-						
-						local center = noteSwagWidth / 2
-						
 						if (strumScroll) then
-							if (distance - offY * scY + height >= center) then
-								x, y, w, h = clips.getObjectRealClipFromGroup("notes", i)
-								
-								local cool = math.clamp((center - (distance + offY)) / scY, 0, h - .1)
-								
-								clips.setObjectClipFromGroup("notes", i, x, (y + h) - cool, w, h - cool)
-								--notePos = notePos:toWorldSpace(
-								--	CFrame.new(0, -cool, 0)
-								--)
+							if (distance + hH >= 0) then
+								canCrop = true
 							end
 						else
-							if (distance + offY * scY <= center) then
-								x, y, w, h = clips.getObjectRealClipFromGroup("notes", i)
-								
-								local cool = math.clamp((center - (distance + offY)) / scY, 0, h - .1)
-								
-								clips.setObjectClipFromGroup("notes", i, x, y + cool, w, h - cool)
-								notePos = notePos:toWorldSpace(
-									CFrame.new(0, cool, 0)
-								)
+							if (distance - hH <= 0) then
+								canCrop = true
 							end
 						end
 					end
+				end
+			else
+				if (strumScroll) then distance = -distance end
+			end
+			
+			local notePos1 = strumPos:toWorldSpace(
+				CFrame.new(0, (distance - hH) * scrollScaleY, 0)
+			)
+			notePos1 = applyNoteMod(t, nI, notePos1, distance - hH)
+			
+			local notePos2 = strumPos:toWorldSpace(
+				CFrame.new(0, (distance + hH) * scrollScaleY, 0)
+			)
+			notePos2 = applyNoteMod(t, nI, notePos2, distance + hH)
+			
+			local notePos = notePos1:lerp(notePos2, .5)
+			local angle = isSustainNote and pointTowards(notePos2, notePos1) - 90 or strumAngle
+			local alpha = r.alpha * l.alpha * t.alpha
+			
+			-- WIP
+			
+			-- IM TRYING HARD TO OPTIMIZE THIS SHIT WITH USING FEWER GETPROPERTY FUNCTIONS
+			-- omfg it looks so bad
+			if (canCrop) then
+				local x, y, w, h
+				
+				local th = endN and 2 or 4
+				
+				if (strumScroll) then
+					x, y, w, h = clips.getObjectRealClipFromGroup("notes", i)
+					
+					local cool = math.clamp(-((-distance - hH) / th), 0, h - .1)
+					
+					clips.setObjectClipFromGroup("notes", i, x, y + cool, w, h - cool)
+					notePos = notePos:toWorldSpace(
+						CFrame.new(0, -cool * th, 0)
+					)
+				else
+					x, y, w, h = clips.getObjectRealClipFromGroup("notes", i)
+					
+					local cool = math.clamp(-((distance - hH) / th), 0, h - .1)
+					
+					clips.setObjectClipFromGroup("notes", i, x, y + cool, w, h - cool)
+					notePos = notePos:toWorldSpace(
+						CFrame.new(0, cool * th, 0)
+					)
 				end
 			end
 			

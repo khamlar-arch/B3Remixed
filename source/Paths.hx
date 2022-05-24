@@ -22,6 +22,16 @@ import openfl.display.BitmapData;
 
 import flash.media.Sound;
 
+#if cpp
+import cpp.vm.Gc;
+#elseif hl
+import hl.Gc;
+#elseif java
+import java.vm.Gc;
+#elseif neko
+import neko.vm.Gc;
+#end
+
 using StringTools;
 
 class Paths
@@ -72,8 +82,19 @@ class Paths
 				}
 			}
 		}
+		
 		// run the garbage collector for good measure lmfao
-		System.gc();
+		//System.gc();
+		
+		#if cpp
+		Gc.compact();
+		Gc.run(true);
+		//Gc.setMinimumWorkingMemory(totalMemory);
+		#elseif hl
+		Gc.major();
+		#elseif (java || neko)
+		Gc.run(true);
+		#end
 	}
 
 	// define the locally tracked assets

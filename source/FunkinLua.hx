@@ -50,6 +50,10 @@ class FunkinLua {
 
 	#if LUA_ALLOWED
 	public var lua:State = null;
+	
+	// optimizations shit, IM TRYING MY BEST ALRIGHT
+	var lastFlxGroupObj:String = "NULLNULLLMAO";
+	var lastFlxGroup:Dynamic = null; 
 	#end
 
 	public var scriptName:String = '';
@@ -254,10 +258,6 @@ class FunkinLua {
 
 		//stuff 4 noobz like you B)
 		
-		// optimizations shit, IM TRYING MY BEST ALRIGHT
-		var lastFlxGroupObj:String = "NULLNULLLMAO";
-		var lastFlxGroup:Dynamic = null;
-		
 		Lua_helper.add_callback(lua, "getProperty", function(variable:String) {
 			var killMe:Array<String> = variable.split('.');
 			if(killMe.length > 1) {
@@ -275,9 +275,11 @@ class FunkinLua {
 		Lua_helper.add_callback(lua, "getPropertyFromGroup", function(obj:String, index:Int, variable:Dynamic) {
 			var v:Dynamic = lastFlxGroupObj == obj ? lastFlxGroup : Reflect.getProperty(getInstance(), obj);
 			
-			if(Std.isOfType(v, FlxTypedGroup)) {
-				lastFlxGroupObj = obj;
-				lastFlxGroup = v;
+			if(lastFlxGroupObj == obj || Std.isOfType(v, FlxTypedGroup)) {
+				if (!(lastFlxGroupObj == obj)) {
+					lastFlxGroupObj = obj;
+					lastFlxGroup = v;
+				}
 				return getGroupStuff(v.members[index], variable);
 			}
 
@@ -294,9 +296,11 @@ class FunkinLua {
 		Lua_helper.add_callback(lua, "setPropertyFromGroup", function(obj:String, index:Int, variable:Dynamic, value:Dynamic) {
 			var v:Dynamic = lastFlxGroupObj == obj ? lastFlxGroup : Reflect.getProperty(getInstance(), obj);
 			
-			if(Std.isOfType(v, FlxTypedGroup)) {
-				lastFlxGroupObj = obj;
-				lastFlxGroup = v;
+			if(lastFlxGroupObj == obj || Std.isOfType(v, FlxTypedGroup)) {
+				if (!(lastFlxGroupObj == obj)) {
+					lastFlxGroupObj = obj;
+					lastFlxGroup = v;
+				}
 				setGroupStuff(v.members[index], variable, value);
 				return;
 			}
@@ -878,6 +882,12 @@ class FunkinLua {
 				default: PlayState.instance.boyfriend.dance();
 			}
 		});
+		
+		Lua_helper.add_callback(lua, "clearUnusedMemory", function() {
+			Paths.clearUnusedMemory();
+			call("collectgarbage", []);
+			return true;
+		});
 
 		Lua_helper.add_callback(lua, "makeLuaSprite", function(tag:String, image:String, x:Float, y:Float) {
 			tag = tag.replace('.', '');
@@ -1328,37 +1338,67 @@ class FunkinLua {
 		});
 		Lua_helper.add_callback(lua, "getSoundVolume", function(tag:String) {
 			if(tag == null || tag.length < 1) {
-				if(FlxG.sound.music != null) {
+				if(FlxG.sound.music != null)
 					return FlxG.sound.music.volume;
-				}
-			} else if(PlayState.instance.modchartSounds.exists(tag)) {
+			}
+			else if(PlayState.instance.modchartSounds.exists(tag)) {
 				return PlayState.instance.modchartSounds.get(tag).volume;
 			}
 			return 0;
 		});
 		Lua_helper.add_callback(lua, "setSoundVolume", function(tag:String, value:Float) {
 			if(tag == null || tag.length < 1) {
-				if(FlxG.sound.music != null) {
+				if(FlxG.sound.music != null)
 					FlxG.sound.music.volume = value;
-				}
-			} else if(PlayState.instance.modchartSounds.exists(tag)) {
+			}
+			else if(PlayState.instance.modchartSounds.exists(tag)) {
 				PlayState.instance.modchartSounds.get(tag).volume = value;
 			}
 		});
 		Lua_helper.add_callback(lua, "getSoundTime", function(tag:String) {
-			if(tag != null && tag.length > 0 && PlayState.instance.modchartSounds.exists(tag)) {
+			if(tag == null || tag.length < 1) {
+				if(FlxG.sound.music != null)
+					return FlxG.sound.music.time;
+			}
+			else if (PlayState.instance.modchartSounds.exists(tag)) {
 				return PlayState.instance.modchartSounds.get(tag).time;
 			}
 			return 0;
 		});
 		Lua_helper.add_callback(lua, "setSoundTime", function(tag:String, value:Float) {
-			if(tag != null && tag.length > 0 && PlayState.instance.modchartSounds.exists(tag)) {
+			if(tag == null || tag.length < 1) {
+				if(FlxG.sound.music != null)
+					FlxG.sound.music.time = value;
+			}
+			else if (PlayState.instance.modchartSounds.exists(tag)) {
 				var theSound:FlxSound = PlayState.instance.modchartSounds.get(tag);
 				if(theSound != null) {
-					var wasResumed:Bool = theSound.playing;
-					theSound.pause();
+					//var wasResumed:Bool = theSound.playing;
+					//theSound.pause();
 					theSound.time = value;
-					if(wasResumed) theSound.play();
+					//if(wasResumed) theSound.play();
+				}
+			}
+		});
+		Lua_helper.add_callback(lua, "getSoundPitch", function(tag:String) {
+			if(tag == null || tag.length < 1) {
+				if(FlxG.sound.music != null)
+					return FlxG.sound.music.pitch;
+			}
+			else if (PlayState.instance.modchartSounds.exists(tag))
+				return PlayState.instance.modchartSounds.get(tag).pitch;
+			
+			return 1;
+		});
+		Lua_helper.add_callback(lua, "setSoundPitch", function(tag:String, value:Float = 1) {
+			if(tag == null || tag.length < 1) {
+				if(FlxG.sound.music != null)
+					FlxG.sound.music.pitch = value;
+			}
+			else if (PlayState.instance.modchartSounds.exists(tag)) {
+				var theSound:FlxSound = PlayState.instance.modchartSounds.get(tag);
+				if(theSound != null) {
+					theSound.pitch = value;
 				}
 			}
 		});
@@ -1750,9 +1790,9 @@ class FunkinLua {
 			PlayState.instance.addShaderToCamera(camera, new BloomEffect(blurSize/512.0,intensity));
 		});
 		
-
-
-
+		
+		
+		
 		Lua_helper.add_callback(lua, "clearEffects", function(camera:String) {
 			PlayState.instance.clearShaderFromCamera(camera);
 		});
@@ -1763,9 +1803,11 @@ class FunkinLua {
 		Lua_helper.add_callback(lua, "setSprPosFromGroup", function(obj:String, index:Int, x:Float = 0, y:Float = 0, angle:Float = 0) {
 			var v:Dynamic = lastFlxGroupObj == obj ? lastFlxGroup : Reflect.getProperty(getInstance(), obj);
 			
-			if(Std.isOfType(v, FlxTypedGroup)) {
-				lastFlxGroupObj = obj;
-				lastFlxGroup = v;
+			if(lastFlxGroupObj == obj || Std.isOfType(v, FlxTypedGroup)) {
+				if (!(lastFlxGroupObj == obj)) {
+					lastFlxGroupObj = obj;
+					lastFlxGroup = v;
+				}
 				
 				var obj = v.members[index];
 				if (Std.isOfType(obj, FlxSprite)) {
@@ -1783,9 +1825,11 @@ class FunkinLua {
 		Lua_helper.add_callback(lua, "setSprScFromGroup", function(obj:String, index:Int, x:Float = 0, y:Float = 0) {
 			var v:Dynamic = lastFlxGroupObj == obj ? lastFlxGroup : Reflect.getProperty(getInstance(), obj);
 			
-			if(Std.isOfType(v, FlxTypedGroup)) {
-				lastFlxGroupObj = obj;
-				lastFlxGroup = v;
+			if(lastFlxGroupObj == obj || Std.isOfType(v, FlxTypedGroup)) {
+				if (!(lastFlxGroupObj == obj)) {
+					lastFlxGroupObj = obj;
+					lastFlxGroup = v;
+				}
 				
 				var obj = v.members[index];
 				if (Std.isOfType(obj, FlxSprite)) {
