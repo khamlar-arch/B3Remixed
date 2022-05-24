@@ -62,6 +62,18 @@ class Paths
 		if (!dumpExclusions.contains(key))
 			dumpExclusions.push(key);
 	}
+	
+	public static function compress() {
+		#if cpp
+		Gc.compact();
+		Gc.run(true);
+		//Gc.setMinimumWorkingMemory(totalMemory);
+		#elseif hl
+		Gc.major();
+		#elseif (java || neko)
+		Gc.run(true);
+		#end
+	}
 
 	public static var dumpExclusions:Array<String> = [];
 	/// haya I love you for the base cache dump I took to the max
@@ -86,15 +98,7 @@ class Paths
 		// run the garbage collector for good measure lmfao
 		//System.gc();
 		
-		#if cpp
-		Gc.compact();
-		Gc.run(true);
-		//Gc.setMinimumWorkingMemory(totalMemory);
-		#elseif hl
-		Gc.major();
-		#elseif (java || neko)
-		Gc.run(true);
-		#end
+		compress();
 	}
 
 	// define the locally tracked assets
@@ -341,6 +345,7 @@ class Paths
 	}
 
 	// completely rewritten asset loading? fuck!
+	public static var hardwareCache:Bool = false;
 	public static var currentTrackedAssets:Map<String, FlxGraphic> = [];
 	public static function returnGraphic(key:String, ?library:String) {
 		#if MODS_ALLOWED
@@ -349,6 +354,9 @@ class Paths
 			if(!currentTrackedAssets.exists(modKey)) {
 				var newBitmap:BitmapData = BitmapData.fromFile(modKey);
 				var newGraphic:FlxGraphic = FlxGraphic.fromBitmapData(newBitmap, false, modKey);
+				if (hardwareCache && newGraphic.bitmap != null) 
+					OpenFlAssets.registerBitmapData(newGraphic.bitmap, false, true);
+				
 				newGraphic.persist = true;
 				currentTrackedAssets.set(modKey, newGraphic);
 			}
@@ -361,6 +369,9 @@ class Paths
 		if (OpenFlAssets.exists(path, IMAGE)) {
 			if(!currentTrackedAssets.exists(path)) {
 				var newGraphic:FlxGraphic = FlxG.bitmap.add(path, false, path);
+				if (hardwareCache && newGraphic.bitmap != null) 
+					OpenFlAssets.registerBitmapData(newGraphic.bitmap, false, true);
+				
 				newGraphic.persist = true;
 				currentTrackedAssets.set(path, newGraphic);
 			}

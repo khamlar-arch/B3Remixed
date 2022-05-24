@@ -4184,7 +4184,7 @@ class PlayState extends MusicBeatState
 			} else {
 				if (lastNum != null) {
 					lastNum.destroy();
-					trace('0 found.');
+					//trace('0 found.');
 				}
 				lastNum = numScore;
 				insert(members.indexOf(strumLineNotes), numScore);
@@ -4228,7 +4228,7 @@ class PlayState extends MusicBeatState
 		} else {
 			if (lastRating != null) {
 				lastRating.destroy();
-				trace('39 buried.');
+				//trace('39 buried.');
 			}
 			lastRating = rating;
 			insert(members.indexOf(strumLineNotes) - 1, rating);
