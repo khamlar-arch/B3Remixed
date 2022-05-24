@@ -59,6 +59,10 @@ class ClientPrefs {
 	public static var comboOffset:Array<Int> = [0, 0, 0, 0];
 	public static var keSustains:Bool = false; //i was bored, okay?
 	
+	public static var hardwareCache:Bool = false; //not sure if this would work
+	public static var fakeHardC:Bool = false;
+	public static var isHardCInited:Bool = false;
+	
 	public static var ratingOffset:Int = 0;
 	public static var sickWindow:Int = 45;
 	public static var goodWindow:Int = 90;
@@ -136,6 +140,8 @@ class ClientPrefs {
 		FlxG.save.data.safeFrames = safeFrames;
 		FlxG.save.data.gameplaySettings = gameplaySettings;
 		FlxG.save.data.controllerMode = controllerMode;
+		
+		FlxG.save.data.hardwareCache = fakeHardC;
 	
 		FlxG.save.flush();
 
@@ -263,6 +269,16 @@ class ClientPrefs {
 			for (name => value in savedMap)
 			{
 				gameplaySettings.set(name, value);
+			}
+		}
+		
+		if(FlxG.save.data.hardwareCache != null) {
+			hardwareCache = FlxG.save.data.hardwareCache;
+			fakeHardC = FlxG.save.data.hardwareCache;
+			
+			if (!isHardCInited) {
+				Paths.hardwareCache = hardwareCache;
+				isHardCInited = true;
 			}
 		}
 		

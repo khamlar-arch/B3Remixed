@@ -77,6 +77,14 @@ class PreferencesSubState extends BaseOptionsMenu
 		option.displayFormat = '%v FPS';
 		option.onChange = onChangeFramerate;
 		#end
+		
+		var option:Option = new Option('Hardware Caching',
+			'If checked, the game will uploads images to GPU \nRestart your game in order for this to work.\n[UNCHECK THIS IF IMAGES NOT SHOWING]',
+			'fakeHardC',
+			'bool',
+			false);
+		addOption(option);
+		option.onChange = onChangeHardC;
 
 		var option:Option = new Option('Lock Unlocked Weeks',
 		"Locks all weeks that aren't already unlocked.\nBe careful! [THIS IS NOT REVERSIBLE.]", 
@@ -120,5 +128,10 @@ class PreferencesSubState extends BaseOptionsMenu
 			FlxG.drawFramerate = ClientPrefs.framerate;
 			FlxG.updateFramerate = ClientPrefs.framerate;
 		}
+	}
+	
+	function onChangeHardC()
+	{
+		Paths.hardwareCache = ClientPrefs.hardwareCache;
 	}
 }
