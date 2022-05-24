@@ -74,6 +74,8 @@ class Option
 					if(options.length > 0) {
 						defaultValue = options[0];
 					}
+				case 'none':
+					defaultValue = null;
 			}
 		}
 
@@ -145,6 +147,7 @@ class Option
 			case 'integer': newValue = 'int';
 			case 'str': newValue = 'string';
 			case 'fl': newValue = 'float';
+			case 'none': newValue = 'none';
 		}
 		type = newValue;
 		return type;

@@ -1154,7 +1154,7 @@ class PlayState extends MusicBeatState
 		laneUnderlayP2.alpha = ClientPrefs.laneUnderlay;
 		laneUnderlayP2.color = FlxColor.BLACK;
 		laneUnderlayP2.scrollFactor.set();
-		add(laneUnderlayP2);
+		if (ClientPrefs.middleScroll) add(laneUnderlayP2);
 
 		strumLineNotes = new FlxTypedGroup<StrumNote>();
 		add(strumLineNotes);
@@ -1918,12 +1918,12 @@ class PlayState extends MusicBeatState
 			for (i in 0...opponentStrums.length) {
 				setOnLuas('defaultOpponentStrumX' + i, opponentStrums.members[i].x);
 				setOnLuas('defaultOpponentStrumY' + i, opponentStrums.members[i].y);
-				//if(ClientPrefs.middleScroll) opponentStrums.members[i].visible = false;
+				if(ClientPrefs.middleScroll) opponentStrums.members[i].visible = false;
 			}
 			for (i in 0...otherStrums.length) {
 				setOnLuas('defaultThirdStrumX' + i, otherStrums.members[i].x);
 				setOnLuas('defaultThirdStrumY' + i, otherStrums.members[i].y);
-				//if(ClientPrefs.middleScroll) otherStrums.members[i].visible = false;
+				if(ClientPrefs.middleScroll) otherStrums.members[i].visible = false;
 			}
 
 			startedCountdown = true;
@@ -2071,9 +2071,6 @@ class PlayState extends MusicBeatState
 				notes.forEachAlive(function(note:Note) {
 					note.copyAlpha = false;
 					note.alpha = note.multAlpha;
-					if(ClientPrefs.middleScroll && !note.mustPress) {
-						note.alpha *= 0.5;
-					}
 				});
 				callOnLuas('onCountdownTick', [swagCounter]);
 
@@ -2351,28 +2348,12 @@ class PlayState extends MusicBeatState
 						{
 							sustainNote.x += FlxG.width / 2; // general offset
 						}
-						else if(ClientPrefs.middleScroll)
-						{
-							sustainNote.x += 310;
-							if(daNoteData > 1)
-							{ //Up and Right
-								sustainNote.x += FlxG.width / 2 + 25;
-							}
-						}
 					}
 				}
 
 				if (swagNote.mustPress)
 				{
 					swagNote.x += FlxG.width / 2; // general offset
-				}
-				else if(ClientPrefs.middleScroll)
-				{
-					swagNote.x += 310;
-					if(daNoteData > 1) //Up and Right
-					{
-						swagNote.x += FlxG.width / 2 + 25;
-					}
 				}
 
 				if(!noteTypeMap.exists(swagNote.noteType)) {
@@ -2456,7 +2437,6 @@ class PlayState extends MusicBeatState
 		{
 			// FlxG.log.add(i);
 			var targetAlpha:Float = 1;
-			if (player < 1 && ClientPrefs.middleScroll) targetAlpha = 0.35;
 
 			var babyArrow:StrumNote = new StrumNote(ClientPrefs.middleScroll ? STRUM_X_MIDDLESCROLL : STRUM_X, strumLine.y, i, player);
 			babyArrow.downScroll = ClientPrefs.downScroll;
@@ -2486,13 +2466,8 @@ class PlayState extends MusicBeatState
 			{
 				if (isPlayerThree)
 					babyArrow.x -= 90 + (i * 10);
-				if(ClientPrefs.middleScroll)
-				{
-					babyArrow.x += 310;
-					if(i > 1) { //Up and Right
-						babyArrow.x += FlxG.width / 2 + 25;
-					}
-				}
+				if (ClientPrefs.middleScroll)
+					babyArrow.x += 640;
 				opponentStrums.add(babyArrow);
 			} else if (player == 2) {
 				if (isPlayerThree)
@@ -2962,16 +2937,11 @@ class PlayState extends MusicBeatState
 			notes.forEachAlive(function(daNote:Note)
 			{
 				if (updateNotes) {
-					/*if (daNote.y > FlxG.height)
+					if(!daNote.mustPress && ClientPrefs.middleScroll)
 					{
-						daNote.active = false;
+						daNote.active = true;
 						daNote.visible = false;
 					}
-					else
-					{
-						daNote.visible = true;
-						daNote.active = true;
-					}*/
 
 					// i am so fucking sorry for this if condition
 					var strumX:Float = 0;

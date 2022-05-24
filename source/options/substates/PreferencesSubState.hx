@@ -78,11 +78,11 @@ class PreferencesSubState extends BaseOptionsMenu
 		option.onChange = onChangeFramerate;
 		#end
 
-		var option:Option = new Option('Reset Save Data',
-			"Resets all save data to default.\nBe careful! [THIS IS NOT REVERSIBLE.]", 
-			'thisisntimportantgoodbyesavedata',
-			'bool',
-			true);
+		var option:Option = new Option('Lock Unlocked Weeks',
+		"Locks all weeks that aren't already unlocked.\nBe careful! [THIS IS NOT REVERSIBLE.]", 
+		'thisisntimportantgoodbyesavedata',
+		'none',
+		true);
 		addOption(option);
 		option.onChange = onResetSave;
 
@@ -91,47 +91,13 @@ class PreferencesSubState extends BaseOptionsMenu
 
 	function onResetSave()
 	{
-		ClientPrefs.downScroll = false;
-		ClientPrefs.middleScroll = false;
-		ClientPrefs.hideChars = false;
-		ClientPrefs.judgementCounter = false;
-		ClientPrefs.showFPS = true;
-		ClientPrefs.hitsoundVolume = 0;
-		ClientPrefs.noteCamera = true;
-		ClientPrefs.specialNoteskin = true;
-		ClientPrefs.globalAntialiasing = true;
-		ClientPrefs.laneUnderlay = 0;
-		ClientPrefs.noteSplashes = true;
-		ClientPrefs.lowQuality = false;
-		ClientPrefs.camZooms = true;
-		ClientPrefs.hideHud = false;
-		ClientPrefs.noteOffset = 0;
-		ClientPrefs.arrowHSV = [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]];
-		ClientPrefs.ghostTapping = true;
-		ClientPrefs.timeBarType = 'Time Left';
-		ClientPrefs.scoreZoom = true;
-		ClientPrefs.noReset = false;
-		ClientPrefs.healthBarAlpha = 1;
-		ClientPrefs.comboOffset = [0, 0, 0, 0];
-		ClientPrefs.ratingOffset = 0;
-		ClientPrefs.sickWindow = 45;
-		ClientPrefs.goodWindow = 90;
-		ClientPrefs.badWindow = 135;
-		ClientPrefs.safeFrames = 10;
-		ClientPrefs.controllerMode = false;
-		ClientPrefs.gameplaySettings = [
-			'scrollspeed' => 1.0,
-			'scrolltype' => 'multiplicative',
-			'songspeed' => 1.0,
-			'healthgain' => 1.0,
-			'healthloss' => 1.0,
-			'instakill' => false,
-			'practice' => false,
-			'botplay' => false,
-			'opponentplay' => false
-		];
-		ClientPrefs.guhUnlocked = false;
+		FlxG.save.data.guhUnlocked = false;
 		FlxG.save.flush();
+		FlxG.sound.music.fadeOut(0.8, 0);
+		FlxG.camera.fade(FlxColor.BLACK, 0.7);
+		new FlxTimer().start(1.3, function(tmr:FlxTimer) {
+			FlxG.switchState(new MainMenuState());
+		});
 	}
 
 	#if !mobile
