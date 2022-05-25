@@ -1454,6 +1454,7 @@ class PlayState extends MusicBeatState
 		RecalculateRating();
 
 		//PRECACHING MISS SOUNDS BECAUSE I THINK THEY CAN LAG PEOPLE AND FUCK THEM UP IDK HOW HAXE WORKS
+		cachePopUpScore();
 		CoolUtil.precacheSound('missnote1');
 		CoolUtil.precacheSound('missnote2');
 		CoolUtil.precacheSound('missnote3');
@@ -4006,6 +4007,28 @@ class PlayState extends MusicBeatState
 		}
 		unspawnNotes = [];
 		eventNotes = [];
+	}
+	
+	private function cachePopUpScore() {
+		var pixelShitPart1:String = 'pixelUI/';
+		var pixelShitPart2:String = '-pixel';
+		
+		Paths.returnGraphic("sick");
+		Paths.returnGraphic("good");
+		Paths.returnGraphic("bad");
+		Paths.returnGraphic("shit");
+		
+		/*
+		Paths.returnGraphic(pixelShitPart1 + "sick" + pixelShitPart2);
+		Paths.returnGraphic(pixelShitPart1 + "good" + pixelShitPart2);
+		Paths.returnGraphic(pixelShitPart1 + "bad" + pixelShitPart2);
+		Paths.returnGraphic(pixelShitPart1 + "shit" + pixelShitPart2);
+		*/
+		
+		for (i in 0...10) {
+			//Paths.returnGraphic(pixelShitPart1 + 'num' + i + pixelShitPart2);
+			Paths.returnGraphic('num' + i);
+		}
 	}
 
 	public var totalPlayed:Int = 0;
