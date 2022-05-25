@@ -138,13 +138,13 @@ class Assets
 		Registers an instance of an embedded bitmap
 		@usage		Assets.registerBitmapData(bitmapData);
 		@param	bitmap		The bitmap for the asset path
-		@param	key		(Optional) The key for the bitmap
+		@param	key		The key for the bitmap
 		@param	useCache		(Optional) Whether to allow use of the asset cache (Default: true)
 		@param	hardware		Hardware Caching (Default: false)
 		@return		A BitmapData object
 	**/
-	public static function registerBitmapData(bitmap:BitmapData, ?key:String, useCache:Bool = true, hardware:Bool = false):BitmapData {
-		if (bitmap == null && key == null) return bitmap;
+	public static function registerBitmapData(bitmap:BitmapData, key:String, useCache:Bool = true, hardware:Bool = false):BitmapData {
+		if (bitmap == null || key == null) return bitmap;
 		
 		#if (lime && tools && !display)
 		
@@ -156,14 +156,16 @@ class Assets
 			texture.uploadFromBitmapData(bitmap);
 			bitmap.dispose();
 			Paths.compress();
+			
 			bitmap = BitmapData.fromTexture(texture);
 		}
 		#end
 		
-		if (useCache && cache.enabled && key != null)
+		if (useCache && cache.enabled)
 			cache.setBitmapData(key, bitmap);
 		#end
 		
+		trace("AWESOME");
 		return bitmap;
 	}
 

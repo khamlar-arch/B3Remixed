@@ -344,17 +344,22 @@ class Paths
 		return path.toLowerCase().replace(' ', '-');
 	}
 
-	private static function regBitmap(key:String, hardware:Bool = false):BitmapData {
+	private static function regBitmap(key:String, ?hardware:Bool):BitmapData {
+		hardware = hardware == null ? hardwareCache : hardware;
+		
+		if (OpenFlAssets.exists(key, IMAGE))
+			return OpenFlAssets.getBitmapData(key, false, hardware);
+		
 		#if MODS_ALLOWED
-		var newBitmap:BitmapData = BitmapData.fromFile(key);
-
-		if (newBitmap != null)
-			return OpenFlAssets.registerBitmapData(newBitmap, false, hardware);
-
-		return null;
-		#else
-		return OpenFlAssets.getBitmapData(key, false, hardware);
+		if(FileSystem.exists(key)) {
+			var newBitmap:BitmapData = BitmapData.fromFile(key);
+			
+			if (newBitmap != null)
+				return OpenFlAssets.registerBitmapData(newBitmap, key, false, hardware);
+		}
 		#end
+		
+		return null;
 	}
 
 	// completely rewritten asset loading? fuck!
