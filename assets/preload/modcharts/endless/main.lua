@@ -74,8 +74,6 @@ events = {
 		end)
 	end},
 	{"s512", function()
-		clearUnusedMemory()
-		
 		strums.dad.rotation = Vector3.new(0, 0, 0)
 		strums.bf.rotation = Vector3.new(0, 0, 0)
 		
@@ -86,6 +84,8 @@ events = {
 		tweenNumber(strums.bf.scale.proxy, "y", -1, 1, stepC * 10, stepC * 512, easing.outQuad)
 	end},
 	{"s520", function()
+		clearUnusedMemory()
+		
 		tweenNumber(strums.dad, "x", strums.dad.x, defaultStrums.dad.x, stepC * 8, stepC * 520, easing.outCubic)
 		tweenNumber(strums.dad.scale.proxy, "x", .7, 1, stepC * 8, stepC * 520, easing.outCubic)
 		tweenNumber(strums.dad.scale.proxy, "y", strums.dad.scale.y, 1, stepC * 8, stepC * 520, easing.outCubic)
@@ -255,6 +255,12 @@ events = {
 		cams.other.zoomBeatSteps = 8
 	end},
 	{"s909", function()
+		cancelTween("dadTweenOut")
+		cancelTween("boyfriendTweenOut")
+		
+		cancelTween("dadTweenIn")
+		cancelTween("boyfriendTweenIn")
+		
 		setProperty('dad.y', 50)
 		setProperty('boyfriend.y', 400)
 	end},

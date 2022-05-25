@@ -756,7 +756,7 @@ class FunkinLua {
 		});
 		Lua_helper.add_callback(lua, "restartSong", function(skipTransition:Bool) {
 			PlayState.instance.persistentUpdate = false;
-			PauseSubState.restartSong(skipTransition);
+			PauseSubState.luaRestartSong(skipTransition);
 		});
 		Lua_helper.add_callback(lua, "exitSong", function(skipTransition:Bool) {
 			if(skipTransition)

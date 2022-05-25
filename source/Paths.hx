@@ -34,6 +34,7 @@ import neko.vm.Gc;
 
 using StringTools;
 
+@:access(openfl.display.BitmapData.__texture)
 class Paths
 {
 	inline public static var SOUND_EXT = #if web "mp3" #else "ogg" #end;
@@ -89,6 +90,10 @@ class Paths
 				if (obj != null) {
 					openfl.Assets.cache.removeBitmapData(key);
 					FlxG.bitmap._cache.remove(key);
+					
+					if (obj.bitmap != null && obj.bitmap.__texture != null) obj.bitmap.__texture.dispose();
+					obj.bitmap.disposeImage();
+					
 					obj.destroy();
 					currentTrackedAssets.remove(key);
 				}
@@ -112,6 +117,10 @@ class Paths
 			if (obj != null && !currentTrackedAssets.exists(key)) {
 				openfl.Assets.cache.removeBitmapData(key);
 				FlxG.bitmap._cache.remove(key);
+				
+				if (obj.bitmap != null && obj.bitmap.__texture != null) obj.bitmap.__texture.dispose();
+				obj.bitmap.disposeImage();
+				
 				obj.destroy();
 			}
 		}

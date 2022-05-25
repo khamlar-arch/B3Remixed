@@ -110,7 +110,7 @@ class MusicBeatState extends FlxUIState
 	}
 
 	public static function resetState() {
-		MusicBeatState.switchState(FlxG.state);
+		MusicBeatState.switchState(Type.createInstance(Type.getClass(FlxG.state), []));
 	}
 
 	public static function getState():MusicBeatState {
