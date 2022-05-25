@@ -165,7 +165,6 @@ class Assets
 			cache.setBitmapData(key, bitmap);
 		#end
 		
-		trace("AWESOME");
 		return bitmap;
 	}
 
