@@ -344,28 +344,18 @@ class Paths
 		return path.toLowerCase().replace(' ', '-');
 	}
 
-	private static function regBitmap(key:String, hardware:Bool = false):BitmapData {
-		#if MODS_ALLOWED
-		var newBitmap:BitmapData = BitmapData.fromFile(key);
-
-		if (newBitmap != null)
-			return OpenFlAssets.registerBitmapData(newBitmap, false, hardware);
-
-		return null;
-		#else
-		return OpenFlAssets.getBitmapData(key, false, hardware);
-		#end
-	}
-
 	// completely rewritten asset loading? fuck!
 	public static var hardwareCache:Bool = false;
 	public static var currentTrackedAssets:Map<String, FlxGraphic> = [];
-	public static function returnGraphic(key:String, ?library:String):FlxGraphic {
+	public static function returnGraphic(key:String, ?library:String) {
 		#if MODS_ALLOWED
 		var modKey:String = modsImages(key);
 		if(FileSystem.exists(modKey)) {
 			if(!currentTrackedAssets.exists(modKey)) {
-				var newGraphic:FlxGraphic = FlxGraphic.fromBitmapData(regBitmap(modKey), false, modKey);
+				var newBitmap:BitmapData = BitmapData.fromFile(modKey);
+				var newGraphic:FlxGraphic = FlxGraphic.fromBitmapData(newBitmap, false, modKey);
+				if (hardwareCache && newGraphic.bitmap != null) 
+					OpenFlAssets.registerBitmapData(newGraphic.bitmap, false, true);
 				
 				newGraphic.persist = true;
 				currentTrackedAssets.set(modKey, newGraphic);
@@ -378,7 +368,9 @@ class Paths
 		var path = getPath('images/$key.png', IMAGE, library);
 		if (OpenFlAssets.exists(path, IMAGE)) {
 			if(!currentTrackedAssets.exists(path)) {
-				var newGraphic:FlxGraphic = FlxGraphic.fromBitmapData(regBitmap(path), false, path);
+				var newGraphic:FlxGraphic = FlxG.bitmap.add(path, false, path);
+				if (hardwareCache && newGraphic.bitmap != null) 
+					OpenFlAssets.registerBitmapData(newGraphic.bitmap, false, true);
 				
 				newGraphic.persist = true;
 				currentTrackedAssets.set(path, newGraphic);
