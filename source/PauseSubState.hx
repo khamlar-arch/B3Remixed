@@ -222,6 +222,7 @@ class PauseSubState extends MusicBeatSubstate
 					PlayState.changedDifficulty = true;
 					practiceText.visible = PlayState.instance.practiceMode;
 				case "Restart Song":
+					PlayState.startOnTime = 0;
 					restartSong();
 				case "Change Keybinds":
 					options.OptionsState.forceSong = true;
@@ -322,7 +323,6 @@ class PauseSubState extends MusicBeatSubstate
 	private function onRestart() {
 		FlxTransitionableState.skipNextTransIn = true;
 		
-		trace("it should work please help[");
 		MusicBeatState.resetState();
 	}
 	

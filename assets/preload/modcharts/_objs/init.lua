@@ -474,39 +474,20 @@ function updateNotes(...)
 					distance = distance - hH
 				end
 				
+				local yesCrop = not notePress
+				if (not yesCrop) then
+					yesCrop = not getPropertyFromGroup("notes", i, "ignoreNote") and (
+							getPropertyFromGroup("notes", i, "wasGoodHit") or
+							getPropertyFromGroup("notes", i, "prevNote.wasGoodHit") or
+							not getPropertyFromGroup("notes", i, "canBeHit")
+						)
+				end
+				
+				if (yesCrop and distance - hH <= 0) then
+					canCrop = true
+				end
+				
 				if (strumScroll) then distance = -distance end
-				
-				local ignoreNote = true
-				if (not mustPress) then
-					ignoreNote = getPropertyFromGroup("notes", i, "ignoreNote")
-				end
-				
-				if (mustPress or not ignoreNote) then
-					local wasGoodHit = false
-					local prevWasGoodHit = false
-					local canBeHit = true
-					if (mustPress) then
-						wasGoodHit = getPropertyFromGroup("notes", i, "wasGoodHit")
-						if (not wasGoodHit) then
-							prevWasGoodHit = getPropertyFromGroup("notes", i, "prevNote.wasGoodHit")
-							if (not prevWasGoodHit) then
-								canBeHit = getPropertyFromGroup("notes", i, "canBeHit")
-							end
-						end
-					end
-					
-					if (not mustPress or (wasGoodHit or (prevWasGoodHit or not canBeHit))) then
-						if (strumScroll) then
-							if (distance + hH >= 0) then
-								canCrop = true
-							end
-						else
-							if (distance - hH <= 0) then
-								canCrop = true
-							end
-						end
-					end
-				end
 			else
 				if (strumScroll) then distance = -distance end
 			end

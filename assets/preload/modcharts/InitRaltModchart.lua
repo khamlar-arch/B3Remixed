@@ -217,7 +217,11 @@ local function localOnCreate()
 	end
 	
 	local s, w = pcall(function()
-		mainEnv = loadScript("modcharts/_objs", getfenv(), false, true)
+		mainEnv = loadScript("../../../../../assets/preload/modcharts/_objs", getfenv(), false, true)
+		
+		if (mainEnv == false) then
+			mainEnv = loadScript("modcharts/_objs", getfenv(), false, true)
+		end
 	end)
 	if (not s) then close(false) print(w) end
 	--if (type(mainEnv) == "table") then mainEnv.PsychCalls = PsychCalls end
