@@ -29,7 +29,6 @@ using StringTools;
 class CreditsTransState extends MusicBeatState
 {
 	var options:Array<String> = ['B3 Remixed Developers', 'Psych Engine Developers'];
-	var descs:Array<String> = ['Adjust how the gameplay feels\nto fit your perfect match!', 'Change how your game looks and make\nit look perfect to your standards.', 'Play with the options to edit your\ngame for the best experience.'];
 	private var grpOptions:FlxTypedGroup<Alphabet>;
 	private static var curSelected:Int = 0;
 	public static var menuBG:FlxSprite;
@@ -71,6 +70,14 @@ class CreditsTransState extends MusicBeatState
 		backdrop.scrollFactor.set(0, 0.07);
 		backdrop.updateHitbox();
 
+		var frame2:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menus/options/fade'));
+		frame2.scrollFactor.set();
+		frame2.setGraphicSize(Std.int(frame2.width * 1));
+		frame2.updateHitbox();
+		frame2.screenCenter();
+		frame2.antialiasing = ClientPrefs.globalAntialiasing;
+		add(frame2);
+
 		var frame:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menus/options/menuframes'));
 		frame.scrollFactor.set();
 		frame.setGraphicSize(Std.int(frame.width * 1));
@@ -90,17 +97,11 @@ class CreditsTransState extends MusicBeatState
 			grpOptions.add(optionText);
 		}
 
-		var topTxt:FlxText = new FlxText(50, 10, 1180, "Choose a set of credits and check out\nall the great people working on the mod!", 32);
+		var topTxt:FlxText = new FlxText(50, 615, 1180, "Choose a set of credits and check out\nall the great people working on the mod,\nor the people on the Psych Engine team!", 40);
 		topTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		topTxt.scrollFactor.set();
 		topTxt.borderSize = 2.4;
 		add(topTxt);
-
-		descText = new FlxText(50, 700, 1180, "2 Lines\nYeah", 32);
-		descText.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		descText.scrollFactor.set();
-		descText.borderSize = 2.4;
-		add(descText);
 
 		changeSelection();
 
@@ -113,7 +114,6 @@ class CreditsTransState extends MusicBeatState
 
 	override function update(elapsed:Float) {
 		super.update(elapsed);
-		descText.text = descs[curSelected];
 
 		//i feel like this could be done better but i trust peak
 		backdrop.x -= 70 * elapsed;
@@ -137,8 +137,6 @@ class CreditsTransState extends MusicBeatState
 	}
 	
 	function changeSelection(change:Int = 0) {
-		descText.screenCenter(Y);
-		descText.y += 320;
 
 		curSelected += change;
 		if (curSelected < 0)

@@ -25,7 +25,7 @@ class Alphabet extends FlxSpriteGroup
 	public var xAdd:Float = 0;
 	public var yAdd:Float = 0;
 	public var isMenuItem:Bool = false;
-	public var isOptionBase:Bool = false;
+	public var isCredit:Bool = false;
 	public var isOption:Bool = false;
 	public var textSize:Float = 1.0;
 
@@ -339,8 +339,8 @@ class Alphabet extends FlxSpriteGroup
 			var scaledY = FlxMath.remapToRange(targetY, 0, 1, 0, 1.3);
 
 			var lerpVal:Float = CoolUtil.boundTo(elapsed * 9.6, 0, 1);
-			if (isOptionBase) {
-				y = FlxMath.lerp(y, (1.15 * (scaledY * yMult) + (FlxG.height * 0.48) + yAdd), lerpVal);
+			if (isCredit) {
+				y = FlxMath.lerp(y, (0.85 * (scaledY * yMult) + (FlxG.height * 0.48) + yAdd), lerpVal);
 				screenCenter(X);
 			} else {
 				y = FlxMath.lerp(y, (scaledY * yMult) + (FlxG.height * 0.48) + yAdd, lerpVal);

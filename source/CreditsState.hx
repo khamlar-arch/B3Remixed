@@ -8,6 +8,7 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.addons.display.FlxGridOverlay;
 import flixel.group.FlxGroup.FlxTypedGroup;
+import flixel.addons.display.FlxBackdrop;
 import flixel.math.FlxMath;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
@@ -31,6 +32,8 @@ class CreditsState extends MusicBeatState
 	public static var curArray:Int = 0;
 	var credPrefix:String = "";
 
+	var backdrop:FlxBackdrop = new FlxBackdrop(Paths.image('menus/menuCheckerboard'), 0.2, 0.2, true, true);
+
 	var bg:FlxSprite;
 	var descText:FlxText;
 	var intendedColor:Int;
@@ -44,7 +47,26 @@ class CreditsState extends MusicBeatState
 		#end
 
 		bg = new FlxSprite().loadGraphic(Paths.image('menus/menuBG'));
+		bg.setGraphicSize(Std.int(bg.width * 1.1));
+		bg.updateHitbox();
+		bg.screenCenter();
+		bg.antialiasing = ClientPrefs.globalAntialiasing;
 		add(bg);
+
+		add(backdrop);
+		backdrop.alpha = 0.7;
+		backdrop.scale.x = 5;
+		backdrop.scale.y = 5;
+		backdrop.scrollFactor.set(0, 0.07);
+		backdrop.updateHitbox();
+
+		var frame:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menus/options/menuframes'));
+		frame.scrollFactor.set();
+		frame.setGraphicSize(Std.int(frame.width * 1));
+		frame.updateHitbox();
+		frame.screenCenter();
+		frame.antialiasing = ClientPrefs.globalAntialiasing;
+		add(frame);
 
 		grpOptions = new FlxTypedGroup<Alphabet>();
 		add(grpOptions);
@@ -83,30 +105,29 @@ class CreditsState extends MusicBeatState
 
 		var b3pisspoop:Array<Array<String>> = [ //Name - Icon name - Description - Link - BG Color
 			['Directors'],
-			['Biddle3',				'placeholder',		'Main Musician and Director',							'https://twitter.com/Shadow_Mario_',	'444444'],
-			['Degen Dan',			'placeholder',		'Main Programmer and Director',							'https://twitter.com/river_oaken',		'C30085'],
+			['Biddle3',				'biddle',		'Main Musician and Director',		'https://twitter.com/Biddy312',		'FEFC81'],
+			['Degen Dan',			'dan',			'Main Programmer and Director',		'https://twitter.com/danobot59_',	'8B35C0'],
 			['Co-Directors'],
-			['Jams3D',				'placeholder',		'Co-Director and Lead Artist',							'https://twitter.com/bbsub3',			'389A58'],
-			['paciofd',				'placeholder',		'Co-Director and Lead Artist',							'https://twitter.com/yoshubs',			'4494E6'],
-			['SqirraRNG',			'gedehari',			'Chart Editor\'s Sound Waveform base',					'https://twitter.com/gedehari',			'FF9300'],
-			['iFlicky',				'iflicky',			'Delay/Combo Menu Song Composer\nand Dialogue Sounds',	'https://twitter.com/flicky_i',			'C549DB'],
-			['PolybiusProxy',		'polybiusproxy',	'.MP4 Video Loader Extension',							'https://twitter.com/polybiusproxy',	'FFEAA6'],
-			['Keoiki',				'keoiki',			'Note Splash Animations',								'https://twitter.com/Keoiki_',			'FFFFFF'],
-			['Smokey',				'smokey',			'Spritemap Texture Support',							'https://twitter.com/Smokey_5_',		'0033CC'],
-			[''],
-			[''],
-			["Funkin' Crew"],
-			['ninjamuffin99',		'ninjamuffin99',	"Programmer of Friday Night Funkin'",					'https://twitter.com/ninja_muffin99',	'F73838'],
-			['PhantomArcade',		'phantomarcade',	"Animator of Friday Night Funkin'",						'https://twitter.com/PhantomArcade3K',	'FFBB1B'],
-			['evilsk8r',			'evilsk8r',			"Artist of Friday Night Funkin'",						'https://twitter.com/evilsk8r',			'53E52C'],
-			['kawaisprite',			'kawaisprite',		"Composer of Friday Night Funkin'",						'https://twitter.com/kawaisprite',		'6475F3']
+			['Jams3D',				'jams',			'Co-Director and Lead Artist',		'https://twitter.com/jams3d',		'FFFFFF'],
+			['paciofd',				'pacio',		'Co-Director and Lead Artist',		'https://twitter.com/paciofdd',		'FFD249'],
+			['Composers'],
+			['Benlab',				'benlab',		'Composer',							'https://twitter.com/BenlabD',		'A0003A'],
+			['Sirfitness',			'sirfitness',	'Composer',							'https://twitter.com/sirfitnessii',	'2F2F2F'],
+			['Foodieti',			'foodieti',		'Composer',							'https://twitter.com/Foodieti',		'C27CC2'],
+			['Penkaru',				'penkaru',		'Composer',							'https://twitter.com/pex_ton',		'382071'],
+			['Programmers'],
+			['TKTems',				'tk',			'Programmer',						'https://twitter.com/TKTems',		'40D9BD'],
+			['Jackie.exe',			'jackie',		'Programmer',						'https://twitter.com/Jack_exe_lol',	'FFF9B3'],
+			['BreezyMelee',			'placeholder',	'Programmer',						'https://twitter.com/BreezyMelee',	'FFFFFF'],
+			['Raltyro',				'placeholder',	'Programmer',						'https://www.youtube.com/channel/UChkuPgNTUwhT4nM8d_x50GA', 'FFFFFF'],
+			['bbpanzu',				'bb-panzu',		'Programmer',						'https://twitter.com/bbsub3',		'389A58'],
 		];
 
 		var pisspoop:Array<Array<String>> = [ //Name - Icon name - Description - Link - BG Color
 			['Psych Engine Team'],
 			['Shadow Mario',		'shadowmario',		'Main Programmer of Psych Engine',							'https://twitter.com/Shadow_Mario_',	'444444'],
 			['RiverOaken',			'riveroaken',		'Main Artist/Animator of Psych Engine',						'https://twitter.com/RiverOaken',		'C30085'],
-			['shubs',				'shubs',			'Additional Programmer of Psych Engine',					'https://twitter.com/yoshubs',			'279ADC'],
+			['Yoshubs',				'shubs',			'Additional Programmer of Psych Engine',					'https://twitter.com/yoshubs',			'279ADC'],
 			[''],
 			['Former Engine Members'],
 			['bb-panzu',			'bb-panzu',			'Ex-Programmer of Psych Engine',							'https://twitter.com/bbsub3',			'389A58'],
@@ -146,6 +167,8 @@ class CreditsState extends MusicBeatState
 			optionText.yAdd -= 70;
 			if(isSelectable) {
 				optionText.x -= 70;
+			} else {
+				optionText.offset.y -= 65;
 			}
 			optionText.forceX = optionText.x;
 			//optionText.yMult = 90;
@@ -171,7 +194,7 @@ class CreditsState extends MusicBeatState
 			}
 		}
 
-		descText = new FlxText(50, 600, 1180, "", 32);
+		descText = new FlxText(50, 650, 1180, "", 32);
 		descText.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		descText.scrollFactor.set();
 		descText.borderSize = 2.4;
@@ -185,6 +208,10 @@ class CreditsState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
+		//i feel like this could be done better but i trust peak
+		backdrop.x -= 70 * elapsed;
+		backdrop.y -= 70 * elapsed;
+
 		if (FlxG.sound.music.volume < 0.7)
 		{
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
