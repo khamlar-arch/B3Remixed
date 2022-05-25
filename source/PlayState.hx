@@ -2489,6 +2489,14 @@ class PlayState extends MusicBeatState
 				startTimer.active = false;
 			if (finishTimer != null && !finishTimer.finished)
 				finishTimer.active = false;
+			FlxTimer.globalManager.forEach(function(timer:FlxTimer) {
+				if (!timer.finished)
+					timer.active = false;
+			});
+			FlxTween.globalManager.forEach(function(tween:FlxTween) {
+				if (!tween.finished)
+					tween.active = false;
+			});
 			if (songSpeedTween != null)
 				songSpeedTween.active = false;
 
@@ -2530,6 +2538,14 @@ class PlayState extends MusicBeatState
 				finishTimer.active = true;
 			if (songSpeedTween != null)
 				songSpeedTween.active = true;
+			FlxTimer.globalManager.forEach(function(timer:FlxTimer) {
+				if (!timer.finished)
+					timer.active = true;
+			});
+			FlxTween.globalManager.forEach(function(tween:FlxTween) {
+				if (!tween.finished)
+					tween.active = true;
+			});
 
 			if(blammedLightsBlackTween != null)
 				blammedLightsBlackTween.active = true;
