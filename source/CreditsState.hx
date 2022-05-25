@@ -121,6 +121,16 @@ class CreditsState extends MusicBeatState
 			['BreezyMelee',			'placeholder',	'Programmer',						'https://twitter.com/BreezyMelee',	'FFFFFF'],
 			['Raltyro',				'placeholder',	'Programmer',						'https://www.youtube.com/channel/UChkuPgNTUwhT4nM8d_x50GA', 'FFFFFF'],
 			['bbpanzu',				'bb-panzu',		'Programmer',						'https://twitter.com/bbsub3',		'389A58'],
+			['Charters'],
+			['DiscWraith',			'disc',			'Charter',							'https://twitter.com/DiscWraith',	'671FCF'],
+			['Vivaderus',			'viva',			'Charter',							'https://twitter.com/Vivaderus',	'163F37'],
+			['FoxeruKun',			'fox',			'Charter',							'https://twitter.com/FoxeruKun',	'554650'],
+			['Sunny',				'placeholder',	'Charter',							'https://twitter.com/DuckierKarma',	'FFFFFF'],
+			['Special Thanks'],
+			['BlazeTheWolf55',		'blaze',		'Original B3 Recolors',				'https://twitter.com/BlazeTheWolf10',	'FFAA00'],
+			['FruityDaLei',			'placeholder',	'Emotional Support',				'https://twitter.com/FruityDaLei',		'FFFFFF'],
+			['Sulayre',				'sulayre',		'Emotional Support',				'https://twitter.com/Sulayre',			'B973CA'],
+			['VS Sonic.Exe Team',	'sonicexe',		'Letting us do 3x3 <3',				'https://gamebanana.com/mods/316022',	'871B29'],
 		];
 
 		var pisspoop:Array<Array<String>> = [ //Name - Icon name - Description - Link - BG Color
