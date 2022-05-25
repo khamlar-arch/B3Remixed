@@ -154,7 +154,8 @@ class Note extends FlxSprite
 		if (PlayState.instance.randomNotes) 
 		{
 			if (!isSustainNote) {
-				this.noteData = FlxG.random.int(0, 3); // Random NoteData.
+				// Listen the random math kjinda works ;mfao im tired
+				this.noteData = Math.floor((FlxG.random.int(1, 320) / 12) % 4); // Random NoteData.
 				noteData = this.noteData; // Da Sprite
 			} else {
 				this.noteData = prevNote.noteData;

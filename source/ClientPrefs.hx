@@ -27,6 +27,7 @@ class ClientPrefs {
 	public static var modCharts:Bool = true;
 	public static var cleanJudgements:Bool = false;
 	public static var autoPause:Bool = true;
+	public static var toggleShaders:Bool = true;
 	public static var judgementCounter:Bool = false;
 	public static var laneUnderlay:Float = 0;
 	public static var hideHud:Bool = false;
@@ -120,6 +121,7 @@ class ClientPrefs {
 		FlxG.save.data.lowQuality = lowQuality;
 		FlxG.save.data.laneUnderlay = laneUnderlay;
 		FlxG.save.data.framerate = framerate;
+		FlxG.save.data.toggleShaders = toggleShaders;
 		FlxG.save.data.autoPause = autoPause;
 		//FlxG.save.data.cursing = cursing;
 		//FlxG.save.data.violence = violence;
@@ -178,6 +180,9 @@ class ClientPrefs {
 		}
 		if(FlxG.save.data.autoPause != null) {
 			autoPause = FlxG.save.data.autoPause;
+		}
+		if(FlxG.save.data.toggleShaders != null) {
+			toggleShaders = FlxG.save.data.toggleShaders;
 		}
 		if(FlxG.save.data.mitigateIconBop != null) {
 			mitigateIconBop = FlxG.save.data.mitigateIconBop;

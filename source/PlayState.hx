@@ -642,33 +642,33 @@ class PlayState extends MusicBeatState
 
 			case 'sunshine':
 
-				var shadowback:BGSprite = new BGSprite('sunshine/shadowback', -1500, -900, 1.3, 1.3);
-				shadowback.setGraphicSize(Std.int(shadowback.width * 4));
-				shadowback.setGraphicSize(Std.int(shadowback.height * 4));
+				var shadowback:BGSprite = new BGSprite('stages/sunshine/shadowback', -1500, -900, 1.3, 1.3);
+				shadowback.setGraphicSize(Std.int(shadowback.width * 6.7));
+				shadowback.setGraphicSize(Std.int(shadowback.height * 6.7));
 				shadowback.updateHitbox();
 
-				var floor:BGSprite = new BGSprite('sunshine/floor', -4000, 780, 0.9, 0.9);
-				floor.setGraphicSize(Std.int(floor.width * 25));
-				floor.setGraphicSize(Std.int(floor.height * 25));
+				var floor:BGSprite = new BGSprite('stages/sunshine/floor', -4000, 780, 0.9, 0.9);
+				floor.setGraphicSize(Std.int(floor.width * 41.7));
+				floor.setGraphicSize(Std.int(floor.height * 41.7));
 				floor.updateHitbox();
 				
-				var faces:BGSprite = new BGSprite('sunshine/shadowfaces', -700, 0, 0.9, 0.9);
-				faces.setGraphicSize(Std.int(faces.width * 8));
-				faces.setGraphicSize(Std.int(faces.height * 8));
+				var faces:BGSprite = new BGSprite('stages/sunshine/shadowfaces', -700, 0, 0.9, 0.9);
+				faces.setGraphicSize(Std.int(faces.width * 13.3));
+				faces.setGraphicSize(Std.int(faces.height * 13.3));
 				faces.updateHitbox();
 
-				var particles:BGSprite = new BGSprite('sunshine/particles', -600, 0, 1.0, 1.0);
-				particles.setGraphicSize(Std.int(particles.width * 5));
-				particles.setGraphicSize(Std.int(particles.height * 5));
+				var particles:BGSprite = new BGSprite('stages/sunshine/particles', -600, 0, 1.0, 1.0);
+				particles.setGraphicSize(Std.int(particles.width * 8.3));
+				particles.setGraphicSize(Std.int(particles.height * 8.3));
 				particles.updateHitbox();
 
-				light = new BGSprite('sunshine/light', -600, -200, 0.9, 0.9);
-				light.setGraphicSize(Std.int(light.width * 1.5));
+				light = new BGSprite('stages/sunshine/light', -600, -200, 0.9, 0.9);
+				light.setGraphicSize(Std.int(light.width * 2.5));
 				light.updateHitbox();
 
-				alt = new FlxSprite(-1500, -900).loadGraphic(Paths.image('sunshine/alt'));
-				alt.setGraphicSize(Std.int(alt.width * 3.35));
-				alt.setGraphicSize(Std.int(alt.height * 3.35));
+				alt = new FlxSprite(-1500, -900).loadGraphic(Paths.image('stages/sunshine/alt'));
+				alt.setGraphicSize(Std.int(alt.width * 5));
+				alt.setGraphicSize(Std.int(alt.height * 5));
 				alt.scrollFactor.set(0.9, 0.9);
 				alt.visible = false;
 				alt.updateHitbox();
@@ -677,6 +677,7 @@ class PlayState extends MusicBeatState
 				add(floor);
 				add(faces);
 				add(particles);
+				add(light);
 				add(alt);
 
 			case 'limo': //Week 4
@@ -1563,49 +1564,41 @@ class PlayState extends MusicBeatState
 
 	public function addShaderToCamera(cam:String,effect:Dynamic){
 
-
-
-		switch(cam.toLowerCase()) {
-			case 'camhud' | 'hud':
-					camHUDShaders.push(effect);
-					var newCamEffects:Array<BitmapFilter>=[]; 
-					for(i in camHUDShaders){
-					  newCamEffects.push(new ShaderFilter(i.shader));
+		if (ClientPrefs.toggleShaders) {
+			switch(cam.toLowerCase()) {
+				case 'camhud' | 'hud':
+						camHUDShaders.push(effect);
+						var newCamEffects:Array<BitmapFilter>=[]; 
+						for(i in camHUDShaders){
+						  newCamEffects.push(new ShaderFilter(i.shader));
+						}
+						camHUD.setFilters(newCamEffects);
+				case 'camother' | 'other':
+						camOtherShaders.push(effect);
+						var newCamEffects:Array<BitmapFilter>=[]; 
+						for(i in camOtherShaders){
+						  newCamEffects.push(new ShaderFilter(i.shader));
+						}
+						camOther.setFilters(newCamEffects);
+				case 'camgame' | 'game':
+							camGameShaders.push(effect);
+						var newCamEffects:Array<BitmapFilter>=[]; 
+						for(i in camGameShaders){
+						  newCamEffects.push(new ShaderFilter(i.shader));
+						}
+						camGame.setFilters(newCamEffects);
+	
+				default:
+					if(modchartSprites.exists(cam)) {
+						Reflect.setProperty(modchartSprites.get(cam),"shader",effect.shader);
+					} else if(modchartTexts.exists(cam)) {
+						Reflect.setProperty(modchartTexts.get(cam),"shader",effect.shader);
+					} else {
+						var OBJ = Reflect.getProperty(PlayState.instance,cam);
+						Reflect.setProperty(OBJ,"shader", effect.shader);
 					}
-					camHUD.setFilters(newCamEffects);
-			case 'camother' | 'other':
-					camOtherShaders.push(effect);
-					var newCamEffects:Array<BitmapFilter>=[]; 
-					for(i in camOtherShaders){
-					  newCamEffects.push(new ShaderFilter(i.shader));
-					}
-					camOther.setFilters(newCamEffects);
-			case 'camgame' | 'game':
-						camGameShaders.push(effect);
-					var newCamEffects:Array<BitmapFilter>=[]; 
-					for(i in camGameShaders){
-					  newCamEffects.push(new ShaderFilter(i.shader));
-					}
-					camGame.setFilters(newCamEffects);
-
-			default:
-				if(modchartSprites.exists(cam)) {
-					Reflect.setProperty(modchartSprites.get(cam),"shader",effect.shader);
-				} else if(modchartTexts.exists(cam)) {
-					Reflect.setProperty(modchartTexts.get(cam),"shader",effect.shader);
-				} else {
-					var OBJ = Reflect.getProperty(PlayState.instance,cam);
-					Reflect.setProperty(OBJ,"shader", effect.shader);
-				}
-
-
-
-
+			}
 		}
-
-
-
-
   }
 
   public function removeShaderFromCamera(cam:String,effect:ShaderEffect){

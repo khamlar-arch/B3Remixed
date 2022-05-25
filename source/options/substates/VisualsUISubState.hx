@@ -168,13 +168,20 @@ class VisualsUISubState extends BaseOptionsMenu
 		option.decimals = 1;
 		addOption(option);
 
-		addOption(new Option('Optimization', '', '', 'filler', null));
+		addOption(new Option('Performance Boosters', '', '', 'filler', null));
 
-		var option:Option = new Option('Hide Characters',
+		var option:Option = new Option('Toggle Character Visibility',
 			"Hides the characters. (This can also help with optimization.)",
 			'hideChars',
 			'bool',
 			true);
+		addOption(option);
+
+		var option:Option = new Option('Toggle Shaders',
+			'Toggles whether shaders should be added onto a song.\n(This can help with optimization, but makes the experience worse.)',
+			'toggleShaders',
+			'bool',
+			false);
 		addOption(option);
 
 		//I'd suggest using "Low Quality" as an example for making your own option since it is the simplest here
