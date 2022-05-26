@@ -24,9 +24,6 @@ function onSongStart()
     triggerEvent('Camera Follow Pos', 550, 550)
 end
 
-function onUpdatePost(elapsed)
-end
-
 function onStepHit()
     if curStep == 56 then
         doTweenAlpha('cam', 'camHUD', 1, 0.5)

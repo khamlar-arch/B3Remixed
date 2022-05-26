@@ -84,6 +84,12 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 
 		var option:GameplayOption = new GameplayOption('Instakill on Miss', 'instakill', 'bool', false);
 		optionsArray.push(option);
+		
+		var option:GameplayOption = new GameplayOption('Modcharts', 'modCharts', 'bool', true);
+		optionsArray.push(option);
+		
+		var option:GameplayOption = new GameplayOption('Double Time', 'dTime', 'bool', false);
+		optionsArray.push(option);
 
 		// Big thanks to this pr: https://github.com/ShadowMario/FNF-PsychEngine/pull/8654/commits/f7ca280d3e9241d18c1265dec023f2ad324b6c4f
 		var option:GameplayOption = new GameplayOption('Mirror Mode', 'mirror', 'bool', false);

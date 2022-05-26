@@ -2115,14 +2115,15 @@ class PlayState extends MusicBeatState
 	{
 		if(time < 0) time = 0;
 
-		FlxG.sound.music.pause();
-		vocals.pause();
+		//FlxG.sound.music.pause();
+		//vocals.pause();
 
 		FlxG.sound.music.time = time;
-		FlxG.sound.music.play();
+		if (!FlxG.sound.music.playing) FlxG.sound.music.play();
 
 		vocals.time = time;
-		vocals.play();
+		if (vocals.playing) vocals.play();
+		
 		Conductor.songPosition = time;
 	}
 	
@@ -2149,6 +2150,11 @@ class PlayState extends MusicBeatState
 		FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 1, false);
 		FlxG.sound.music.onComplete = onSongComplete;
 		vocals.play();
+		
+		if (ClientPrefs.dTime) {
+			FlxG.sound.music.pitch = 1.5;
+			vocals.pitch = 1.5;
+		}
 
 		if(startOnTime > 0)
 		{
@@ -2484,6 +2490,8 @@ class PlayState extends MusicBeatState
 			{
 				FlxG.sound.music.pause();
 				vocals.pause();
+				
+				FlxG.sound.music.pitch = 1;
 			}
 
 			if (startTimer != null && !startTimer.finished)
@@ -2618,10 +2626,9 @@ class PlayState extends MusicBeatState
 	function resyncVocals():Void
 	{
 		if(finishTimer != null) return;
-
-		//vocals.pause();
-
-		if (!FlxG.sound.music.playing) FlxG.sound.music.play();
+		if (!FlxG.sound.music.playing) {
+			FlxG.sound.music.play();
+		}
 		
 		Conductor.songPosition = FlxG.sound.music.time;
 		if (Conductor.songPosition < vocals.length - 10) {
@@ -2629,7 +2636,11 @@ class PlayState extends MusicBeatState
 			if (!vocals.playing) vocals.play();
 			vocals.time = Conductor.songPosition;
 		}
-		//vocals.play();
+		
+		if (ClientPrefs.dTime) {
+			FlxG.sound.music.pitch = 1.5;
+			vocals.pitch = 1.5;
+		}
 	}
 
 	public var paused:Bool = false;
@@ -2880,7 +2891,7 @@ class PlayState extends MusicBeatState
 		{
 			if (startedCountdown)
 			{
-				Conductor.songPosition += FlxG.elapsed * 1000;
+				Conductor.songPosition += FlxG.elapsed * 1000 * (ClientPrefs.dTime ? 1.5 : 1);
 				if (Conductor.songPosition >= 0)
 					startSong();
 			}

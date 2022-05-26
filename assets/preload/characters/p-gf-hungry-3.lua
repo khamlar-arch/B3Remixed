@@ -1,4 +1,6 @@
 function onUpdate(elapsed)
+	if (inGameOver) then return end
+	
     songPos = getSongPosition()
     currentBeat = (songPos/5000)*(curBpm/60)
 
