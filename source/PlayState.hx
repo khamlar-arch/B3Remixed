@@ -34,6 +34,8 @@ import flixel.system.FlxSound;
 import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
+import flixel.tweens.misc.VarTween;
+import flixel.tweens.FlxTween.TweenOptions;
 import flixel.ui.FlxBar;
 import flixel.util.FlxCollision;
 import flixel.util.FlxColor;
@@ -329,6 +331,23 @@ class PlayState extends MusicBeatState
 	
 	// Less laggy controls
 	private var keysArray:Array<Dynamic>;
+	
+	public var tweens:Map<String, FlxTween> = new Map<String, FlxTween>();
+	public function tween(tag:String, Object:Dynamic, Values:Dynamic, Duration:Float = 1, ?Options:TweenOptions):VarTween {
+		if(tweens.exists(tag)) {
+			tweens.get(tag).cancel();
+			tweens.get(tag).destroy();
+			tweens.remove(tag);
+		}
+		
+		var v:VarTween = FlxTween.tween(Object, Values, Duration, Options);
+		tweens.set(tag, v);
+		
+		v.onComplete = function(twn:FlxTween) {
+			tweens.remove(tag);
+		};
+		return v;
+	}
 
 	override public function create()
 	{
@@ -1365,17 +1384,17 @@ class PlayState extends MusicBeatState
 		var debugPath:String = '../../../../assets/preload/modcharts/' + songName;
 		var path:String = Paths.getPreloadPath('modcharts/' + songName);
 		if (FileSystem.exists('../../windows') && FileSystem.exists(debugPath)) {
-			trace("ayo nice source code");
+			//trace("ayo nice source code");
 			path = debugPath;
 		}
 		#end
 		if (FileSystem.exists(path) && ClientPrefs.modCharts) {
-			trace("found lua " + path);
+			//trace("found lua " + path);
 			luaArray.push(new FunkinLua(Paths.getPreloadPath("modcharts/InitRaltModchart.lua")));
 		}
-		else {
-			trace("didn't find lua " + path + "\n" + FileSystem.absolutePath(path));
-		}
+		//else {
+		//	trace("didn't find lua " + path + "\n" + FileSystem.absolutePath(path));
+		//}
 		
 		var daSong:String = Paths.formatToSongPath(curSong);
 		if (isStoryMode && !seenCutscene)
@@ -2498,14 +2517,12 @@ class PlayState extends MusicBeatState
 				startTimer.active = false;
 			if (finishTimer != null && !finishTimer.finished)
 				finishTimer.active = false;
-			FlxTimer.globalManager.forEach(function(timer:FlxTimer) {
-				if (!timer.finished)
-					timer.active = false;
-			});
-			FlxTween.globalManager.forEach(function(tween:FlxTween) {
+			
+			for (tween in tweens) {
 				if (!tween.finished)
 					tween.active = false;
-			});
+			}
+			
 			if (songSpeedTween != null)
 				songSpeedTween.active = false;
 
@@ -2547,14 +2564,11 @@ class PlayState extends MusicBeatState
 				finishTimer.active = true;
 			if (songSpeedTween != null)
 				songSpeedTween.active = true;
-			FlxTimer.globalManager.forEach(function(timer:FlxTimer) {
-				if (!timer.finished)
-					timer.active = true;
-			});
-			FlxTween.globalManager.forEach(function(tween:FlxTween) {
+			
+			for (tween in tweens) {
 				if (!tween.finished)
 					tween.active = true;
-			});
+			}
 
 			if(blammedLightsBlackTween != null)
 				blammedLightsBlackTween.active = true;
@@ -4501,8 +4515,8 @@ class PlayState extends MusicBeatState
 					playerStrums.members[i].x += FlxG.random.int(70, -70);
 					playerStrums.members[i].y += FlxG.random.int(70, -70);
 					opponentStrums.members[i].x += (i - 1.5) * 25;
-					FlxTween.tween(opponentStrums.members[i], {x: STRUM_X + 52 + (i * 112)}, 0.1);
-					FlxTween.tween(playerStrums.members[i], {x: STRUM_X + 239 + ((i + 4) * 112), y: 50}, 0.1, {startDelay: 4});
+					tween("chompNote1", opponentStrums.members[i], {x: STRUM_X + 52 + (i * 112)}, 0.1);
+					tween("chompNote2", playerStrums.members[i], {x: STRUM_X + 239 + ((i + 4) * 112), y: 50}, 0.1, {startDelay: 4});
 				}
 				health -= 0.25;
 			case "Gay Note":
