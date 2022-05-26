@@ -253,6 +253,9 @@ class PlayState extends MusicBeatState
 	var frontBed:BGSprite;
 	var majinFore:BGSprite;
 
+	var grpTroubleObjs:FlxTypedGroup<BGSprite>;
+	var grpTroubleFilters:FlxTypedGroup<FlxSprite>;
+
 	var stadiumBoppers:BGSprite;
 
 	var upperBoppers:BGSprite;
@@ -604,18 +607,47 @@ class PlayState extends MusicBeatState
 				add(dessert);
 
 			case 'dream':
+				var objectsArray:Array<Array<Dynamic>> = [['gun', 0], ['tie', 286.5], ['stake', 783.5]];
 				GameOverSubstate.deathSoundName = 'fnf_loss_sfx-hell';
                 GameOverSubstate.loopSoundName = 'gameOver-hell';
                 GameOverSubstate.endSoundName = 'gameOverEnd-hell';
                 GameOverSubstate.characterName = 'trapped';
 
-				var hellBG:BGSprite = new BGSprite('dead/dream', -750, -370, 0.9, 0.9);
-				hellBG.setGraphicSize(Std.int(hellBG.width * 1.5));
-				hellBG.setGraphicSize(Std.int(hellBG.height * 1.5));
+				var hellBG:BGSprite = new BGSprite('stages/nightmare/dream', -750, -370, 0.9, 0.9);
+				hellBG.setGraphicSize(Std.int(hellBG.width * 3.75));
+				hellBG.setGraphicSize(Std.int(hellBG.height * 3.75));
 				hellBG.updateHitbox();
-				
 				add(hellBG);
 
+				grpTroubleObjs = new FlxTypedGroup<BGSprite>();
+				add(grpTroubleObjs);
+
+				var i:BGSprite = new BGSprite('stages/nightmare/details/' + objectsArray[0][0], -750 + (objectsArray[0][1] * 2.3), -370, 0.9, 0.9);
+				i.setGraphicSize(Std.int(i.width * 2.15), Std.int(i.height * 2.15));
+				i.updateHitbox();
+				grpTroubleObjs.add(i);
+
+				var i2:BGSprite = new BGSprite('stages/nightmare/details/' + objectsArray[1][0], -750 + (objectsArray[1][1] * 2.3), -370, 0.9, 0.9);
+				i2.setGraphicSize(Std.int(i2.width * 2.15), Std.int(i2.height * 2.15));
+				i2.updateHitbox();
+				grpTroubleObjs.add(i2);
+
+				var i3:BGSprite = new BGSprite('stages/nightmare/details/' + objectsArray[2][0], -750 + (objectsArray[2][1] * 2.3), -370, 0.9, 0.9);
+				i3.setGraphicSize(Std.int(i3.width * 2.15), Std.int(i3.height * 2.15));
+				i3.updateHitbox();
+				grpTroubleObjs.add(i3);
+
+				var filtersArray:Array<Array<Dynamic>> = [['topfade', 0, 'ADD', 0.2], ['bottomfade', 126, 'MULTIPLY', 0.3], ['blood', 99, 'NORMAL', 0.15]];
+
+				grpTroubleFilters = new FlxTypedGroup<FlxSprite>();
+				grpTroubleFilters.cameras = [camHUD];
+
+				for (i in 0...filtersArray.length) {
+					var deez:FlxSprite = new FlxSprite(0, filtersArray[i][1]).loadGraphic(Paths.image('stages/nightmare/filters/' + filtersArray[i][0])); //+ objectsArray[2][0], -750 + (objectsArray[2][1] * 2.3), -370, 0.9, 0.9);
+					deez.blend = filtersArray[i][2];
+					deez.alpha = filtersArray[i][3];
+					grpTroubleFilters.add(deez);
+				} 
 		
 			case 'podcast':
 				GameOverSubstate.deathSoundName = 'fnf_loss_sfx-shaya';
@@ -945,6 +977,7 @@ class PlayState extends MusicBeatState
 			case 'sunshine':
 				add(light);
 			case 'dream':
+				add(grpTroubleFilters);
 				//var vcr:DansShader;
 				//vcr = new DansShader();
 
@@ -2490,14 +2523,6 @@ class PlayState extends MusicBeatState
 				startTimer.active = false;
 			if (finishTimer != null && !finishTimer.finished)
 				finishTimer.active = false;
-			FlxTimer.globalManager.forEach(function(timer:FlxTimer) {
-				if (!timer.finished)
-					timer.active = false;
-			});
-			FlxTween.globalManager.forEach(function(tween:FlxTween) {
-				if (!tween.finished)
-					tween.active = false;
-			});
 			if (songSpeedTween != null)
 				songSpeedTween.active = false;
 
@@ -2539,14 +2564,6 @@ class PlayState extends MusicBeatState
 				finishTimer.active = true;
 			if (songSpeedTween != null)
 				songSpeedTween.active = true;
-			FlxTimer.globalManager.forEach(function(timer:FlxTimer) {
-				if (!timer.finished)
-					timer.active = true;
-			});
-			FlxTween.globalManager.forEach(function(tween:FlxTween) {
-				if (!tween.finished)
-					tween.active = true;
-			});
 
 			if(blammedLightsBlackTween != null)
 				blammedLightsBlackTween.active = true;
