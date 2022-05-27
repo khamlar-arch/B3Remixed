@@ -95,6 +95,11 @@ class PlayState extends MusicBeatState
 	public var camOtherShaders:Array<ShaderEffect> = [];
 	//event variables
 	private var isCameraOnForcedPos:Bool = false;
+	public var specialEventMap:Map<String, Dynamic> = [
+		'school' => false,
+		'sunshine' => false,
+		'torment' => false
+	];
 	#if (haxe >= "4.0.0")
 	public var boyfriendMap:Map<String, Boyfriend> = new Map();
 	public var dadMap:Map<String, Character> = new Map();
@@ -230,6 +235,9 @@ class PlayState extends MusicBeatState
 	var light:FlxSprite;
 	var studio:FlxSprite;
 	var glass:FlxSprite;
+
+	var lyrics:FlxText;
+	var lyrIcon:HealthIcon;
 
 	var phillyCityLights:FlxTypedGroup<BGSprite>;
 	var phillyTrain:BGSprite;
@@ -2428,6 +2436,27 @@ class PlayState extends MusicBeatState
 
 				var newCharacter:String = event[3];
 				addCharacterToList(newCharacter, charType);
+			case 'Trigger Song Event':
+				switch(event[2].toLowerCase()) {
+					case 'school':
+						if(!boyfriendMap.exists('bf-rainbow')) {
+							var newBoyfriend:Boyfriend = new Boyfriend(0, 0, 'bf-rainbow');
+							boyfriendMap.set('bf-rainbow', newBoyfriend);
+							boyfriendGroup.add(newBoyfriend);
+							startCharacterPos(newBoyfriend);
+							newBoyfriend.alpha = 0.00001;
+							startCharacterLua(newBoyfriend.curCharacter);
+						}
+
+						if(!dadMap.exists('pico-rainbow')) {
+							var newDad:Character = new Character(0, 0, 'pico-rainbow');
+							dadMap.set('pico-rainbow', newDad);
+							dadGroup.add(newDad);
+							startCharacterPos(newDad, true);
+							newDad.alpha = 0.00001;
+							startCharacterLua(newDad.curCharacter);
+						}
+				}
 		}
 
 		if(!eventPushedMap.exists(event[1])) {
@@ -3477,23 +3506,6 @@ class PlayState extends MusicBeatState
 							remove(tStatic);
 						}
 					}
-				
-			case 'GayStation':
-				switch (Std.parseFloat(value1))
-				{
-					case 1:
-						gayStation.visible = true;
-						gfGroup.visible = false;
-					case 2: 
-						gayStation.visible = false;
-						gfGroup.visible = true;
-					case 3:
-						camGame.shake(0.02,0.5);
-						camHUD.shake(0.02,0.2);
-						dad.playAnim('shoot', true);
-					case 4:
-						dad.playAnim('cock', true);
-				}
 
 			case 'Dessert':
 				switch (Std.parseFloat(value1))
@@ -3680,6 +3692,32 @@ class PlayState extends MusicBeatState
 				}
 				reloadHealthBarColors();
 			
+			case 'Update Lyrics':
+				if(lyrics!=null){
+					remove(lyrics);
+					remove(lyrIcon);
+					lyrics.destroy();
+					lyrIcon.destroy();
+				}
+				if(value2.trim()=='')value2='#FFFFFF';
+				if(value1.trim()!=''){
+			 		lyrics = new FlxText(0, 425, 400, value1, 32);
+					lyrics.cameras = [camOther];
+					lyrics.setFormat(Paths.font("vcr.ttf"), 24, FlxColor.fromString(value2), CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+					lyrics.screenCenter(X);
+					lyrics.updateHitbox();
+					add(lyrics);
+
+					lyrIcon = new HealthIcon(dad.healthIcon, true);
+					lyrIcon.y = healthBar.y - 340;
+					lyrIcon.flipX = true;
+					lyrIcon.screenCenter(X);
+					lyrIcon.cameras = [camOther];
+					lyrIcon.scale.set(0.8, 0.8);
+					lyrIcon.updateHitbox();
+					add(lyrIcon);
+				}
+
 			case 'BG Freaks Expression':
 				if(bgGirls != null) bgGirls.swapDanceType();
 			
@@ -3707,6 +3745,22 @@ class PlayState extends MusicBeatState
 							songSpeedTween = null;
 						}
 					});
+				}
+			case 'Trigger Song Event':
+				switch (value1.toString()) {
+					case 'school':
+						switch (value2.toString()) {
+							case 'start':
+								gayStation.visible = true;
+								gfGroup.visible = false;
+								triggerEventNote('Change Character', 'dad', 'pico-rainbow');
+								triggerEventNote('Change Character', 'boyfriend', 'bf-rainbow');
+							case 'end':
+								gayStation.visible = false;
+								gfGroup.visible = true;
+								triggerEventNote('Change Character', 'dad', 'pico');
+								triggerEventNote('Change Character', 'boyfriend', 'bf-shaded-w3');
+						}
 				}
 		}
 		callOnLuas('onEvent', [eventName, value1, value2]);
