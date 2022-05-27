@@ -73,7 +73,7 @@ class ChartingState extends MusicBeatState
 	var eventStuff:Array<Dynamic> =
 	[
 		['', "Nothing. Yep, that's right."],
-		['Update Lyrics', "Changes the lyrics that are currently shown onscreen.\nInput the text into Value 1,\nand the speaker into Value 2 IN THE WAY THEIR ICON IS NAMED IN THE FILES."],
+		['Update Lyrics', "Changes the lyrics that are currently shown onscreen.\nInput the text into Value 1,\nand the text's color in Value 2.\n\nThanks for the code D-Sides! <3"],
 		['Trigger Song Event', "Yes"],
 		['Hey!', "Plays the \"Hey!\" animation from Bopeebo,\nValue 1: BF = Only Boyfriend, GF = Only Girlfriend,\nSomething else = Both.\nValue 2: Custom animation duration,\nleave it blank for 0.6s"],
 		['Set GF Speed', "Sets GF head bopping speed,\nValue 1: 1 = Normal speed,\n2 = 1/2 speed, 4 = 1/4 speed etc.\nUsed on Fresh during the beatbox parts.\n\nWarning: Value must be integer!"],

@@ -3701,7 +3701,7 @@ class PlayState extends MusicBeatState
 				}
 				if(value2.trim()=='')value2='#FFFFFF';
 				if(value1.trim()!=''){
-			 		lyrics = new FlxText(0, 425, 400, value1, 32);
+			 		lyrics = new FlxText(0, 450, 270, value1, 32);
 					lyrics.cameras = [camOther];
 					lyrics.setFormat(Paths.font("vcr.ttf"), 24, FlxColor.fromString(value2), CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 					lyrics.screenCenter(X);
@@ -3709,7 +3709,7 @@ class PlayState extends MusicBeatState
 					add(lyrics);
 
 					lyrIcon = new HealthIcon(dad.healthIcon, true);
-					lyrIcon.y = healthBar.y - 340;
+					lyrIcon.y = lyrics.y - 130;
 					lyrIcon.flipX = true;
 					lyrIcon.screenCenter(X);
 					lyrIcon.cameras = [camOther];
