@@ -115,6 +115,8 @@ class CreditsState extends MusicBeatState
 			['Sirfitness',			'sirfitness',	'Composer',							'https://twitter.com/sirfitnessii',	'2F2F2F'],
 			['Foodieti',			'foodieti',		'Composer',							'https://twitter.com/Foodieti',		'C27CC2'],
 			['Penkaru',				'penkaru',		'Composer',							'https://twitter.com/pex_ton',		'382071'],
+			['Artists'],
+			['Random Inc',			'rinc',			'Sprite Artist',					'https://twitter.com/RandomIncIsDead', 'FE9915'],
 			['Programmers'],
 			['TKTems',				'tk',			'Programmer',						'https://twitter.com/TKTems',		'40D9BD'],
 			['Jackie.exe',			'jackie',		'Programmer',						'https://twitter.com/Jack_exe_lol',	'FFF9B3'],

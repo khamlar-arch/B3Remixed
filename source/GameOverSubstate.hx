@@ -10,6 +10,8 @@ import flixel.util.FlxTimer;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 
+import flixel.addons.transition.FlxTransitionableState;
+
 class GameOverSubstate extends MusicBeatSubstate
 {
 	public var boyfriend:Boyfriend;
@@ -93,7 +95,9 @@ class GameOverSubstate extends MusicBeatSubstate
 			FlxG.sound.music.stop();
 			PlayState.deathCounter = 0;
 			PlayState.seenCutscene = false;
-
+			
+			FlxTransitionableState.skipNextTransIn = true;
+			CustomFadeTransition.nextCamera = null;
 			if (PlayState.isStoryMode)
 				MusicBeatState.switchState(new StoryMenuState());
 			else
@@ -148,12 +152,15 @@ class GameOverSubstate extends MusicBeatSubstate
 			boyfriend.playAnim('deathConfirm', true);
 			FlxG.sound.music.stop();
 			FlxG.sound.play(Paths.music(endSoundName));
-			new FlxTimer().start(0.7, function(tmr:FlxTimer)
+			new FlxTimer().start(0.75, function(tmr:FlxTimer)
 			{
 				FlxG.camera.fade(FlxColor.BLACK, 2, false, function()
 				{
+					FlxTransitionableState.skipNextTransIn = true;
+					CustomFadeTransition.nextCamera = null;
 					MusicBeatState.resetState();
 				});
+				FlxG.sound.music.fadeOut(2, 0);
 			});
 			PlayState.instance.callOnLuas('onGameOverConfirm', [true]);
 		}

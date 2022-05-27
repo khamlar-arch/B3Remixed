@@ -25,6 +25,7 @@ class ClientPrefs {
 	public static var hideChars:Bool = false;
 	public static var noteCamera:Bool = true;
 	public static var modCharts:Bool = true;
+	public static var dTime:Bool = false;
 	public static var cleanJudgements:Bool = false;
 	public static var autoPause:Bool = true;
 	public static var toggleShaders:Bool = true;
@@ -66,8 +67,8 @@ class ClientPrefs {
 	public static var comboOffset:Array<Int> = [0, 0, 0, 0];
 	public static var keSustains:Bool = false; //i was bored, okay?
 	
-	public static var hardwareCache:Bool = false; //not sure if this would work
-	public static var fakeHardC:Bool = false;
+	public static var hardwareCache:Bool = true; //not sure if this would work edit: IT WORKS -- ralt
+	public static var fakeHardC:Bool = true;
 	public static var isHardCInited:Bool = false;
 	
 	public static var ratingOffset:Int = 0;
@@ -131,6 +132,7 @@ class ClientPrefs {
 		FlxG.save.data.hideChars = hideChars;
 		FlxG.save.data.scoreDetail = scoreDetail;
 		FlxG.save.data.modCharts = modCharts;
+		FlxG.save.data.dTime = dTime;
 		FlxG.save.data.noteOffset = noteOffset;
 		FlxG.save.data.hideHud = hideHud;
 		FlxG.save.data.arrowHSV = arrowHSV;
@@ -204,6 +206,9 @@ class ClientPrefs {
 		}
 		if(FlxG.save.data.modCharts != null) {
 			modCharts = FlxG.save.data.modCharts;
+		}
+		if(FlxG.save.data.dTime != null) {
+			dTime = FlxG.save.data.dTime;
 		}
 		if(FlxG.save.data.hitsoundVolume != null) {
 			hitsoundVolume = FlxG.save.data.hitsoundVolume;
