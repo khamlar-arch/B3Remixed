@@ -73,6 +73,8 @@ class ChartingState extends MusicBeatState
 	var eventStuff:Array<Dynamic> =
 	[
 		['', "Nothing. Yep, that's right."],
+		['Update Lyrics', "Changes the lyrics that are currently shown onscreen.\nInput the text into Value 1,\nand the text's color in Value 2.\n\nThanks for the code D-Sides! <3"],
+		['Trigger Song Event', "Yes"],
 		['Hey!', "Plays the \"Hey!\" animation from Bopeebo,\nValue 1: BF = Only Boyfriend, GF = Only Girlfriend,\nSomething else = Both.\nValue 2: Custom animation duration,\nleave it blank for 0.6s"],
 		['Set GF Speed', "Sets GF head bopping speed,\nValue 1: 1 = Normal speed,\n2 = 1/2 speed, 4 = 1/4 speed etc.\nUsed on Fresh during the beatbox parts.\n\nWarning: Value must be integer!"],
 		['Blammed Lights', "Value 1: 0 = Turn off, 1 = Blue, 2 = Green,\n3 = Pink, 4 = Red, 5 = Orange, Anything else = Random.\n\nNote to modders: This effect is starting to get \nREEEEALLY overused, this isn't very creative bro smh."],
@@ -87,7 +89,6 @@ class ChartingState extends MusicBeatState
 		['Change Character', "Value 1: Character to change (Dad, BF, GF)\nValue 2: New character's name"],
 		['Hide Ratings', "Toggles whether ratings need to be hidden or not. \nNo input is needed and will not change the output."],
 		['Change Scroll Speed', "Value 1: Scroll Speed Multiplier (1 is default)\nValue 2: Time it takes to change fully in seconds."],
-		['GayStation', "Value 1: 1 for making it visible, 2 for making it invisible again"],
 		['Tails', "Value 1: 1 for making it visible, 2 for making it invisible again"],
 		['Dessert', "Value 1: 1 for making it visible, 2 for making it invisible again"],
 		['funnystatic', "Does the TT static shit\n1: Dessert becomes visible\nDessert becomes invisible\nTHIS ONLY WORKS ON THE \nSHAYA WEEK STAGE"],
