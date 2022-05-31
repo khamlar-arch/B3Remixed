@@ -1979,8 +1979,10 @@ class PlayState extends MusicBeatState
 			laneUnderlayP1.x = playerStrums.members[0].x;
 			laneUnderlayP2.x = opponentStrums.members[0].x;
 			//setup laneUnderlay!!!
+			
+			var crochet:Float = Conductor.crochet / (ClientPrefs.dTime ? 1.5 : 1);
 
-			startTimer = new FlxTimer().start(Conductor.crochet / 1000, function(tmr:FlxTimer)
+			startTimer = new FlxTimer().start(crochet / 1000, function(tmr:FlxTimer)
 			{
 				if (gf != null && tmr.loopsLeft % Math.round(gfSpeed * gf.danceEveryNumBeats) == 0 && !gf.stunned && gf.animation.curAnim.name != null && !gf.animation.curAnim.name.startsWith("sing") && !gf.stunned)
 				{
@@ -2032,7 +2034,7 @@ class PlayState extends MusicBeatState
 						countThree.screenCenter();
 						countThree.antialiasing = antialias;
 						add(countThree);
-						FlxTween.tween(countThree, {/*y: countThree.y + 100,*/ alpha: 0}, Conductor.crochet / 1000, {
+						FlxTween.tween(countThree, {/*y: countThree.y + 100,*/ alpha: 0}, crochet / 1000, {
 							ease: FlxEase.cubeInOut,
 							onComplete: function(twn:FlxTween)
 							{
@@ -2052,7 +2054,7 @@ class PlayState extends MusicBeatState
 						countTwo.screenCenter();
 						countTwo.antialiasing = antialias;
 						add(countTwo);
-						FlxTween.tween(countTwo, {/*y: countTwo.y + 100,*/ alpha: 0}, Conductor.crochet / 1000, {
+						FlxTween.tween(countTwo, {/*y: countTwo.y + 100,*/ alpha: 0}, crochet / 1000, {
 							ease: FlxEase.cubeInOut,
 							onComplete: function(twn:FlxTween)
 							{
@@ -2071,7 +2073,7 @@ class PlayState extends MusicBeatState
 						countOne.screenCenter();
 						countOne.antialiasing = antialias;
 						add(countOne);
-						FlxTween.tween(countOne, {/*y: countOne.y + 100,*/ alpha: 0}, Conductor.crochet / 1000, {
+						FlxTween.tween(countOne, {/*y: countOne.y + 100,*/ alpha: 0}, crochet / 1000, {
 							ease: FlxEase.cubeInOut,
 							onComplete: function(twn:FlxTween)
 							{
@@ -2092,7 +2094,7 @@ class PlayState extends MusicBeatState
 						countZero.screenCenter();
 						countZero.antialiasing = antialias;
 						add(countZero);
-						FlxTween.tween(countZero, {/*y: countZero.y + 100,*/ alpha: 0}, Conductor.crochet / 1000, {
+						FlxTween.tween(countZero, {/*y: countZero.y + 100,*/ alpha: 0}, crochet / 1000, {
 							ease: FlxEase.cubeInOut,
 							onComplete: function(twn:FlxTween)
 							{
@@ -2530,7 +2532,7 @@ class PlayState extends MusicBeatState
 				if (isPlayerThree)
 					babyArrow.x -= 515 + (i * 10);
 				otherStrums.add(babyArrow);
-				trace('strum added');
+				//trace('strum added');
 			}
 
 			strumLineNotes.add(babyArrow);
@@ -2675,7 +2677,15 @@ class PlayState extends MusicBeatState
 			if (!vocals.playing) vocals.play();
 			vocals.time = Conductor.songPosition;
 		}
+<<<<<<< Updated upstream
 		//vocals.play();
+=======
+		
+		if (ClientPrefs.dTime && !transitioning) { // its actually 1.5 instead of 2 lmao
+			FlxG.sound.music.pitch = 1.5;
+			vocals.pitch = 1.5;
+		}
+>>>>>>> Stashed changes
 	}
 
 	public var paused:Bool = false;
@@ -3947,6 +3957,8 @@ class PlayState extends MusicBeatState
 		#end
 
 		if(ret != FunkinLua.Function_Stop && !transitioning) {
+			if (FlxG.sound.music != null) FlxG.sound.music.pitch = 1;
+			
 			if (SONG.validScore)
 			{
 				#if !switch
@@ -4561,8 +4573,13 @@ class PlayState extends MusicBeatState
 					playerStrums.members[i].x += FlxG.random.int(70, -70);
 					playerStrums.members[i].y += FlxG.random.int(70, -70);
 					opponentStrums.members[i].x += (i - 1.5) * 25;
+<<<<<<< Updated upstream
 					FlxTween.tween(opponentStrums.members[i], {x: STRUM_X + 52 + (i * 112)}, 0.1);
 					FlxTween.tween(playerStrums.members[i], {x: STRUM_X + 239 + ((i + 4) * 112), y: 50}, 0.1, {startDelay: 4});
+=======
+					tween("chompNote1" + i, opponentStrums.members[i], {x: STRUM_X + 52 + (i * 112)}, 0.1);
+					tween("chompNote2" + i, playerStrums.members[i], {x: STRUM_X + 239 + ((i + 4) * 112), y: 50}, 0.1, {startDelay: 4});
+>>>>>>> Stashed changes
 				}
 				health -= 0.25;
 			case "Gay Note":
