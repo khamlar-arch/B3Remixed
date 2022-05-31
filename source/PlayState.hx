@@ -34,6 +34,8 @@ import flixel.system.FlxSound;
 import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
+import flixel.tweens.misc.VarTween;
+import flixel.tweens.FlxTween.TweenOptions;
 import flixel.ui.FlxBar;
 import flixel.util.FlxCollision;
 import flixel.util.FlxColor;
@@ -340,6 +342,23 @@ class PlayState extends MusicBeatState
 	
 	// Less laggy controls
 	private var keysArray:Array<Dynamic>;
+	
+	public var tweens:Map<String, FlxTween> = new Map<String, FlxTween>();
+	public function tween(tag:String, Object:Dynamic, Values:Dynamic, Duration:Float = 1, ?Options:TweenOptions):VarTween {
+		if(tweens.exists(tag)) {
+			tweens.get(tag).cancel();
+			tweens.get(tag).destroy();
+			tweens.remove(tag);
+		}
+		
+		var v:VarTween = FlxTween.tween(Object, Values, Duration, Options);
+		tweens.set(tag, v);
+		
+		v.onComplete = function(twn:FlxTween) {
+			tweens.remove(tag);
+		};
+		return v;
+	}
 
 	override public function create()
 	{
