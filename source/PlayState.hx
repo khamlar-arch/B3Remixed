@@ -2677,15 +2677,12 @@ class PlayState extends MusicBeatState
 			if (!vocals.playing) vocals.play();
 			vocals.time = Conductor.songPosition;
 		}
-<<<<<<< Updated upstream
 		//vocals.play();
-=======
 		
 		if (ClientPrefs.dTime && !transitioning) { // its actually 1.5 instead of 2 lmao
 			FlxG.sound.music.pitch = 1.5;
 			vocals.pitch = 1.5;
 		}
->>>>>>> Stashed changes
 	}
 
 	public var paused:Bool = false;
