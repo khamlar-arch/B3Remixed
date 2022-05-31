@@ -4570,13 +4570,8 @@ class PlayState extends MusicBeatState
 					playerStrums.members[i].x += FlxG.random.int(70, -70);
 					playerStrums.members[i].y += FlxG.random.int(70, -70);
 					opponentStrums.members[i].x += (i - 1.5) * 25;
-<<<<<<< Updated upstream
-					FlxTween.tween(opponentStrums.members[i], {x: STRUM_X + 52 + (i * 112)}, 0.1);
-					FlxTween.tween(playerStrums.members[i], {x: STRUM_X + 239 + ((i + 4) * 112), y: 50}, 0.1, {startDelay: 4});
-=======
 					tween("chompNote1" + i, opponentStrums.members[i], {x: STRUM_X + 52 + (i * 112)}, 0.1);
 					tween("chompNote2" + i, playerStrums.members[i], {x: STRUM_X + 239 + ((i + 4) * 112), y: 50}, 0.1, {startDelay: 4});
->>>>>>> Stashed changes
 				}
 				health -= 0.25;
 			case "Gay Note":
