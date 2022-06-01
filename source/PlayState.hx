@@ -1424,18 +1424,16 @@ class PlayState extends MusicBeatState
 		#else
 		var debugPath:String = '../../../../assets/preload/modcharts/' + songName;
 		var path:String = Paths.getPreloadPath('modcharts/' + songName);
-		if (FileSystem.exists('../../windows') && FileSystem.exists(debugPath)) {
-			trace("ayo nice source code");
+		if (FileSystem.exists('../../windows') && FileSystem.exists(debugPath))
 			path = debugPath;
-		}
 		#end
 		if (FileSystem.exists(path) && ClientPrefs.modCharts) {
 			trace("found lua " + path);
 			luaArray.push(new FunkinLua(Paths.getPreloadPath("modcharts/InitRaltModchart.lua")));
 		}
-		else {
-			trace("didn't find lua " + path + "\n" + FileSystem.absolutePath(path));
-		}
+		//else {
+		//	trace("didn't find lua " + path + "\n" + FileSystem.absolutePath(path));
+		//}
 		
 		var daSong:String = Paths.formatToSongPath(curSong);
 		if (isStoryMode && !seenCutscene)
@@ -2177,15 +2175,20 @@ class PlayState extends MusicBeatState
 	{
 		if(time < 0) time = 0;
 
-		FlxG.sound.music.pause();
-		vocals.pause();
+		//FlxG.sound.music.pause();
+		//vocals.pause();
 
 		FlxG.sound.music.time = time;
-		FlxG.sound.music.play();
+		if (!FlxG.sound.music.playing) FlxG.sound.music.play();
 
 		vocals.time = time;
-		vocals.play();
+		if (vocals.playing) vocals.play();
 		Conductor.songPosition = time;
+		
+		if (ClientPrefs.dTime) {
+			FlxG.sound.music.pitch = 1.5;
+			vocals.pitch = 1.5;
+		}
 	}
 	
 	function startNextDialogue() {
@@ -2567,6 +2570,8 @@ class PlayState extends MusicBeatState
 			{
 				FlxG.sound.music.pause();
 				vocals.pause();
+				
+				FlxG.sound.music.pitch = 1;
 			}
 
 			if (startTimer != null && !startTimer.finished)
@@ -2593,6 +2598,11 @@ class PlayState extends MusicBeatState
 			}
 			for (timer in modchartTimers) {
 				timer.active = false;
+			}
+			
+			for (tween in tweens) {
+				if (!tween.finished)
+					tween.active = false;
 			}
 		}
 
@@ -2633,6 +2643,12 @@ class PlayState extends MusicBeatState
 			for (timer in modchartTimers) {
 				timer.active = true;
 			}
+			
+			for (tween in tweens) {
+				if (!tween.finished)
+					tween.active = true;
+			}
+			
 			paused = false;
 			callOnLuas('onResume', []);
 
