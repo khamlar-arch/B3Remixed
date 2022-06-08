@@ -1,5 +1,9 @@
 local gfx = 0
 
+function onCreate()
+	setPropertyFromClass('GameOverSubstate', 'characterName', 'bf-burger')
+end
+
 function onCreatePost()
     setProperty('skipCountdown', true)
     setProperty('camHUD.alpha', 0)
@@ -7,10 +11,10 @@ function onCreatePost()
     makeGraphic('do', 3000, 1500, '000000')
     addLuaSprite('do', true)
 
-	setProperty('dad.alpha', 0) 
-
+	setProperty('dad.alpha', 0)
+	
     makeAnimatedLuaSprite('dada', 'characters/b3_gf_phase_3', getProperty('gf.x'), getProperty('gf.y'))
-    addAnimationByPrefix('dada', 'talk', 'GF_TALK_START', 24, false)
+    addAnimationByPrefix('dada', 'talk', 'GF_TALK_START', 24 * (getPropertyFromClass("ClientPrefs", "dTime") and 1.5 or 1), false)
 end
 
 function onSongStart()
