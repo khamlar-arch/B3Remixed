@@ -2226,6 +2226,7 @@ class PlayState extends MusicBeatState
 		var composeTxt:FlxText = new FlxText(1280, 0, 0, 'BIDDLE3', 40);
 		switch (Paths.formatToSongPath(SONG.song).toLowerCase()) {
 			case 'mi-opera': composeTxt.text = 'FOODIETI';
+			case 'fresh': composeTxt.text = 'BIDDLE3, PENKARU';
 			case 'mia-battle': composeTxt.text = 'BIDDLE3, JAMS3D';
 			case 'fang' | 'succ' | 'problem' | 'succd': composeTxt.text = 'BENLAB CRIMSON DIABLO';
 			case 'dessert' | 'guh' | 'famine': composeTxt.text = 'SIRFITNESS';
@@ -3699,11 +3700,10 @@ class PlayState extends MusicBeatState
 					lyrics.destroy();
 					lyrIcon.destroy();
 				}
-				if(value2.trim()=='')value2='#FFFFFF';
 				if(value1.trim()!=''){
 			 		lyrics = new FlxText(0, 450, 270, value1, 32);
 					lyrics.cameras = [camOther];
-					lyrics.setFormat(Paths.font("vcr.ttf"), 24, FlxColor.fromString(value2), CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+					lyrics.setFormat(Paths.font("vcr.ttf"), 24, FlxColor.fromString('#FFFFFF'), CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 					lyrics.screenCenter(X);
 					lyrics.updateHitbox();
 					add(lyrics);
