@@ -8,6 +8,7 @@
 		253
 	],
 	"weekBefore": "tutorial",
+	"difficulties": "Hard, Get Real",
 	"startUnlocked": true,
 	"weekCharacters": [
 		"monstergf",
@@ -17,21 +18,12 @@
 	"hideStoryMode": true,
 	"songs": [
 		[
-			"Endless",
-			"b3geeckoirl",
+			"Triple B Trouble",
+			"evil",
 			[
-				58,
-				167,
-				115
-			]
-		],
-		[
-			"Sunshine",
-			"tails",
-			[
-				237,
-				113,
-				222
+				155,
+				0,
+				86
 			]
 		]
 	],
