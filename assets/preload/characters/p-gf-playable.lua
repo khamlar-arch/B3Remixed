@@ -1,4 +1,4 @@
 function onCreate()
-	setPropertyFromClass('GameOverSubstate', 'characterName', 'gf-playable-dead')
+	setPropertyFromClass('GameOverSubstate', 'characterName', 'shayover')
 	close(false)
 end

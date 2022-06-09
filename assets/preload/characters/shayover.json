@@ -1,37 +1,37 @@
 {
 	"animations": [
 		{
-			"loop": false,
 			"offsets": [
 				231,
 				391
 			],
-			"anim": "firstDeath",
-			"fps": 24,
-			"name": "Gameover",
-			"indices": []
-		},
-		{
-			"loop": true,
-			"offsets": [
-				230,
-				-240
-			],
-			"anim": "deathLoop",
-			"fps": 24,
-			"name": "Shivers",
-			"indices": []
-		},
-		{
 			"loop": false,
-			"offsets": [
-				257,
-				-241
-			],
-			"anim": "deathConfirm",
 			"fps": 24,
-			"name": "Retry Play",
-			"indices": []
+			"anim": "firstDeath",
+			"indices": [],
+			"name": "Gameover"
+		},
+		{
+			"offsets": [
+				218,
+				-227
+			],
+			"loop": true,
+			"fps": 24,
+			"anim": "deathLoop",
+			"indices": [],
+			"name": "Shivers"
+		},
+		{
+			"offsets": [
+				267,
+				-252
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "deathConfirm",
+			"indices": [],
+			"name": "Retry Play"
 		}
 	],
 	"no_antialiasing": false,

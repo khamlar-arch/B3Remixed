@@ -634,11 +634,12 @@ class PlayState extends MusicBeatState
 				add(dessert);
 
 			case 'dream':
-				var objectsArray:Array<Array<Dynamic>> = [['gun', 0], ['tie', 286.5], ['stake', 783.5]];
 				GameOverSubstate.deathSoundName = 'fnf_loss_sfx-hell';
                 GameOverSubstate.loopSoundName = 'gameOver-hell';
                 GameOverSubstate.endSoundName = 'gameOverEnd-hell';
                 GameOverSubstate.characterName = 'trapped';
+				
+				var objectsArray:Array<Array<Dynamic>> = [['gun', 0], ['tie', 286.5], ['stake', 783.5]];
 
 				var hellBG:BGSprite = new BGSprite('stages/nightmare/dream', -750, -370, 0.9, 0.9);
 				hellBG.setGraphicSize(Std.int(hellBG.width * 3.75));
@@ -678,8 +679,8 @@ class PlayState extends MusicBeatState
 		
 			case 'podcast':
 				GameOverSubstate.deathSoundName = 'fnf_loss_sfx-shaya';
-                GameOverSubstate.loopSoundName = 'gameOver-shaya';
-                GameOverSubstate.endSoundName = 'gameOverEnd-shaya';
+				GameOverSubstate.loopSoundName = 'gameOver-shaya';
+				GameOverSubstate.endSoundName = 'gameOverEnd-shaya';
                 GameOverSubstate.characterName = 'shayover';
 
 				var back:BGSprite = new BGSprite('harmony/Back', -350, -100, 0.9, 0.9);
@@ -930,6 +931,11 @@ class PlayState extends MusicBeatState
 					add(bg);
 				}
 			case 'bedroom': //Week 1
+				GameOverSubstate.deathSoundName = 'fnf_loss_sfx-burger';
+				GameOverSubstate.loopSoundName = 'gameOver-burger';
+				GameOverSubstate.endSoundName = 'gameOverEnd-burger';
+				GameOverSubstate.characterName = 'bf-pajamas-alt-dead';
+
 				var bgBed:BGSprite = new BGSprite('stages/bedroom/bg', -15, 160, 0.95, 0.95);
 				bgBed.setGraphicSize(Std.int(bgBed.width * 2.2222));
 				add(bgBed);
