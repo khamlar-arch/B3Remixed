@@ -61,11 +61,11 @@ class Portrait extends FlxSprite
 				
 				var rawdata:String = File.getContent(filepath);
 				var data = rawdata.split("\n");
-				
 				for (i in data){
+				var loop = false;
 					var thing = i.split(":");
 							trace("DATA: " + thing);
-					
+					if (thing[3] != null) loop = thing[3] == 'loop';
 					switch(thing[0]){
 						case "indices":
 							var framess = thing[2].split(",");//gets array
@@ -73,9 +73,9 @@ class Portrait extends FlxSprite
 							for (d in 0...framess.length){
 								frames[d] = Std.parseInt(framess[d]);//converts stringed numbers to integers
 							}
-							addAnim2(thing[1], frames);
+							addAnim2(thing[1], frames,loop);
 						case "prefix":
-							addAnim(thing[1], thing[2]);
+							addAnim(thing[1], thing[2],loop);
 						case "resize":
 							addAnim(thing[1], thing[2]);
 							setGraphicSize(Std.int(width * Std.parseFloat(thing[1])));
