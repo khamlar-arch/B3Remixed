@@ -13,7 +13,12 @@ class NoteSplash extends FlxSprite
 	public function new(x:Float = 0, y:Float = 0, ?note:Int = 0) {
 		super(x, y);
 
-		var skin:String = 'noteSplashes';
+		var skin:String = "";
+		if (ClientPrefs.specialNoteskin == true) {
+			skin = 'noteskins/B3NoteSplashes';
+		} else {
+			skin = 'noteskins/vanillaNoteSplashes';
+		}
 		if(PlayState.SONG.splashSkin != null && PlayState.SONG.splashSkin.length > 0) skin = PlayState.SONG.splashSkin;
 
 		loadAnims(skin);
@@ -25,21 +30,28 @@ class NoteSplash extends FlxSprite
 		antialiasing = ClientPrefs.globalAntialiasing;
 	}
 
-	public function setupNoteSplash(x:Float, y:Float, note:Int = 0, texture:String = null, hueColor:Float = 0, satColor:Float = 0, brtColor:Float = 0) {
+	public function setupNoteSplash(x:Float, y:Float, note:Int = 0, texture:String = null) {
 		setPosition(x - Note.swagWidth * 0.95, y - Note.swagWidth);
 		alpha = 0.6;
 
 		if(texture == null) {
-			texture = 'noteSplashes';
 			if(PlayState.SONG.splashSkin != null && PlayState.SONG.splashSkin.length > 0) texture = PlayState.SONG.splashSkin;
+			if (ClientPrefs.specialNoteskin == true) {
+				texture = 'noteskins/B3NoteSplashes';
+			} else {
+				texture = 'noteskins/vanillaNoteSplashes';
+			}
 		}
 
 		if(textureLoaded != texture) {
 			loadAnims(texture);
 		}
-		colorSwap.hue = hueColor;
-		colorSwap.saturation = satColor;
-		colorSwap.brightness = brtColor;
+
+		if (texture == 'noteskins/B3NoteSplashes') {
+			scale.x = 0.75;
+			scale.y = 0.75;
+		}
+
 		offset.set(10, 10);
 
 		var animNum:Int = FlxG.random.int(1, 2);

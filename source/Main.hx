@@ -1,5 +1,6 @@
 package;
 
+import flixel.input.keyboard.FlxKey;
 import flixel.graphics.FlxGraphic;
 import flixel.FlxG;
 import flixel.FlxGame;
@@ -9,6 +10,7 @@ import openfl.Lib;
 import openfl.display.FPS;
 import openfl.display.Sprite;
 import openfl.events.Event;
+import openfl.events.KeyboardEvent;
 
 class Main extends Sprite
 {
@@ -22,6 +24,8 @@ class Main extends Sprite
 	public static var fpsVar:FPS;
 
 	// You can pretty much ignore everything from here on - your code should go in your states.
+	
+	public static var fullscreenKeys:Array<FlxKey> = [FlxKey.F11];
 
 	public static function main():Void
 	{
@@ -69,10 +73,10 @@ class Main extends Sprite
 		#if !debug
 		initialState = TitleState;
 		#end
+		
+		Lib.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, handleInput);
 
 		ClientPrefs.loadDefaultKeys();
-		// fuck you, persistent caching stays ON during sex
-		FlxGraphic.defaultPersist = true;
 		// the reason for this is we're going to be handling our own cache smartly
 		addChild(new FlxGame(gameWidth, gameHeight, initialState, zoom, framerate, framerate, skipSplash, startFullscreen));
 
@@ -84,9 +88,15 @@ class Main extends Sprite
 		}
 		#end
 
+		FlxG.sound.volume = FlxG.save.data.volume;
+		FlxG.sound.muted = FlxG.save.data.mute;
 		#if html5
 		FlxG.autoPause = false;
 		FlxG.mouse.visible = false;
 		#end
+	}
+	
+	private function handleInput(evt:KeyboardEvent) {
+		if (fullscreenKeys.contains(CoolUtil.flKeyToFlx(evt.keyCode))) FlxG.fullscreen = !FlxG.fullscreen;
 	}
 }

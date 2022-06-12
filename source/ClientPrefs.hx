@@ -4,6 +4,7 @@ import flixel.FlxG;
 import flixel.util.FlxSave;
 import flixel.input.keyboard.FlxKey;
 import flixel.graphics.FlxGraphic;
+import lime.app.Application;
 import Controls;
 
 class ClientPrefs {
@@ -15,15 +16,29 @@ class ClientPrefs {
 	public static var noteSplashes:Bool = true;
 	public static var lowQuality:Bool = false;
 	public static var framerate:Int = 60;
+	public static var mitigateIconBop:Bool = false;
+	public static var camSpeed:Float = 1.5;
 	public static var cursing:Bool = true;
 	public static var violence:Bool = true;
 	public static var camZooms:Bool = true;
+	public static var scoreDetail:Bool = true;
+	public static var hideChars:Bool = false;
+	public static var noteCamera:Bool = true;
+	public static var modCharts:Bool = true;
+	public static var dTime:Bool = false;
+	public static var cleanJudgements:Bool = false;
+	public static var autoPause:Bool = true;
+	public static var toggleShaders:Bool = true;
+	public static var judgementCounter:Bool = false;
+	public static var laneUnderlay:Float = 0;
 	public static var hideHud:Bool = false;
+	public static var specialNoteskin:Bool = true;
 	public static var noteOffset:Int = 0;
 	public static var arrowHSV:Array<Array<Int>> = [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]];
 	public static var imagesPersist:Bool = false;
 	public static var ghostTapping:Bool = true;
 	public static var timeBarType:String = 'Time Left';
+	public static var hitsoundVolume:Float = 0;
 	public static var scoreZoom:Bool = true;
 	public static var noReset:Bool = false;
 	public static var healthBarAlpha:Float = 1;
@@ -51,6 +66,10 @@ class ClientPrefs {
 
 	public static var comboOffset:Array<Int> = [0, 0, 0, 0];
 	public static var keSustains:Bool = false; //i was bored, okay?
+	
+	public static var hardwareCache:Bool = true; //not sure if this would work edit: IT WORKS -- ralt
+	public static var fakeHardC:Bool = true;
+	public static var isHardCInited:Bool = false;
 	
 	public static var ratingOffset:Int = 0;
 	public static var sickWindow:Int = 45;
@@ -94,18 +113,32 @@ class ClientPrefs {
 		FlxG.save.data.downScroll = downScroll;
 		FlxG.save.data.middleScroll = middleScroll;
 		FlxG.save.data.showFPS = showFPS;
+		FlxG.save.data.specialNoteskin = specialNoteskin;
 		FlxG.save.data.flashing = flashing;
 		FlxG.save.data.globalAntialiasing = globalAntialiasing;
+		FlxG.save.data.cleanJudgements = cleanJudgements;
 		FlxG.save.data.noteSplashes = noteSplashes;
+		FlxG.save.data.mitigateIconBop = mitigateIconBop;
 		FlxG.save.data.lowQuality = lowQuality;
+		FlxG.save.data.laneUnderlay = laneUnderlay;
 		FlxG.save.data.framerate = framerate;
+		FlxG.save.data.toggleShaders = toggleShaders;
+		FlxG.save.data.autoPause = autoPause;
 		//FlxG.save.data.cursing = cursing;
 		//FlxG.save.data.violence = violence;
 		FlxG.save.data.camZooms = camZooms;
+		FlxG.save.data.camSpeed = camSpeed;
+		FlxG.save.data.noteCamera = noteCamera;
+		FlxG.save.data.hideChars = hideChars;
+		FlxG.save.data.scoreDetail = scoreDetail;
+		FlxG.save.data.modCharts = modCharts;
+		FlxG.save.data.dTime = dTime;
 		FlxG.save.data.noteOffset = noteOffset;
 		FlxG.save.data.hideHud = hideHud;
 		FlxG.save.data.arrowHSV = arrowHSV;
+		FlxG.save.data.judgementCounter = judgementCounter;
 		FlxG.save.data.imagesPersist = imagesPersist;
+		FlxG.save.data.hitsoundVolume = hitsoundVolume;
 		FlxG.save.data.ghostTapping = ghostTapping;
 		FlxG.save.data.timeBarType = timeBarType;
 		FlxG.save.data.scoreZoom = scoreZoom;
@@ -122,6 +155,8 @@ class ClientPrefs {
 		FlxG.save.data.safeFrames = safeFrames;
 		FlxG.save.data.gameplaySettings = gameplaySettings;
 		FlxG.save.data.controllerMode = controllerMode;
+		
+		FlxG.save.data.hardwareCache = fakeHardC;
 	
 		FlxG.save.flush();
 
@@ -139,17 +174,59 @@ class ClientPrefs {
 		if(FlxG.save.data.middleScroll != null) {
 			middleScroll = FlxG.save.data.middleScroll;
 		}
+		if(FlxG.save.data.hideChars != null) {
+			hideChars = FlxG.save.data.hideChars;
+		}
+		if(FlxG.save.data.judgementCounter != null) {
+			judgementCounter = FlxG.save.data.judgementCounter;
+		}
+		if(FlxG.save.data.autoPause != null) {
+			autoPause = FlxG.save.data.autoPause;
+		}
+		if(FlxG.save.data.toggleShaders != null) {
+			toggleShaders = FlxG.save.data.toggleShaders;
+		}
+		if(FlxG.save.data.mitigateIconBop != null) {
+			mitigateIconBop = FlxG.save.data.mitigateIconBop;
+		}
 		if(FlxG.save.data.showFPS != null) {
 			showFPS = FlxG.save.data.showFPS;
 			if(Main.fpsVar != null) {
 				Main.fpsVar.visible = showFPS;
 			}
 		}
+		if(FlxG.save.data.camSpeed != null) {
+			camSpeed = FlxG.save.data.camSpeed;
+		}
 		if(FlxG.save.data.flashing != null) {
 			flashing = FlxG.save.data.flashing;
 		}
+		if(FlxG.save.data.scoreDetail != null) {
+			scoreDetail = FlxG.save.data.scoreDetail;
+		}
+		if(FlxG.save.data.modCharts != null) {
+			modCharts = FlxG.save.data.modCharts;
+		}
+		if(FlxG.save.data.dTime != null) {
+			dTime = FlxG.save.data.dTime;
+		}
+		if(FlxG.save.data.hitsoundVolume != null) {
+			hitsoundVolume = FlxG.save.data.hitsoundVolume;
+		}
+		if(FlxG.save.data.noteCamera != null) {
+			noteCamera = FlxG.save.data.noteCamera;
+		}
+		if(FlxG.save.data.cleanJudgements != null) {
+			cleanJudgements = FlxG.save.data.cleanJudgements;
+		}
+		if(FlxG.save.data.specialNoteskin != null) {
+			specialNoteskin = FlxG.save.data.specialNoteskin;
+		}
 		if(FlxG.save.data.globalAntialiasing != null) {
 			globalAntialiasing = FlxG.save.data.globalAntialiasing;
+		}
+		if(FlxG.save.data.laneUnderlay != null) {
+			laneUnderlay = FlxG.save.data.laneUnderlay;
 		}
 		if(FlxG.save.data.noteSplashes != null) {
 			noteSplashes = FlxG.save.data.noteSplashes;
@@ -159,13 +236,23 @@ class ClientPrefs {
 		}
 		if(FlxG.save.data.framerate != null) {
 			framerate = FlxG.save.data.framerate;
-			if(framerate > FlxG.drawFramerate) {
-				FlxG.updateFramerate = framerate;
-				FlxG.drawFramerate = framerate;
-			} else {
-				FlxG.drawFramerate = framerate;
-				FlxG.updateFramerate = framerate;
+		}
+		#if !html5
+		else {
+			var refreshRate:Int = Application.current.window.displayMode.refreshRate;
+			if(framerate != refreshRate) {
+				framerate = refreshRate;
+				if(framerate < 60) {
+					framerate = 60;
+				} else if(framerate > 240) {
+					framerate = 240;
+				}
 			}
+		}
+		#end
+		if(framerate != FlxG.drawFramerate) {
+			FlxG.updateFramerate = framerate;
+			FlxG.drawFramerate = framerate;
 		}
 		/*if(FlxG.save.data.cursing != null) {
 			cursing = FlxG.save.data.cursing;
@@ -228,6 +315,16 @@ class ClientPrefs {
 			for (name => value in savedMap)
 			{
 				gameplaySettings.set(name, value);
+			}
+		}
+		
+		if(FlxG.save.data.hardwareCache != null) {
+			hardwareCache = FlxG.save.data.hardwareCache;
+			fakeHardC = FlxG.save.data.hardwareCache;
+			
+			if (!isHardCInited) {
+				Paths.hardwareCache = hardwareCache;
+				isHardCInited = true;
 			}
 		}
 		

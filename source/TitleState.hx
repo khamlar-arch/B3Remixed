@@ -34,6 +34,7 @@ import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import lime.app.Application;
 import openfl.Assets;
+import flixel.math.FlxMath;
 
 using StringTools;
 typedef TitleData =
@@ -61,6 +62,7 @@ class TitleState extends MusicBeatState
 	var credTextShit:Alphabet;
 	var textGroup:FlxGroup;
 	var ngSpr:FlxSprite;
+	var comeBackHereNowOrElseYoungMan:Bool = false;
 
 	var curWacky:Array<String> = [];
 
@@ -557,7 +559,7 @@ class TitleState extends MusicBeatState
 	{
 		super.beatHit();
 
-		if(logoBl != null) 
+		if(logoBl != null)
 			logoBl.animation.play('bump', true);
 
 		if(gfDance != null) {
@@ -568,7 +570,7 @@ class TitleState extends MusicBeatState
 			else
 				gfDance.animation.play('danceLeft');
 		}
-
+ 
 		if(!closedState) {
 			sickBeats++;
 			switch (sickBeats)

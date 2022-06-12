@@ -1,48 +1,33 @@
 {
 	"song": {
-		"speed": 3,
+		"speed": 2.8,
 		"stage": "philly",
-		"player1": "week3bf",
+		"player1": "bf-shaded-w3",
 		"player2": "pico",
 		"player3": null,
 		"events": [
 			[
+				41358.024691358,
+				[
+					[
+						"Trigger Song Event",
+						"school",
+						"start"
+					]
+				]
+			],
+			[
 				41481.4814814815,
 				[
 					[
-						"GayStation",
-						"1",
-						""
-					]
-				]
-			],
-			[
-				41485.3395061728,
-				[
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
 					[
-						"Change Character",
-						"dad",
-						"picogay"
-					]
-				]
-			],
-			[
-				41489.1975308642,
-				[
-					[
-						"Change Character",
-						"bf",
-						"bfgay"
-					]
-				]
-			],
-			[
-				41493.0555555556,
-				[
-					[
-						"GayStation",
-						"3",
-						""
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -50,9 +35,14 @@
 				42037.037037037,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -60,9 +50,14 @@
 				42592.5925925926,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -70,9 +65,9 @@
 				43333.3333333333,
 				[
 					[
-						"GayStation",
-						"4",
-						""
+						"Play Animation",
+						"cock",
+						"dad"
 					]
 				]
 			],
@@ -80,9 +75,9 @@
 				43703.7037037037,
 				[
 					[
-						"GayStation",
-						"4",
-						""
+						"Play Animation",
+						"cock",
+						"dad"
 					]
 				]
 			],
@@ -90,9 +85,14 @@
 				44074.0740740741,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -100,9 +100,14 @@
 				44259.2592592593,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -110,9 +115,14 @@
 				44351.8518518519,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -120,9 +130,14 @@
 				44444.4444444444,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -130,9 +145,14 @@
 				45000,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -140,9 +160,14 @@
 				45555.5555555556,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -150,9 +175,9 @@
 				46296.2962962963,
 				[
 					[
-						"GayStation",
-						"4",
-						""
+						"Play Animation",
+						"cock",
+						"dad"
 					]
 				]
 			],
@@ -160,9 +185,9 @@
 				46666.6666666667,
 				[
 					[
-						"GayStation",
-						"4",
-						""
+						"Play Animation",
+						"cock",
+						"dad"
 					]
 				]
 			],
@@ -170,9 +195,14 @@
 				47037.037037037,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -180,9 +210,14 @@
 				47222.2222222222,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -190,9 +225,14 @@
 				47314.8148148148,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -200,9 +240,14 @@
 				47407.4074074074,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -210,9 +255,14 @@
 				47962.962962963,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -220,9 +270,14 @@
 				48518.5185185185,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -230,9 +285,9 @@
 				49259.2592592593,
 				[
 					[
-						"GayStation",
-						"4",
-						""
+						"Play Animation",
+						"cock",
+						"dad"
 					]
 				]
 			],
@@ -240,9 +295,9 @@
 				49629.6296296296,
 				[
 					[
-						"GayStation",
-						"4",
-						""
+						"Play Animation",
+						"cock",
+						"dad"
 					]
 				]
 			],
@@ -250,9 +305,14 @@
 				50000,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -260,9 +320,14 @@
 				50185.1851851852,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -270,9 +335,14 @@
 				50277.7777777778,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -280,9 +350,14 @@
 				50370.3703703704,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -290,9 +365,14 @@
 				50925.9259259259,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -300,9 +380,14 @@
 				51481.4814814815,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -310,9 +395,9 @@
 				52222.2222222222,
 				[
 					[
-						"GayStation",
-						"4",
-						""
+						"Play Animation",
+						"cock",
+						"dad"
 					]
 				]
 			],
@@ -320,9 +405,9 @@
 				52592.5925925926,
 				[
 					[
-						"GayStation",
-						"4",
-						""
+						"Play Animation",
+						"cock",
+						"dad"
 					]
 				]
 			],
@@ -330,9 +415,14 @@
 				52962.962962963,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -340,9 +430,14 @@
 				53148.1481481482,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -350,9 +445,14 @@
 				53240.7407407407,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -360,9 +460,14 @@
 				53333.3333333333,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -370,9 +475,14 @@
 				53888.8888888889,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -380,9 +490,14 @@
 				54444.4444444444,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -390,9 +505,9 @@
 				55185.1851851852,
 				[
 					[
-						"GayStation",
-						"4",
-						""
+						"Play Animation",
+						"cock",
+						"dad"
 					]
 				]
 			],
@@ -400,9 +515,9 @@
 				55555.5555555556,
 				[
 					[
-						"GayStation",
-						"4",
-						""
+						"Play Animation",
+						"cock",
+						"dad"
 					]
 				]
 			],
@@ -410,9 +525,14 @@
 				55925.9259259259,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -420,9 +540,14 @@
 				56111.1111111111,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -430,9 +555,14 @@
 				56203.7037037037,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -440,9 +570,14 @@
 				56296.2962962963,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -450,9 +585,14 @@
 				56851.8518518519,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -460,9 +600,14 @@
 				57407.4074074074,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -470,9 +615,9 @@
 				58148.1481481482,
 				[
 					[
-						"GayStation",
-						"4",
-						""
+						"Play Animation",
+						"cock",
+						"dad"
 					]
 				]
 			],
@@ -480,9 +625,9 @@
 				58518.5185185185,
 				[
 					[
-						"GayStation",
-						"4",
-						""
+						"Play Animation",
+						"cock",
+						"dad"
 					]
 				]
 			],
@@ -490,9 +635,14 @@
 				58888.8888888889,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -500,9 +650,14 @@
 				59074.0740740741,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -510,9 +665,14 @@
 				59166.6666666667,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -520,9 +680,14 @@
 				59259.2592592593,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -530,9 +695,14 @@
 				59814.8148148148,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -540,9 +710,14 @@
 				60370.3703703704,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -550,9 +725,9 @@
 				61111.1111111111,
 				[
 					[
-						"GayStation",
-						"4",
-						""
+						"Play Animation",
+						"cock",
+						"dad"
 					]
 				]
 			],
@@ -560,9 +735,9 @@
 				61481.4814814815,
 				[
 					[
-						"GayStation",
-						"4",
-						""
+						"Play Animation",
+						"cock",
+						"dad"
 					]
 				]
 			],
@@ -570,9 +745,14 @@
 				61851.8518518519,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -580,9 +760,14 @@
 				62037.037037037,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -590,9 +775,14 @@
 				62129.6296296296,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -600,9 +790,14 @@
 				62222.2222222222,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -610,9 +805,14 @@
 				62777.7777777778,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -620,9 +820,14 @@
 				63333.3333333333,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -630,9 +835,14 @@
 				63703.7037037037,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -640,9 +850,14 @@
 				64074.0740740741,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -650,9 +865,14 @@
 				64444.4444444444,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -660,9 +880,14 @@
 				64814.8148148148,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -670,9 +895,14 @@
 				64907.4074074074,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -680,9 +910,14 @@
 				65000,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -690,9 +925,14 @@
 				65092.5925925926,
 				[
 					[
-						"GayStation",
-						"3",
-						""
+						"Screen Shake",
+						"0.5,0.02",
+						"0.2,0.02"
+					],
+					[
+						"Play Animation",
+						"shoot",
+						"dad"
 					]
 				]
 			],
@@ -700,29 +940,9 @@
 				65185.1851851852,
 				[
 					[
-						"GayStation",
-						"2",
-						""
-					]
-				]
-			],
-			[
-				65189.0432098765,
-				[
-					[
-						"Change Character",
-						"dad",
-						"pico"
-					]
-				]
-			],
-			[
-				65192.9012345679,
-				[
-					[
-						"Change Character",
-						"bf",
-						"week3bf"
+						"Trigger Song Event",
+						"school",
+						"end"
 					]
 				]
 			]
@@ -730,7 +950,7 @@
 		"notes": [],
 		"splashSkin": null,
 		"validScore": false,
-		"gfVersion": "week3gf",
+		"gfVersion": "gf-shaded-w3",
 		"bpm": 162,
 		"arrowSkin": null,
 		"needsVoices": true,

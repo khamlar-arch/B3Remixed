@@ -14,6 +14,7 @@ import flixel.math.FlxMath;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import flixel.tweens.FlxTween;
+import flixel.tweens.FlxEase;
 import lime.utils.Assets;
 import flixel.system.FlxSound;
 import openfl.utils.Assets as OpenFlAssets;
@@ -33,7 +34,6 @@ class FreeplayState extends MusicBeatState
 	var curDifficulty:Int = -1;
 	private static var lastDifficultyName:String = '';
 
-	var scoreBG:FlxSprite;
 	var scoreText:FlxText;
 	var diffText:FlxText;
 	var lerpScore:Int = 0;
@@ -42,18 +42,22 @@ class FreeplayState extends MusicBeatState
 	var intendedRating:Float = 0;
 
 	private var grpSongs:FlxTypedGroup<Alphabet>;
+	private var verTexts:FlxTypedGroup<FlxText>;
 	private var curPlaying:Bool = false;
 
 	private var iconArray:Array<HealthIcon> = [];
 
 	var bg:FlxSprite;
+	var topbar:FlxSprite;
+	var bottombar:FlxSprite;
+
 	var intendedColor:Int;
 	var colorTween:FlxTween;
 
 	override function create()
 	{
 		Paths.clearStoredMemory();
-		Paths.clearUnusedMemory();
+		//Paths.clearUnusedMemory();
 		
 		PlayState.isStoryMode = false;
 		WeekData.reloadWeekFiles(false);
@@ -97,7 +101,7 @@ class FreeplayState extends MusicBeatState
 			}
 		}*/
 
-		bg = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
+		bg = new FlxSprite().loadGraphic(Paths.image('menus/menuBG'));
 		bg.antialiasing = ClientPrefs.globalAntialiasing;
 		add(bg);
 
@@ -106,7 +110,7 @@ class FreeplayState extends MusicBeatState
 
 		for (i in 0...songs.length)
 		{
-			var songText:Alphabet = new Alphabet(0, (70 * i) + 30, songs[i].songName, true, false);
+			var songText:Alphabet = new Alphabet(0, (70 * i) + 60, songs[i].songName, true, false);
 			songText.isMenuItem = true;
 			songText.targetY = i;
 			grpSongs.add(songText);
@@ -123,17 +127,27 @@ class FreeplayState extends MusicBeatState
 			// DONT PUT X IN THE FIRST PARAMETER OF new ALPHABET() !!
 			// songText.screenCenter(X);
 		}
+
 		WeekData.setDirectoryFromWeek();
 
-		scoreText = new FlxText(FlxG.width * 0.7, 5, 0, "", 32);
-		scoreText.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, RIGHT);
+		topbar = new FlxSprite(0, -151).loadGraphic(Paths.image('menus/freeplay/bars'));
+		topbar.antialiasing = ClientPrefs.globalAntialiasing;
+		topbar.angle = 180;
+		add(topbar);
 
-		scoreBG = new FlxSprite(scoreText.x - 6, 0).makeGraphic(1, 66, 0xFF000000);
-		scoreBG.alpha = 0.6;
-		add(scoreBG);
+		bottombar = new FlxSprite(0, 720).loadGraphic(Paths.image('menus/freeplay/bars'));
+		bottombar.antialiasing = ClientPrefs.globalAntialiasing;
+		add(bottombar);
 
-		diffText = new FlxText(scoreText.x, scoreText.y + 36, 0, "", 24);
-		diffText.font = scoreText.font;
+		scoreText = new FlxText(0, -106, 1270, "", 40);
+		scoreText.setFormat('assets/fonts/Helvetica-Oblique.ttf', 32, FlxColor.WHITE, RIGHT);
+		scoreText.antialiasing = ClientPrefs.globalAntialiasing;
+		scoreText.angle = 3.7;
+
+		diffText = new FlxText(scoreText.x, -141, 1270, "", 32);
+		diffText.setFormat('assets/fonts/Helvetica-Oblique.ttf', 32, FlxColor.WHITE, RIGHT);
+		diffText.antialiasing = ClientPrefs.globalAntialiasing;
+		diffText.angle = 3.7;
 		add(diffText);
 
 		add(scoreText);
@@ -170,21 +184,45 @@ class FreeplayState extends MusicBeatState
 			trace(md);
 		 */
 
-		var textBG:FlxSprite = new FlxSprite(0, FlxG.height - 26).makeGraphic(FlxG.width, 26, 0xFF000000);
-		textBG.alpha = 0.6;
-		add(textBG);
+		var textArray:Array<String> = ['[SPACE] Play Song', '[CTRL] Gameplay Changers Menu', '[RESET] Reset Score and Accuracy', ''];
 
-		#if PRELOAD_ALL
-		var leText:String = "Press SPACE to listen to the Song / Press CTRL to open the Gameplay Changers Menu / Press RESET to Reset your Score and Accuracy.";
-		var size:Int = 16;
-		#else
-		var leText:String = "Press CTRL to open the Gameplay Changers Menu / Press RESET to Reset your Score and Accuracy.";
-		var size:Int = 18;
-		#end
-		var text:FlxText = new FlxText(textBG.x, textBG.y + 4, FlxG.width, leText, size);
-		text.setFormat(Paths.font("vcr.ttf"), size, FlxColor.WHITE, RIGHT);
-		text.scrollFactor.set();
-		add(text);
+		var playSongText:FlxText = new FlxText(10, 776 + (30 * 0), 1280, textArray[0], 24);
+		playSongText.setFormat('assets/fonts/Helvetica-Oblique.ttf', 24, FlxColor.WHITE, LEFT);
+		playSongText.scrollFactor.set();
+		add(playSongText);
+
+		var gameChangeText:FlxText = new FlxText(10, 776 + (30 * 1), 1280, textArray[1], 24);
+		gameChangeText.setFormat('assets/fonts/Helvetica-Oblique.ttf', 24, FlxColor.WHITE, LEFT);
+		gameChangeText.scrollFactor.set();
+		add(gameChangeText);
+
+		var resetScoreText:FlxText = new FlxText(10, 776 + (30 * 2), 1280, textArray[2], 24);
+		resetScoreText.setFormat('assets/fonts/Helvetica-Oblique.ttf', 24, FlxColor.WHITE, LEFT);
+		resetScoreText.scrollFactor.set();
+		add(resetScoreText);
+		// #if PRELOAD_ALL
+		// var leText:String = "Press SPACE to listen to the Song\nPress CTRL to open the Gameplay Changers Menu\nPress RESET to Reset your Score and Accuracy.";
+		// #else
+		// var leText:String = "Press CTRL to open the Gameplay Changers Menu\nPress RESET to Reset your Score and Accuracy.";
+		// #end
+		// var text:FlxText = new FlxText(0, 00, 1280, leText, 24);
+		// #if !PRELOAD_ALL
+		// text.y += 36;
+		// #end
+		// text.setFormat('Monsterrat', 24, FlxColor.WHITE, LEFT);
+		// text.scrollFactor.set();
+		// add(text);
+
+		FlxTween.tween(bottombar, {y: 569}, 0.5, {ease: FlxEase.circInOut, startDelay: 0.5});
+		FlxTween.tween(topbar, {y: 0}, 0.5, {ease: FlxEase.circInOut, startDelay: 0.5});
+	
+		FlxTween.tween(playSongText, {y: 625}, 0.5, {ease: FlxEase.circInOut, startDelay: 0.5});
+		FlxTween.tween(gameChangeText, {y: 655}, 0.5, {ease: FlxEase.circInOut, startDelay: 0.5});
+		FlxTween.tween(resetScoreText, {y: 685}, 0.5, {ease: FlxEase.circInOut, startDelay: 0.5});
+
+		FlxTween.tween(scoreText, {y: 45}, 0.5, {ease: FlxEase.circInOut, startDelay: 0.5});
+		FlxTween.tween(diffText, {y: 10}, 0.5, {ease: FlxEase.circInOut, startDelay: 0.5});
+
 		super.create();
 	}
 
@@ -241,7 +279,6 @@ class FreeplayState extends MusicBeatState
 		}
 
 		scoreText.text = 'PERSONAL BEST: ' + lerpScore + ' (' + ratingSplit.join('.') + '%)';
-		positionHighscore();
 
 		var upP = controls.UI_UP_P;
 		var downP = controls.UI_DOWN_P;
@@ -308,6 +345,7 @@ class FreeplayState extends MusicBeatState
 
 		else if (accepted)
 		{
+			iconArray[curSelected].animation.curAnim.curFrame = 1;
 			var songLowercase:String = Paths.formatToSongPath(songs[curSelected].songName);
 			var poop:String = Highscore.formatSong(songLowercase, curDifficulty);
 			/*#if MODS_ALLOWED
@@ -374,7 +412,6 @@ class FreeplayState extends MusicBeatState
 
 		PlayState.storyDifficulty = curDifficulty;
 		diffText.text = '< ' + CoolUtil.difficultyString() + ' >';
-		positionHighscore();
 	}
 
 	function changeSelection(change:Int = 0, playSound:Bool = true)
@@ -466,15 +503,6 @@ class FreeplayState extends MusicBeatState
 		{
 			curDifficulty = newPos;
 		}
-	}
-
-	private function positionHighscore() {
-		scoreText.x = FlxG.width - scoreText.width - 6;
-
-		scoreBG.scale.x = FlxG.width - scoreText.x + 6;
-		scoreBG.x = FlxG.width - (scoreBG.scale.x / 2);
-		diffText.x = Std.int(scoreBG.x + (scoreBG.width / 2));
-		diffText.x -= diffText.width / 2;
 	}
 }
 

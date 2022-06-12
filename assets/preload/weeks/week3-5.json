@@ -1,0 +1,39 @@
+{
+	"storyName": "Harmony",
+	"hideFreeplay": false,
+	"weekBackground": "philly",
+	"freeplayColor": [
+		146,
+		113,
+		253
+	],
+	"weekBefore": "tutorial",
+	"startUnlocked": true,
+	"weekCharacters": [
+		"pico",
+		"bf",
+		"gf"
+	],
+	"hideStoryMode": true,
+	"songs": [
+		[
+			"Harmony",
+			"pico",
+			[
+				131,
+				0,
+				31
+			]
+		],
+		[
+			"F U",
+			"pico",
+			[
+				131,
+				0,
+				31
+			]
+		]
+	],
+	"weekName": "Harmony"
+}

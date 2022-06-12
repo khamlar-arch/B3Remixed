@@ -22,8 +22,19 @@ import openfl.display.BitmapData;
 
 import flash.media.Sound;
 
+#if cpp
+import cpp.vm.Gc;
+#elseif hl
+import hl.Gc;
+#elseif java
+import java.vm.Gc;
+#elseif neko
+import neko.vm.Gc;
+#end
+
 using StringTools;
 
+@:access(openfl.display.BitmapData.__texture)
 class Paths
 {
 	inline public static var SOUND_EXT = #if web "mp3" #else "ogg" #end;
@@ -38,6 +49,7 @@ class Paths
 		'songs',
 		'music',
 		'sounds',
+		'shaders',
 		'videos',
 		'images',
 		'stages',
@@ -50,6 +62,18 @@ class Paths
 	public static function excludeAsset(key:String) {
 		if (!dumpExclusions.contains(key))
 			dumpExclusions.push(key);
+	}
+	
+	public static function compress() {
+		#if cpp
+		Gc.compact();
+		Gc.run(true);
+		//Gc.setMinimumWorkingMemory(totalMemory);
+		#elseif hl
+		Gc.major();
+		#elseif (java || neko)
+		Gc.run(true);
+		#end
 	}
 
 	public static var dumpExclusions:Array<String> = [];
@@ -66,13 +90,20 @@ class Paths
 				if (obj != null) {
 					openfl.Assets.cache.removeBitmapData(key);
 					FlxG.bitmap._cache.remove(key);
+					
+					if (obj.bitmap != null && obj.bitmap.__texture != null) obj.bitmap.__texture.dispose();
+					obj.bitmap.disposeImage();
+					
 					obj.destroy();
 					currentTrackedAssets.remove(key);
 				}
 			}
 		}
+		
 		// run the garbage collector for good measure lmfao
-		System.gc();
+		//System.gc();
+		
+		compress();
 	}
 
 	// define the locally tracked assets
@@ -86,6 +117,10 @@ class Paths
 			if (obj != null && !currentTrackedAssets.exists(key)) {
 				openfl.Assets.cache.removeBitmapData(key);
 				FlxG.bitmap._cache.remove(key);
+				
+				if (obj.bitmap != null && obj.bitmap.__texture != null) obj.bitmap.__texture.dispose();
+				obj.bitmap.disposeImage();
+				
 				obj.destroy();
 			}
 		}
@@ -167,7 +202,14 @@ class Paths
 	{
 		return getPath('data/$key.json', TEXT, library);
 	}
-
+	inline static public function shaderFragment(key:String, ?library:String)
+	{
+		return getPath('shaders/$key.frag', TEXT, library);
+	}
+	inline static public function shaderVertex(key:String, ?library:String)
+	{
+		return getPath('shaders/$key.vert', TEXT, library);
+	}
 	inline static public function lua(key:String, ?library:String)
 	{
 		return getPath('$key.lua', TEXT, library);
@@ -276,18 +318,20 @@ class Paths
 	}
 
 	inline static public function getSparrowAtlas(key:String, ?library:String):FlxAtlasFrames
-	{
-		#if MODS_ALLOWED
-		var graphic:FlxGraphic = Paths.image(key, library);
-		var xmlExists:Bool = false;
-		if(FileSystem.exists(modsXml(key))) {
-			xmlExists = true;
+		{
+			#if MODS_ALLOWED
+			var imageLoaded:FlxGraphic = returnGraphic(key);
+			var xmlExists:Bool = false;
+			if(FileSystem.exists(modsXml(key))) {
+				xmlExists = true;
+			}
+	
+			return FlxAtlasFrames.fromSparrow((imageLoaded != null ? imageLoaded : image(key, library)), (xmlExists ? File.getContent(modsXml(key)) : file('images/$key.xml', library)));
+			#else
+			return FlxAtlasFrames.fromSparrow(image(key, library), file('images/$key.xml', library));
+			#end
 		}
-		return FlxAtlasFrames.fromSparrow(graphic, (xmlExists ? File.getContent(modsXml(key)) : file('images/$key.xml', library)));
-		#else
-		return FlxAtlasFrames.fromSparrow(image(key, library), file('images/$key.xml', library));
-		#end
-	}
+	
 
 
 	inline static public function getPackerAtlas(key:String, ?library:String)
@@ -309,33 +353,56 @@ class Paths
 		return path.toLowerCase().replace(' ', '-');
 	}
 
-	// completely rewritten asset loading? fuck!
-	public static var currentTrackedAssets:Map<String, FlxGraphic> = [];
-	public static function returnGraphic(key:String, ?library:String) {
+	private static function regBitmap(key:String, ?hardware:Bool):BitmapData {
+		hardware = hardware == null ? hardwareCache : hardware;
+		
+		if (OpenFlAssets.exists(key, IMAGE))
+			return OpenFlAssets.getBitmapData(key, false, hardware);
+		
 		#if MODS_ALLOWED
-		if(FileSystem.exists(modsImages(key))) {
-			if(!currentTrackedAssets.exists(key)) {
-				var newBitmap:BitmapData = BitmapData.fromFile(modsImages(key));
-				var newGraphic:FlxGraphic = FlxGraphic.fromBitmapData(newBitmap, false, key);
-				currentTrackedAssets.set(key, newGraphic);
-				
-			}
-			localTrackedAssets.push(key);
-			return currentTrackedAssets.get(key);
+		if(FileSystem.exists(key)) {
+			var newBitmap:BitmapData = BitmapData.fromFile(key);
+			
+			if (newBitmap != null)
+				return OpenFlAssets.registerBitmapData(newBitmap, key, false, hardware);
 		}
 		#end
-		var path = getPath('images/$key.png', IMAGE, library);
-		if (OpenFlAssets.exists(path, IMAGE)) {
-			if(!currentTrackedAssets.exists(key)) {
-				var newGraphic:FlxGraphic = FlxG.bitmap.add(path, false, key);
-				currentTrackedAssets.set(key, newGraphic);
-			}
-			localTrackedAssets.push(key);
-			return currentTrackedAssets.get(key);
-		}
-		trace('oh no its returning null NOOOO');
+		
 		return null;
 	}
+
+	// completely rewritten asset loading? fuck!
+	public static var hardwareCache:Bool = false;
+	public static var currentTrackedAssets:Map<String, FlxGraphic> = [];
+	public static function returnGraphic(key:String, ?library:String):FlxGraphic {
+		#if MODS_ALLOWED
+		var modKey:String = modsImages(key);
+		if(FileSystem.exists(modKey)) {
+			if(!currentTrackedAssets.exists(modKey)) {
+				var newGraphic:FlxGraphic = FlxGraphic.fromBitmapData(regBitmap(modKey), false, modKey);
+				
+				newGraphic.persist = true;
+				currentTrackedAssets.set(modKey, newGraphic);
+			}
+			localTrackedAssets.push(modKey);
+			return currentTrackedAssets.get(modKey);
+		}
+		#end
+
+		var path = getPath('images/$key.png', IMAGE, library);
+		if (OpenFlAssets.exists(path, IMAGE)) {
+			if(!currentTrackedAssets.exists(path)) {
+				var newGraphic:FlxGraphic = FlxGraphic.fromBitmapData(regBitmap(path), false, path);
+				
+				newGraphic.persist = true;
+				currentTrackedAssets.set(path, newGraphic);
+			}
+			localTrackedAssets.push(path);
+			return currentTrackedAssets.get(path);
+		}
+		trace('oh no its returning null NOOOO: ' + path);
+		return null;
+	};
 
 	public static var currentTrackedSounds:Map<String, Sound> = [];
 	public static function returnSound(path:String, key:String, ?library:String) {
@@ -394,6 +461,15 @@ class Paths
 
 	inline static public function modsTxt(key:String) {
 		return modFolders('images/' + key + '.txt');
+	}
+
+	inline static public function modsShaderFragment(key:String, ?library:String)
+	{
+		return modFolders('shaders/'+key+'.frag');
+	}
+	inline static public function modsShaderVertex(key:String, ?library:String)
+	{
+		return modFolders('shaders/'+key+'.vert');
 	}
 
 	static public function modFolders(key:String) {

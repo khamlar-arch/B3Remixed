@@ -8,7 +8,6 @@ using StringTools;
 class HealthIcon extends FlxSprite
 {
 	public var sprTracker:FlxSprite;
-	public var lyricMode:Bool = false;
 
 	public var defualtIconScale:Float = 1;
 	public var iconScale:Float = 1;
@@ -31,8 +30,7 @@ class HealthIcon extends FlxSprite
 	{
 		super.update(elapsed);
 
-		if (lyricMode == false)
-			setGraphicSize(Std.int(iconSize * iconScale));
+		setGraphicSize(Std.int(iconSize * iconScale));
 
 		updateHitbox();
 
@@ -48,9 +46,9 @@ class HealthIcon extends FlxSprite
 	private var iconOffsets:Array<Float> = [0, 0];
 	public function changeIcon(char:String) {
 		if(this.char != char) {
-			var name:String = 'icons/' + char;
-			if(!Paths.fileExists('images/' + name + '.png', IMAGE)) name = 'icons/icon-' + char; //Older versions of psych engine's support
-			if(!Paths.fileExists('images/' + name + '.png', IMAGE)) name = 'icons/icon-face'; //Prevents crash from missing icon
+			var name:String = 'icons/game/' + char;
+			if(!Paths.fileExists('images/' + name + '.png', IMAGE)) name = 'icons/game/icon-' + char; //Older versions of psych engine's support
+			if(!Paths.fileExists('images/' + name + '.png', IMAGE)) name = 'icons/game/icon-face'; //Prevents crash from missing icon
 			var file:Dynamic = Paths.image(name);
 
 			loadGraphic(file); //Load stupidly first for getting the file size

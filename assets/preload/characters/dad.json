@@ -2,7 +2,7 @@
 	"animations": [
 		{
 			"offsets": [
-				114,
+				77,
 				-135
 			],
 			"loop": false,
@@ -24,8 +24,8 @@
 		},
 		{
 			"offsets": [
-				301,
-				2
+				395,
+				7
 			],
 			"loop": false,
 			"fps": 24,
@@ -35,8 +35,8 @@
 		},
 		{
 			"offsets": [
-				100,
-				180
+				121,
+				177
 			],
 			"loop": false,
 			"fps": 24,
@@ -59,20 +59,20 @@
 	"no_antialiasing": false,
 	"image": "characters/DADDY_DEAREST",
 	"position": [
-		0,
-		-200
+		20,
+		-5
 	],
 	"healthicon": "dad",
 	"flip_x": false,
 	"healthbar_colors": [
-		175,
-		102,
-		206
+		110,
+		93,
+		113
 	],
 	"camera_position": [
-		0,
-		180
+		-110,
+		-60
 	],
 	"sing_duration": 6.1,
-	"scale": 1
+	"scale": 1.25
 }

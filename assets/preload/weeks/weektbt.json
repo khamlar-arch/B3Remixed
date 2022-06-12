@@ -1,0 +1,31 @@
+{
+	"storyName": "B3 x EXE",
+	"hideFreeplay": false,
+	"weekBackground": "stage",
+	"freeplayColor": [
+		146,
+		113,
+		253
+	],
+	"weekBefore": "tutorial",
+	"difficulties": "Hard, Get Real",
+	"startUnlocked": true,
+	"weekCharacters": [
+		"monstergf",
+		"bf",
+		"gf"
+	],
+	"hideStoryMode": true,
+	"songs": [
+		[
+			"Triple B Trouble",
+			"evil",
+			[
+				155,
+				0,
+				86
+			]
+		]
+	],
+	"weekName": "EXE"
+}

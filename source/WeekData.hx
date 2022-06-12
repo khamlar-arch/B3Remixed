@@ -8,6 +8,7 @@ import lime.utils.Assets;
 import openfl.utils.Assets as OpenFlAssets;
 import haxe.Json;
 import haxe.format.JsonParser;
+import flixel.FlxG;
 
 using StringTools;
 
@@ -73,7 +74,12 @@ class WeekData {
 		freeplayColor = weekFile.freeplayColor;
 		startUnlocked = weekFile.startUnlocked;
 		hideStoryMode = weekFile.hideStoryMode;
-		hideFreeplay = weekFile.hideFreeplay;
+		if ((!FlxG.save.data.guhUnlocked) && (weekFile.storyName == 'Bloody Bedtime Part 2')) {
+			hideFreeplay = true;
+			trace('suck my nuts');
+		} else {
+			hideFreeplay = weekFile.hideFreeplay;
+		}
 		difficulties = weekFile.difficulties;
 	}
 

@@ -44,12 +44,11 @@ class Note extends FlxSprite
 	public static var BLUE_NOTE:Int = 1;
 	public static var RED_NOTE:Int = 3;
 
+	public var oldRand:Int = 0;
+
 	// Lua shit
 	public var noteSplashDisabled:Bool = false;
 	public var noteSplashTexture:String = null;
-	public var noteSplashHue:Float = 0;
-	public var noteSplashSat:Float = 0;
-	public var noteSplashBrt:Float = 0;
 
 	public var offsetX:Float = 0;
 	public var offsetY:Float = 0;
@@ -72,7 +71,7 @@ class Note extends FlxSprite
 
 	private function set_texture(value:String):String {
 		if(texture != value) {
-			reloadNote('', value);
+			reloadNote(value);
 		}
 		texture = value;
 		return value;
@@ -80,19 +79,12 @@ class Note extends FlxSprite
 
 	private function set_noteType(value:String):String {
 		noteSplashTexture = PlayState.SONG.splashSkin;
-		colorSwap.hue = ClientPrefs.arrowHSV[noteData % 4][0] / 360;
-		colorSwap.saturation = ClientPrefs.arrowHSV[noteData % 4][1] / 100;
-		colorSwap.brightness = ClientPrefs.arrowHSV[noteData % 4][2] / 100;
 
 		if(noteData > -1 && noteType != value) {
 			switch(value) {
 				case 'Hurt Note':
 					ignoreNote = mustPress;
-					reloadNote('HURT');
-					noteSplashTexture = 'HURTnoteSplashes';
-					colorSwap.hue = 0;
-					colorSwap.saturation = 0;
-					colorSwap.brightness = 0;
+					reloadNote('noteskins/B3Notes');
 					if(isSustainNote) {
 						missHealth = 0.1;
 					} else {
@@ -105,8 +97,7 @@ class Note extends FlxSprite
 					gfNote = true;
 				case 'Burger Note':
 					ignoreNote = mustPress;
-					reloadNote('BURGER');
-					noteSplashTexture = 'HURTnoteSplashes';
+					reloadNote('noteskins/burgerNotes');
 					colorSwap.saturation = 0;
 					colorSwap.brightness = 0;
 					if(isSustainNote) {
@@ -114,20 +105,23 @@ class Note extends FlxSprite
 					} else {
 						missHealth = 0.9;
 					}
-					offset.x= 75;
+					offsetX -= 75;
 				case 'Chomp Note':
-					reloadNote('CHOMP');
-					noteSplashTexture = 'noteSplashes';
-					offset.x= 70;
+					canBeHit = mustPress;
+					reloadNote('noteskins/chompNotes');
+					if(tooLate) {
+						missHealth = 0.9;
+					}
+					offsetX -= 75;
 				case 'Gay Note':
-					reloadNote('GAY');
-					noteSplashTexture = 'noteSplashes';
+					canBeHit = mustPress;
+					reloadNote('noteskins/gayNotes');
+					if(tooLate) {
+						missHealth = 0.4;
+					}
 			}
 			noteType = value;
 		}
-		noteSplashHue = colorSwap.hue;
-		noteSplashSat = colorSwap.saturation;
-		noteSplashBrt = colorSwap.brightness;
 		return value;
 	}
 
@@ -149,6 +143,25 @@ class Note extends FlxSprite
 		if(!inEditor) this.strumTime += ClientPrefs.noteOffset;
 
 		this.noteData = noteData;
+
+		// Mirror Mode stuff.
+		if (PlayState.instance.mirrorMode) 
+		{
+			this.noteData = Std.int(Math.abs(3 - noteData)); // FlipX notes to be hit.
+			noteData = Std.int(Math.abs(3 - noteData)); // FlipX noteData sprite (0 = purple, 1 = blue, 2 = green, 3 = red).
+		}
+
+		if (PlayState.instance.randomNotes) 
+		{
+			if (!isSustainNote) {
+				// Listen the random math kjinda works ;mfao im tired
+				this.noteData = Math.floor((FlxG.random.int(1, 320) / 12) % 4); // Random NoteData.
+				noteData = this.noteData; // Da Sprite
+			} else {
+				this.noteData = prevNote.noteData;
+				noteData = prevNote.noteData;
+			}
+		}
 
 		if(noteData > -1) {
 			texture = '';
@@ -240,16 +253,18 @@ class Note extends FlxSprite
 		x += offsetX;
 	}
 
-	function reloadNote(?prefix:String = '', ?texture:String = '', ?suffix:String = '') {
-		if(prefix == null) prefix = '';
+	function reloadNote(?texture:String = '') {
 		if(texture == null) texture = '';
-		if(suffix == null) suffix = '';
 		
 		var skin:String = texture;
 		if(texture.length < 1) {
 			skin = PlayState.SONG.arrowSkin;
 			if(skin == null || skin.length < 1) {
-				skin = 'NOTE_assets';
+				if (ClientPrefs.specialNoteskin == true) {
+					skin = 'noteskins/B3Notes';
+				} else {
+					skin = 'noteskins/vanillaNotes';
+				}
 			}
 		}
 
@@ -259,7 +274,7 @@ class Note extends FlxSprite
 		}
 
 		var arraySkin:Array<String> = skin.split('/');
-		arraySkin[arraySkin.length-1] = prefix + arraySkin[arraySkin.length-1] + suffix;
+		arraySkin[arraySkin.length-1] = arraySkin[arraySkin.length-1];
 
 		var lastScaleY:Float = scale.y;
 		var blahblah:String = arraySkin.join('/');

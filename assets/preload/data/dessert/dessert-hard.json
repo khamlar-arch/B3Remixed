@@ -1,8 +1,8 @@
 {
 	"song": {
 		"sectionLengths": [],
-		"player1": "screambf",
-		"player2": "GF-Phase1",
+		"player1": "bf-pajamas",
+		"player2": "p-gf-hungry-1",
 		"notes": [
 			{
 				"sectionNotes": [],
@@ -160,11 +160,6 @@
 			{
 				"sectionNotes": [
 					[
-						22045.4545454546,
-						1,
-						150
-					],
-					[
 						22272.7272727273,
 						0,
 						0
@@ -188,6 +183,11 @@
 						23409.0909090909,
 						3,
 						0
+					],
+					[
+						22045.4545454546,
+						1,
+						170.454545454545
 					]
 				],
 				"typeOfSection": 0,
@@ -198,11 +198,6 @@
 			},
 			{
 				"sectionNotes": [
-					[
-						23863.6363636364,
-						0,
-						100
-					],
 					[
 						24090.9090909091,
 						2,
@@ -216,22 +211,27 @@
 					[
 						24318.1818181818,
 						3,
-						100
+						170.454545454545
+					],
+					[
+						23863.6363636364,
+						0,
+						170.454545454545
 					],
 					[
 						24545.4545454546,
 						1,
-						100
+						170.454545454545
 					],
 					[
 						24772.7272727273,
 						0,
-						100
+						170.454545454545
 					],
 					[
 						25000,
 						1,
-						100
+						170.454545454545
 					]
 				],
 				"typeOfSection": 0,
@@ -316,11 +316,6 @@
 			{
 				"sectionNotes": [
 					[
-						29318,
-						1,
-						150
-					],
-					[
 						29545,
 						0,
 						0
@@ -344,6 +339,11 @@
 						30681,
 						3,
 						0
+					],
+					[
+						29318.1818181818,
+						1,
+						170.454545454545
 					]
 				],
 				"typeOfSection": 0,
@@ -355,11 +355,6 @@
 			{
 				"sectionNotes": [
 					[
-						31136,
-						0,
-						100
-					],
-					[
 						31363,
 						2,
 						0
@@ -370,24 +365,29 @@
 						0
 					],
 					[
-						31590,
-						3,
-						100
-					],
-					[
-						31818,
-						1,
-						100
-					],
-					[
-						32045,
+						31136.3636363637,
 						0,
-						100
+						170.454545454545
 					],
 					[
-						32272,
+						31590.9090909091,
+						3,
+						170.454545454545
+					],
+					[
+						31818.1818181818,
 						1,
-						100
+						170.454545454545
+					],
+					[
+						32045.4545454546,
+						0,
+						170.454545454545
+					],
+					[
+						32272.7272727273,
+						1,
+						170.454545454545
 					]
 				],
 				"typeOfSection": 0,
@@ -714,6 +714,11 @@
 						39772.7272727273,
 						0,
 						113.636363636364
+					],
+					[
+						38522.7272727273,
+						3,
+						0
 					]
 				],
 				"typeOfSection": 0,
@@ -850,7 +855,7 @@
 					[
 						43636,
 						5,
-						0
+						340.909090909091
 					],
 					[
 						43863,
@@ -940,6 +945,11 @@
 					[
 						45340,
 						7,
+						0
+					],
+					[
+						43977.2727272727,
+						3,
 						0
 					]
 				],
@@ -1040,6 +1050,11 @@
 						47045,
 						0,
 						113
+					],
+					[
+						45795.4545454545,
+						0,
+						0
 					]
 				],
 				"typeOfSection": 0,
@@ -2966,7 +2981,7 @@
 					[
 						105454.545454546,
 						1,
-						0
+						170.454545454545
 					]
 				],
 				"typeOfSection": 0,
@@ -3337,6 +3352,36 @@
 				"bpm": 132
 			},
 			{
+				"lengthInSteps": 16,
+				"typeOfSection": 0,
+				"sectionNotes": [],
+				"altAnim": false,
+				"gfSection": false,
+				"bpm": 132,
+				"changeBPM": false,
+				"mustHitSection": true
+			},
+			{
+				"sectionNotes": [],
+				"typeOfSection": 0,
+				"lengthInSteps": 16,
+				"gfSection": false,
+				"altAnim": false,
+				"mustHitSection": true,
+				"changeBPM": false,
+				"bpm": 132
+			},
+			{
+				"gfSection": false,
+				"lengthInSteps": 16,
+				"altAnim": false,
+				"typeOfSection": 0,
+				"sectionNotes": [],
+				"bpm": 132,
+				"changeBPM": false,
+				"mustHitSection": true
+			},
+			{
 				"gfSection": false,
 				"lengthInSteps": 16,
 				"altAnim": false,
@@ -3365,7 +3410,12 @@
 					[
 						"Change Character",
 						"1",
-						"monstergf"
+						"torment"
+					],
+					[
+						"Change Character",
+						"BF",
+						"bf-pained"
 					]
 				]
 			],
@@ -3385,7 +3435,12 @@
 					[
 						"Change Character",
 						"1",
-						"GF-Phase1"
+						"p-gf-hungry-1"
+					],
+					[
+						"Change Character",
+						"BF",
+						"bf-pajamas"
 					]
 				]
 			]
@@ -3396,7 +3451,7 @@
 		"needsVoices": true,
 		"sections": 0,
 		"validScore": true,
-		"speed": 2.3,
+		"speed": 2.4,
 		"bpm": 132
 	}
 }

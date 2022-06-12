@@ -12,6 +12,7 @@ import flixel.math.FlxMath;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import lime.utils.Assets;
+import flixel.addons.display.FlxBackdrop;
 import flixel.FlxSubState;
 import flash.text.TextField;
 import flixel.FlxG;
@@ -29,25 +30,29 @@ using StringTools;
 
 class OptionsState extends MusicBeatState
 {
-	var options:Array<String> = ['Note Colors', 'Controls', 'Adjust Delay and Combo', 'Graphics', 'Visuals and UI', 'Gameplay'];
+	var options:Array<String> = ['Gameplay', 'Appearance', 'Preferences'];
+	var descs:Array<String> = ['Adjust how the gameplay feels\nto fit your perfect match!', 'Change how your game looks and make\nit look perfect to your standards.', 'Play with the options to edit your\ngame for the best experience.'];
 	private var grpOptions:FlxTypedGroup<Alphabet>;
 	private static var curSelected:Int = 0;
 	public static var menuBG:FlxSprite;
+	private var descText:FlxText;
+
+	public static var forceSong:Bool = false;
+
+	var backdrop:FlxBackdrop = new FlxBackdrop(Paths.image('menus/menuCheckerboard'), 0.2, 0.2, true, true);
 
 	function openSelectedSubstate(label:String) {
 		switch(label) {
-			case 'Note Colors':
-				openSubState(new options.NotesSubState());
 			case 'Controls':
-				openSubState(new options.ControlsSubState());
-			case 'Graphics':
-				openSubState(new options.GraphicsSettingsSubState());
-			case 'Visuals and UI':
-				openSubState(new options.VisualsUISubState());
+				openSubState(new options.substates.ControlsSubState());
+			case 'Appearance':
+				openSubState(new options.substates.VisualsUISubState());
 			case 'Gameplay':
-				openSubState(new options.GameplaySettingsSubState());
-			case 'Adjust Delay and Combo':
-				LoadingState.loadAndSwitchState(new options.NoteOffsetState());
+				openSubState(new options.substates.GameplaySettingsSubState());
+			case 'Offset':
+				LoadingState.loadAndSwitchState(new options.substates.NoteOffsetState());
+			case 'Preferences':
+				openSubState(new options.substates.PreferencesSubState());
 		}
 	}
 
@@ -59,13 +64,29 @@ class OptionsState extends MusicBeatState
 		DiscordClient.changePresence("Options Menu", null);
 		#end
 
-		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
+		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menus/menuBG'));
 		bg.color = 0xFFea71fd;
 		bg.setGraphicSize(Std.int(bg.width * 1.1));
 		bg.updateHitbox();
 		bg.screenCenter();
 		bg.antialiasing = ClientPrefs.globalAntialiasing;
 		add(bg);
+
+		add(backdrop);
+		backdrop.alpha = 0.5;
+		backdrop.scale.x = 5;
+		backdrop.scale.y = 5;
+		backdrop.color = 0xFF00FFF2;
+		backdrop.scrollFactor.set(0, 0.07);
+		backdrop.updateHitbox();
+
+		var frame:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menus/options/menuframes'));
+		frame.scrollFactor.set();
+		frame.setGraphicSize(Std.int(frame.width * 1));
+		frame.updateHitbox();
+		frame.screenCenter();
+		frame.antialiasing = ClientPrefs.globalAntialiasing;
+		add(frame);
 
 		grpOptions = new FlxTypedGroup<Alphabet>();
 		add(grpOptions);
@@ -74,14 +95,21 @@ class OptionsState extends MusicBeatState
 		{
 			var optionText:Alphabet = new Alphabet(0, 0, options[i], true, false);
 			optionText.screenCenter();
-			optionText.y += (100 * (i - (options.length / 2))) + 50;
+			optionText.y += (125 * (i - (options.length / 2))) + 68.5;
 			grpOptions.add(optionText);
 		}
 
-		selectorLeft = new Alphabet(0, 0, '>', true, false);
-		add(selectorLeft);
-		selectorRight = new Alphabet(0, 0, '<', true, false);
-		add(selectorRight);
+		var topTxt:FlxText = new FlxText(50, 10, 1180, "B3 Remixed - Options Menu", 32);
+		topTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		topTxt.scrollFactor.set();
+		topTxt.borderSize = 2.4;
+		add(topTxt);
+
+		descText = new FlxText(50, 700, 1180, "2 Lines\nYeah", 32);
+		descText.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		descText.scrollFactor.set();
+		descText.borderSize = 2.4;
+		add(descText);
 
 		changeSelection();
 		ClientPrefs.saveSettings();
@@ -96,6 +124,16 @@ class OptionsState extends MusicBeatState
 
 	override function update(elapsed:Float) {
 		super.update(elapsed);
+		descText.text = descs[curSelected];
+
+		//i feel like this could be done better but i trust peak
+		backdrop.x -= 70 * elapsed;
+		backdrop.y -= 70 * elapsed;
+
+		if (forceSong) {
+			trace('movin on');
+			openSubState(new options.substates.ControlsSubState());
+		}
 
 		if (controls.UI_UP_P) {
 			changeSelection(-1);
@@ -115,6 +153,9 @@ class OptionsState extends MusicBeatState
 	}
 	
 	function changeSelection(change:Int = 0) {
+		descText.screenCenter(Y);
+		descText.y += 320;
+
 		curSelected += change;
 		if (curSelected < 0)
 			curSelected = options.length - 1;
@@ -128,13 +169,8 @@ class OptionsState extends MusicBeatState
 			bullShit++;
 
 			item.alpha = 0.6;
-			if (item.targetY == 0) {
+			if (item.targetY == 0)
 				item.alpha = 1;
-				selectorLeft.x = item.x - 63;
-				selectorLeft.y = item.y;
-				selectorRight.x = item.x + item.width + 15;
-				selectorRight.y = item.y;
-			}
 		}
 		FlxG.sound.play(Paths.sound('scrollMenu'));
 	}

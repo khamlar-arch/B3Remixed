@@ -1,5 +1,6 @@
 package;
 
+import flixel.input.keyboard.FlxKey;
 import flixel.FlxG;
 import openfl.utils.Assets;
 import lime.utils.Assets as LimeAssets;
@@ -19,7 +20,8 @@ class CoolUtil
 	public static var defaultDifficulties:Array<String> = [
 		'Easy',
 		'Normal',
-		'Hard'
+		'Hard',
+		'Get Real'
 	];
 	public static var defaultDifficulty:String = 'Normal'; //The chart that has no suffix and starting difficulty on Freeplay/Story Mode
 
@@ -32,7 +34,11 @@ class CoolUtil
 		var fileSuffix:String = difficulties[num];
 		if(fileSuffix != defaultDifficulty)
 		{
-			fileSuffix = '-' + fileSuffix;
+			if (fileSuffix == 'Get Real') {
+				fileSuffix = '-getreal';
+			} else {
+				fileSuffix = '-' + fileSuffix;
+			}
 		}
 		else
 		{
@@ -120,6 +126,9 @@ class CoolUtil
 		if (Assets.exists(EmbeddedSound, SOUND) || Assets.exists(EmbeddedSound, MUSIC))
 			Assets.getSound(EmbeddedSound, true);
 	}
+	
+	inline public static function flKeyToFlx(keyCode:Int):FlxKey
+		@:privateAccess return FlxKey.toStringMap.get(keyCode);
 
 	public static function browserLoad(site:String) {
 		#if linux

@@ -1,0 +1,181 @@
+package options.substates;
+
+#if desktop
+import Discord.DiscordClient;
+#end
+import flash.text.TextField;
+import flixel.FlxG;
+import flixel.FlxSprite;
+import flixel.addons.display.FlxGridOverlay;
+import flixel.group.FlxGroup.FlxTypedGroup;
+import flixel.math.FlxMath;
+import flixel.text.FlxText;
+import flixel.util.FlxColor;
+import lime.utils.Assets;
+import flixel.FlxSubState;
+import flash.text.TextField;
+import flixel.FlxG;
+import flixel.FlxSprite;
+import flixel.util.FlxSave;
+import haxe.Json;
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
+import flixel.util.FlxTimer;
+import flixel.input.keyboard.FlxKey;
+import flixel.graphics.FlxGraphic;
+import Controls;
+
+using StringTools;
+
+class GameplaySettingsSubState extends BaseOptionsMenu
+{
+	public function new()
+	{
+		title = 'Gameplay';
+		rpcTitle = 'Gameplay Settings Menu'; //for Discord Rich Presence
+
+		addOption(new Option('Notes', '', '', 'filler', null));
+
+		//I'd suggest using "Downscroll" as an example for making your own option since it is the simplest here
+		var option:Option = new Option('Downscroll', //Name
+			'If checked, notes go Down instead of Up, simple enough.', //Description
+			'downScroll', //Save data variable name
+			'bool', //Variable type
+			false); //Default value
+		addOption(option);
+
+		var option:Option = new Option('Centered Notefield',
+			'If checked, your notes get centered.',
+			'middleScroll',
+			'bool',
+			false);
+		addOption(option);
+
+		var option:Option = new Option('Ghost Tapping',
+			"If checked, you won't get misses from pressing keys\nwhile there are no notes able to be hit.",
+			'ghostTapping',
+			'bool',
+			true);
+		addOption(option);
+
+		var option:Option = new Option('Modcharts',
+			"If checked, the notes won't move around when a modchart is active.",
+			'modCharts',
+			'bool',
+			true);
+		addOption(option);
+
+		addOption(new Option('Key Bindings', '', '', 'filler', null));
+
+		var option:Option = new Option('Change Controls',
+		"Change your keybinds for both ingame play and HUD movement, along with other keys such as debug menu keys!", 
+		'',
+		'none',
+		null);
+		addOption(option);
+		option.onChange = onLoadControls;
+
+		var option:Option = new Option('Disable Reset Button',
+			"If checked, pressing Reset won't do anything.",
+			'noReset',
+			'bool',
+			false);
+		addOption(option);
+
+		addOption(new Option('Player Input', '', '', 'filler', null));
+
+		var option:Option = new Option('Rating Offset',
+			'Changes how late/early you have to hit for a "Sick!"\nHigher values mean you have to hit later.',
+			'ratingOffset',
+			'int',
+			0);
+		option.displayFormat = '%vms';
+		option.scrollSpeed = 20;
+		option.minValue = -30;
+		option.maxValue = 30;
+		addOption(option);
+
+		var option:Option = new Option('Sick! Hit Window',
+			'Changes the amount of time you have\nfor hitting a "Sick!" in milliseconds.',
+			'sickWindow',
+			'int',
+			45);
+		option.displayFormat = '%vms';
+		option.scrollSpeed = 15;
+		option.minValue = 15;
+		option.maxValue = 45;
+		addOption(option);
+
+		var option:Option = new Option('Good Hit Window',
+			'Changes the amount of time you have\nfor hitting a "Good" in milliseconds.',
+			'goodWindow',
+			'int',
+			90);
+		option.displayFormat = '%vms';
+		option.scrollSpeed = 30;
+		option.minValue = 15;
+		option.maxValue = 90;
+		addOption(option);
+
+		var option:Option = new Option('Bad Hit Window',
+			'Changes the amount of time you have\nfor hitting a "Bad" in milliseconds.',
+			'badWindow',
+			'int',
+			135);
+		option.displayFormat = '%vms';
+		option.scrollSpeed = 60;
+		option.minValue = 15;
+		option.maxValue = 135;
+		addOption(option);
+
+		var option:Option = new Option('Safe Frames',
+			'Changes how many frames you have for\nhitting a note earlier or late.',
+			'safeFrames',
+			'float',
+			10);
+		option.scrollSpeed = 5;
+		option.minValue = 2;
+		option.maxValue = 10;
+		option.changeValue = 0.1;
+		addOption(option);
+
+		var option:Option = new Option('Adjust Delay and Combo',
+		"Edit the song\'s offset to match up with your headphones, or\nadjust your combo sprites and where they show up!", 
+		'',
+		'none',
+		null);
+		addOption(option);
+		option.onChange = onLoadOffset;
+
+		super();
+	}
+
+	function onLoadState(state)
+	{
+		var transBlack:FlxSprite = new FlxSprite(-1280).makeGraphic(1280, 720, FlxColor.BLACK);
+		transBlack.scrollFactor.set();
+		add(transBlack);
+		FlxTween.tween(transBlack, {x: 0}, 0.4, {ease: FlxEase.circInOut, 
+			onComplete: function(twn:FlxTween) {
+				FlxG.camera.visible = false;
+				switch (state) {
+					case 'offset':
+						LoadingState.loadAndSwitchState(new options.substates.NoteOffsetState());
+					case 'controls':
+						openSubState(new options.substates.ControlsSubState());
+						FlxG.camera.visible = true;
+				}
+			}
+		});
+	}
+
+	function onLoadOffset()
+	{
+		onLoadState('offset');
+	}
+
+	function onLoadControls()
+	{
+		openSubState(new options.substates.ControlsSubState());
+	}
+}

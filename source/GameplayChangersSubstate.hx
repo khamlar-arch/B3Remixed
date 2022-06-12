@@ -84,6 +84,19 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 
 		var option:GameplayOption = new GameplayOption('Instakill on Miss', 'instakill', 'bool', false);
 		optionsArray.push(option);
+		
+		var option:GameplayOption = new GameplayOption('Modcharts', 'modCharts', 'bool', true, true);
+		optionsArray.push(option);
+		
+		var option:GameplayOption = new GameplayOption('Double Time', 'dTime', 'bool', false, true);
+		optionsArray.push(option);
+
+		// Big thanks to this pr: https://github.com/ShadowMario/FNF-PsychEngine/pull/8654/commits/f7ca280d3e9241d18c1265dec023f2ad324b6c4f
+		var option:GameplayOption = new GameplayOption('Mirror Mode', 'mirror', 'bool', false);
+		optionsArray.push(option);
+
+		var option:GameplayOption = new GameplayOption('Randomized Mode', 'random', 'bool', false);
+		optionsArray.push(option);
 
 		var option:GameplayOption = new GameplayOption('Practice Mode', 'practice', 'bool', false);
 		optionsArray.push(option);
@@ -400,14 +413,17 @@ class GameplayOption
 
 	public var displayFormat:String = '%v'; //How String/Float/Percent/Int values are shown, %v = Current value, %d = Default value
 	public var name:String = 'Unknown';
+	
+	public var onC:Bool = false;
 
-	public function new(name:String, variable:String, type:String = 'bool', defaultValue:Dynamic = 'null variable value', ?options:Array<String> = null)
+	public function new(name:String, variable:String, type:String = 'bool', defaultValue:Dynamic = 'null variable value', ?options:Array<String> = null, ?onC:Bool = false)
 	{
 		this.name = name;
 		this.variable = variable;
 		this.type = type;
 		this.defaultValue = defaultValue;
 		this.options = options;
+		this.onC = onC;
 
 		if(defaultValue == 'null variable value')
 		{
@@ -459,11 +475,14 @@ class GameplayOption
 
 	public function getValue():Dynamic
 	{
-		return ClientPrefs.gameplaySettings.get(variable);
+		return if (onC) Reflect.getProperty(ClientPrefs, variable); else ClientPrefs.gameplaySettings.get(variable);
 	}
 	public function setValue(value:Dynamic)
 	{
-		ClientPrefs.gameplaySettings.set(variable, value);
+		if (onC)
+			Reflect.setProperty(ClientPrefs, variable, value);
+		else
+			ClientPrefs.gameplaySettings.set(variable, value);
 	}
 
 	public function setChild(child:Alphabet)

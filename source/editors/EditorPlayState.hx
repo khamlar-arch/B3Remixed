@@ -66,7 +66,7 @@ class EditorPlayState extends MusicBeatState
 	{
 		instance = this;
 
-		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
+		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menus/menuBG'));
 		bg.scrollFactor.set();
 		bg.color = FlxColor.fromHSB(FlxG.random.int(0, 359), FlxG.random.float(0, 0.8), FlxG.random.float(0.3, 1));
 		add(bg);
@@ -182,7 +182,7 @@ class EditorPlayState extends MusicBeatState
 
 	//var songScore:Int = 0;
 	var songHits:Int = 0;
-	var songMisses:Int = 0;
+	var songBreaks:Int = 0;
 	var startingSong:Bool = true;
 	private function generateSong(dataPath:String):Void
 	{
@@ -470,7 +470,7 @@ class EditorPlayState extends MusicBeatState
 							});
 
 							if(!daNote.ignoreNote) {
-								songMisses++;
+								songBreaks++;
 								vocals.volume = 0;
 							}
 						}
@@ -487,7 +487,7 @@ class EditorPlayState extends MusicBeatState
 		}
 
 		keyShit();
-		scoreTxt.text = 'Hits: ' + songHits + ' | Misses: ' + songMisses;
+		scoreTxt.text = 'Hits: ' + songHits + ' | Misses: ' + songBreaks;
 		beatTxt.text = 'Beat: ' + curBeat;
 		stepTxt.text = 'Step: ' + curStep;
 		super.update(elapsed);
@@ -704,7 +704,7 @@ class EditorPlayState extends MusicBeatState
 			switch(note.noteType) {
 				case 'Hurt Note': //Hurt note
 					noteMiss(note.noteData);
-					--songMisses;
+					--songBreaks;
 					if(!note.isSustainNote) {
 						if(!note.noteSplashDisabled) {
 							spawnNoteSplashOnNote(note);
@@ -725,10 +725,10 @@ class EditorPlayState extends MusicBeatState
 
 			if (!note.isSustainNote)
 			{
-				popUpScore(note);
 				combo += 1;
 				songHits++;
 				if(combo > 9999) combo = 9999;
+				popUpScore(note);
 			}
 
 			playerStrums.forEach(function(spr:StrumNote)
@@ -756,7 +756,7 @@ class EditorPlayState extends MusicBeatState
 		combo = 0;
 
 		//songScore -= 10;
-		songMisses++;
+		songBreaks++;
 
 		FlxG.sound.play(Paths.soundRandom('missnote', 1, 3), FlxG.random.float(0.1, 0.2));
 		vocals.volume = 0;
@@ -896,8 +896,7 @@ class EditorPlayState extends MusicBeatState
 			numScore.velocity.x = FlxG.random.float(-5, 5);
 			numScore.visible = !ClientPrefs.hideHud;
 
-			if (combo >= 10 || combo == 0)
-				insert(members.indexOf(strumLineNotes), numScore);
+			insert(members.indexOf(strumLineNotes), numScore);
 
 			FlxTween.tween(numScore, {alpha: 0}, 0.2, {
 				onComplete: function(tween:FlxTween)
@@ -996,18 +995,12 @@ class EditorPlayState extends MusicBeatState
 		var skin:String = 'noteSplashes';
 		if(PlayState.SONG.splashSkin != null && PlayState.SONG.splashSkin.length > 0) skin = PlayState.SONG.splashSkin;
 		
-		var hue:Float = ClientPrefs.arrowHSV[data % 4][0] / 360;
-		var sat:Float = ClientPrefs.arrowHSV[data % 4][1] / 100;
-		var brt:Float = ClientPrefs.arrowHSV[data % 4][2] / 100;
 		if(note != null) {
 			skin = note.noteSplashTexture;
-			hue = note.noteSplashHue;
-			sat = note.noteSplashSat;
-			brt = note.noteSplashBrt;
 		}
 
 		var splash:NoteSplash = grpNoteSplashes.recycle(NoteSplash);
-		splash.setupNoteSplash(x, y, data, skin, hue, sat, brt);
+		splash.setupNoteSplash(x, y, data, skin);
 		grpNoteSplashes.add(splash);
 	}
 	
