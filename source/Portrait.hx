@@ -72,9 +72,9 @@ class Portrait extends FlxSprite
 							for (d in 0...framess.length){
 								frames[d] = Std.parseInt(framess[d]);//converts stringed numbers to integers
 							}
-							addAnim2(thing[1], frames,loop);
+							addAnim2(thing[1], frames);
 						case "prefix":
-							addAnim(thing[1], thing[2],loop);
+							addAnim(thing[1], thing[2]);
 						case "resize":
 							addAnim(thing[1], thing[2]);
 							setGraphicSize(Std.int(width * Std.parseFloat(thing[1])));
