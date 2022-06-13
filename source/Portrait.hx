@@ -76,7 +76,6 @@ class Portrait extends FlxSprite
 						case "prefix":
 							addAnim(thing[1], thing[2],loop);
 						case "resize":
-							addAnim(thing[1], thing[2]);
 							setGraphicSize(Std.int(width * Std.parseFloat(thing[1])));
 							updateHitbox();
 					}
@@ -102,11 +101,11 @@ class Portrait extends FlxSprite
 		
 	}
     
-    public function addAnim(anim:String, prefix:String){
-        animation.addByPrefix(anim,prefix, 24, true);
+    public function addAnim(anim:String, prefix:String,loop:Bool=true){
+        animation.addByPrefix(anim,prefix, 24, loop);
     }    
-    public function addAnim2(anim:String, frames:Array<Int>){
-        animation.addByIndices(anim,char+"_portrait",frames,"", 24, true);
+    public function addAnim2(anim:String, frames:Array<Int>,loop:Bool=true){
+        animation.addByIndices(anim,char+"_portrait",frames,"", 24, loop);
     }    
 
     public function playFrame(?_frame:String = "default"){

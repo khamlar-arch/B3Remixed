@@ -358,7 +358,6 @@ class Paths
 		
 		if (OpenFlAssets.exists(key, IMAGE))
 			return OpenFlAssets.getBitmapData(key, false, hardware);
-		
 		#if MODS_ALLOWED
 		if(FileSystem.exists(key)) {
 			var newBitmap:BitmapData = BitmapData.fromFile(key);
