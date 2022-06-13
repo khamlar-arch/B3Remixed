@@ -13,7 +13,7 @@ using StringTools;
 /**
  * Loosley based on FlxTypeText lolol
  */
-class Alphabet extends FlxSpriteGroup
+class Alphabet extends FlxTypedSpriteGroup<AlphaCharacter>
 {
 	public var delay:Float = 0.05;
 	public var paused:Bool = false;
@@ -28,6 +28,10 @@ class Alphabet extends FlxSpriteGroup
 	public var isCredit:Bool = false;
 	public var isOption:Bool = false;
 	public var textSize:Float = 1.0;
+
+	public var angleTo:Float = 0;
+	public var disableX:Bool = false;
+	public var xTo:Float = 100;
 
 	public var text:String = "";
 
@@ -339,17 +343,21 @@ class Alphabet extends FlxSpriteGroup
 			var scaledY = FlxMath.remapToRange(targetY, 0, 1, 0, 1.3);
 
 			var lerpVal:Float = CoolUtil.boundTo(elapsed * 9.6, 0, 1);
-			if (isCredit) {
-				y = FlxMath.lerp(y, (0.85 * (scaledY * yMult) + (FlxG.height * 0.48) + yAdd), lerpVal);
-				screenCenter(X);
-			} else {
-				y = FlxMath.lerp(y, (scaledY * yMult) + (FlxG.height * 0.48) + yAdd, lerpVal);
-				if(forceX != Math.NEGATIVE_INFINITY) {
-					x = forceX;
+			if (!disableX) {
+				if (isCredit) {
+					y = FlxMath.lerp(y, (0.85 * (scaledY * yMult) + (FlxG.height * 0.48) + yAdd), lerpVal);
+					screenCenter(X);
 				} else {
-						x = FlxMath.lerp(x, (targetY * 20) + 90 + xAdd, lerpVal);
+					y = FlxMath.lerp(y, (scaledY * yMult) + (FlxG.height * 0.48) + yAdd, lerpVal);
+					if(forceX != Math.NEGATIVE_INFINITY) {
+						x = forceX;
+					} else {
+							x = FlxMath.lerp(x, (targetY * 20) + 90 + xAdd, lerpVal);
+					}
 				}
 			}
+			else
+				x = FlxMath.lerp(x, xTo, elapsed * 6);
 		}
 
 		if (isOption)
@@ -384,6 +392,8 @@ class AlphaCharacter extends FlxSprite
 	public var row:Int = 0;
 
 	private var textSize:Float = 1;
+	public var theLetter:String = '';
+	public var posX:Float = 0;
 
 	public function new(x:Float, y:Float, textSize:Float)
 	{
@@ -394,11 +404,13 @@ class AlphaCharacter extends FlxSprite
 		setGraphicSize(Std.int(width * textSize));
 		updateHitbox();
 		this.textSize = textSize;
+		posX = x;
 		antialiasing = ClientPrefs.globalAntialiasing;
 	}
 
 	public function createBoldLetter(letter:String)
 	{
+		theLetter = letter;
 		animation.addByPrefix(letter, letter.toUpperCase() + " bold", 24);
 		animation.play(letter);
 		updateHitbox();
@@ -406,6 +418,7 @@ class AlphaCharacter extends FlxSprite
 
 	public function createBoldNumber(letter:String):Void
 	{
+		theLetter = letter;
 		animation.addByPrefix(letter, "bold" + letter, 24);
 		animation.play(letter);
 		updateHitbox();
@@ -413,6 +426,7 @@ class AlphaCharacter extends FlxSprite
 
 	public function createBoldSymbol(letter:String)
 	{
+		theLetter = letter;
 		switch (letter)
 		{
 			case '.':
@@ -456,6 +470,7 @@ class AlphaCharacter extends FlxSprite
 
 	public function createLetter(letter:String):Void
 	{
+		theLetter = letter;
 		var letterCase:String = "lowercase";
 		if (letter.toLowerCase() != letter)
 		{
@@ -472,6 +487,7 @@ class AlphaCharacter extends FlxSprite
 
 	public function createNumber(letter:String):Void
 	{
+		theLetter = letter;
 		animation.addByPrefix(letter, letter, 24);
 		animation.play(letter);
 
@@ -483,6 +499,7 @@ class AlphaCharacter extends FlxSprite
 
 	public function createSymbol(letter:String)
 	{
+		theLetter = letter;
 		switch (letter)
 		{
 			case '#':

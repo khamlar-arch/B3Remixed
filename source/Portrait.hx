@@ -61,12 +61,10 @@ class Portrait extends FlxSprite
 				
 				var rawdata:String = File.getContent(filepath);
 				var data = rawdata.split("\n");
-				
 				for (i in data){
+				var loop = false;
 					var thing = i.split(":");
-							// trace("DATA: " + thing);
-                            // stop flooding my shit up
-					
+					if (thing[3] != null) loop = thing[3] == 'loop';
 					switch(thing[0]){
 						case "indices":
 							var framess = thing[2].split(",");//gets array
