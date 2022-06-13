@@ -1,13 +1,5 @@
 local defaultNotePos = {};
 
-function onGameOver()
-    setProperty('health', -500);
-    math.randomseed(os.clock()/4.0)
-    local num = math.random(1,16)
-    local name = tostring(num)
-    playSound(name, 1, 'deathquote')
-end
-
 function onEndSong()
 	if not allowEnd then
 		startVideo('illgetyou');
@@ -45,6 +37,14 @@ function onStepHit()
         setProperty('dadGroup.x', getProperty('dadGroup.x') - 1300)
         setProperty('boyfriendGroup.x', getProperty('boyfriendGroup.x') + 1500)
     end
+end
+
+function onGameOver()
+    setProperty('health', -500);
+    math.randomseed(os.clock()/4.0)
+    local num = math.random(1,16)
+    local name = tostring(num)
+    playSound(name, 1, 'deathquote')
 end
 
 function onUpdate()
