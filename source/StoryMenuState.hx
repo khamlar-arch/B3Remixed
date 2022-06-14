@@ -66,7 +66,11 @@ class StoryMenuState extends MusicBeatState
 		
 		bd = new FlxSprite(0, 0);
 		bd.frames = Paths.getSparrowAtlas('menus/story/backdrop');
-		bd.animation.addByIndices("bd", "bd", [0, 0, 1, 2, 3, 4, 5, 6, 7],"",0);
+		if (FlxG.save.data.guhUnlocked) {
+			bd.animation.addByIndices("bd", "bd", [0, 0, 1, 2, 3, 4, 5, 6, 7],"",0);
+		} else {
+			bd.animation.addByIndices("bd", "bd", [0, 0, 1, 2, 3, 4, 5, 7],"",0);
+		}
 		bd.animation.play("bd", true, false, 0);
 		add(bd);
 
@@ -371,11 +375,12 @@ class StoryMenuState extends MusicBeatState
 	function changeWeek(change:Int = 0):Void
 	{
 		curWeek += change;
-		bd.animation.play("bd", true, false, curWeek);
 		if (curWeek >= WeekData.weeksList.length)
 			curWeek = 0;
 		if (curWeek < 0)
 			curWeek = WeekData.weeksList.length - 1;
+
+		bd.animation.play("bd", true, false, curWeek);
 
 		var leWeek:WeekData = WeekData.weeksLoaded.get(WeekData.weeksList[curWeek]);
 		WeekData.setDirectoryFromWeek(leWeek);
