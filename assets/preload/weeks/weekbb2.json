@@ -1,5 +1,5 @@
 {
-	"storyName": "Bloody Bedtime Part 2",
+	"storyName": "???",
 	"hideFreeplay": false,
 	"weekBackground": "room",
 	"weekBefore": "tutorial",
@@ -10,15 +10,6 @@
 	],
 	"startUnlocked": true,
 	"songs": [
-		[
-			"Dessert",
-			"fang",
-			[
-				235,
-				38,
-				186
-			]
-		],
 		[
 			"Guh",
 			"succ-alt",
@@ -52,6 +43,6 @@
 		"bf",
 		"gf"
 	],
-	"hideStoryMode": true,
-	"weekName": "Bloody Bedtime"
+	"hideStoryMode": false,
+	"weekName": "weekbb2"
 }

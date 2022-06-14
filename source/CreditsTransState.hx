@@ -63,7 +63,7 @@ class CreditsTransState extends MusicBeatState
 		add(bg);
 
 		add(backdrop);
-		backdrop.alpha = 0.5;
+		backdrop.alpha = 0.2;
 		
 		backdrop.scale.x = 5;
 		backdrop.scale.y = 5;

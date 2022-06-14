@@ -54,7 +54,7 @@ class CreditsState extends MusicBeatState
 		add(bg);
 
 		add(backdrop);
-		backdrop.alpha = 0.7;
+		backdrop.alpha = 0.3;
 		backdrop.scale.x = 5;
 		backdrop.scale.y = 5;
 		backdrop.scrollFactor.set(0, 0.07);

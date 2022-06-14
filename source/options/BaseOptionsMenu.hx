@@ -67,7 +67,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 		add(bg);
 
 		add(backdrop);
-		backdrop.alpha = 0.5;
+		backdrop.alpha = 0.2;
 		backdrop.scale.x = 5;
 		backdrop.scale.y = 5;
 		backdrop.color = 0xFF00FFF2;
@@ -155,7 +155,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 			updateTextFrom(optionsArray[i]);
 		}
 
-		changeSelection(1);
+		changeSelection();
 		reloadCheckboxes();
 	}
 
@@ -176,18 +176,10 @@ class BaseOptionsMenu extends MusicBeatSubstate
 		if (controls.UI_UP_P)
 		{
 			changeSelection(-1);
-			if (curOption.type == 'filler')
-			{
-				changeSelection(-1);
-			}
 		}
 		if (controls.UI_DOWN_P)
 		{
 			changeSelection(1);
-			if (curOption.type == 'filler')
-			{
-				changeSelection(1);
-			}
 		}
 
 		if (controls.BACK) {
@@ -331,13 +323,20 @@ class BaseOptionsMenu extends MusicBeatSubstate
 		holdTime = 0;
 	}
 	
-	function changeSelection(change:Int = 0)
-	{
-		curSelected += change;
+	function dadadadadada(change:Int = 0) {
+		curSelected += change == 0 ? 1 : change;
 		if (curSelected < 0)
 			curSelected = optionsArray.length - 1;
 		if (curSelected >= optionsArray.length)
 			curSelected = 0;
+	}
+	
+	function changeSelection(change:Int = 0)
+	{
+		if (change != 0) FlxG.sound.play(Paths.sound('scrollMenu'));
+		dadadadadada(change);
+		while (optionsArray[curSelected].type == "filler")
+			dadadadadada(change);
 
 		descText.text = optionsArray[curSelected].description;
 		descText.screenCenter(Y);
@@ -370,7 +369,6 @@ class BaseOptionsMenu extends MusicBeatSubstate
 			boyfriend.visible = optionsArray[curSelected].showBoyfriend;
 		}
 		curOption = optionsArray[curSelected]; //shorter lol
-		FlxG.sound.play(Paths.sound('scrollMenu'));
 	}
 
 	public function reloadBoyfriend()

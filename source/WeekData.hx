@@ -73,11 +73,12 @@ class WeekData {
 		weekName = weekFile.weekName;
 		freeplayColor = weekFile.freeplayColor;
 		startUnlocked = weekFile.startUnlocked;
-		hideStoryMode = weekFile.hideStoryMode;
-		if ((!FlxG.save.data.guhUnlocked) && (weekFile.storyName == 'Bloody Bedtime Part 2')) {
+		if ((!FlxG.save.data.guhUnlocked) && (weekFile.weekName == 'weekbb2')) {
 			hideFreeplay = true;
+			hideStoryMode = true;
 			trace('suck my nuts');
 		} else {
+			hideStoryMode = weekFile.hideStoryMode;
 			hideFreeplay = weekFile.hideFreeplay;
 		}
 		difficulties = weekFile.difficulties;

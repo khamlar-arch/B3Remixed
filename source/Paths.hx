@@ -64,7 +64,14 @@ class Paths
 			dumpExclusions.push(key);
 	}
 	
-	public static function compress() {
+	public static var dumpExclusions:Array<String> =
+	[
+		'assets/music/freakyMenu.$SOUND_EXT',
+		'assets/shared/music/breakfast.$SOUND_EXT',
+		'assets/shared/music/tea-time.$SOUND_EXT',
+	];
+	
+	private inline static function _compress() {
 		#if cpp
 		Gc.compact();
 		Gc.run(true);
@@ -75,8 +82,55 @@ class Paths
 		Gc.run(true);
 		#end
 	}
+	
+	public static function compress(repeat:Int = 1) {
+		if (repeat > 1) {
+			if (repeat > 32) repeat = 32;
+			for (i in 0...repeat) _compress();
+		}
+		else
+			_compress();
+	}
+	
+	public static function decacheGraphic(key:String) {
+		var obj = currentTrackedAssets.get(key);
+		@:privateAccess{
+			if (obj == null) obj = FlxG.bitmap._cache.get(key);
+			if (obj != null) {
+				OpenFlAssets.cache.removeBitmapData(key);
+				FlxG.bitmap._cache.remove(key);
+				
+				if (obj.bitmap != null && obj.bitmap.__texture != null) obj.bitmap.__texture.dispose();
+				obj.bitmap.disposeImage();
+				
+				obj.destroy();
+				currentTrackedAssets.remove(key);
+				compress();
+			}
+		}
+	}
+	
+	public static function decacheSound(key:String) {
+		var obj = currentTrackedSounds.get(key);
+		if (obj == null && OpenFlAssets.cache.hasSound(key)) obj = OpenFlAssets.cache.getSound(key);
+		
+		OpenFlAssets.cache.removeSound(key);
+		Assets.cache.clear(key);
+		currentTrackedSounds.remove(key);
+		
+		if (obj != null) {
+			@:privateAccess{
+				obj.__buffer.src = null;
+				obj.__buffer.data = null;
+				obj.__buffer.dispose();
+				obj.__buffer = null;
+				obj = null;
+			}
+			
+			compress();
+		}
+	}
 
-	public static var dumpExclusions:Array<String> = [];
 	/// haya I love you for the base cache dump I took to the max
 	public static function clearUnusedMemory() {
 		// clear non local assets in the tracked assets list
@@ -85,18 +139,7 @@ class Paths
 			if (!localTrackedAssets.contains(key) 
 				&& !dumpExclusions.contains(key)) {
 				// get rid of it
-				var obj = currentTrackedAssets.get(key);
-				@:privateAccess
-				if (obj != null) {
-					openfl.Assets.cache.removeBitmapData(key);
-					FlxG.bitmap._cache.remove(key);
-					
-					if (obj.bitmap != null && obj.bitmap.__texture != null) obj.bitmap.__texture.dispose();
-					obj.bitmap.disposeImage();
-					
-					obj.destroy();
-					currentTrackedAssets.remove(key);
-				}
+				decacheGraphic(key);
 			}
 		}
 		
@@ -113,29 +156,23 @@ class Paths
 		@:privateAccess
 		for (key in FlxG.bitmap._cache.keys())
 		{
-			var obj = FlxG.bitmap._cache.get(key);
-			if (obj != null && !currentTrackedAssets.exists(key)) {
-				openfl.Assets.cache.removeBitmapData(key);
-				FlxG.bitmap._cache.remove(key);
-				
-				if (obj.bitmap != null && obj.bitmap.__texture != null) obj.bitmap.__texture.dispose();
-				obj.bitmap.disposeImage();
-				
-				obj.destroy();
-			}
+			if (!currentTrackedAssets.exists(key))
+				decacheGraphic(key);
 		}
+		compress();
 
 		// clear all sounds that are cached
 		for (key in currentTrackedSounds.keys()) {
 			if (!localTrackedAssets.contains(key) 
-			&& !dumpExclusions.contains(key) && key != null) {
-				Assets.cache.clear(key);
-				currentTrackedSounds.remove(key);
-			}
-		}	
+			&& !dumpExclusions.contains(key) && key != null)
+				decacheSound(key);
+		}
+		compress();
+		
 		// flags everything to be cleared out next unused memory clear
 		localTrackedAssets = [];
 		openfl.Assets.cache.clear("songs");
+		compress();
 	}
 
 	static public var currentModDirectory:String = '';
@@ -353,7 +390,7 @@ class Paths
 		return path.toLowerCase().replace(' ', '-');
 	}
 
-	private static function regBitmap(key:String, ?hardware:Bool):BitmapData {
+	private static function regBitmap(key:String, ?hardware:Null<Bool>):BitmapData {
 		hardware = hardware == null ? hardwareCache : hardware;
 		
 		if (OpenFlAssets.exists(key, IMAGE))
