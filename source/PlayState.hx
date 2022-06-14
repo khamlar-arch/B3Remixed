@@ -1518,10 +1518,13 @@ class PlayState extends MusicBeatState
 		RecalculateRating();
 
 		//PRECACHING MISS SOUNDS BECAUSE I THINK THEY CAN LAG PEOPLE AND FUCK THEM UP IDK HOW HAXE WORKS
-		cachePopUpScore();
+		CoolUtil.precacheSound('ChartingTick');
 		CoolUtil.precacheSound('missnote1');
 		CoolUtil.precacheSound('missnote2');
 		CoolUtil.precacheSound('missnote3');
+		
+		Paths.music('breakfast');
+		Paths.image('alphabet');
 
 		#if desktop
 		// Updating Discord Rich Presence.
@@ -1540,6 +1543,10 @@ class PlayState extends MusicBeatState
 		cameraSpeed = ClientPrefs.camSpeed;
 
 		super.create();
+		
+		cacheCountdown();
+		cachePopUpScore();
+		GameOverSubstate.cache();
 
 		Paths.clearUnusedMemory();
 	}
@@ -1954,6 +1961,24 @@ class PlayState extends MusicBeatState
 	public var countOne:FlxSprite;
 	public var countZero:FlxSprite;
 	public static var startOnTime:Float = 0;
+	
+	function cacheCountdown()
+	{
+		var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
+		introAssets.set('default', ['3', '2', '1', '0']);
+		introAssets.set('pixel', ['3', '2', '1', '0']);
+
+		var introAlts:Array<String> = introAssets.get('default');
+		if (isPixelStage) introAlts = introAssets.get('pixel');
+		
+		for (asset in introAlts)
+			Paths.image(asset, 'shared');
+		
+		Paths.sound('intro3' + introSoundsSuffix);
+		Paths.sound('intro2' + introSoundsSuffix);
+		Paths.sound('intro1' + introSoundsSuffix);
+		Paths.sound('introGo' + introSoundsSuffix);
+	}
 
 	public function startCountdown():Void
 	{
@@ -2230,6 +2255,11 @@ class PlayState extends MusicBeatState
 			//trace('Oopsie doopsie! Paused sound');
 			FlxG.sound.music.pause();
 			vocals.pause();
+		}
+		
+		if (ClientPrefs.dTime) {
+			FlxG.sound.music.pitch = 1.5;
+			vocals.pitch = 1.5;
 		}
 
 		var creditBehind:FlxSprite;
@@ -4130,25 +4160,24 @@ class PlayState extends MusicBeatState
 		eventNotes = [];
 	}
 	
-	private function cachePopUpScore() {
-		var pixelShitPart1:String = 'pixelUI/';
-		var pixelShitPart2:String = '-pixel';
-		
-		Paths.returnGraphic("sick");
-		Paths.returnGraphic("good");
-		Paths.returnGraphic("bad");
-		Paths.returnGraphic("shit");
-		
-		/*
-		Paths.returnGraphic(pixelShitPart1 + "sick" + pixelShitPart2);
-		Paths.returnGraphic(pixelShitPart1 + "good" + pixelShitPart2);
-		Paths.returnGraphic(pixelShitPart1 + "bad" + pixelShitPart2);
-		Paths.returnGraphic(pixelShitPart1 + "shit" + pixelShitPart2);
-		*/
+	private function cachePopUpScore()
+	{
+		var pixelShitPart1:String = '';
+		var pixelShitPart2:String = '';
+		if (isPixelStage)
+		{
+			pixelShitPart1 = 'pixelUI/';
+			pixelShitPart2 = '-pixel';
+		}
+
+		Paths.image(pixelShitPart1 + "sick" + pixelShitPart2, 'shared');
+		Paths.image(pixelShitPart1 + "good" + pixelShitPart2, 'shared');
+		Paths.image(pixelShitPart1 + "bad" + pixelShitPart2, 'shared');
+		Paths.image(pixelShitPart1 + "shit" + pixelShitPart2, 'shared');
+		//Paths.image(pixelShitPart1 + "combo" + pixelShitPart2, 'shared');
 		
 		for (i in 0...10) {
-			//Paths.returnGraphic(pixelShitPart1 + 'num' + i + pixelShitPart2);
-			Paths.returnGraphic('num' + i);
+			Paths.image(pixelShitPart1 + 'num' + i + pixelShitPart2);
 		}
 	}
 

@@ -15,6 +15,9 @@ import flixel.tweens.FlxTween;
 import flixel.tweens.misc.ColorTween;
 import flixel.util.FlxColor;
 import lime.utils.Assets;
+import openfl.utils.AssetType;
+import openfl.utils.Assets as FLAssets;
+import openfl.utils.AssetCache as FLAssetCache;
 import meta.data.*;
 import openfl.media.Sound;
 import sys.FileSystem;
@@ -22,7 +25,6 @@ import sys.thread.Mutex;
 import sys.thread.Thread;
 
 using StringTools;
-
 
 class FreeplayState extends MusicBeatState {
     	//
@@ -206,7 +208,9 @@ class FreeplayState extends MusicBeatState {
 
     var instPlaying:Int = -1;
 	private static var vocals:FlxSound = null;
-
+	var curPathSong:String = null;
+	var prevPathSong:String = null;
+	
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
@@ -350,6 +354,11 @@ class FreeplayState extends MusicBeatState {
 		mutex.acquire();
 		if (songToPlay != null)
 		{
+			// DECACHE SOUND PLEASE OH MY GOD
+			if (prevPathSong != null) {
+				var key:String = '${prevPathSong.toLowerCase().replace(' ', '-')}/Inst';
+				Paths.decacheSound(Paths.getPath('songs/$key.' + Paths.SOUND_EXT, SOUND));
+			}
 			FlxG.sound.playMusic(songToPlay);
 
 			if (FlxG.sound.music.fadeTween != null)
@@ -359,6 +368,7 @@ class FreeplayState extends MusicBeatState {
 			FlxG.sound.music.fadeIn(1.0, 0.0, 1.0);
 
 			songToPlay = null;
+			prevPathSong = curPathSong;
 		}
 		mutex.release();
 	}
@@ -481,7 +491,7 @@ class FreeplayState extends MusicBeatState {
 				{
 					if (!threadActive)
 					{
-						trace("Killing thread");
+						//trace("Killing thread");
 						return;
 					}
 
@@ -490,9 +500,10 @@ class FreeplayState extends MusicBeatState {
 					{
 						if (index == curSelected && index != curSongPlaying)
 						{
-							trace("Loading index " + index);
+							//trace("Loading index " + index);
 
-							var inst:Sound = Paths.inst(songs[curSelected].songName);
+							var key:String = songs[curSelected].songName;
+							var inst:Sound = Paths.inst(key);
 
 							if (index == curSelected && threadActive)
 							{
@@ -500,13 +511,14 @@ class FreeplayState extends MusicBeatState {
 								songToPlay = inst;
 								mutex.release();
 
+								curPathSong = key;
 								curSongPlaying = curSelected;
 							}
-							else
-								trace("Nevermind, skipping " + index);
+							//else
+							//	trace("Nevermind, skipping " + index);
 						}
-						else
-							trace("Skipping " + index);
+						//else
+						//	trace("Skipping " + index);
 					}
 				}
 			});
