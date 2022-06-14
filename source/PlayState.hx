@@ -947,34 +947,13 @@ class PlayState extends MusicBeatState
 				frontBed = new BGSprite('stages/bedroom/front', -15, 160, 0.95, 0.95);
 				frontBed.setGraphicSize(Std.int(frontBed.width * 2.2222));
 			case 'majin': //Week 1
-				var majinWalls:BGSprite = new BGSprite('stages/majin/walls', 0, 0, 0.95, 0.95);
-				add(majinWalls);
+				var majinBack:BGSprite = new BGSprite('stages/majin/endless_bg_1', 375, 0, 0.95, 0.95);
+				majinBack.setGraphicSize(Std.int(majinBack.width * 3.3333));
+				add(majinBack);
 
-				var majinFarBack:BGSprite = new BGSprite('stages/majin/backlevel', 100, 850, 0.95, 0.95);
-				add(majinFarBack);
-				
-				var majinPillarsB:BGSprite = new BGSprite('stages/majin/backpillars', 40, 350, 0.95, 0.95);
-				add(majinPillarsB);
-
-				var majinsB:BGSprite = new BGSprite('stages/majin/backmazins', 40, 890, 0.95, 0.95, ['backmazins'], true);
-				add(majinsB);
-
-				var majinPillarsM:BGSprite = new BGSprite('stages/majin/middlepillars', -700, 300, 0.95, 0.95);
-				add(majinPillarsM);
-
-				var majinBanner:BGSprite = new BGSprite('stages/majin/banner', 495, 440, 0.95, 0.95);
+				var majinBanner:BGSprite = new BGSprite('stages/majin/endless_bg_3', 375, -25, 0.85, 0.95);
+				majinBanner.setGraphicSize(Std.int(majinBanner.width * 3.3333));
 				add(majinBanner);
-
-				var majinsF:BGSprite = new BGSprite('stages/majin/mazins', 400, 750, 0.95, 0.95, ['mazins'], true);
-				add(majinsF);
-
-				var majinFloor:BGSprite = new BGSprite('stages/majin/floor', -225.25, 900.15, 0.95, 0.95);
-				add(majinFloor);
-
-				var majinPillarsF:BGSprite = new BGSprite('stages/majin/frontpillars', -680, 50, 0.95, 0.95);
-				add(majinPillarsF);
-
-				majinFore = new BGSprite('stages/majin/foreground', -300, 0, 0.95, 0.95);
 
 		}
 
