@@ -702,29 +702,17 @@ class PlayState extends MusicBeatState
 
 			case 'sunshine':
 
-				var shadowback:BGSprite = new BGSprite('stages/sunshine/shadowback', -1500, -900, 1.3, 1.3);
-				shadowback.setGraphicSize(Std.int(shadowback.width * 6.7));
-				shadowback.setGraphicSize(Std.int(shadowback.height * 6.7));
-				shadowback.updateHitbox();
+				var sunBack:BGSprite = new BGSprite('stages/sunshine/back', -1200, -700, 0.9, 0.9);
+				sunBack.setGraphicSize(Std.int(sunBack.width * 1.75));
+				sunBack.updateHitbox();
 
-				var floor:BGSprite = new BGSprite('stages/sunshine/floor', -4000, 780, 0.9, 0.9);
-				floor.setGraphicSize(Std.int(floor.width * 41.7));
-				floor.setGraphicSize(Std.int(floor.height * 41.7));
-				floor.updateHitbox();
-				
-				var faces:BGSprite = new BGSprite('stages/sunshine/shadowfaces', -700, 0, 0.9, 0.9);
-				faces.setGraphicSize(Std.int(faces.width * 13.3));
-				faces.setGraphicSize(Std.int(faces.height * 13.3));
-				faces.updateHitbox();
+				var sunText:BGSprite = new BGSprite('stages/sunshine/text', -1200, -700, 0.8, 0.8);
+				sunText.setGraphicSize(Std.int(sunText.width * 1.75));
+				sunText.updateHitbox();
 
-				var particles:BGSprite = new BGSprite('stages/sunshine/particles', -600, 0, 1.0, 1.0);
-				particles.setGraphicSize(Std.int(particles.width * 8.3));
-				particles.setGraphicSize(Std.int(particles.height * 8.3));
-				particles.updateHitbox();
-
-				light = new BGSprite('stages/sunshine/light', -600, -200, 0.9, 0.9);
-				light.setGraphicSize(Std.int(light.width * 2.5));
-				light.updateHitbox();
+				var sunFace:BGSprite = new BGSprite('stages/sunshine/chandelier', -1200, -700, 0.8, 0.8);
+				sunFace.setGraphicSize(Std.int(sunFace.width * 1.75));
+				sunFace.updateHitbox();
 
 				alt = new FlxSprite(-1500, -900).loadGraphic(Paths.image('stages/sunshine/alt'));
 				alt.setGraphicSize(Std.int(alt.width * 5));
@@ -733,11 +721,9 @@ class PlayState extends MusicBeatState
 				alt.visible = false;
 				alt.updateHitbox();
 
-				add(shadowback);
-				add(floor);
-				add(faces);
-				add(particles);
-				add(light);
+				add(sunBack);
+				add(sunText);
+				add(sunFace);
 				add(alt);
 
 			case 'limo': //Week 4
