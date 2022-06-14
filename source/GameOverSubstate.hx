@@ -165,4 +165,12 @@ class GameOverSubstate extends MusicBeatSubstate
 			PlayState.instance.callOnLuas('onGameOverConfirm', [true]);
 		}
 	}
+	
+	public static function cache() {
+		Paths.sound(deathSoundName);
+		Paths.music(loopSoundName);
+		Paths.music(endSoundName);
+		
+		Character.cacheCharacter(characterName);
+	}
 }

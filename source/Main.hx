@@ -11,6 +11,7 @@ import openfl.display.FPS;
 import openfl.display.Sprite;
 import openfl.events.Event;
 import openfl.events.KeyboardEvent;
+import openfl.display.StageScaleMode;
 
 class Main extends Sprite
 {
@@ -26,6 +27,7 @@ class Main extends Sprite
 	// You can pretty much ignore everything from here on - your code should go in your states.
 	
 	public static var fullscreenKeys:Array<FlxKey> = [FlxKey.F11];
+	public static var focused:Bool = true;
 
 	public static function main():Void
 	{
@@ -74,6 +76,7 @@ class Main extends Sprite
 		initialState = TitleState;
 		#end
 		
+		Lib.current.stage.addEventListener(Event.ENTER_FRAME, onEnterFrame);
 		Lib.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, handleInput);
 
 		ClientPrefs.loadDefaultKeys();
@@ -83,6 +86,8 @@ class Main extends Sprite
 		#if !mobile
 		fpsVar = new FPS(10, 3, 0xFFFFFF);
 		addChild(fpsVar);
+		Lib.current.stage.align = "tl";
+		Lib.current.stage.scaleMode = StageScaleMode.NO_SCALE;
 		if(fpsVar != null) {
 			fpsVar.visible = ClientPrefs.showFPS;
 		}
@@ -90,6 +95,10 @@ class Main extends Sprite
 
 		FlxG.sound.volume = FlxG.save.data.volume;
 		FlxG.sound.muted = FlxG.save.data.mute;
+		
+		FlxG.signals.focusGained.add(onFocus);
+		FlxG.signals.focusLost.add(onFocusLost);
+		
 		#if html5
 		FlxG.autoPause = false;
 		FlxG.mouse.visible = false;
@@ -98,5 +107,23 @@ class Main extends Sprite
 	
 	private function handleInput(evt:KeyboardEvent) {
 		if (fullscreenKeys.contains(CoolUtil.flKeyToFlx(evt.keyCode))) FlxG.fullscreen = !FlxG.fullscreen;
+	}
+	
+	private function onFocus() {
+		focused = true;
+	}
+	
+	var woah:Int = 0;
+	private function onFocusLost() {
+		woah = 8;
+		focused = false;
+	}
+	
+	private function onEnterFrame(_) {
+		// CLEVER WAY TO SECRETLY GC LMAO
+		if (!focused && woah > 0) {
+			Paths.compress(8);
+			woah--;
+		}
 	}
 }
