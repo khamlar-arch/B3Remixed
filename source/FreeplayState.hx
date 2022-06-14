@@ -351,26 +351,28 @@ class FreeplayState extends MusicBeatState {
 		scoreBG.x = FlxG.width - scoreBG.width;
 		diffText.x = scoreBG.x + (scoreBG.width / 2) - (diffText.width / 2);
 
-		mutex.acquire();
-		if (songToPlay != null)
-		{
-			// DECACHE SOUND PLEASE OH MY GOD
-			if (prevPathSong != null) {
-				var key:String = '${prevPathSong.toLowerCase().replace(' ', '-')}/Inst';
-				Paths.decacheSound(Paths.getPath('songs/$key.' + Paths.SOUND_EXT, SOUND));
+		if (!accepted) {
+			mutex.acquire();
+			if (songToPlay != null)
+			{
+				// DECACHE SOUND PLEASE OH MY GOD
+				if (prevPathSong != null) {
+					var key:String = '${prevPathSong.toLowerCase().replace(' ', '-')}/Inst';
+					Paths.decacheSound(Paths.getPath('songs/$key.' + Paths.SOUND_EXT, SOUND));
+				}
+				FlxG.sound.playMusic(songToPlay);
+
+				if (FlxG.sound.music.fadeTween != null)
+					FlxG.sound.music.fadeTween.cancel();
+
+				FlxG.sound.music.volume = 0.0;
+				FlxG.sound.music.fadeIn(1.0, 0.0, 1.0);
+
+				songToPlay = null;
+				prevPathSong = curPathSong;
 			}
-			FlxG.sound.playMusic(songToPlay);
-
-			if (FlxG.sound.music.fadeTween != null)
-				FlxG.sound.music.fadeTween.cancel();
-
-			FlxG.sound.music.volume = 0.0;
-			FlxG.sound.music.fadeIn(1.0, 0.0, 1.0);
-
-			songToPlay = null;
-			prevPathSong = curPathSong;
+			mutex.release();
 		}
-		mutex.release();
 	}
 
     public static function destroyFreeplayVocals() {
