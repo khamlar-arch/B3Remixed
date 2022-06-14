@@ -1,5 +1,5 @@
 {
-	"storyName": "B3 x EXE",
+	"storyName": "Tormented Dreams",
 	"hideFreeplay": false,
 	"weekBackground": "stage",
 	"freeplayColor": [
@@ -15,7 +15,7 @@
 		"bf",
 		"gf"
 	],
-	"hideStoryMode": true,
+	"hideStoryMode": false,
 	"songs": [
 		[
 			"Triple B Trouble",

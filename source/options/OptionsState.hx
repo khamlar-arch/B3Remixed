@@ -73,7 +73,7 @@ class OptionsState extends MusicBeatState
 		add(bg);
 
 		add(backdrop);
-		backdrop.alpha = 0.5;
+		backdrop.alpha = 0.2;
 		backdrop.scale.x = 5;
 		backdrop.scale.y = 5;
 		backdrop.color = 0xFF00FFF2;

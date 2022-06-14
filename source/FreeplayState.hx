@@ -102,7 +102,10 @@ class FreeplayState extends MusicBeatState {
 		bg = new FlxSprite().loadGraphic(Paths.image('menus/story/menuBG'));
 		add(bg);
 
-		checkerboard = new FlxBackdrop(Paths.image('menus/freeplay/checkerboard'), 0, 0, true, true);
+		checkerboard = new FlxBackdrop(Paths.image('menus/menuCheckerboard'), 0, 0, true, true);
+		checkerboard.alpha = 0.6;
+		checkerboard.scale.set(5, 5);
+		checkerboard.color = 0xFF042480;
 		add(checkerboard);
 
 		grpSongs = new FlxTypedGroup<Alphabet>();
@@ -115,7 +118,7 @@ class FreeplayState extends MusicBeatState {
 		logobar.y += FlxG.height - logobar.height;
 
 		weekGraphic = new FlxSprite();
-		weekGraphic.loadGraphic(Paths.image('storymenu/tutorial'));
+		weekGraphic.loadGraphic(Paths.image('menus/story/weeks/tutorial'));
 		weekGraphic.angle = 22.5/8;	
 
 		for (i in 0...songs.length) {
@@ -463,7 +466,7 @@ class FreeplayState extends MusicBeatState {
 	function changeWeek(newWeek:Int) {
 		if (newWeek != oldWeek) {
 			bottomBar.y = FlxG.height;
-			weekGraphic.loadGraphic(Paths.image('storymenu/${weekList[newWeek]}'));
+			weekGraphic.loadGraphic(Paths.image('menus/story/weeks/${weekList[newWeek]}'));
 			oldWeek = newWeek;
 		}
 	}
