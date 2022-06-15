@@ -234,6 +234,7 @@ class PlayState extends MusicBeatState
 	var gayStation:FlxSprite;
 	var dessert:FlxSprite;
 	var alt:FlxSprite;
+	var sunBack:BGSprite;
 	var light:FlxSprite;
 	var studio:FlxSprite;
 	var glass:FlxSprite;
@@ -607,7 +608,7 @@ class PlayState extends MusicBeatState
 				GameOverSubstate.deathSoundName = 'fnf_loss_sfx-burger';
                 GameOverSubstate.loopSoundName = 'gameOver-burger';
                 GameOverSubstate.endSoundName = 'gameOverEnd-burger';
-                GameOverSubstate.characterName = 'burgerdead';
+                GameOverSubstate.characterName = 'bf-burger';
 
 				var roomBG:BGSprite = new BGSprite('halloween/room', -550, -270, 0.9, 0.9);
 				roomBG.setGraphicSize(Std.int(roomBG.width * 1));
@@ -702,8 +703,9 @@ class PlayState extends MusicBeatState
 
 			case 'sunshine':
 
-				var sunBack:BGSprite = new BGSprite('stages/sunshine/back', -1200, -700, 0.9, 0.9);
+				sunBack = new BGSprite('stages/sunshine/back', -1200, -700, 0.9, 0.9);
 				sunBack.setGraphicSize(Std.int(sunBack.width * 1.75));
+				sunBack.alpha = 0.2;
 				sunBack.updateHitbox();
 
 				var sunText:BGSprite = new BGSprite('stages/sunshine/text', -1200, -700, 0.8, 0.8);
@@ -1494,7 +1496,7 @@ class PlayState extends MusicBeatState
 
 		#if desktop
 		// Updating Discord Rich Presence.
-		DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter());
+		DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter());
 		#end
 
 		if(!ClientPrefs.controllerMode)
@@ -2293,7 +2295,7 @@ class PlayState extends MusicBeatState
 		
 		#if desktop
 		// Updating Discord Rich Presence (with Time Left)
-		DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter(), true, songLength);
+		DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter(), true, songLength / (ClientPrefs.dTime ? 1.5 : 1));
 		#end
 		setOnLuas('songLength', songLength);
 		callOnLuas('onSongStart', []);
@@ -2658,11 +2660,11 @@ class PlayState extends MusicBeatState
 			#if desktop
 			if (startTimer != null && startTimer.finished)
 			{
-				DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter(), true, songLength - Conductor.songPosition - ClientPrefs.noteOffset);
+				DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter(), true, (songLength / (ClientPrefs.dTime ? 1.5 : 1)) - Conductor.songPosition - ClientPrefs.noteOffset);
 			}
 			else
 			{
-				DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter());
+				DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter());
 			}
 			#end
 		}
@@ -2677,11 +2679,11 @@ class PlayState extends MusicBeatState
 		{
 			if (Conductor.songPosition > 0.0)
 			{
-				DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter(), true, songLength - Conductor.songPosition - ClientPrefs.noteOffset);
+				DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter(), true, (songLength / (ClientPrefs.dTime ? 1.5 : 1)) - Conductor.songPosition - ClientPrefs.noteOffset);
 			}
 			else
 			{
-				DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter());
+				DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter());
 			}
 		}
 		#end
@@ -2694,7 +2696,7 @@ class PlayState extends MusicBeatState
 		#if desktop
 		if (health > 0 && !paused)
 		{
-			DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter());
+			DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter());
 		}
 		#end
 
@@ -2915,7 +2917,7 @@ class PlayState extends MusicBeatState
 				//}
 		
 				#if desktop
-				DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter());
+				DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter());
 				#end
 			}
 		}
@@ -3002,7 +3004,7 @@ class PlayState extends MusicBeatState
 					var songCalc:Float = (songLength - curTime);
 					if(ClientPrefs.timeBarType == 'Time Elapsed') songCalc = curTime;
 
-					var secondsTotal:Int = Math.floor(songCalc / 1000);
+					var secondsTotal:Int = Math.floor(songCalc / (ClientPrefs.dTime ? 1.5 : 1) / 1000);
 					if(secondsTotal < 0) secondsTotal = 0;
 
 					if(ClientPrefs.timeBarType != 'Song Name')
@@ -3307,7 +3309,7 @@ class PlayState extends MusicBeatState
 				
 				#if desktop
 				// Game Over doesn't get his own variable because it's only used here
-				DiscordClient.changePresence("Game Over - " + SONG.song  + " (" + storyDifficultyText + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter());
+				DiscordClient.changePresence("Game Over - " + SONG.song + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter());
 				#end
 				isDead = true;
 				return true;
@@ -3572,6 +3574,7 @@ class PlayState extends MusicBeatState
 					case 2: 
 						alt.visible = false;
 						gfGroup.visible = false;
+						sunBack.alpha = 0.78;
 				}
 			case 'Kill Henchmen':
 				killHenchmen();
@@ -4176,19 +4179,21 @@ class PlayState extends MusicBeatState
 			case "shit": // shit
 				totalNotesHit += 0;
 				songBreaks++;
-				if(!practiceMode) songScore -= 10;
+				score = -10;
 				shits++;
 			case "bad": // bad
 				totalNotesHit += 0.5;
+				score = 125;
 				bads++;
 			case "good": // good
 				totalNotesHit += 0.75;
+				score = 225;
 				goods++;
 			case "sick": // sick
 				totalNotesHit += 1;
 				sicks++;
 		}
-
+		if (score > 0) score *= ClientPrefs.dTime ? 2 : 1;
 
 		if(daRating == 'sick' && !note.noteSplashDisabled)
 		{

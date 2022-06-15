@@ -1,9 +1,5 @@
 local gfx = 0
 
-function onCreate()
-	setPropertyFromClass('GameOverSubstate', 'characterName', 'bf-burger')
-end
-
 function onCreatePost()
     setProperty('skipCountdown', true)
     setProperty('camHUD.alpha', 0)

@@ -323,7 +323,6 @@ class FreeplayState extends MusicBeatState {
 
 		if (accepted)
 		{
-			iconArray[curSelected].animation.curAnim.curFrame = 1;
 			var songLowercase:String = Paths.formatToSongPath(songs[curSelected].songName);
 			var poop:String = Highscore.formatSong(songLowercase, curDifficulty);
 
@@ -335,13 +334,23 @@ class FreeplayState extends MusicBeatState {
 
 			trace('CURRENT WEEK: ' + WeekData.getWeekFileName());
 			
-			if (FlxG.keys.pressed.SHIFT)
-				LoadingState.loadAndSwitchState(new ChartingState());
-			else
-				LoadingState.loadAndSwitchState(new PlayState());
-			
-			FlxG.sound.music.volume = 0;		
-			destroyFreeplayVocals();
+			if (songs[curSelected].songName.toLowerCase() == 'triple b trouble') 
+			{
+				iconArray[curSelected].animation.curAnim.curFrame = 1;
+				FlxG.sound.volume = 0;		
+				destroyFreeplayVocals();
+
+				FlxTween.tween(FlxG.camera, {alpha:0}, 1.7, {
+					ease: FlxEase.quadInOut,
+					onComplete: function(twn:FlxTween) {
+						LoadingState.loadAndSwitchState(((FlxG.keys.pressed.SHIFT) ? new ChartingState() : new PlayState()));
+					}
+				});	
+			} else {
+				LoadingState.loadAndSwitchState(((FlxG.keys.pressed.SHIFT) ? new ChartingState() : new PlayState()));
+				FlxG.sound.music.volume = 0;		
+				destroyFreeplayVocals();
+			}
 		}
 
 		// Adhere the position of all the things (I'm sorry it was just so ugly before I had to fix it Shubs)
@@ -516,8 +525,11 @@ class FreeplayState extends MusicBeatState {
 								curPathSong = key;
 								curSongPlaying = curSelected;
 							}
-							//else
+							else {
+								var key:String = '${key.toLowerCase().replace(' ', '-')}/Inst';
+								Paths.decacheSound(Paths.getPath('songs/$key.' + Paths.SOUND_EXT, SOUND));
 							//	trace("Nevermind, skipping " + index);
+							}
 						}
 						//else
 						//	trace("Skipping " + index);

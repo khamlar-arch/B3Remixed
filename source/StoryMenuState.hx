@@ -75,7 +75,7 @@ class StoryMenuState extends MusicBeatState
 		add(bd);
 
 		checkerboard = new FlxBackdrop(Paths.image('menus/menuCheckerboard'), 0, 0, true, true);
-		checkerboard.alpha = 0.6;
+		checkerboard.alpha = 0.62;
 		checkerboard.scale.set(5, 5);
 		checkerboard.color = 0xFFF40AF0;
 		add(checkerboard);
@@ -117,6 +117,7 @@ class StoryMenuState extends MusicBeatState
 			WeekData.setDirectoryFromWeek(WeekData.weeksLoaded.get(WeekData.weeksList[i]));
 			var weekThing:MenuItem = new MenuItem(80, 200, WeekData.weeksList[i]);
 			weekThing.y += ((weekThing.height + 20) * i);
+			weekThing.scale.set(1.23, 1.23);
 			weekThing.targetY = i;
 			grpWeekText.add(weekThing);
 
@@ -200,6 +201,19 @@ class StoryMenuState extends MusicBeatState
 	{
 		checkerboard.x += elapsed / (1 / 60);
 		checkerboard.y += elapsed / (1 / 60);
+
+		for (item in grpWeekText.members)
+		{
+			if (item.targetY == Std.int(0)) {
+				item.scale.set(FlxMath.lerp(item.scale.x, 1.6, 0.15), FlxMath.lerp(item.scale.y, 1.6, 0.15));
+				item.x = FlxMath.lerp(item.x, 140, 0.15);
+				if (!weekIsLocked(curWeek)) item.alpha = FlxMath.lerp(item.alpha, 1, 0.12);
+			} else {
+				item.scale.set(FlxMath.lerp(item.scale.x, 1.23, 0.15), FlxMath.lerp(item.scale.x, 1.23, 0.15));
+				item.x = FlxMath.lerp(item.x, 80, 0.15);
+				item.alpha = FlxMath.lerp(item.alpha, 0.55, 0.2);
+			}
+		}
 
 		// scoreText.setFormat('VCR OSD Mono', 32);
 		lerpScore = Math.floor(FlxMath.lerp(lerpScore, intendedScore, CoolUtil.boundTo(elapsed * 30, 0, 1)));
@@ -394,16 +408,6 @@ class StoryMenuState extends MusicBeatState
 		for (item in grpWeekText.members)
 		{
 			item.targetY = bullShit - curWeek;
-			if (item.targetY == Std.int(0)) {
-				if (!weekIsLocked(curWeek))
-					item.alpha = 1;
-				item.scale.set(1.6, 1.6);
-				item.x = 140;
-   			} else {
-				item.alpha = 0.6;
-				item.scale.set(1.23, 1.23);
-				item.x = 80;
-			}
 			bullShit++;
 		}
 
