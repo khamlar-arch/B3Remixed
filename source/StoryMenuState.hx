@@ -75,7 +75,7 @@ class StoryMenuState extends MusicBeatState
 		add(bd);
 
 		checkerboard = new FlxBackdrop(Paths.image('menus/menuCheckerboard'), 0, 0, true, true);
-		checkerboard.alpha = 0.6;
+		checkerboard.alpha = 0.62;
 		checkerboard.scale.set(5, 5);
 		checkerboard.color = 0xFFF40AF0;
 		add(checkerboard);
