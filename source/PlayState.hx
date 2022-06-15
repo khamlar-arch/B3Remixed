@@ -933,11 +933,12 @@ class PlayState extends MusicBeatState
 				frontBed = new BGSprite('stages/bedroom/front', -15, 160, 0.95, 0.95);
 				frontBed.setGraphicSize(Std.int(frontBed.width * 2.2222));
 			case 'majin': //Week 1
-				var majinBack:BGSprite = new BGSprite('stages/majin/endless_bg_1', 375, 0, 0.95, 0.95);
-				majinBack.setGraphicSize(Std.int(majinBack.width * 3.3333));
+				var majinBack:BGSprite = new BGSprite('stages/majin/endless_bg_1', -925, -400, 0.95, 0.95, ['Fuck'], true);
+				majinBack.setGraphicSize(Std.int(majinBack.width * 1.5));
+				majinBack.updateHitbox();
 				add(majinBack);
 
-				var majinBanner:BGSprite = new BGSprite('stages/majin/endless_bg_3', 375, -25, 0.85, 0.95);
+				var majinBanner:BGSprite = new BGSprite('stages/majin/endless_bg_3', 375, 150, 0.85, 0.95);
 				majinBanner.setGraphicSize(Std.int(majinBanner.width * 3.3333));
 				add(majinBanner);
 
