@@ -2294,7 +2294,7 @@ class PlayState extends MusicBeatState
 		
 		#if desktop
 		// Updating Discord Rich Presence (with Time Left)
-		DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter(), true, songLength);
+		DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter(), true, songLength / (ClientPrefs.dTime ? 1.5 : 1));
 		#end
 		setOnLuas('songLength', songLength);
 		callOnLuas('onSongStart', []);
@@ -2659,7 +2659,7 @@ class PlayState extends MusicBeatState
 			#if desktop
 			if (startTimer != null && startTimer.finished)
 			{
-				DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter(), true, songLength - Conductor.songPosition - ClientPrefs.noteOffset);
+				DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter(), true, songLength - (Conductor.songPosition * (ClientPrefs.dTime ? 1.5 : 1)) - ClientPrefs.noteOffset);
 			}
 			else
 			{
@@ -2678,7 +2678,7 @@ class PlayState extends MusicBeatState
 		{
 			if (Conductor.songPosition > 0.0)
 			{
-				DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter(), true, songLength - Conductor.songPosition - ClientPrefs.noteOffset);
+				DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter(), true, songLength - (Conductor.songPosition * (ClientPrefs.dTime ? 1.5 : 1)) - ClientPrefs.noteOffset);
 			}
 			else
 			{
