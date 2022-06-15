@@ -562,19 +562,19 @@ class PlayState extends MusicBeatState
 
 			case 'philly': //Week 3				
 				var subway:BGSprite = new BGSprite('station/subway', -350,-500, 0.9, 0.9);
-				subway.setGraphicSize(Std.int(subway.width * 1));
+				subway.setGraphicSize(Std.int(subway.width * 2));
 				subway.updateHitbox();
 
 				gayStation = new FlxSprite(-350,-500).loadGraphic(Paths.image('station/subway but gay'));
-				gayStation.setGraphicSize(Std.int(gayStation.width * 1));
+				gayStation.setGraphicSize(Std.int(gayStation.width * 2));
 				gayStation.scrollFactor.set(0.9, 0.9);
 				gayStation.visible = false;
 				gayStation.updateHitbox();
 
 				var pcameos:BGSprite = new BGSprite('station/pcameos', -335,-551, 0.9, 0.9, ['bop'], true);
 				pcameos.antialiasing = true;
-				pcameos.setGraphicSize(Std.int(pcameos.width * 1.65));
-				pcameos.setGraphicSize(Std.int(pcameos.height * 1.65));
+				pcameos.setGraphicSize(Std.int(pcameos.width * 3.3));
+				pcameos.setGraphicSize(Std.int(pcameos.height * 3.3));
 				pcameos.updateHitbox();
 
 				var stationLights:BGSprite = new BGSprite('station/lightsSheet', -350,-500, 0.9, 0.9, ['Lights'], true);
@@ -623,8 +623,8 @@ class PlayState extends MusicBeatState
 				filterBG.setGraphicSize(Std.int(filterBG.width * 1));
 				filterBG.updateHitbox();
 
-				dessert = new FlxSprite(-550,-470).loadGraphic(Paths.image('dead/dream'));
-				dessert.setGraphicSize(Std.int(dessert.width * 1));
+				dessert = new FlxSprite(-500,-400).loadGraphic(Paths.image('stages/nightmare/dream'));
+				dessert.setGraphicSize(Std.int(dessert.width * 2.3));
 				dessert.scrollFactor.set(0.9, 0.9);
 				dessert.visible = false;
 				dessert.updateHitbox();
@@ -704,16 +704,16 @@ class PlayState extends MusicBeatState
 			case 'sunshine':
 
 				sunBack = new BGSprite('stages/sunshine/back', -1200, -700, 0.9, 0.9);
-				sunBack.setGraphicSize(Std.int(sunBack.width * 1.75));
+				sunBack.setGraphicSize(Std.int(sunBack.width * 3.5));
 				sunBack.alpha = 0.2;
 				sunBack.updateHitbox();
 
 				var sunText:BGSprite = new BGSprite('stages/sunshine/text', -1200, -700, 0.8, 0.8);
-				sunText.setGraphicSize(Std.int(sunText.width * 1.75));
+				sunText.setGraphicSize(Std.int(sunText.width * 3.5));
 				sunText.updateHitbox();
 
 				var sunFace:BGSprite = new BGSprite('stages/sunshine/chandelier', -1200, -700, 0.8, 0.8);
-				sunFace.setGraphicSize(Std.int(sunFace.width * 1.75));
+				sunFace.setGraphicSize(Std.int(sunFace.width * 3.5));
 				sunFace.updateHitbox();
 
 				alt = new FlxSprite(-1500, -900).loadGraphic(Paths.image('stages/sunshine/alt'));
@@ -936,7 +936,7 @@ class PlayState extends MusicBeatState
 				frontBed.setGraphicSize(Std.int(frontBed.width * 2.2222));
 			case 'majin': //Week 1
 				var majinBack:BGSprite = new BGSprite('stages/majin/endless_bg_1', -925, -400, 0.95, 0.95, ['Fuck'], true);
-				majinBack.setGraphicSize(Std.int(majinBack.width * 1.5));
+				majinBack.setGraphicSize(Std.int(majinBack.width * 3));
 				majinBack.updateHitbox();
 				add(majinBack);
 
@@ -4718,6 +4718,10 @@ class PlayState extends MusicBeatState
 			dad.playAnim('hey', true);
 			dad.specialAnim = true;
 			dad.heyTimer = 0.6;
+		}
+		if(note.noteType == 'Gay Note' && dad.animOffsets.exists('shoot')) {
+			dad.playAnim('shoot', true);
+			dad.specialAnim = true;
 
 		} else if(!note.noAnimation) {
 			var altAnim:String = "";
