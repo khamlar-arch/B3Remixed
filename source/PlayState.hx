@@ -1493,7 +1493,7 @@ class PlayState extends MusicBeatState
 
 		#if desktop
 		// Updating Discord Rich Presence.
-		DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter());
+		DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter());
 		#end
 
 		if(!ClientPrefs.controllerMode)
@@ -2292,7 +2292,7 @@ class PlayState extends MusicBeatState
 		
 		#if desktop
 		// Updating Discord Rich Presence (with Time Left)
-		DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter(), true, songLength);
+		DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter(), true, songLength);
 		#end
 		setOnLuas('songLength', songLength);
 		callOnLuas('onSongStart', []);
@@ -2657,11 +2657,11 @@ class PlayState extends MusicBeatState
 			#if desktop
 			if (startTimer != null && startTimer.finished)
 			{
-				DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter(), true, songLength - Conductor.songPosition - ClientPrefs.noteOffset);
+				DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter(), true, songLength - Conductor.songPosition - ClientPrefs.noteOffset);
 			}
 			else
 			{
-				DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter());
+				DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter());
 			}
 			#end
 		}
@@ -2676,11 +2676,11 @@ class PlayState extends MusicBeatState
 		{
 			if (Conductor.songPosition > 0.0)
 			{
-				DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter(), true, songLength - Conductor.songPosition - ClientPrefs.noteOffset);
+				DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter(), true, songLength - Conductor.songPosition - ClientPrefs.noteOffset);
 			}
 			else
 			{
-				DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter());
+				DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter());
 			}
 		}
 		#end
@@ -2914,7 +2914,7 @@ class PlayState extends MusicBeatState
 				//}
 		
 				#if desktop
-				DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter());
+				DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter());
 				#end
 			}
 		}
@@ -3306,7 +3306,7 @@ class PlayState extends MusicBeatState
 				
 				#if desktop
 				// Game Over doesn't get his own variable because it's only used here
-				DiscordClient.changePresence("Game Over - " + SONG.song  + " (" + storyDifficultyText + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter());
+				DiscordClient.changePresence("Game Over - " + SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter());
 				#end
 				isDead = true;
 				return true;
@@ -4175,19 +4175,21 @@ class PlayState extends MusicBeatState
 			case "shit": // shit
 				totalNotesHit += 0;
 				songBreaks++;
-				if(!practiceMode) songScore -= 10;
+				score = -10;
 				shits++;
 			case "bad": // bad
 				totalNotesHit += 0.5;
+				score = 125;
 				bads++;
 			case "good": // good
 				totalNotesHit += 0.75;
+				score = 225;
 				goods++;
 			case "sick": // sick
 				totalNotesHit += 1;
 				sicks++;
 		}
-
+		if (score > 0) score *= ClientPrefs.dTime ? 2 : 1;
 
 		if(daRating == 'sick' && !note.noteSplashDisabled)
 		{
