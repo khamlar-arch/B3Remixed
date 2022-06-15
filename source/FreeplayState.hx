@@ -516,8 +516,11 @@ class FreeplayState extends MusicBeatState {
 								curPathSong = key;
 								curSongPlaying = curSelected;
 							}
-							//else
+							else {
+								var key:String = '${key.toLowerCase().replace(' ', '-')}/Inst';
+								Paths.decacheSound(Paths.getPath('songs/$key.' + Paths.SOUND_EXT, SOUND));
 							//	trace("Nevermind, skipping " + index);
+							}
 						}
 						//else
 						//	trace("Skipping " + index);
