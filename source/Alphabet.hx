@@ -338,7 +338,7 @@ class Alphabet extends FlxTypedSpriteGroup<AlphaCharacter>
 
 	override function update(elapsed:Float)
 	{
-		if (isMenuItem)
+		if (isMenuItem && !isOption)
 		{
 			var scaledY = FlxMath.remapToRange(targetY, 0, 1, 0, 1.3);
 
@@ -365,7 +365,7 @@ class Alphabet extends FlxTypedSpriteGroup<AlphaCharacter>
 			var scaledY = FlxMath.remapToRange(targetY, 0, 1, 0, 1.3);
 			var lerpVal:Float = CoolUtil.boundTo(elapsed * 9.6, 0, 1);
 
-			y = FlxMath.lerp(y, (scaledY * 85) + (FlxG.height * 0.38) + yAdd, lerpVal);
+			y = FlxMath.lerp(y, (scaledY * 85) + (FlxG.height * 0.48) + yAdd, lerpVal);
 			x = 185; 
 		}
 

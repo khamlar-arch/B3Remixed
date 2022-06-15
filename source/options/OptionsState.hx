@@ -124,7 +124,6 @@ class OptionsState extends MusicBeatState
 
 	override function update(elapsed:Float) {
 		super.update(elapsed);
-		descText.text = descs[curSelected];
 
 		//i feel like this could be done better but i trust peak
 		backdrop.x -= 70 * elapsed;
@@ -141,6 +140,8 @@ class OptionsState extends MusicBeatState
 		if (controls.UI_DOWN_P) {
 			changeSelection(1);
 		}
+		
+		descText.text = descs[curSelected];
 
 		if (controls.BACK) {
 			FlxG.sound.play(Paths.sound('cancelMenu'));
