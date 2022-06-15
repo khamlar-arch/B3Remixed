@@ -2693,7 +2693,7 @@ class PlayState extends MusicBeatState
 		#if desktop
 		if (health > 0 && !paused)
 		{
-			DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter());
+			DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter());
 		}
 		#end
 
@@ -3306,7 +3306,7 @@ class PlayState extends MusicBeatState
 				
 				#if desktop
 				// Game Over doesn't get his own variable because it's only used here
-				DiscordClient.changePresence("Game Over - " + SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter());
+				DiscordClient.changePresence("Game Over - " + SONG.song + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter());
 				#end
 				isDead = true;
 				return true;
