@@ -1,59 +1,59 @@
 {
 	"animations": [
 		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "Idle",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "Right Pose",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				11,
+				19
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "Up Pose",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				16
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "Down Pose",
+			"indices": []
+		},
+		{
 			"offsets": [
 				0,
 				0
 			],
 			"loop": false,
 			"fps": 24,
-			"anim": "idle",
-			"indices": [],
-			"name": "Idle"
-		},
-		{
-			"offsets": [
-				7,
-				11
-			],
-			"loop": false,
-			"fps": 24,
-			"anim": "singRIGHT",
-			"indices": [],
-			"name": "Right Pose"
-		},
-		{
-			"offsets": [
-				11,
-				19
-			],
-			"loop": false,
-			"fps": 24,
-			"anim": "singUP",
-			"indices": [],
-			"name": "Up Pose"
-		},
-		{
-			"offsets": [
-				0,
-				16
-			],
-			"loop": false,
-			"fps": 24,
-			"anim": "singDOWN",
-			"indices": [],
-			"name": "Down Pose"
-		},
-		{
-			"loop": false,
-			"offsets": [
-				232,
-				11
-			],
 			"anim": "singLEFT",
-			"fps": 24,
-			"name": "Left Pose",
-			"indices": []
+			"indices": [],
+			"name": "Left Pose"
 		}
 	],
 	"no_antialiasing": false,

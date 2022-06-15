@@ -234,6 +234,7 @@ class PlayState extends MusicBeatState
 	var gayStation:FlxSprite;
 	var dessert:FlxSprite;
 	var alt:FlxSprite;
+	var sunBack:BGSprite;
 	var light:FlxSprite;
 	var studio:FlxSprite;
 	var glass:FlxSprite;
@@ -702,8 +703,9 @@ class PlayState extends MusicBeatState
 
 			case 'sunshine':
 
-				var sunBack:BGSprite = new BGSprite('stages/sunshine/back', -1200, -700, 0.9, 0.9);
+				sunBack = new BGSprite('stages/sunshine/back', -1200, -700, 0.9, 0.9);
 				sunBack.setGraphicSize(Std.int(sunBack.width * 1.75));
+				sunBack.alpha = 0.2;
 				sunBack.updateHitbox();
 
 				var sunText:BGSprite = new BGSprite('stages/sunshine/text', -1200, -700, 0.8, 0.8);
@@ -3571,6 +3573,7 @@ class PlayState extends MusicBeatState
 					case 2: 
 						alt.visible = false;
 						gfGroup.visible = false;
+						sunBack.alpha = 0.78;
 				}
 			case 'Kill Henchmen':
 				killHenchmen();
