@@ -297,6 +297,8 @@ class BaseOptionsMenu extends MusicBeatSubstate
 			}
 		}
 
+		super.update(elapsed);
+		
 		if(boyfriend != null && boyfriend.animation.curAnim.finished) {
 			boyfriend.animation.play('bump');
 		}
@@ -304,7 +306,6 @@ class BaseOptionsMenu extends MusicBeatSubstate
 		if(nextAccept > 0) {
 			nextAccept -= 1;
 		}
-		super.update(elapsed);
 	}
 
 	function updateTextFrom(option:Option) {
