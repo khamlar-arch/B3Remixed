@@ -608,7 +608,7 @@ class PlayState extends MusicBeatState
 				GameOverSubstate.deathSoundName = 'fnf_loss_sfx-burger';
                 GameOverSubstate.loopSoundName = 'gameOver-burger';
                 GameOverSubstate.endSoundName = 'gameOverEnd-burger';
-                GameOverSubstate.characterName = 'burgerdead';
+                GameOverSubstate.characterName = 'bf-burger';
 
 				var roomBG:BGSprite = new BGSprite('halloween/room', -550, -270, 0.9, 0.9);
 				roomBG.setGraphicSize(Std.int(roomBG.width * 1));
@@ -2659,7 +2659,7 @@ class PlayState extends MusicBeatState
 			#if desktop
 			if (startTimer != null && startTimer.finished)
 			{
-				DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter(), true, songLength - (Conductor.songPosition * (ClientPrefs.dTime ? 1.5 : 1)) - ClientPrefs.noteOffset);
+				DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter(), true, (songLength / (ClientPrefs.dTime ? 1.5 : 1)) - Conductor.songPosition - ClientPrefs.noteOffset);
 			}
 			else
 			{
@@ -2678,7 +2678,7 @@ class PlayState extends MusicBeatState
 		{
 			if (Conductor.songPosition > 0.0)
 			{
-				DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter(), true, songLength - (Conductor.songPosition * (ClientPrefs.dTime ? 1.5 : 1)) - ClientPrefs.noteOffset);
+				DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter(), true, (songLength / (ClientPrefs.dTime ? 1.5 : 1)) - Conductor.songPosition - ClientPrefs.noteOffset);
 			}
 			else
 			{
@@ -3003,7 +3003,7 @@ class PlayState extends MusicBeatState
 					var songCalc:Float = (songLength - curTime);
 					if(ClientPrefs.timeBarType == 'Time Elapsed') songCalc = curTime;
 
-					var secondsTotal:Int = Math.floor(songCalc / 1000);
+					var secondsTotal:Int = Math.floor(songCalc / (ClientPrefs.dTime ? 1.5 : 0) / 1000);
 					if(secondsTotal < 0) secondsTotal = 0;
 
 					if(ClientPrefs.timeBarType != 'Song Name')
