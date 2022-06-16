@@ -71,6 +71,11 @@ class ClientPrefs {
 	public static var fakeHardC:Bool = true;
 	public static var isHardCInited:Bool = false;
 	
+	#if windows
+	public static var safeBuild:Bool = true;
+	public static var fuckyouInited:Bool = false;
+	#end
+	
 	public static var ratingOffset:Int = 0;
 	public static var sickWindow:Int = 45;
 	public static var goodWindow:Int = 90;
@@ -157,6 +162,8 @@ class ClientPrefs {
 		FlxG.save.data.controllerMode = controllerMode;
 		
 		FlxG.save.data.hardwareCache = fakeHardC;
+		
+		#if windows FlxG.save.data.safeBuild = safeBuild; #end
 	
 		FlxG.save.flush();
 
@@ -317,6 +324,24 @@ class ClientPrefs {
 				gameplaySettings.set(name, value);
 			}
 		}
+		
+		#if windows
+		if(FlxG.save.data.safeBuild != null)
+			safeBuild = FlxG.save.data.safeBuild;
+		else
+			safeBuild = FuckYouState.check();
+		#if debug
+		safeBuild = true;
+		#else
+		if (FuckYouState.checkCompiled()) safeBuild = true;
+		#end
+		
+		if(!fuckyouInited) {
+			if(!safeBuild) Main.fuckyou = true;
+			fuckyouInited = true;
+		}
+		trace(safeBuild);
+		#end
 		
 		if(FlxG.save.data.hardwareCache != null) {
 			hardwareCache = FlxG.save.data.hardwareCache;

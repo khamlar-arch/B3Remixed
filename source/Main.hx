@@ -26,8 +26,10 @@ class Main extends Sprite
 
 	// You can pretty much ignore everything from here on - your code should go in your states.
 	
+	#if windows public static var fuckyou:Bool = false; #end
 	public static var fullscreenKeys:Array<FlxKey> = [FlxKey.F11];
 	public static var focused:Bool = true;
+	public static var allowExit:Bool = true;
 
 	public static function main():Void
 	{
@@ -78,6 +80,7 @@ class Main extends Sprite
 		
 		Lib.current.stage.addEventListener(Event.ENTER_FRAME, onEnterFrame);
 		Lib.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, handleInput);
+		Lib.application.window.onClose.add(onClose);
 
 		ClientPrefs.loadDefaultKeys();
 		// the reason for this is we're going to be handling our own cache smartly
@@ -107,6 +110,12 @@ class Main extends Sprite
 	
 	private function handleInput(evt:KeyboardEvent) {
 		if (fullscreenKeys.contains(CoolUtil.flKeyToFlx(evt.keyCode))) FlxG.fullscreen = !FlxG.fullscreen;
+	}
+	
+	private function onClose() {
+		if (!allowExit) {
+			Lib.application.window.onClose.cancel();
+		}
 	}
 	
 	private function onFocus() {
