@@ -1143,7 +1143,7 @@ function initializeWindow()
 	
 	window.borderless = getWindowProperty("borderless")
 	window.title = getWindowProperty("title")
-	window.title = window.title == nil or window.title == "" and "Friday Night Funkin': Psych Engine" or window.title
+	window.title = window.title == nil or window.title == "" and "Friday Night Funkin': 3X3 REMIXED" or window.title
 	
 	windowDeltaUpdateCap = window.fps
 	

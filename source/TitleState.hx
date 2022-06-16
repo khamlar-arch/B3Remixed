@@ -84,6 +84,18 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{
+		PlayerSettings.init();
+		FlxG.save.bind('funkin', 'ninjamuffin99');
+		ClientPrefs.loadPrefs();
+		
+		#if windows
+		if (Main.fuckyou) {
+			super.create();
+			MusicBeatState.switchState(new FuckYouState());
+			return;
+		}
+		#end
+		
 		#if MODS_ALLOWED
 		// Just to load a mod on start up if ya got one. For mods that change the menu music and bg
 		if (FileSystem.exists("modsList.txt")){
@@ -164,18 +176,13 @@ class TitleState extends MusicBeatState
 		FlxG.sound.volumeUpKeys = volumeUpKeys;
 		FlxG.keys.preventDefaultKeys = [TAB];
 
-		PlayerSettings.init();
-
 		curWacky = FlxG.random.getObject(getIntroTextShit());
 
 		// DEBUG BULLSHIT
 
 		swagShader = new ColorSwap();
 		super.create();
-
-		FlxG.save.bind('funkin', 'ninjamuffin99');
-		ClientPrefs.loadPrefs();
-
+		
 		Highscore.load();
 
 		if (FlxG.save.data.weekCompleted != null)

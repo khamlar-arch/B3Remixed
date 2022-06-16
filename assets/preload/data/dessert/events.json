@@ -28,6 +28,11 @@
 						"Change Character",
 						"BF",
 						"bf-pained"
+					],
+					[
+						"Dessert",
+						"1",
+						""
 					]
 				]
 			],
@@ -43,6 +48,26 @@
 			],
 			[
 				76363.6363636364,
+				[
+					[
+						"Change Character",
+						"1",
+						"p-gf-hungry-1"
+					],
+					[
+						"Change Character",
+						"BF",
+						"bf-pajamas"
+					],
+					[
+						"Dessert",
+						"2",
+						""
+					]
+				]
+			],
+			[
+				83636.3636363637,
 				[
 					[
 						"Change Character",
