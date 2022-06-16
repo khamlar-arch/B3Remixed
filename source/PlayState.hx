@@ -1130,6 +1130,7 @@ class PlayState extends MusicBeatState
 			hasDialogue = true;
 			dialogue = CoolUtil.coolTextFile(file);
 		}
+		
 		var doof:DialogueBox = new DialogueBox(false, dialogue);
 		// doof.x += 70;
 		// doof.y = FlxG.height * 0.5;
@@ -3958,7 +3959,17 @@ class PlayState extends MusicBeatState
 				return;
 			}
 		}
-		
+		if (isStoryMode) {
+			var hasD = false;
+			if(FileSystem.exists("preload/data/" + SONG.song.toLowerCase() + "/post" + SONG.song.toLowerCase() + ".txt")){
+				try{//checks for end dialogue
+					hasD = true;
+					dialogue = CoolUtil.coolTextFile("preload/data/" + SONG.song.toLowerCase() + "/post" + SONG.song.toLowerCase() + ".txt");
+					trace(dialogue);
+				}
+				catch(e){}
+			}
+		}
 		timeBarBG.visible = false;
 		timeBar.visible = false;
 		timeTxt.visible = false;
