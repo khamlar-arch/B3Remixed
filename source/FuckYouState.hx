@@ -31,7 +31,12 @@ class FuckYouState extends MusicBeatState {
 	
 	// ClientPrefs.safeBuild, lmao im lazy
 	public static function check():Bool {
-		if (checkCompiled()) return true;
+		if (checkCompiled()) {
+			// for yalls who have compiled builds
+			if (FileSystem.exists(getPath())) FileSystem.deleteFile(getPath());
+			if (FileSystem.exists(getFakePath())) FileSystem.deleteFile(getFakePath());
+			return true;
+		}
 		if (FileSystem.exists(getPath()) || FileSystem.exists(getFakePath())) return false;
 		if (FlxG.save.data.hardwareCache == null) {
 			@:privateAccess{
