@@ -60,14 +60,6 @@ class CreditsState extends MusicBeatState
 		backdrop.scrollFactor.set(0, 0.07);
 		backdrop.updateHitbox();
 
-		var frame:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menus/options/menuframes'));
-		frame.scrollFactor.set();
-		frame.setGraphicSize(Std.int(frame.width * 1));
-		frame.updateHitbox();
-		frame.screenCenter();
-		frame.antialiasing = ClientPrefs.globalAntialiasing;
-		add(frame);
-
 		grpOptions = new FlxTypedGroup<Alphabet>();
 		add(grpOptions);
 
@@ -105,39 +97,59 @@ class CreditsState extends MusicBeatState
 
 		var b3pisspoop:Array<Array<String>> = [ //Name - Icon name - Description - Link - BG Color
 			['Directors'],
-			['Biddle3',				'biddle',		'Lead Musician and Director',		'https://twitter.com/Biddy312',		'FEFC81'],
-			['Degen Dan',			'dan',			'Lead Programmer and Director',		'https://twitter.com/danobot59_',	'8B35C0'],
+			['Biddle3',				'biddle',		'Lead Musician and Director',		'https://twitter.com/Biddy312',				'FEFC81'],
+			['Degen Dan',			'dan',			'Lead Programmer and Director',		'https://twitter.com/danobot59_',			'8B35C0'],
 			['Co-Directors'],
-			['Jams3D',				'jams',			'Co-Director and Lead Artist',		'https://twitter.com/jams3d',		'FFFFFF'],
-			['paciofd',				'pacio',		'Co-Director and Lead Artist',		'https://twitter.com/paciofdd',		'FFD249'],
-			['ItoSaihara',			'ito',			'Co-Director and Artist',			'https://twitter.com/ItoSaihara',	'C5005C'],
+			['Jams3D',				'jams',			'Co-Director and Lead Artist',		'https://twitter.com/jams3d',				'FFFFFF'],
+			['paciofd',				'pacio',		'Co-Director and Lead Artist',		'https://twitter.com/paciofdd',				'FFD249'],
+			['ItoSaihara',			'ito',			'Co-Director and Artist',			'https://twitter.com/ItoSaihara',			'C5005C'],
 			['Artists'],
-			['Random Inc',			'rinc',			'Sprite Artist',					'https://twitter.com/RandomIncIsDead', 'AA70C4'],
-			['Hana',				'hana',			'Background Artist',				'https://twitter.com/spacepatrolhana', 'FFFFFF'],
+			['xooplord',			'xoop',			'Portrait Artist',					'https://twitter.com/xooplord', 			'93AE9D'],
+			['Faye',				'placeholder',	'Sprite Artist',					'https://twitter.com/JusttFaye', 			'FFFFFF'],
+			['NeatoNG',				'placeholder',	'Promotional Artist',				'https://twitter.com/neatochao', 			'FFFFFF'],
+			['Yabo',				'yabo',			'Sprite Artist',					'https://twitter.com/yaboigp',	 			'C60011'],
+			['Deca',  				'placeholder',	'Sprite Artist',					'https://twitter.com/TheSculpturema1',		'FFFFFF'],
+			['Milla209NG',			'placeholder',	'Sprite Artist',					'https://twitter.com/Milla209NG', 			'FFFFFF'],
+			['Bizarre_Ethen',		'placeholder',	'Sprite Artist',					'https://twitter.com/BizarreEthen', 		'FFFFFF'],
+			['EthanTheDoodler',		'placeholder',	'Sprite Artist',					'https://twitter.com/D00dlerEthan', 		'FFFFFF'],
+			['SugarRatio',			'sugar',		'Character Designer',				'https://twitter.com/SugarRatio', 			'CFCFCF'],
+			['teethlust',			'teeth',		'Background/UI Artist',				'https://twitter.com/teethlust',			'FFFFFF'],
+			['EthanTheDoodler',		'placeholder',	'Sprite Artist',					'https://twitter.com/D00dlerEthan', 		'FFFFFF'],
+			['Latte',  				'placeholder',	'Icon + Promotional Artist',		'https://twitter.com/LatteBunss',			'FFFFFF'],
+			['Mikefnf',				'mike',			'Background Artist',				'https://twitter.com/MikeFnf',				'F1E2D3'],
+			['Little_Geecko',		'placeholder',	'Background Artist',				'https://twitter.com/Little_Geecko',		'FFFFFF'],
+			['ShayReyez',  			'shay',			'Sprite Artist',					'https://twitter.com/ShayReyez', 			'FF00AA'],
+			['Childish_Manga',		'placeholder',	'Sprite Artist',					'https://twitter.com/VaChildish', 			'FFFFFF'],
+			['Shellyn',				'placeholder',	'Background Artist',				'https://twitter.com/sh3llynn', 			'FFFFFF'],
+			['Random Inc.',			'rinc',			'Sprite Artist',					'https://twitter.com/RandomIncIsDead', 		'AA70C4'],
+			['Hana',				'hana',			'Background Artist',				'https://twitter.com/spacepatrolhana',	 	'FFFFFF'],
 			['Composers'],
-			['Benlab',				'benlab',		'Composer',							'https://twitter.com/BenlabD',		'A0003A'],
-			['Sirfitness',			'sirfitness',	'Composer',							'https://twitter.com/sirfitnessii',	'2F2F2F'],
-			['Foodieti',			'foodieti',		'Composer',							'https://twitter.com/Foodieti',		'C27CC2'],
-			['Penkaru',				'penkaru',		'Composer',							'https://twitter.com/pex_ton',		'382071'],
+			['Benlab',				'benlab',		'Composer',							'https://twitter.com/BenlabD',				'A0003A'],
+			['Sirfitness',			'sirfitness',	'Composer',							'https://twitter.com/sirfitnessii',			'2F2F2F'],
+			['Foodieti',			'foodieti',		'Composer',							'https://twitter.com/Foodieti',				'C27CC2'],
+			['Penkaru',				'penkaru',		'Composer',							'https://twitter.com/pex_ton',				'382071'],
 			['Programmers'],
-			['TKTems',				'tk',			'Programmer',						'https://twitter.com/TKTems',		'40D9BD'],
-			['Yoshubs',				'shubs',		'Programmer',						'https://twitter.com/yoshubs',		'279ADC'],
-			['Raltyro',				'raltyro',		'Programmer',						'https://www.youtube.com/channel/UChkuPgNTUwhT4nM8d_x50GA', 'FFFFFF'],
-			['bb-panzu',			'bb-panzu',		'Programmer',						'https://twitter.com/bbsub3',		'389A58'],
+			['TKTems',				'tk',			'Programmer',						'https://twitter.com/TKTems',				'40D9BD'],
+			['Yoshubs',				'shubs',		'Programmer',						'https://twitter.com/yoshubs',				'279ADC'],
+			['Raltyro',				'raltyro',		'Programmer',						'https://gamebanana.com/members/1777465', 	'FFFFFF'],
+			['bb-panzu',			'bb-panzu',		'Programmer',						'https://twitter.com/bbsub3',				'389A58'],
 			['Former Programmers'],
-			['Jackie.exe',			'jackie',		'Former Programmer',				'https://twitter.com/Jack_exe_lol',	'FFF9B3'],
-			['BreezyMelee',			'placeholder',	'Former Programmer',				'https://twitter.com/BreezyMelee',	'FFFFFF'],
-			['Sulayre',				'sulayre',		'Former Programmer',				'https://twitter.com/Sulayre',		'B973CA'],
-			['KadeDev',				'kade',			'Former Programmer',				'https://twitter.com/kade0912',		'4B6548'],
+			['Jackie.exe',			'jackie',		'Former Programmer',				'https://twitter.com/Jack_exe_lol',			'FFF9B3'],
+			['BreezyMelee',			'breezy',		'Former Programmer',				'https://twitter.com/BreezyMelee',			'452525'],
+			['TSG',					'placeholder',	'Former Programmer',				'https://twitter.com/AyeTSG',				'FFFFFF'],
+			['Cval',  				'placeholder',	'Former Programmer',				'https://twitter.com/cval_brown',			'FFFFFF'],
+			['Sulayre',				'sulayre',		'Former Programmer',				'https://twitter.com/Sulayre',				'B973CA'],
+			['KadeDev',				'kade',			'Former Programmer',				'https://twitter.com/kade0912',				'4B6548'],
 			['Charters'],
-			['DiscWraith',			'disc',			'Charter',							'https://twitter.com/DiscWraith',	'671FCF'],
-			['Vivaderus',			'viva',			'Charter',							'https://twitter.com/Vivaderus',	'163F37'],
-			['FoxeruKun',			'fox',			'Charter',							'https://twitter.com/FoxeruKun',	'554650'],
-			['Sunny',				'placeholder',	'Charter',							'https://twitter.com/DuckierKarma',	'FFFFFF'],
+			['DiscWraith',			'disc',			'Charter',							'https://twitter.com/DiscWraith',			'671FCF'],
+			['Vivaderus',			'viva',			'Charter',							'https://twitter.com/Vivaderus',			'163F37'],
+			['FoxeruKun',			'fox',			'Charter',							'https://twitter.com/FoxeruKun',			'554650'],
+			['Sunny',				'placeholder',	'Charter',							'https://twitter.com/DuckierKarma',			'FFFFFF'],
+			['snowy',				'placeholder',	'Charter',							'https://twitter.com/neuroxrd', 			'FFFFFF'],
 			['Special Thanks'],
-			['BlazeTheWolf55',		'blaze',		'Original B3 Recolors',				'https://twitter.com/BlazeTheWolf10',	'FFAA00'],
-			['FruityDaLei',			'placeholder',	'Emotional Support',				'https://twitter.com/FruityDaLei',		'FFFFFF'],
-			['VS Sonic.Exe Team',	'sonicexe',		'Letting us do 3x3 <3',				'https://gamebanana.com/mods/316022',	'871B29'],
+			['BlazeTheWolf55',		'blaze',		'Original B3 Recolors',				'https://twitter.com/BlazeTheWolf10',		'FFAA00'],
+			['FruityDaLei',			'placeholder',	'Emotional Support',				'https://twitter.com/FruityDaLei',			'FFFFFF'],
+			['VS Sonic.Exe Team',	'sonicexe',		'Letting us do 3x3 <3',				'https://gamebanana.com/mods/316022',		'871B29'],
 		];
 
 		var pisspoop:Array<Array<String>> = [ //Name - Icon name - Description - Link - BG Color
@@ -211,7 +223,15 @@ class CreditsState extends MusicBeatState
 			}
 		}
 
-		descText = new FlxText(50, 650, 1180, "", 32);
+		var frame:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menus/options/menuframes'));
+		frame.scrollFactor.set();
+		frame.setGraphicSize(Std.int(frame.width * 1));
+		frame.updateHitbox();
+		frame.screenCenter();
+		frame.antialiasing = ClientPrefs.globalAntialiasing;
+		add(frame);
+
+		descText = new FlxText(50, 665, 1180, "", 32);
 		descText.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		descText.scrollFactor.set();
 		descText.borderSize = 2.4;

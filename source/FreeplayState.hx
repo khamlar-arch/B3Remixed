@@ -19,6 +19,7 @@ import openfl.utils.AssetType;
 import openfl.utils.Assets as FLAssets;
 import openfl.utils.AssetCache as FLAssetCache;
 import meta.data.*;
+import flixel.util.FlxTimer;
 import openfl.media.Sound;
 import sys.FileSystem;
 import sys.thread.Mutex;
@@ -337,7 +338,7 @@ class FreeplayState extends MusicBeatState {
 			if (songs[curSelected].songName.toLowerCase() == 'triple b trouble') 
 			{
 				iconArray[curSelected].animation.curAnim.curFrame = 1;
-				FlxG.sound.volume = 0;		
+				FlxG.sound.volume = 0;
 				destroyFreeplayVocals();
 
 				FlxTween.tween(FlxG.camera, {alpha:0}, 1.7, {
