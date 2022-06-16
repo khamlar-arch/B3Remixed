@@ -571,7 +571,7 @@ class PlayState extends MusicBeatState
 				gayStation.visible = false;
 				gayStation.updateHitbox();
 
-				var pcameos:BGSprite = new BGSprite('station/pcameos', -335,-551, 0.9, 0.9, ['bop'], true);
+				var pcameos:BGSprite = new BGSprite('station/pcameos', -335,-551, 0.9, 0.9, ['bop'], false);
 				pcameos.antialiasing = true;
 				pcameos.setGraphicSize(Std.int(pcameos.width * 3.3));
 				pcameos.setGraphicSize(Std.int(pcameos.height * 3.3));
@@ -3940,6 +3940,7 @@ class PlayState extends MusicBeatState
 
 
 	public var transitioning = false;
+	public var endDia = false;
 	public function endSong():Void
 	{
 		//Should kill you if you tried to cheat
@@ -4022,6 +4023,31 @@ class PlayState extends MusicBeatState
 				return;
 			}
 
+		var hasDialogue = false;
+		var file:String = Paths.txt(SONG.song.toLowerCase() + '/' + SONG.song.toLowerCase() + 'DialogueEnd'); //Checks for vanilla/Senpai dialogue
+		if (OpenFlAssets.exists(file)) {
+			hasDialogue = true;
+			dialogue = CoolUtil.coolTextFile(file);
+		}
+		
+		
+		if(hasDialogue && !endDia){
+		
+			endDia = true;
+		
+		var doof:DialogueBox = new DialogueBox(false, dialogue);
+		// doof.x += 70;
+		// doof.y = FlxG.height * 0.5;
+		doof.scrollFactor.set();
+		doof.finishThing = endSong;
+		FlxTween.tween(camHUD, {alpha:0}, 0.3);
+		doof.cameras = [camOther];
+		add(doof);
+		return;
+		
+		}
+		
+		
 			if (isStoryMode)
 			{
 				campaignScore += songScore;
