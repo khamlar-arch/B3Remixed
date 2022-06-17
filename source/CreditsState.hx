@@ -114,7 +114,6 @@ class CreditsState extends MusicBeatState
 			['EthanTheDoodler',		'placeholder',	'Sprite Artist',					'https://twitter.com/D00dlerEthan', 		'FFFFFF'],
 			['SugarRatio',			'sugar',		'Character Designer',				'https://twitter.com/SugarRatio', 			'CFCFCF'],
 			['teethlust',			'teeth',		'Background/UI Artist',				'https://twitter.com/teethlust',			'FFFFFF'],
-			['EthanTheDoodler',		'placeholder',	'Sprite Artist',					'https://twitter.com/D00dlerEthan', 		'FFFFFF'],
 			['Latte',  				'placeholder',	'Icon + Promotional Artist',		'https://twitter.com/LatteBunss',			'FFFFFF'],
 			['Mikefnf',				'mike',			'Background Artist',				'https://twitter.com/MikeFnf',				'F1E2D3'],
 			['Little_Geecko',		'placeholder',	'Background Artist',				'https://twitter.com/Little_Geecko',		'FFFFFF'],

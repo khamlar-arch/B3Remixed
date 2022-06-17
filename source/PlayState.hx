@@ -954,17 +954,14 @@ class PlayState extends MusicBeatState
 			introSoundsSuffix = '-pixel';
 		}
 
-		if (!ClientPrefs.hideChars)
 			add(gfGroup);
 
 		// Shitty layering but whatev it works LOL
 		if (curStage == 'limo')
 			add(limo);
 
-		if (!ClientPrefs.hideChars) {
 			add(dadGroup);
 			add(boyfriendGroup);
-		}
 
 		if (curStage == 'majin')
 			add(majinFore);
@@ -2789,7 +2786,7 @@ class PlayState extends MusicBeatState
 
 		callOnLuas('onUpdate', [elapsed]);
 
-		if (ClientPrefs.hideChars) isCameraOnForcedPos = true;
+		isCameraOnForcedPos = true;
 
 		switch (curStage)
 		{
@@ -4233,6 +4230,7 @@ class PlayState extends MusicBeatState
 				totalNotesHit += 0;
 				songBreaks++;
 				score = -10;
+				combo = 0;
 				shits++;
 			case "bad": // bad
 				totalNotesHit += 0.5;
@@ -4797,7 +4795,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if ((ClientPrefs.noteCamera) && (!ClientPrefs.hideChars) && (!note.isSustainNote) && (curFocus == 'dad')) {
+		if ((ClientPrefs.noteCamera) && !isCameraOnForcedPos && (!note.isSustainNote) && (curFocus == 'dad')) {
 			tweenCamOnHit(note.noteData);
 		}
 
@@ -4890,7 +4888,7 @@ class PlayState extends MusicBeatState
 				}
 			}
 
-			if ((ClientPrefs.noteCamera) && (!ClientPrefs.hideChars) && (!note.isSustainNote) && (curFocus == 'bf')) {
+			if ((ClientPrefs.noteCamera) && !isCameraOnForcedPos && (!note.isSustainNote) && (curFocus == 'bf')) {
 				tweenCamOnHit(note.noteData);
 			}
 		

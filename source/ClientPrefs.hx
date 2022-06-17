@@ -22,7 +22,6 @@ class ClientPrefs {
 	public static var violence:Bool = true;
 	public static var camZooms:Bool = true;
 	public static var scoreDetail:Bool = true;
-	public static var hideChars:Bool = false;
 	public static var noteCamera:Bool = true;
 	public static var modCharts:Bool = true;
 	public static var customFeats:Bool = true;
@@ -136,7 +135,6 @@ class ClientPrefs {
 		FlxG.save.data.camZooms = camZooms;
 		FlxG.save.data.camSpeed = camSpeed;
 		FlxG.save.data.noteCamera = noteCamera;
-		FlxG.save.data.hideChars = hideChars;
 		FlxG.save.data.scoreDetail = scoreDetail;
 		FlxG.save.data.modCharts = modCharts;
 		FlxG.save.data.dTime = dTime;
@@ -180,9 +178,6 @@ class ClientPrefs {
 		}
 		if(FlxG.save.data.middleScroll != null) {
 			middleScroll = FlxG.save.data.middleScroll;
-		}
-		if(FlxG.save.data.hideChars != null) {
-			hideChars = FlxG.save.data.hideChars;
 		}
 		if(FlxG.save.data.judgementCounter != null) {
 			judgementCounter = FlxG.save.data.judgementCounter;
