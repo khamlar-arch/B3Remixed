@@ -80,6 +80,14 @@ class OptionsState extends MusicBeatState
 		backdrop.scrollFactor.set(0, 0.07);
 		backdrop.updateHitbox();
 
+		var frame2:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menus/options/fade'));
+		frame2.scrollFactor.set();
+		frame2.setGraphicSize(Std.int(frame2.width * 1));
+		frame2.updateHitbox();
+		frame2.screenCenter();
+		frame2.antialiasing = ClientPrefs.globalAntialiasing;
+		add(frame2);
+
 		var frame:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menus/options/menuframes'));
 		frame.scrollFactor.set();
 		frame.setGraphicSize(Std.int(frame.width * 1));
@@ -99,7 +107,7 @@ class OptionsState extends MusicBeatState
 			grpOptions.add(optionText);
 		}
 
-		var topTxt:FlxText = new FlxText(50, 10, 1180, "B3 Remixed - Options Menu", 32);
+		var topTxt:FlxText = new FlxText(50, 5, 1180, "B3 Remixed - Options Menu", 32);
 		topTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		topTxt.scrollFactor.set();
 		topTxt.borderSize = 2.4;

@@ -110,7 +110,7 @@ class CreditsState extends MusicBeatState
 			['Yabo',				'yabo',			'Sprite Artist',					'https://twitter.com/yaboigp',	 			'C60011'],
 			['Deca',  				'placeholder',	'Sprite Artist',					'https://twitter.com/TheSculpturema1',		'FFFFFF'],
 			['Milla209NG',			'placeholder',	'Sprite Artist',					'https://twitter.com/Milla209NG', 			'FFFFFF'],
-			['Bizarre_Ethen',		'placeholder',	'Sprite Artist',					'https://twitter.com/BizarreEthen', 		'FFFFFF'],
+			['Bizarre_Ethen',		'ethen',		'Sprite Artist',					'https://twitter.com/BizarreEthen', 		'FFFFFF'],
 			['EthanTheDoodler',		'placeholder',	'Sprite Artist',					'https://twitter.com/D00dlerEthan', 		'FFFFFF'],
 			['SugarRatio',			'sugar',		'Character Designer',				'https://twitter.com/SugarRatio', 			'CFCFCF'],
 			['teethlust',			'teeth',		'Background/UI Artist',				'https://twitter.com/teethlust',			'FFFFFF'],

@@ -4061,8 +4061,7 @@ class PlayState extends MusicBeatState
 		}
 		
 		
-		if(hasDialogue && !endDia){
-		
+		if(hasDialogue && !endDia && isStoryMode) {
 			endDia = true;
 		
 		var doof:DialogueBox = new DialogueBox(false, dialogue);

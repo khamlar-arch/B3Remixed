@@ -182,8 +182,6 @@ class TitleState extends MusicBeatState
 		curWacky = FlxG.random.getObject(getIntroTextShit());
 
 		// DEBUG BULLSHIT
-
-		swagShader = new ColorSwap();
 		super.create();
 		
 		Highscore.load();
@@ -228,7 +226,6 @@ class TitleState extends MusicBeatState
 	var danceLeft:Bool = false;
 	var titleText:FlxSprite;
 	var pressEnter:FlxText;
-	var swagShader:ColorSwap = null;
 
 	function startIntro()
 	{
@@ -299,33 +296,14 @@ class TitleState extends MusicBeatState
 		logoBl.setGraphicSize(Std.int(logoBl.width * 0.75));
 		logoBl.screenCenter(Y);
 
-		swagShader = new ColorSwap();
-			gfDance = new FlxSprite(-200, -90);
-		
-		#if (desktop && MODS_ALLOWED)
-		var path = "mods/" + Paths.currentModDirectory + "/images/gfDanceTitle.png";
-		//trace(path, FileSystem.exists(path));
-		if (!FileSystem.exists(path)){
-			path = "mods/images/gfDanceTitle.png";
-		//trace(path, FileSystem.exists(path));
-		}
-		if (!FileSystem.exists(path)){
-			path = "assets/images/gfDanceTitle.png";
-		//trace(path, FileSystem.exists(path));
-		}
-		gfDance.frames = FlxAtlasFrames.fromSparrow(BitmapData.fromFile(path),File.getContent(StringTools.replace(path,".png",".xml")));
-		#else
-		
-		gfDance.frames = Paths.getSparrowAtlas('gfDanceTitle');
-		#end
-			gfDance.animation.addByIndices('danceLeft', 'gfDance', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
-			gfDance.animation.addByIndices('danceRight', 'gfDance', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
+		gfDance = new FlxSprite(-200, -90);
+		gfDance.frames = Paths.getSparrowAtlas('menus/title/gfDanceTitle');
+		gfDance.animation.addByIndices('danceLeft', 'gfDance', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
+		gfDance.animation.addByIndices('danceRight', 'gfDance', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
 		gfDance.setGraphicSize(Std.int(gfDance.width * 0.75));
 		gfDance.antialiasing = ClientPrefs.globalAntialiasing;
 		add(gfDance);
-		gfDance.shader = swagShader.shader;
 		add(logoBl);
-		//logoBl.shader = swagShader.shader;
 
 		pressEnter = new FlxText(0, 600, 1280, "Press ENTER to Continue", 40);
 		pressEnter.antialiasing = ClientPrefs.globalAntialiasing;
@@ -520,12 +498,6 @@ class TitleState extends MusicBeatState
 		if (pressedEnter && !skippedIntro)
 		{
 			skipIntro();
-		}
-
-		if(swagShader != null)
-		{
-			if(controls.UI_LEFT) swagShader.hue -= elapsed * 0.1;
-			if(controls.UI_RIGHT) swagShader.hue += elapsed * 0.1;
 		}
 
 		super.update(elapsed);

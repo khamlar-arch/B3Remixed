@@ -123,15 +123,12 @@ class MainMenuState extends MusicBeatState
 		topSec.antialiasing = ClientPrefs.globalAntialiasing;
 		add(topSec);
 
-		logoBl = new FlxSprite(-180, -190);
-		logoBl.frames = Paths.getSparrowAtlas('logoBumpin');
+		logoBl = new FlxSprite(-140, -150).loadGraphic(Paths.image('menus/title/logo'));
 		logoBl.antialiasing = ClientPrefs.globalAntialiasing;
-		logoBl.animation.addByPrefix('bump', 'logo bumpin', 24, false);
-		logoBl.animation.play('bump');
 		logoBl.updateHitbox();
 		logoBl.scrollFactor.set(0, 0);
-		logoBl.setGraphicSize(Std.int(logoBl.width * 0.77));
-		logoBl.setGraphicSize(Std.int(logoBl.height * 0.77));
+		logoBl.setGraphicSize(Std.int(logoBl.width * 0.8));
+		logoBl.setGraphicSize(Std.int(logoBl.height * 0.8));
 		add(logoBl);
 
 		menuBox = new FlxSprite(80, 315).loadGraphic(Paths.image('menus/main/box'));
