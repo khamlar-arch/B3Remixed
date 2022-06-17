@@ -1,37 +1,37 @@
 {
 	"animations": [
 		{
-			"loop": false,
 			"offsets": [
 				138,
 				-69
 			],
-			"anim": "firstDeath",
+			"loop": false,
 			"fps": 24,
-			"name": "GAMEOVER DEATH",
-			"indices": []
+			"anim": "firstDeath",
+			"indices": [],
+			"name": "GAMEOVER DEATH"
 		},
 		{
-			"loop": true,
 			"offsets": [
 				0,
 				0
 			],
-			"anim": "deathLoop",
+			"loop": true,
 			"fps": 24,
-			"name": "Gameover Loop",
-			"indices": []
+			"anim": "deathLoop",
+			"indices": [],
+			"name": "Gameover Loop"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				24,
 				87
 			],
-			"anim": "deathConfirm",
+			"loop": false,
 			"fps": 24,
-			"name": "RETRY",
-			"indices": []
+			"anim": "deathConfirm",
+			"indices": [],
+			"name": "RETRY"
 		}
 	],
 	"no_antialiasing": false,
@@ -48,7 +48,7 @@
 		87
 	],
 	"camera_position": [
-		-240,
+		-20,
 		0
 	],
 	"sing_duration": 4,

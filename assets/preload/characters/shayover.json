@@ -1,37 +1,37 @@
 {
 	"animations": [
 		{
+			"loop": false,
 			"offsets": [
 				231,
 				391
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "firstDeath",
-			"indices": [],
-			"name": "Gameover"
+			"fps": 24,
+			"name": "Gameover",
+			"indices": []
 		},
 		{
+			"loop": true,
 			"offsets": [
 				218,
 				-227
 			],
-			"loop": true,
-			"fps": 24,
 			"anim": "deathLoop",
-			"indices": [],
-			"name": "Shivers"
+			"fps": 24,
+			"name": "Shivers",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				267,
 				-252
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "deathConfirm",
-			"indices": [],
-			"name": "Retry Play"
+			"fps": 24,
+			"name": "Retry Play",
+			"indices": []
 		}
 	],
 	"no_antialiasing": false,
@@ -48,7 +48,7 @@
 		186
 	],
 	"camera_position": [
-		0,
+		270,
 		0
 	],
 	"sing_duration": 4,
