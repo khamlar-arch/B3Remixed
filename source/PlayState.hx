@@ -2361,26 +2361,68 @@ class PlayState extends MusicBeatState
 				}
 			}
 		}
+		
+		var posDad:Array<Map<Int, Note>> = [[], [], [], []];
+		var posBf:Array<Map<Int, Note>> = [[], [], [], []];
+		/*
+		[	dirs
+			0 = [pos],
+			1 = [pos],
+			2 = [pos],
+			3 = [pos]
+		]
+		*/
 
 		for (section in noteData)
 		{
 			for (songNotes in section.sectionNotes)
 			{
+				var oldNote:Note = null;
+				if (unspawnNotes.length > 0)
+					oldNote = unspawnNotes[Std.int(unspawnNotes.length - 1)];
+				
 				var daStrumTime:Float = songNotes[0];
-				var daNoteData:Int = Std.int(songNotes[1] % 4);
+				var daThing:Int = Math.round(daStrumTime / (Conductor.stepCrochet / 4));
+				
+				var daNoteData:Int = Note.getNoteData(Std.int(songNotes[1] % 4), oldNote != null ? oldNote.noteData : null);
 
 				var gottaHitNote:Bool = section.mustHitSection;
 
 				if (songNotes[1] > 3)
-				{
 					gottaHitNote = !section.mustHitSection;
-				}
+				
+				var notesDir:Array<Map<Int, Note>> = gottaHitNote ? posBf : posDad;
+				var notesPos:Map<Int, Note> = notesDir[daNoteData];
+				if (notesPos.exists(daThing)) {
+					var fucker:Note = notesPos.get(daThing);
+					if (fucker.sustainLength > songNotes[2])
+						continue;
+					else {
+						var i:Int = fucker.tail.length - 1;
+						var anus:Note = null;
+						while (i >= 0) {
+							anus = fucker.tail[i];
+							
+							anus.parent = null;
+							anus.active = false;
+							anus.visible = false;
+							anus.ignoreNote = true;
 
-				var oldNote:Note;
-				if (unspawnNotes.length > 0)
-					oldNote = unspawnNotes[Std.int(unspawnNotes.length - 1)];
-				else
-					oldNote = null;
+							anus.kill();
+							unspawnNotes.remove(anus);
+							anus.destroy();
+						}
+						
+						fucker.tail = [];
+						fucker.active = false;
+						fucker.visible = false;
+						fucker.ignoreNote = true;
+
+						fucker.kill();
+						unspawnNotes.remove(fucker);
+						fucker.destroy();
+					}
+				}
 
 				var swagNote:Note = new Note(daStrumTime, daNoteData, oldNote);
 				swagNote.mustPress = gottaHitNote;
@@ -2406,8 +2448,10 @@ class PlayState extends MusicBeatState
 						sustainNote.mustPress = gottaHitNote;
 						sustainNote.gfNote = (section.gfSection && (songNotes[1]<4));
 						sustainNote.noteType = swagNote.noteType;
+						sustainNote.parent = swagNote;
 						sustainNote.scrollFactor.set();
 						unspawnNotes.push(sustainNote);
+						swagNote.tail.push(sustainNote);
 
 						if (sustainNote.mustPress)
 						{

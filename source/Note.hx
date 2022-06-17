@@ -23,6 +23,9 @@ class Note extends FlxSprite
 	public var hitByOpponent:Bool = false;
 	public var noteWasHit:Bool = false;
 	public var prevNote:Note;
+	
+	public var tail:Array<Note> = []; // for sustain
+	public var parent:Note;
 
 	public var sustainLength:Float = 0;
 	public var isSustainNote:Bool = false;
@@ -124,6 +127,16 @@ class Note extends FlxSprite
 		}
 		return value;
 	}
+	
+	public static function getNoteData(dir:Int, ?prevDir:Int = null):Int {
+		if (PlayState.instance.randomNotes)
+			dir = Math.floor((FlxG.random.int(1, 320) / 12) % 4); // Random Direction.
+		
+		if (PlayState.instance.mirrorMode) 
+			dir = Std.int(Math.abs(3 - dir)); // FlipX notes to be hit.
+		
+		return dir;
+	}
 
 	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false, ?inEditor:Bool = false)
 	{
@@ -143,25 +156,6 @@ class Note extends FlxSprite
 		if(!inEditor) this.strumTime += ClientPrefs.noteOffset;
 
 		this.noteData = noteData;
-
-		// Mirror Mode stuff.
-		if (PlayState.instance.mirrorMode) 
-		{
-			this.noteData = Std.int(Math.abs(3 - noteData)); // FlipX notes to be hit.
-			noteData = Std.int(Math.abs(3 - noteData)); // FlipX noteData sprite (0 = purple, 1 = blue, 2 = green, 3 = red).
-		}
-
-		if (PlayState.instance.randomNotes) 
-		{
-			if (!isSustainNote) {
-				// Listen the random math kjinda works ;mfao im tired
-				this.noteData = Math.floor((FlxG.random.int(1, 320) / 12) % 4); // Random NoteData.
-				noteData = this.noteData; // Da Sprite
-			} else {
-				this.noteData = prevNote.noteData;
-				noteData = prevNote.noteData;
-			}
-		}
 
 		if(noteData > -1) {
 			texture = '';
