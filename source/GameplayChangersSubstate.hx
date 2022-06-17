@@ -87,6 +87,9 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 		
 		var option:GameplayOption = new GameplayOption('Modcharts', 'modCharts', 'bool', true, true);
 		optionsArray.push(option);
+
+		var option:GameplayOption = new GameplayOption('Mechanics', 'customFeats', 'bool', true, true);
+		optionsArray.push(option);
 		
 		var option:GameplayOption = new GameplayOption('Double Time', 'dTime', 'bool', false, true);
 		optionsArray.push(option);

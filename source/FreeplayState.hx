@@ -234,7 +234,7 @@ class FreeplayState extends MusicBeatState {
 		topBar.y = FlxMath.lerp(topBar.y, 0, elapsed * 6);
 		bottomBar.y = FlxMath.lerp(bottomBar.y, FlxG.height - bottomBar.height, elapsed * 6);
 		weekGraphic.y = bottomBar.y + bottomBar.height - (weekGraphic.height + 8);
-		weekGraphic.x = bottomBar.x + bottomBar.width/3 - weekGraphic.width/3;
+		weekGraphic.x = bottomBar.x + bottomBar.width/3 - weekGraphic.width/3 - 40;
 
 		scoreText.y = topBar.y + 15;
 		diffText.y = topBar.y - 20;

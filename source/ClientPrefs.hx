@@ -25,6 +25,7 @@ class ClientPrefs {
 	public static var hideChars:Bool = false;
 	public static var noteCamera:Bool = true;
 	public static var modCharts:Bool = true;
+	public static var customFeats:Bool = true;
 	public static var dTime:Bool = false;
 	public static var cleanJudgements:Bool = false;
 	public static var autoPause:Bool = true;
@@ -125,6 +126,7 @@ class ClientPrefs {
 		FlxG.save.data.noteSplashes = noteSplashes;
 		FlxG.save.data.mitigateIconBop = mitigateIconBop;
 		FlxG.save.data.lowQuality = lowQuality;
+		FlxG.save.data.customFeats = customFeats;
 		FlxG.save.data.laneUnderlay = laneUnderlay;
 		FlxG.save.data.framerate = framerate;
 		FlxG.save.data.toggleShaders = toggleShaders;
@@ -199,6 +201,9 @@ class ClientPrefs {
 			if(Main.fpsVar != null) {
 				Main.fpsVar.visible = showFPS;
 			}
+		}
+		if(FlxG.save.data.customFeats != null) {
+			customFeats = FlxG.save.data.customFeats;
 		}
 		if(FlxG.save.data.camSpeed != null) {
 			camSpeed = FlxG.save.data.camSpeed;

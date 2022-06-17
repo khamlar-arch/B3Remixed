@@ -537,6 +537,11 @@ class PlayState extends MusicBeatState
 				stadiumBoppers.setGraphicSize(Std.int(stadiumBoppers.width * 2.2));
 				stadiumBoppers.updateHitbox();
 				add(stadiumBoppers);
+			
+			case 'menu': //:)
+				var bg:BGSprite = new BGSprite('stages/menu/bg', 0, 0, 0.95, 0.95);
+				bg.cameras = [camHUD];
+				add(bg);
 
 			case 'spooky': //Week 2
 				var halloweenSky:BGSprite = new BGSprite('stages/forest/sky', -1400, -1000, 0.3, 0.3);
@@ -4602,25 +4607,27 @@ class PlayState extends MusicBeatState
 			}
 		});
 
-		switch(daNote.noteType)
-		{
-			case "Chomp Note":					
-				for (i in 0...4)
-				{
-					playerStrums.members[i].x += FlxG.random.int(70, -70);
-					playerStrums.members[i].y += FlxG.random.int(70, -70);
-					opponentStrums.members[i].x += (i - 1.5) * 25;
-					tween("chompNote1" + i, opponentStrums.members[i], {x: STRUM_X + 52 + (i * 112)}, 0.1);
-					tween("chompNote2" + i, playerStrums.members[i], {x: STRUM_X + 239 + ((i + 4) * 112), y: 50}, 0.1, {startDelay: 4});
-				}
-				health -= 0.25;
-			case "Gay Note":
-				health -= 0.5;
-				hpDraining += 0.5;
-				if(hpDrainTime > 0)
-					hpDrainTime = maxDrainTime/2;
-				else
-					hpDrainTime = maxDrainTime;		
+		if (ClientPrefs.customFeats) {
+			switch(daNote.noteType)
+			{
+				case "Chomp Note":					
+					for (i in 0...4)
+					{
+						playerStrums.members[i].x += FlxG.random.int(70, -70);
+						playerStrums.members[i].y += FlxG.random.int(70, -70);
+						opponentStrums.members[i].x += (i - 1.5) * 25;
+						tween("chompNote1" + i, opponentStrums.members[i], {x: STRUM_X + 52 + (i * 112)}, 0.1);
+						tween("chompNote2" + i, playerStrums.members[i], {x: STRUM_X + 239 + ((i + 4) * 112), y: 50}, 0.1, {startDelay: 4});
+					}
+					health -= 0.25;
+				case "Gay Note":
+					health -= 0.5;
+					hpDraining += 0.5;
+					if(hpDrainTime > 0)
+						hpDrainTime = maxDrainTime/2;
+					else
+						hpDrainTime = maxDrainTime;		
+			}
 		}
 
 		combo = 0;
@@ -4794,7 +4801,8 @@ class PlayState extends MusicBeatState
 
 			if (!note.isSustainNote)
 			{
-				FlxG.sound.play(Paths.sound('ChartingTick'), ClientPrefs.hitsoundVolume, false);
+				if (ClientPrefs.hitsoundVolume > 0)
+					FlxG.sound.play(Paths.sound('ChartingTick'), ClientPrefs.hitsoundVolume, false);
 				combo += 1;
 				if(combo > 9999) combo = 9999;
 				popUpScore(note);

@@ -79,48 +79,57 @@ class Note extends FlxSprite
 
 	private function set_noteType(value:String):String {
 		noteSplashTexture = PlayState.SONG.splashSkin;
-
-		if(noteData > -1 && noteType != value) {
-			switch(value) {
-				case 'Hurt Note':
-					ignoreNote = mustPress;
-					reloadNote('noteskins/B3Notes');
-					if(isSustainNote) {
-						missHealth = 0.1;
-					} else {
-						missHealth = 0.3;
+			if(noteData > -1 && noteType != value) {
+				switch(value) {
+					case 'Hurt Note':
+						ignoreNote = mustPress;
+						reloadNote('noteskins/B3Notes');
+						if(isSustainNote) {
+							missHealth = 0.1;
+						} else {
+							missHealth = 0.3;
+						}
+						hitCausesMiss = true;
+					case 'No Animation':
+						noAnimation = true;
+					case 'GF Sing':
+						gfNote = true;
+				}
+				
+				if (ClientPrefs.customFeats) {
+					switch(value) {
+						case 'Burger Note':
+							ignoreNote = mustPress;
+							reloadNote('noteskins/burgerNotes');
+							colorSwap.saturation = 0;
+							colorSwap.brightness = 0;
+							if(isSustainNote) {
+								missHealth = 0.9;
+							} else {
+								missHealth = 0.9;
+							}
+							offsetX -= 75;
+						case 'Chomp Note':
+							canBeHit = mustPress;
+							reloadNote('noteskins/chompNotes');
+							if(tooLate) {
+								missHealth = 0.9;
+							}
+							offsetX -= 75;
+						case 'Gay Note':
+							canBeHit = mustPress;
+							reloadNote('noteskins/gayNotes');
+							if(tooLate) {
+								missHealth = 0.4;
+							}
 					}
-					hitCausesMiss = true;
-				case 'No Animation':
-					noAnimation = true;
-				case 'GF Sing':
-					gfNote = true;
-				case 'Burger Note':
-					ignoreNote = mustPress;
-					reloadNote('noteskins/burgerNotes');
-					colorSwap.saturation = 0;
-					colorSwap.brightness = 0;
-					if(isSustainNote) {
-						missHealth = 0.9;
-					} else {
-						missHealth = 0.9;
+				} else {
+					switch(value) {
+						case 'Burger Note':
+							kill();
 					}
-					offsetX -= 75;
-				case 'Chomp Note':
-					canBeHit = mustPress;
-					reloadNote('noteskins/chompNotes');
-					if(tooLate) {
-						missHealth = 0.9;
-					}
-					offsetX -= 75;
-				case 'Gay Note':
-					canBeHit = mustPress;
-					reloadNote('noteskins/gayNotes');
-					if(tooLate) {
-						missHealth = 0.4;
-					}
-			}
-			noteType = value;
+				}
+				noteType = value;
 		}
 		return value;
 	}

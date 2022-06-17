@@ -32,6 +32,7 @@ class MainMenuState extends MusicBeatState
 	var menuItems:FlxTypedGroup<FlxSprite>;
 	private var camGame:FlxCamera;
 	var easterEgg:String = 'GUH';
+	var menuEgg:String = 'MENYOO';
 	var allowedKeys:String = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 	var easterEggKeysBuffer:String = '';
 	
@@ -253,6 +254,7 @@ class MainMenuState extends MusicBeatState
 					if(easterEggKeysBuffer.length >= 32) 
 						easterEggKeysBuffer = easterEggKeysBuffer.substring(1);
 					var word:String = 'GUH';
+					var word2:String = 'MENYOO';
 					if (easterEggKeysBuffer.contains(word))
 					{
 						FlxG.save.data.guhUnlocked = true;
@@ -280,6 +282,15 @@ class MainMenuState extends MusicBeatState
 							FreeplayState.destroyFreeplayVocals();
 						});
 
+						easterEggKeysBuffer = '';
+					} else if (easterEggKeysBuffer.contains(word2)) {
+						PlayState.SONG = Song.loadFromJson('menyoo', 'menyoo');
+						PlayState.isStoryMode = false;
+						PlayState.storyDifficulty = 1;
+
+						LoadingState.loadAndSwitchState(new PlayState());
+						FlxG.sound.music.volume = 0;		
+						FreeplayState.destroyFreeplayVocals();
 						easterEggKeysBuffer = '';
 					}
 				}
