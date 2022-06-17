@@ -565,23 +565,23 @@ class PlayState extends MusicBeatState
 				add(halloweenGround);
 
 			case 'philly': //Week 3				
-				var subway:BGSprite = new BGSprite('station/subway', -350,-500, 0.9, 0.9);
+				var subway:BGSprite = new BGSprite('stages/station/subway', -350,-500, 0.9, 0.9);
 				subway.setGraphicSize(Std.int(subway.width * 2));
 				subway.updateHitbox();
 
-				gayStation = new FlxSprite(-350,-500).loadGraphic(Paths.image('station/subway but gay'));
+				gayStation = new FlxSprite(-350,-500).loadGraphic(Paths.image('stages/station/subway-alt'));
 				gayStation.setGraphicSize(Std.int(gayStation.width * 2));
 				gayStation.scrollFactor.set(0.9, 0.9);
 				gayStation.visible = false;
 				gayStation.updateHitbox();
 
-				var pcameos:BGSprite = new BGSprite('station/pcameos', -335,-551, 0.9, 0.9, ['bop'], false);
+				var pcameos:BGSprite = new BGSprite('stages/station/pcameos', -335,-551, 0.9, 0.9, ['bop'], false);
 				pcameos.antialiasing = true;
 				pcameos.setGraphicSize(Std.int(pcameos.width * 3.3));
 				pcameos.setGraphicSize(Std.int(pcameos.height * 3.3));
 				pcameos.updateHitbox();
 
-				var stationLights:BGSprite = new BGSprite('station/lightsSheet', -350,-500, 0.9, 0.9, ['Lights'], true);
+				var stationLights:BGSprite = new BGSprite('stages/station/lightsSheet', -350,-500, 0.9, 0.9, ['Lights'], true);
 				stationLights.antialiasing = true;
 				stationLights.setGraphicSize(Std.int(subway.width * 1));
 				stationLights.updateHitbox();
@@ -614,16 +614,16 @@ class PlayState extends MusicBeatState
                 GameOverSubstate.endSoundName = 'gameOverEnd-burger';
                 GameOverSubstate.characterName = 'bf-burger';
 
-				var roomBG:BGSprite = new BGSprite('halloween/room', -550, -270, 0.9, 0.9);
+				var roomBG:BGSprite = new BGSprite('stages/bedroom-old/room', -550, -270, 0.9, 0.9);
 				roomBG.setGraphicSize(Std.int(roomBG.width * 1));
 				roomBG.updateHitbox();
 
-				var windowcity:BGSprite = new BGSprite('halloween/windowcity', -550, -270, 0.9, 0.9);
+				var windowcity:BGSprite = new BGSprite('stages/bedroom-old/windowcity', -550, -270, 0.9, 0.9);
 				windowcity.active = false;
 				windowcity.setGraphicSize(Std.int(windowcity.width * 1));
 				windowcity.updateHitbox();
 
-				var filterBG:BGSprite = new BGSprite('halloween/filterforbg', -550, -270, 0.9, 0.9);
+				var filterBG:BGSprite = new BGSprite('stages/bedroom-old/filterforbg', -550, -270, 0.9, 0.9);
 				filterBG.setGraphicSize(Std.int(filterBG.width * 1));
 				filterBG.updateHitbox();
 
@@ -688,20 +688,20 @@ class PlayState extends MusicBeatState
 				GameOverSubstate.endSoundName = 'gameOverEnd-shaya';
                 GameOverSubstate.characterName = 'shayover';
 
-				var back:BGSprite = new BGSprite('harmony/Back', -350, -100, 0.9, 0.9);
-				back.setGraphicSize(Std.int(back.width * 1));
-				back.setGraphicSize(Std.int(back.height * 1));
+				var back:BGSprite = new BGSprite('stages/harmony/Back', -350, -100, 0.9, 0.9);
+				back.setGraphicSize(Std.int(back.width * 2));
+				back.setGraphicSize(Std.int(back.height * 2));
 				back.updateHitbox();
 				
 				add(back);
 
-				studio = new FlxSprite(-500, -200).loadGraphic(Paths.image('harmony/Studio'));
-				studio.setGraphicSize(Std.int(studio.width * 0.65));
+				studio = new FlxSprite(-500, -200).loadGraphic(Paths.image('stages/harmony/Studio'));
+				studio.setGraphicSize(Std.int(studio.width * 1.3));
 				studio.scrollFactor.set(0.9, 0.9);
 				studio.updateHitbox();
 
-				glass = new FlxSprite(-500, -200).loadGraphic(Paths.image('harmony/Glass'));
-				glass.setGraphicSize(Std.int(glass.width * 0.65));
+				glass = new FlxSprite(-500, -200).loadGraphic(Paths.image('stages/harmony/Glass'));
+				glass.setGraphicSize(Std.int(glass.width * 1.3));
 				glass.scrollFactor.set(0.9, 0.9);
 				glass.updateHitbox();
 
@@ -2786,8 +2786,6 @@ class PlayState extends MusicBeatState
 
 		callOnLuas('onUpdate', [elapsed]);
 
-		isCameraOnForcedPos = true;
-
 		switch (curStage)
 		{
 			case 'schoolEvil':
@@ -4064,15 +4062,15 @@ class PlayState extends MusicBeatState
 		if(hasDialogue && !endDia && isStoryMode) {
 			endDia = true;
 		
-		var doof:DialogueBox = new DialogueBox(false, dialogue);
-		// doof.x += 70;
-		// doof.y = FlxG.height * 0.5;
-		doof.scrollFactor.set();
-		doof.finishThing = endSong;
-		FlxTween.tween(camHUD, {alpha:0}, 0.3);
-		doof.cameras = [camOther];
-		add(doof);
-		return;
+			var doof:DialogueBox = new DialogueBox(false, dialogue);
+			// doof.x += 70;
+			// doof.y = FlxG.height * 0.5;
+			doof.scrollFactor.set();
+			doof.finishThing = endSong;
+			FlxTween.tween(camHUD, {alpha:0}, 0.3);
+			doof.cameras = [camOther];
+			add(doof);
+			return;
 		
 		}
 		

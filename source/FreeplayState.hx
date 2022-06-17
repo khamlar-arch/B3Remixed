@@ -449,7 +449,7 @@ class FreeplayState extends MusicBeatState {
 		//
 
 		Paths.currentModDirectory = songs[curSelected].folder;
-		CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
+		CoolUtil.difficulties = (songs[curSelected].songName.toLowerCase() == 'triple b trouble' ? ['Hard', 'Get Real'] : CoolUtil.defaultDifficulties.copy());
 		var diffStr:String = WeekData.getCurrentWeek().difficulties;
 		if(diffStr != null) diffStr = diffStr.trim(); //Fuck you HTML5
 
