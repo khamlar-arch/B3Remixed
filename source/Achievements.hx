@@ -181,4 +181,4 @@ class AchievementObject extends FlxSpriteGroup {
 		}
 		super.destroy();
 	}
-}
+} 

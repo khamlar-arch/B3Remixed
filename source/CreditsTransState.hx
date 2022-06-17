@@ -98,7 +98,7 @@ class CreditsTransState extends MusicBeatState
 			grpOptions.add(optionText);
 		}
 
-		var topTxt:FlxText = new FlxText(50, 615, 1180, "Choose a set of credits and check out\nall the great people working on the mod,\nor the people on the Psych Engine team!", 40);
+		var topTxt:FlxText = new FlxText(50, 650, 1180, "Choose a set of credits and check out all the great people\nworking on the mod, or the people on the Psych Engine team!", 40);
 		topTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		topTxt.scrollFactor.set();
 		topTxt.borderSize = 2.4;

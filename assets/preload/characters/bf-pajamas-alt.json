@@ -1,103 +1,103 @@
 {
 	"animations": [
 		{
+			"loop": false,
 			"offsets": [
 				-1,
 				17
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singRIGHT",
-			"indices": [],
-			"name": "Right0"
+			"fps": 24,
+			"name": "Right0",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				0,
 				0
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "idle",
-			"indices": [],
-			"name": "Idle"
+			"fps": 24,
+			"name": "Idle",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				-18,
 				88
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singUP",
-			"indices": [],
-			"name": "Up0"
+			"fps": 24,
+			"name": "Up0",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				-1,
 				3
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singLEFT",
-			"indices": [],
-			"name": "Left0"
+			"fps": 24,
+			"name": "Left0",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				1,
-				-22
+				-32
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singDOWN",
-			"indices": [],
-			"name": "Down0"
+			"fps": 24,
+			"name": "Down0",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
-				31,
+				11,
 				30
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singRIGHTmiss",
-			"indices": [],
-			"name": "Right Miss"
+			"fps": 24,
+			"name": "Right Miss",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				130,
 				108
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singUPmiss",
-			"indices": [],
-			"name": "Up miss"
+			"fps": 24,
+			"name": "Up miss",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
-				20,
+				-240,
 				0
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singLEFTmiss",
-			"indices": [],
-			"name": "Left  Miss"
+			"fps": 24,
+			"name": "Left  Miss",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
-				70,
+				50,
 				182
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singDOWNmiss",
-			"indices": [],
-			"name": "Down Miss"
+			"fps": 24,
+			"name": "Down Miss",
+			"indices": []
 		}
 	],
 	"no_antialiasing": false,

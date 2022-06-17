@@ -34,6 +34,7 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import lime.app.Application;
+import flixel.addons.display.FlxBackdrop;
 import openfl.Assets;
 import flixel.math.FlxMath;
 
@@ -77,6 +78,8 @@ class TitleState extends MusicBeatState
 	var lastKeysPressed:Array<FlxKey> = [];
 
 	var mustUpdate:Bool = false;
+	var checkerboard:FlxBackdrop;
+	var checkerboard2:FlxBackdrop;
 	
 	var titleJSON:TitleData;
 	
@@ -179,8 +182,6 @@ class TitleState extends MusicBeatState
 		curWacky = FlxG.random.getObject(getIntroTextShit());
 
 		// DEBUG BULLSHIT
-
-		swagShader = new ColorSwap();
 		super.create();
 		
 		Highscore.load();
@@ -224,7 +225,7 @@ class TitleState extends MusicBeatState
 	var gfDance:FlxSprite;
 	var danceLeft:Bool = false;
 	var titleText:FlxSprite;
-	var swagShader:ColorSwap = null;
+	var pressEnter:FlxText;
 
 	function startIntro()
 	{
@@ -278,111 +279,37 @@ class TitleState extends MusicBeatState
 		
 		add(bg);
 
-		logoBl = new FlxSprite(titleJSON.titlex, titleJSON.titley);
-		
-		
-		#if (desktop && MODS_ALLOWED)
-		var path = "mods/" + Paths.currentModDirectory + "/images/logoBumpin.png";
-		//trace(path, FileSystem.exists(path));
-		if (!FileSystem.exists(path)){
-			path = "mods/images/logoBumpin.png";
-		}
-		//trace(path, FileSystem.exists(path));
-		if (!FileSystem.exists(path)){
-			path = "assets/images/logoBumpin.png";
-		}
-		//trace(path, FileSystem.exists(path));
-		logoBl.frames = FlxAtlasFrames.fromSparrow(BitmapData.fromFile(path),File.getContent(StringTools.replace(path,".png",".xml")));
-		#else
-		
-		logoBl.frames = Paths.getSparrowAtlas('logoBumpin');
-		#end
-		
-		logoBl.antialiasing = ClientPrefs.globalAntialiasing;
-		logoBl.animation.addByPrefix('bump', 'logo bumpin', 24, false);
-		logoBl.animation.play('bump');
-		logoBl.updateHitbox();
-		logoBl.setGraphicSize(Std.int(logoBl.width * 0.75));
-		// logoBl.screenCenter();
-		// logoBl.color = FlxColor.BLACK;
+		checkerboard = new FlxBackdrop(Paths.image('menus/menuCheckerboard'), 0, 0, true, true);
+		checkerboard.alpha = 0.85;
+		checkerboard.scale.set(5, 5);
+		checkerboard.color = 0xFF801604;
+		add(checkerboard);
 
-		swagShader = new ColorSwap();
-			gfDance = new FlxSprite(titleJSON.gfx, titleJSON.gfy);
-		
-		#if (desktop && MODS_ALLOWED)
-		var path = "mods/" + Paths.currentModDirectory + "/images/gfDanceTitle.png";
-		//trace(path, FileSystem.exists(path));
-		if (!FileSystem.exists(path)){
-			path = "mods/images/gfDanceTitle.png";
-		//trace(path, FileSystem.exists(path));
-		}
-		if (!FileSystem.exists(path)){
-			path = "assets/images/gfDanceTitle.png";
-		//trace(path, FileSystem.exists(path));
-		}
-		gfDance.frames = FlxAtlasFrames.fromSparrow(BitmapData.fromFile(path),File.getContent(StringTools.replace(path,".png",".xml")));
-		#else
-		
-		gfDance.frames = Paths.getSparrowAtlas('gfDanceTitle');
-		#end
-			gfDance.animation.addByIndices('danceLeft', 'gfDance', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
-			gfDance.animation.addByIndices('danceRight', 'gfDance', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
+		checkerboard2 = new FlxBackdrop(Paths.image('menus/menuCheckerboard'), 0, 0, true, true);
+		checkerboard2.alpha = 0.85;
+		checkerboard2.scale.set(5, 5);
+		checkerboard2.color = 0xFFF37B42;
+		add(checkerboard2);
+
+		logoBl = new FlxSprite(400, 0).loadGraphic(Paths.image('menus/title/logo'));
+		logoBl.antialiasing = ClientPrefs.globalAntialiasing;
+		logoBl.setGraphicSize(Std.int(logoBl.width * 0.75));
+		logoBl.screenCenter(Y);
+
+		gfDance = new FlxSprite(-200, -90);
+		gfDance.frames = Paths.getSparrowAtlas('menus/title/gfDanceTitle');
+		gfDance.animation.addByIndices('danceLeft', 'gfDance', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
+		gfDance.animation.addByIndices('danceRight', 'gfDance', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
 		gfDance.setGraphicSize(Std.int(gfDance.width * 0.75));
 		gfDance.antialiasing = ClientPrefs.globalAntialiasing;
 		add(gfDance);
-		gfDance.shader = swagShader.shader;
 		add(logoBl);
-		//logoBl.shader = swagShader.shader;
 
-		titleText = new FlxSprite(titleJSON.startx, titleJSON.starty);
-		#if (desktop && MODS_ALLOWED)
-		var path = "mods/" + Paths.currentModDirectory + "/images/titleEnter.png";
-		//trace(path, FileSystem.exists(path));
-		if (!FileSystem.exists(path)){
-			path = "mods/images/titleEnter.png";
-		}
-		//trace(path, FileSystem.exists(path));
-		if (!FileSystem.exists(path)){
-			path = "assets/images/titleEnter.png";
-		}
-		//trace(path, FileSystem.exists(path));
-		titleText.frames = FlxAtlasFrames.fromSparrow(BitmapData.fromFile(path),File.getContent(StringTools.replace(path,".png",".xml")));
-		#else
-		
-		titleText.frames = Paths.getSparrowAtlas('titleEnter');
-		#end
-		var animFrames:Array<FlxFrame> = [];
-		@:privateAccess {
-			titleText.animation.findByPrefix(animFrames, "ENTER IDLE");
-			titleText.animation.findByPrefix(animFrames, "ENTER FREEZE");
-		}
-		
-		if (animFrames.length > 0) {
-			newTitle = true;
-			
-			titleText.animation.addByPrefix('idle', "ENTER IDLE", 24);
-			titleText.animation.addByPrefix('press', ClientPrefs.flashing ? "ENTER PRESSED" : "ENTER FREEZE", 24);
-		}
-		else {
-			newTitle = false;
-			
-			titleText.animation.addByPrefix('idle', "Press Enter to Begin", 24);
-			titleText.animation.addByPrefix('press', "ENTER PRESSED", 24);
-		}
-		
-		titleText.antialiasing = ClientPrefs.globalAntialiasing;
-		titleText.animation.play('idle');
-		titleText.updateHitbox();
-		// titleText.screenCenter(X);
-		add(titleText);
-
-		//var logo:FlxSprite = new FlxSprite().loadGraphic(Paths.image('logo'));
-		//logo.screenCenter();
-		//logo.antialiasing = ClientPrefs.globalAntialiasing;
-		// add(logo);
-
-		// FlxTween.tween(logoBl, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG});
-		// FlxTween.tween(logo, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG, startDelay: 0.1});
+		pressEnter = new FlxText(0, 600, 1280, "Press ENTER to Continue", 40);
+		pressEnter.antialiasing = ClientPrefs.globalAntialiasing;
+		pressEnter.setFormat(Paths.font('mplus.ttf'), 48, 0xFFFFFFFF, "center");
+		pressEnter.setBorderStyle(FlxTextBorderStyle.OUTLINE, 0xFF000000, 3, 1);
+		add(pressEnter);
 
 		credGroup = new FlxGroup();
 		add(credGroup);
@@ -433,7 +360,7 @@ class TitleState extends MusicBeatState
 
 	var transitioning:Bool = false;
 	
-	var newTitle:Bool = false;
+	var newTitle:Bool = true;
 	var titleTimer:Float = 0;
 
 	override function update(elapsed:Float)
@@ -479,84 +406,90 @@ class TitleState extends MusicBeatState
 
 		// EASTER EGG
 
-		if (!transitioning && skippedIntro)
-		{
-			if (newTitle && !pressedEnter)
+		if (skippedIntro) {
+			logoBl.scale.set(FlxMath.lerp(logoBl.scale.x, 0.78, 0.1), FlxMath.lerp(logoBl.scale.y, 0.78, 0.1));
+
+			checkerboard.x += (elapsed / 10) / (1 / 60);
+			checkerboard.y += (elapsed / 2) / (1 / 60);
+
+			checkerboard2.x -= (elapsed / 10) / (1 / 60);
+			checkerboard2.y -= (elapsed / 2) / (1 / 60);
+			if (!transitioning)
 			{
-				var timer:Float = titleTimer;
-				if (timer >= 1)
-					timer = (-timer) + 2;
-				
-				timer = FlxEase.quadInOut(timer);
-				
-				titleText.color = FlxColor.interpolate(titleTextColors[0], titleTextColors[1], timer);
-				titleText.alpha = FlxMath.lerp(titleTextAlphas[0], titleTextAlphas[1], timer);
-			}
-			
-			if(pressedEnter)
-			{
-				titleText.color = FlxColor.WHITE;
-				titleText.alpha = 1;
-				
-				if(titleText != null) titleText.animation.play('press');
-
-				FlxG.camera.flash(ClientPrefs.flashing ? FlxColor.WHITE : 0x4CFFFFFF, 1);
-				FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
-
-				transitioning = true;
-				// FlxG.sound.music.stop();
-
-				new FlxTimer().start(1, function(tmr:FlxTimer)
+				if (newTitle && !pressedEnter)
 				{
-					if (mustUpdate) {
-						MusicBeatState.switchState(new OutdatedState());
-					} else {
-						MusicBeatState.switchState(new MainMenuState());
-					}
-					closedState = true;
-				});
-				// FlxG.sound.play(Paths.music('titleShoot'), 0.7);
-			}
-			else if(easterEggEnabled)
-			{
-				var finalKey:FlxKey = FlxG.keys.firstJustPressed();
-				if(finalKey != FlxKey.NONE) {
-					lastKeysPressed.push(finalKey); //Convert int to FlxKey
-					if(lastKeysPressed.length > easterEggKeyCombination.length)
-					{
-						lastKeysPressed.shift();
-					}
+					var timer:Float = titleTimer;
+					if (timer >= 1)
+						timer = (-timer) + 2;
 					
-					if(lastKeysPressed.length == easterEggKeyCombination.length)
+					timer = FlxEase.quadInOut(timer);
+				}
+				
+				if(pressedEnter)
+				{
+					pressEnter.color = FlxColor.WHITE;
+					FlxG.camera.flash(ClientPrefs.flashing ? FlxColor.WHITE : 0x4CFFFFFF, 1, null, true);
+					FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
+
+					transitioning = true;
+					// FlxG.sound.music.stop();
+					FlxTween.tween(pressEnter, {y: 1000}, 0.9, {ease: FlxEase.elasticInOut, type: PINGPONG});
+
+					checkerboard2.color = 0xFF4256F3;
+					checkerboard.color = 0xFF3D18E2;
+
+					new FlxTimer().start(1, function(tmr:FlxTimer)
 					{
-						var isDifferent:Bool = false;
-						for (i in 0...lastKeysPressed.length) {
-							if(lastKeysPressed[i] != easterEggKeyCombination[i]) {
-								isDifferent = true;
-								break;
-							}
+						if (mustUpdate) {
+							MusicBeatState.switchState(new OutdatedState());
+						} else {
+							MusicBeatState.switchState(new MainMenuState());
 						}
-
-						/*if(!isDifferent) {
-							trace('Easter egg triggered!');
-							FlxG.save.data.psykaEasterEgg = !FlxG.save.data.psykaEasterEgg;
-							FlxG.sound.play(Paths.sound('secretSound'));
-
-							var black:FlxSprite = new FlxSprite(0, 0).makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
-							black.alpha = 0;
-							add(black);
-
-							FlxTween.tween(black, {alpha: 1}, 1, {onComplete:
-								function(twn:FlxTween) {
-									FlxTransitionableState.skipNextTransIn = true;
-									FlxTransitionableState.skipNextTransOut = true;
-									MusicBeatState.switchState(new TitleState());
+						closedState = true;
+					});
+					// FlxG.sound.play(Paths.music('titleShoot'), 0.7);
+				}
+				else if(easterEggEnabled)
+				{
+					var finalKey:FlxKey = FlxG.keys.firstJustPressed();
+					if(finalKey != FlxKey.NONE) {
+						lastKeysPressed.push(finalKey); //Convert int to FlxKey
+						if(lastKeysPressed.length > easterEggKeyCombination.length)
+						{
+							lastKeysPressed.shift();
+						}
+						
+						if(lastKeysPressed.length == easterEggKeyCombination.length)
+						{
+							var isDifferent:Bool = false;
+							for (i in 0...lastKeysPressed.length) {
+								if(lastKeysPressed[i] != easterEggKeyCombination[i]) {
+									isDifferent = true;
+									break;
 								}
-							});
-							lastKeysPressed = [];
-							closedState = true;
-							transitioning = true;
-						}*/
+							}
+
+							/*if(!isDifferent) {
+								trace('Easter egg triggered!');
+								FlxG.save.data.psykaEasterEgg = !FlxG.save.data.psykaEasterEgg;
+								FlxG.sound.play(Paths.sound('secretSound'));
+
+								var black:FlxSprite = new FlxSprite(0, 0).makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+								black.alpha = 0;
+								add(black);
+
+								FlxTween.tween(black, {alpha: 1}, 1, {onComplete:
+									function(twn:FlxTween) {
+										FlxTransitionableState.skipNextTransIn = true;
+										FlxTransitionableState.skipNextTransOut = true;
+										MusicBeatState.switchState(new TitleState());
+									}
+								});
+								lastKeysPressed = [];
+								closedState = true;
+								transitioning = true;
+							}*/
+						}
 					}
 				}
 			}
@@ -565,12 +498,6 @@ class TitleState extends MusicBeatState
 		if (pressedEnter && !skippedIntro)
 		{
 			skipIntro();
-		}
-
-		if(swagShader != null)
-		{
-			if(controls.UI_LEFT) swagShader.hue -= elapsed * 0.1;
-			if(controls.UI_RIGHT) swagShader.hue += elapsed * 0.1;
 		}
 
 		super.update(elapsed);
@@ -617,7 +544,7 @@ class TitleState extends MusicBeatState
 		super.beatHit();
 
 		if(logoBl != null)
-			logoBl.animation.play('bump', true);
+			logoBl.scale.set(0.85, 0.85);
 
 		if(gfDance != null) {
 			danceLeft = !danceLeft;

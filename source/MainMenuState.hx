@@ -18,7 +18,6 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import lime.app.Application;
-import Achievements;
 import editors.MasterEditorMenu;
 import flixel.input.keyboard.FlxKey;
 import openfl.Lib;
@@ -32,8 +31,8 @@ class MainMenuState extends MusicBeatState
 
 	var menuItems:FlxTypedGroup<FlxSprite>;
 	private var camGame:FlxCamera;
-	private var camAchievement:FlxCamera;
 	var easterEgg:String = 'GUH';
+	var menuEgg:String = 'MENYOO';
 	var allowedKeys:String = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 	var easterEggKeysBuffer:String = '';
 	
@@ -80,11 +79,8 @@ class MainMenuState extends MusicBeatState
 		debugKeys = ClientPrefs.copyKey(ClientPrefs.keyBinds.get('debug_1'));
 
 		camGame = new FlxCamera();
-		camAchievement = new FlxCamera();
-		camAchievement.bgColor.alpha = 0;
 
 		FlxG.cameras.reset(camGame);
-		FlxG.cameras.add(camAchievement);
 		FlxCamera.defaultCameras = [camGame];
 
 		transIn = FlxTransitionableState.defaultTransIn;
@@ -127,15 +123,12 @@ class MainMenuState extends MusicBeatState
 		topSec.antialiasing = ClientPrefs.globalAntialiasing;
 		add(topSec);
 
-		logoBl = new FlxSprite(-180, -190);
-		logoBl.frames = Paths.getSparrowAtlas('logoBumpin');
+		logoBl = new FlxSprite(-140, -150).loadGraphic(Paths.image('menus/title/logo'));
 		logoBl.antialiasing = ClientPrefs.globalAntialiasing;
-		logoBl.animation.addByPrefix('bump', 'logo bumpin', 24, false);
-		logoBl.animation.play('bump');
 		logoBl.updateHitbox();
 		logoBl.scrollFactor.set(0, 0);
-		logoBl.setGraphicSize(Std.int(logoBl.width * 0.77));
-		logoBl.setGraphicSize(Std.int(logoBl.height * 0.77));
+		logoBl.setGraphicSize(Std.int(logoBl.width * 0.8));
+		logoBl.setGraphicSize(Std.int(logoBl.height * 0.8));
 		add(logoBl);
 
 		menuBox = new FlxSprite(80, 315).loadGraphic(Paths.image('menus/main/box'));
@@ -202,30 +195,8 @@ class MainMenuState extends MusicBeatState
 
 		changeItem();
 
-		#if ACHIEVEMENTS_ALLOWED
-		Achievements.loadAchievements();
-		var leDate = Date.now();
-		if (leDate.getDay() == 5 && leDate.getHours() >= 18) {
-			var achieveID:Int = Achievements.getAchievementIndex('friday_night_play');
-			if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2])) { //It's a friday night. WEEEEEEEEEEEEEEEEEE
-				Achievements.achievementsMap.set(Achievements.achievementsStuff[achieveID][2], true);
-				giveAchievement();
-				ClientPrefs.saveSettings();
-			}
-		}
-		#end
-
 		super.create();
 	}
-
-	#if ACHIEVEMENTS_ALLOWED
-	// Unlocks "Freaky on a Friday Night" achievement
-	function giveAchievement() {
-		add(new AchievementObject('friday_night_play', camAchievement));
-		FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
-		trace('Giving achievement "friday_night_play"');
-	}
-	#end
 
 	var selectedSomethin:Bool = false;
 
@@ -280,6 +251,7 @@ class MainMenuState extends MusicBeatState
 					if(easterEggKeysBuffer.length >= 32) 
 						easterEggKeysBuffer = easterEggKeysBuffer.substring(1);
 					var word:String = 'GUH';
+					var word2:String = 'MENYOO';
 					if (easterEggKeysBuffer.contains(word))
 					{
 						FlxG.save.data.guhUnlocked = true;
@@ -307,6 +279,15 @@ class MainMenuState extends MusicBeatState
 							FreeplayState.destroyFreeplayVocals();
 						});
 
+						easterEggKeysBuffer = '';
+					} else if (easterEggKeysBuffer.contains(word2)) {
+						PlayState.SONG = Song.loadFromJson('menyoo', 'menyoo');
+						PlayState.isStoryMode = false;
+						PlayState.storyDifficulty = 1;
+
+						LoadingState.loadAndSwitchState(new PlayState());
+						FlxG.sound.music.volume = 0;		
+						FreeplayState.destroyFreeplayVocals();
 						easterEggKeysBuffer = '';
 					}
 				}

@@ -170,13 +170,6 @@ class VisualsUISubState extends BaseOptionsMenu
 
 		addOption(new Option('Performance Boosters', '', '', 'filler', null));
 
-		var option:Option = new Option('Toggle Character Visibility',
-			"Hides the characters. (This can also help with optimization.)",
-			'hideChars',
-			'bool',
-			true);
-		addOption(option);
-
 		var option:Option = new Option('Toggle Shaders',
 			'Toggles whether shaders should be added onto a song.\n(This can help with optimization, but makes the experience worse.)',
 			'toggleShaders',

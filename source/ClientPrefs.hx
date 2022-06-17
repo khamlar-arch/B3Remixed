@@ -22,9 +22,9 @@ class ClientPrefs {
 	public static var violence:Bool = true;
 	public static var camZooms:Bool = true;
 	public static var scoreDetail:Bool = true;
-	public static var hideChars:Bool = false;
 	public static var noteCamera:Bool = true;
 	public static var modCharts:Bool = true;
+	public static var customFeats:Bool = true;
 	public static var dTime:Bool = false;
 	public static var cleanJudgements:Bool = false;
 	public static var autoPause:Bool = true;
@@ -125,6 +125,7 @@ class ClientPrefs {
 		FlxG.save.data.noteSplashes = noteSplashes;
 		FlxG.save.data.mitigateIconBop = mitigateIconBop;
 		FlxG.save.data.lowQuality = lowQuality;
+		FlxG.save.data.customFeats = customFeats;
 		FlxG.save.data.laneUnderlay = laneUnderlay;
 		FlxG.save.data.framerate = framerate;
 		FlxG.save.data.toggleShaders = toggleShaders;
@@ -134,7 +135,6 @@ class ClientPrefs {
 		FlxG.save.data.camZooms = camZooms;
 		FlxG.save.data.camSpeed = camSpeed;
 		FlxG.save.data.noteCamera = noteCamera;
-		FlxG.save.data.hideChars = hideChars;
 		FlxG.save.data.scoreDetail = scoreDetail;
 		FlxG.save.data.modCharts = modCharts;
 		FlxG.save.data.dTime = dTime;
@@ -150,8 +150,6 @@ class ClientPrefs {
 		FlxG.save.data.noReset = noReset;
 		FlxG.save.data.healthBarAlpha = healthBarAlpha;
 		FlxG.save.data.comboOffset = comboOffset;
-		FlxG.save.data.achievementsMap = Achievements.achievementsMap;
-		FlxG.save.data.henchmenDeath = Achievements.henchmenDeath;
 
 		FlxG.save.data.ratingOffset = ratingOffset;
 		FlxG.save.data.sickWindow = sickWindow;
@@ -181,9 +179,6 @@ class ClientPrefs {
 		if(FlxG.save.data.middleScroll != null) {
 			middleScroll = FlxG.save.data.middleScroll;
 		}
-		if(FlxG.save.data.hideChars != null) {
-			hideChars = FlxG.save.data.hideChars;
-		}
 		if(FlxG.save.data.judgementCounter != null) {
 			judgementCounter = FlxG.save.data.judgementCounter;
 		}
@@ -201,6 +196,9 @@ class ClientPrefs {
 			if(Main.fpsVar != null) {
 				Main.fpsVar.visible = showFPS;
 			}
+		}
+		if(FlxG.save.data.customFeats != null) {
+			customFeats = FlxG.save.data.customFeats;
 		}
 		if(FlxG.save.data.camSpeed != null) {
 			camSpeed = FlxG.save.data.camSpeed;

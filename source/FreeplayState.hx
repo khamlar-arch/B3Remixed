@@ -19,6 +19,7 @@ import openfl.utils.AssetType;
 import openfl.utils.Assets as FLAssets;
 import openfl.utils.AssetCache as FLAssetCache;
 import meta.data.*;
+import flixel.util.FlxTimer;
 import openfl.media.Sound;
 import sys.FileSystem;
 import sys.thread.Mutex;
@@ -233,7 +234,7 @@ class FreeplayState extends MusicBeatState {
 		topBar.y = FlxMath.lerp(topBar.y, 0, elapsed * 6);
 		bottomBar.y = FlxMath.lerp(bottomBar.y, FlxG.height - bottomBar.height, elapsed * 6);
 		weekGraphic.y = bottomBar.y + bottomBar.height - (weekGraphic.height + 8);
-		weekGraphic.x = bottomBar.x + bottomBar.width/3 - weekGraphic.width/3;
+		weekGraphic.x = bottomBar.x + bottomBar.width/3 - weekGraphic.width/3 - 40;
 
 		scoreText.y = topBar.y + 15;
 		diffText.y = topBar.y - 20;
@@ -337,7 +338,7 @@ class FreeplayState extends MusicBeatState {
 			if (songs[curSelected].songName.toLowerCase() == 'triple b trouble') 
 			{
 				iconArray[curSelected].animation.curAnim.curFrame = 1;
-				FlxG.sound.volume = 0;		
+				FlxG.sound.volume = 0;
 				destroyFreeplayVocals();
 
 				FlxTween.tween(FlxG.camera, {alpha:0}, 1.7, {
@@ -448,7 +449,7 @@ class FreeplayState extends MusicBeatState {
 		//
 
 		Paths.currentModDirectory = songs[curSelected].folder;
-		CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
+		CoolUtil.difficulties = (songs[curSelected].songName.toLowerCase() == 'triple b trouble' ? ['Hard', 'Get Real'] : CoolUtil.defaultDifficulties.copy());
 		var diffStr:String = WeekData.getCurrentWeek().difficulties;
 		if(diffStr != null) diffStr = diffStr.trim(); //Fuck you HTML5
 

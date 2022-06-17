@@ -58,13 +58,6 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 			true);
 		addOption(option);
 
-		var option:Option = new Option('Modcharts',
-			"If checked, the notes won't move around when a modchart is active.",
-			'modCharts',
-			'bool',
-			true);
-		addOption(option);
-
 		addOption(new Option('Key Bindings', '', '', 'filler', null));
 
 		var option:Option = new Option('Change Controls',
