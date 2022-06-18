@@ -87,12 +87,6 @@ class StoryMenuState extends MusicBeatState
 		txtWeekTitle.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, RIGHT);
 		txtWeekTitle.alpha = 0.7;
 
-		var rankText:FlxText = new FlxText(0, 10);
-		rankText.text = 'RANK: GREAT';
-		rankText.setFormat(Paths.font("vcr.ttf"), 32);
-		rankText.size = scoreText.size;
-		rankText.screenCenter(X);
-
 		var ui_tex = Paths.getSparrowAtlas('campaign_menu_UI_assets');
 
 		grpWeekText = new FlxTypedGroup<MenuItem>();
@@ -166,19 +160,11 @@ class StoryMenuState extends MusicBeatState
 
 		difficultySelectors.add(sprDifficulty);
 
-		var tracksSprite:FlxSprite = new FlxSprite(FlxG.width * 0.07, 425).loadGraphic(Paths.image('Menu_Tracks'));
-		tracksSprite.antialiasing = ClientPrefs.globalAntialiasing;
-
-		tracksSprite.setPosition(950,100);
-		txtTracklist = new FlxText(950, tracksSprite.y + 60,336, "", 32);
+		txtTracklist = new FlxText(937.5, 100, 336, "", 32);
 		txtTracklist.alignment = CENTER;
-		txtTracklist.font = rankText.font;
-		txtTracklist.color = 0xFFe55777;
-
-		
-	//	add(tracksSprite);
+		txtTracklist.font = "VCR OSD Mono";
+		txtTracklist.color = 0xFFED28AA;
 		add(txtTracklist);
-		// add(rankText);
 		add(scoreText);
 		add(txtWeekTitle);
 
@@ -201,6 +187,8 @@ class StoryMenuState extends MusicBeatState
 	{
 		checkerboard.x += elapsed / (1 / 60);
 		checkerboard.y += elapsed / (1 / 60);
+
+		sprDifficulty.y = FlxMath.lerp(sprDifficulty.y, 0, 0.25);
 
 		for (item in grpWeekText.members)
 		{
@@ -241,7 +229,7 @@ class StoryMenuState extends MusicBeatState
 				FlxG.sound.play(Paths.sound('scrollMenu'));
 			}
 
-			txtTracklist.setPosition(950,100);
+			txtTracklist.setPosition(937.5, 100);
 
 			if (controls.UI_RIGHT_P)
 				changeDifficulty(1);
@@ -333,6 +321,7 @@ class StoryMenuState extends MusicBeatState
 	function changeDifficulty(change:Int = 0):Void
 	{
 		curDifficulty += change;
+		sprDifficulty.y = 50;
 
 		if (curDifficulty < 0)
 			curDifficulty = CoolUtil.difficulties.length-1;
@@ -460,7 +449,8 @@ class StoryMenuState extends MusicBeatState
 		for (i in 0...leWeek.songs.length) {
 			stringThing.push(leWeek.songs[i][0]);
 		}
-txtTracklist.setPosition(950,100);
+
+		txtTracklist.setPosition(937.5, 100);
 		txtTracklist.text = 'Tracks\n------------\n';
 		for (i in 0...stringThing.length)
 		{

@@ -1452,6 +1452,7 @@
 		"song": "Tutorial",
 		"validScore": true,
 		"sections": 0,
+		"stage": "stage-alt",
 		"needsVoices": true,
 		"speed": 1.4,
 		"bpm": 135
