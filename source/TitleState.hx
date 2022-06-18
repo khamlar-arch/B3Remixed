@@ -282,16 +282,16 @@ class TitleState extends MusicBeatState
 		checkerboard = new FlxBackdrop(Paths.image('menus/menuCheckerboard'), 0, 0, true, true);
 		checkerboard.alpha = 0.85;
 		checkerboard.scale.set(5, 5);
-		checkerboard.color = 0xFF801604;
+		checkerboard.color = 0xFF582372;
 		add(checkerboard);
 
 		checkerboard2 = new FlxBackdrop(Paths.image('menus/menuCheckerboard'), 0, 0, true, true);
 		checkerboard2.alpha = 0.85;
 		checkerboard2.scale.set(5, 5);
-		checkerboard2.color = 0xFFF37B42;
+		checkerboard2.color = 0xFF8D0ECA;
 		add(checkerboard2);
 
-		logoBl = new FlxSprite(400, 0).loadGraphic(Paths.image('menus/title/logo'));
+		logoBl = new FlxSprite(1400, 0).loadGraphic(Paths.image('menus/title/logo'));
 		logoBl.antialiasing = ClientPrefs.globalAntialiasing;
 		logoBl.setGraphicSize(Std.int(logoBl.width * 0.75));
 		logoBl.screenCenter(Y);
@@ -435,8 +435,8 @@ class TitleState extends MusicBeatState
 					// FlxG.sound.music.stop();
 					FlxTween.tween(pressEnter, {y: 1000}, 0.9, {ease: FlxEase.elasticInOut, type: PINGPONG});
 
-					checkerboard2.color = 0xFF4256F3;
-					checkerboard.color = 0xFF3D18E2;
+					checkerboard2.color = 0xFFB5439A;
+					checkerboard.color = 0xFF87196D;
 
 					new FlxTimer().start(1, function(tmr:FlxTimer)
 					{
@@ -603,6 +603,7 @@ class TitleState extends MusicBeatState
 			FlxG.camera.flash(FlxColor.WHITE, 4);
 			remove(credGroup);
 			skippedIntro = true;
+			FlxTween.tween(logoBl, {x: 400, angle: 720}, 1.9, {ease: FlxEase.elasticInOut});
 		}
 	}
 }
