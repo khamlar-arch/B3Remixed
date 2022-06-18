@@ -1492,6 +1492,7 @@ class PlayState extends MusicBeatState
 		CoolUtil.precacheSound('missnote1');
 		CoolUtil.precacheSound('missnote2');
 		CoolUtil.precacheSound('missnote3');
+		CoolUtil.precacheMusic('breakfast');
 		
 		Paths.music('breakfast');
 		Paths.image('alphabet');
@@ -3315,13 +3316,13 @@ class PlayState extends MusicBeatState
 	function tweenCamOnHit(data:Int) {
 		switch(data) {
 			case 0:
-				camFollow.x -= 20;
+				camFollow.x -= 15;
 			case 1:
-				camFollow.y += 20;
+				camFollow.y += 5;
 			case 2:
-				camFollow.y -= 20;
+				camFollow.y -= 5;
 			case 3:
-				camFollow.x += 20;
+				camFollow.x += 15;
 		}
 	}
 
@@ -5101,7 +5102,8 @@ class PlayState extends MusicBeatState
 	override function stepHit()
 	{
 		super.stepHit();
-		if (FlxG.sound.music.time > Conductor.songPosition + 20 || FlxG.sound.music.time < Conductor.songPosition - 20)
+		if (Math.abs(FlxG.sound.music.time - (Conductor.songPosition - Conductor.offset)) > 20
+			|| (SONG.needsVoices && Math.abs(vocals.time - (Conductor.songPosition - Conductor.offset)) > 20))
 		{
 			resyncVocals();
 		}

@@ -149,9 +149,16 @@ class CoolUtil
 
 	//uhhhh does this even work at all? i'm starting to doubt
 	public static function precacheSound(sound:String, ?library:String = null):Void {
-		var EmbeddedSound = Paths.sound(sound, library);
-		if (Assets.exists(EmbeddedSound, SOUND) || Assets.exists(EmbeddedSound, MUSIC))
-			Assets.getSound(EmbeddedSound, true);
+		precacheSoundFile(Paths.sound(sound, library));
+	}
+
+	public static function precacheMusic(sound:String, ?library:String = null):Void {
+		precacheSoundFile(Paths.music(sound, library));
+	}
+
+	private static function precacheSoundFile(file:Dynamic):Void {
+		if (Assets.exists(file, SOUND) || Assets.exists(file, MUSIC))
+			Assets.getSound(file, true);
 	}
 	
 	inline public static function flKeyToFlx(keyCode:Int):FlxKey

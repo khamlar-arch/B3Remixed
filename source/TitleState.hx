@@ -476,7 +476,7 @@ class TitleState extends MusicBeatState
 		}
 	}
 
-	private var sickSteps:Int = 0; //Basically curBeat but won't be skipped if you hold the tab or resize the screen
+	private var sickBeats:Int = 0; //Basically curBeat but won't be skipped if you hold the tab or resize the screen
 	public static var closedState:Bool = false;
 	override function beatHit()
 	{
@@ -493,45 +493,40 @@ class TitleState extends MusicBeatState
 			else
 				gfDance.animation.play('danceLeft');
 		}
-	}
-
-	override function stepHit()
-	{
-		super.stepHit();
-		
+ 
 		if(!closedState) {
-			sickSteps++;
-			switch (sickSteps)
+			sickBeats++;
+			switch (sickBeats)
 			{
 				case 1:
-					createCoolText(['STUDIO BREAKBEAT']);
-				case 3:
-					deleteCoolText();
-					addMoreText('present');
-				case 5:
-					deleteCoolText();
-					addMoreText('Created');
-				case 6:
-					addMoreText('by');
-				case 7:
-					addMoreText('Biddle3');
-					ngSpr.visible = true;
-				case 8:
-					deleteCoolText();
-					ngSpr.visible = false;
-				case 9:
-					createCoolText([curWacky[0]]);
-				case 11:
-					addMoreText(curWacky[1]);
-				case 12:
-					deleteCoolText();
-					addMoreText('Friday Night');
-				case 13:
-					addMoreText('Funkin');
-				case 14:
-					addMoreText('B3 REMIXED');
-				case 15:
-					skipIntro();
+				createCoolText(['STUDIO BREAKBEAT']);
+			case 3:
+				deleteCoolText();
+				addMoreText('present');
+			case 5:
+				deleteCoolText();
+				addMoreText('Created');
+			case 6:
+				addMoreText('by');
+			case 7:
+				addMoreText('Biddle3');
+				ngSpr.visible = true;
+			case 8:
+				deleteCoolText();
+				ngSpr.visible = false;
+			case 9:
+				createCoolText([curWacky[0]]);
+			case 11:
+				addMoreText(curWacky[1]);
+			case 12:
+				deleteCoolText();
+				addMoreText('Friday Night');
+			case 13:
+				addMoreText('Funkin');
+			case 14:
+				addMoreText('B3 REMIXED');
+			case 15:
+				skipIntro();
 			}
 		}
 	}
