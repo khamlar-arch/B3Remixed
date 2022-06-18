@@ -277,6 +277,7 @@ class FreeplayState extends MusicBeatState {
 		var accepted = controls.ACCEPT;
 		var space = FlxG.keys.justPressed.SPACE;
 		var ctrl = FlxG.keys.justPressed.CONTROL;
+		var reset = controls.RESET;
 
 		if (upP)
 			changeSelection(-1);
@@ -297,6 +298,12 @@ class FreeplayState extends MusicBeatState {
 
         if(ctrl)
             openSubState(new GameplayChangersSubstate());
+		else if(reset)
+		{
+			persistentUpdate = false;
+			openSubState(new ResetScoreSubState(songs[curSelected].songName, curDifficulty, songs[curSelected].songCharacter));
+			FlxG.sound.play(Paths.sound('scrollMenu'));
+		}
         else if(space) {
             if(instPlaying != curSelected)
                 {

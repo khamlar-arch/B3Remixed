@@ -1493,8 +1493,6 @@ class PlayState extends MusicBeatState
 		CoolUtil.precacheSound('missnote2');
 		CoolUtil.precacheSound('missnote3');
 		CoolUtil.precacheMusic('breakfast');
-		
-		Paths.music('breakfast');
 		Paths.image('alphabet');
 
 		#if desktop
@@ -2784,6 +2782,17 @@ class PlayState extends MusicBeatState
 		{
 			iconP1.swapOldIcon();
 		}*/
+
+		#if desktop
+		if (startTimer != null && startTimer.finished)
+		{
+			DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter(), true, Math.floor((songLength / (ClientPrefs.dTime ? 1.5 : 1))) - Conductor.songPosition - ClientPrefs.noteOffset);
+		}
+		else
+		{
+			DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter());
+		}
+		#end
 
 		callOnLuas('onUpdate', [elapsed]);
 

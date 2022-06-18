@@ -226,14 +226,8 @@ class TitleState extends MusicBeatState
 	function startIntro()
 	{
 		if (!initialized)
-		{
-
-			if(FlxG.sound.music == null) {
+			if(FlxG.sound.music == null)
 				FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
-
-				FlxG.sound.music.fadeIn(4, 0, 0.7);
-			}
-		}
 
 		Conductor.changeBPM(titleJSON.bpm);
 		persistentUpdate = true;
@@ -499,34 +493,38 @@ class TitleState extends MusicBeatState
 			switch (sickBeats)
 			{
 				case 1:
-				createCoolText(['STUDIO BREAKBEAT']);
-			case 3:
-				deleteCoolText();
-				addMoreText('present');
-			case 5:
-				deleteCoolText();
-				addMoreText('Created');
-			case 6:
-				addMoreText('by');
-			case 7:
-				addMoreText('Biddle3');
-				ngSpr.visible = true;
-			case 8:
-				deleteCoolText();
-				ngSpr.visible = false;
-			case 9:
-				createCoolText([curWacky[0]]);
-			case 11:
-				addMoreText(curWacky[1]);
-			case 12:
-				deleteCoolText();
-				addMoreText('Friday Night');
-			case 13:
-				addMoreText('Funkin');
-			case 14:
-				addMoreText('B3 REMIXED');
-			case 15:
-				skipIntro();
+					FlxG.sound.music.stop();
+					FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
+					FlxG.sound.music.fadeIn(5, 0, 0.7);
+				case 2:
+					createCoolText(['STUDIO BREAKBEAT']);
+				case 4:
+					deleteCoolText();
+					addMoreText('present');
+				case 6:
+					deleteCoolText();
+					addMoreText('Created');
+				case 7:
+					addMoreText('by');
+				case 8:
+					addMoreText('Biddle3');
+					ngSpr.visible = true;
+				case 9:
+					deleteCoolText();
+					ngSpr.visible = false;
+				case 10:
+					createCoolText([curWacky[0]]);
+				case 12:
+					addMoreText(curWacky[1]);
+				case 13:
+					deleteCoolText();
+					addMoreText('Friday Night');
+				case 14:
+					addMoreText('Funkin');
+				case 15:
+					addMoreText('B3 REMIXED');
+				case 16:
+					skipIntro();
 			}
 		}
 	}
