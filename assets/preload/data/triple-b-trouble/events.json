@@ -1370,11 +1370,6 @@
 				212054.794520548,
 				[
 					[
-						"WindowMove",
-						"2",
-						""
-					],
-					[
 						"Update Lyrics",
 						"Only a jaw,",
 						""
@@ -1721,7 +1716,7 @@
 					],
 					[
 						"WindowMove",
-						"1",
+						"2",
 						""
 					]
 				]
@@ -1742,6 +1737,11 @@
 					[
 						"Update Lyrics",
 						"I",
+						""
+					],
+					[
+						"WindowMove",
+						"1",
 						""
 					]
 				]
@@ -1802,6 +1802,11 @@
 					[
 						"Update Lyrics",
 						"MAD AT YOU, I",
+						""
+					],
+					[
+						"WindowMove",
+						"2",
 						""
 					]
 				]
@@ -1867,6 +1872,11 @@
 					[
 						"Update Lyrics",
 						"end, ",
+						""
+					],
+					[
+						"WindowMove",
+						"1",
 						""
 					]
 				]
