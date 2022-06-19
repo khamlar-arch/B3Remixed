@@ -540,7 +540,7 @@ class TitleState extends MusicBeatState
 			FlxG.camera.flash(FlxColor.WHITE, 4);
 			remove(credGroup);
 			skippedIntro = true;
-			FlxTween.tween(logoBl, {x: 400, angle: 720}, 1.9, {ease: FlxEase.elasticInOut});
+			FlxTween.tween(logoBl, {x: 400, angle: 720}, 0.8, {ease: FlxEase.circInOut});
 		}
 	}
 }

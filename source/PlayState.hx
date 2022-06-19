@@ -537,6 +537,11 @@ class PlayState extends MusicBeatState
 				stadiumBoppers.setGraphicSize(Std.int(stadiumBoppers.width * 2.2));
 				stadiumBoppers.updateHitbox();
 				add(stadiumBoppers);
+
+			case 'stage-alt': //Week 1
+				var bg:BGSprite = new BGSprite('stages/stadium/bgsmall', -15, 160, 0.95, 0.95);
+				bg.setGraphicSize(Std.int(bg.width * 1.2222));
+				add(bg);
 			
 			case 'menu': //:)
 				var bg:BGSprite = new BGSprite('stages/menu/bg', 0, 0, 0.95, 0.95);
@@ -721,8 +726,8 @@ class PlayState extends MusicBeatState
 				sunFace.updateHitbox();
 
 				alt = new FlxSprite(-1500, -900).loadGraphic(Paths.image('stages/sunshine/alt'));
-				alt.setGraphicSize(Std.int(alt.width * 5));
-				alt.setGraphicSize(Std.int(alt.height * 5));
+				alt.setGraphicSize(Std.int(alt.width * 6));
+				alt.setGraphicSize(Std.int(alt.height * 6));
 				alt.scrollFactor.set(0.9, 0.9);
 				alt.visible = false;
 				alt.updateHitbox();
@@ -1497,7 +1502,7 @@ class PlayState extends MusicBeatState
 
 		#if desktop
 		// Updating Discord Rich Presence.
-		DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter());
+		DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songBreaks + " CBs", iconP2.getCharacter());
 		#end
 
 		if(!ClientPrefs.controllerMode)
@@ -1839,6 +1844,7 @@ class PlayState extends MusicBeatState
 		inCutscene = true;
 		var black:FlxSprite = new FlxSprite(-100, -100).makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
 		black.scrollFactor.set();
+		black.cameras = [camOther];
 		add(black);
 
 		var red:FlxSprite = new FlxSprite(-100, -100).makeGraphic(FlxG.width * 2, FlxG.height * 2, 0xFFff1b31);
@@ -2296,7 +2302,7 @@ class PlayState extends MusicBeatState
 		
 		#if desktop
 		// Updating Discord Rich Presence (with Time Left)
-		DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter(), true, songLength / (ClientPrefs.dTime ? 1.5 : 1));
+		DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songBreaks + " CBs", iconP2.getCharacter(), true, songLength / (ClientPrefs.dTime ? 1.5 : 1));
 		#end
 		setOnLuas('songLength', songLength);
 		callOnLuas('onSongStart', []);
@@ -2705,11 +2711,11 @@ class PlayState extends MusicBeatState
 			#if desktop
 			if (startTimer != null && startTimer.finished)
 			{
-				DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter(), true, (songLength / (ClientPrefs.dTime ? 1.5 : 1)) - Conductor.songPosition - ClientPrefs.noteOffset);
+				DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songBreaks + " CBs", iconP2.getCharacter(), true, (songLength / (ClientPrefs.dTime ? 1.5 : 1)) - Conductor.songPosition - ClientPrefs.noteOffset);
 			}
 			else
 			{
-				DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter());
+				DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songBreaks + " CBs", iconP2.getCharacter());
 			}
 			#end
 		}
@@ -2724,11 +2730,11 @@ class PlayState extends MusicBeatState
 		{
 			if (Conductor.songPosition > 0.0)
 			{
-				DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter(), true, (songLength / (ClientPrefs.dTime ? 1.5 : 1)) - Conductor.songPosition - ClientPrefs.noteOffset);
+				DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songBreaks + " CBs", iconP2.getCharacter(), true, (songLength / (ClientPrefs.dTime ? 1.5 : 1)) - Conductor.songPosition - ClientPrefs.noteOffset);
 			}
 			else
 			{
-				DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter());
+				DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songBreaks + " CBs", iconP2.getCharacter());
 			}
 		}
 		#end
@@ -2741,7 +2747,7 @@ class PlayState extends MusicBeatState
 		#if desktop
 		if (health > 0 && !paused)
 		{
-			DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter());
+			DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songBreaks + " CBs", iconP2.getCharacter());
 		}
 		#end
 
@@ -2786,11 +2792,11 @@ class PlayState extends MusicBeatState
 		#if desktop
 		if (startTimer != null && startTimer.finished)
 		{
-			DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter(), true, Math.floor((songLength / (ClientPrefs.dTime ? 1.5 : 1))) - Conductor.songPosition - ClientPrefs.noteOffset);
+			DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songBreaks + " CBs", iconP2.getCharacter(), true, Math.floor((songLength / (ClientPrefs.dTime ? 1.5 : 1))) - Conductor.songPosition - ClientPrefs.noteOffset);
 		}
 		else
 		{
-			DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter());
+			DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songBreaks + " CBs", iconP2.getCharacter());
 		}
 		#end
 
@@ -2971,7 +2977,7 @@ class PlayState extends MusicBeatState
 				//}
 		
 				#if desktop
-				DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter());
+				DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songBreaks + " CBs", iconP2.getCharacter());
 				#end
 			}
 		}
@@ -3363,7 +3369,7 @@ class PlayState extends MusicBeatState
 				
 				#if desktop
 				// Game Over doesn't get his own variable because it's only used here
-				DiscordClient.changePresence("Game Over - " + SONG.song + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songMisses + " Misses", iconP2.getCharacter());
+				DiscordClient.changePresence("Game Over - " + SONG.song + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songBreaks + " CBs", iconP2.getCharacter());
 				#end
 				isDead = true;
 				return true;
@@ -4251,7 +4257,7 @@ class PlayState extends MusicBeatState
 				totalNotesHit += 1;
 				sicks++;
 		}
-		if (score > 0) score *= ClientPrefs.dTime ? 2 : 1;
+		if (score > 0) score = Std.int(score * (ClientPrefs.dTime ? 2 : 1) * (ClientPrefs.customFeats ? 1 : 0.8));
 
 		if(daRating == 'sick' && !note.noteSplashDisabled)
 		{

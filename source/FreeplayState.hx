@@ -67,6 +67,11 @@ class FreeplayState extends MusicBeatState {
 	
 	override function create()
 	{
+		#if desktop
+		// Updating Discord Rich Presence
+		DiscordClient.changePresence("In the Menus", null);
+		#end
+		
 		mutex = new Mutex();
 
 		Paths.clearStoredMemory();

@@ -38,7 +38,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 	private var checkboxGroup:FlxTypedGroup<CheckboxThingie>;
 	private var grpTexts:FlxTypedGroup<AttachedText>;
 
-	private var boyfriend:FlxSprite = null;
+	private var logoBl:FlxSprite = null;
 	private var descBox:FlxSprite;
 	private var descText:FlxText;
 
@@ -148,7 +148,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 				optionsArray[i].setChild(valueText);
 			}
 
-			if(optionsArray[i].showBoyfriend && boyfriend == null)
+			if(optionsArray[i].showBoyfriend && logoBl == null)
 			{
 				reloadBoyfriend();
 			}
@@ -298,10 +298,6 @@ class BaseOptionsMenu extends MusicBeatSubstate
 		}
 
 		super.update(elapsed);
-		
-		if(boyfriend != null && boyfriend.animation.curAnim.finished) {
-			boyfriend.animation.play('bump');
-		}
 
 		if(nextAccept > 0) {
 			nextAccept -= 1;
@@ -365,9 +361,9 @@ class BaseOptionsMenu extends MusicBeatSubstate
 		descBox.setGraphicSize(Std.int(descText.width + 20), Std.int(descText.height + 25));
 		descBox.updateHitbox();
 
-		if(boyfriend != null)
+		if(logoBl != null)
 		{
-			boyfriend.visible = optionsArray[curSelected].showBoyfriend;
+			logoBl.visible = optionsArray[curSelected].showBoyfriend;
 		}
 		curOption = optionsArray[curSelected]; //shorter lol
 	}
@@ -375,21 +371,19 @@ class BaseOptionsMenu extends MusicBeatSubstate
 	public function reloadBoyfriend()
 	{
 		var wasVisible:Bool = false;
-		if(boyfriend != null) {
-			wasVisible = boyfriend.visible;
-			boyfriend.kill();
-			remove(boyfriend);
-			boyfriend.destroy();
+		if(logoBl != null) {
+			wasVisible = logoBl.visible;
+			logoBl.kill();
+			remove(logoBl);
+			logoBl.destroy();
 		}
 
-		boyfriend = new FlxSprite(450, 55);
-		boyfriend.frames = Paths.getSparrowAtlas('logoBumpin');		
-		boyfriend.antialiasing = ClientPrefs.globalAntialiasing;
-		boyfriend.animation.addByPrefix('bump', 'logo bumpin', 24, false);
-		boyfriend.animation.play('bump');
-		boyfriend.updateHitbox();
-		boyfriend.setGraphicSize(Std.int(boyfriend.width * 0.5));
-		add(boyfriend);
+		logoBl = new FlxSprite(450, 55).loadGraphic(Paths.image('menus/title/logo'));
+		logoBl.antialiasing = ClientPrefs.globalAntialiasing;
+		logoBl.setGraphicSize(Std.int(logoBl.width * 0.5));
+		logoBl.screenCenter(Y);
+		add(logoBl);
+
 	}
 
 	function reloadCheckboxes() {

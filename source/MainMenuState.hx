@@ -166,21 +166,21 @@ class MainMenuState extends MusicBeatState
 		}*/
 
 		for (i in 0...optionShit.length)
-			{
-				var menuItem:FlxSprite = new FlxSprite(300, 350 + (i * 55));
-				menuItem.frames = tex;
-				
-				menuItem.animation.addByPrefix('idle', optionShit[i] + " basic", 24);
-				menuItem.animation.addByPrefix('selected', optionShit[i] + " white", 24);
-				menuItem.setGraphicSize(Std.int(menuItem.width * 0.68));
-				menuItem.animation.play('idle');
-				menuItem.ID = i;
-				menuItems.add(menuItem);
-				menuItem.scrollFactor.set();
-				menuItem.antialiasing = true;
-			}
+		{
+			var menuItem:FlxSprite = new FlxSprite(300, 350 + (i * 55));
+			menuItem.frames = tex;
+			
+			menuItem.animation.addByPrefix('idle', optionShit[i] + " basic", 24);
+			menuItem.animation.addByPrefix('selected', optionShit[i] + " white", 24);
+			menuItem.setGraphicSize(Std.int(menuItem.width * 0.68));
+			menuItem.animation.play('idle');
+			menuItem.ID = i;
+			menuItems.add(menuItem);
+			menuItem.scrollFactor.set();
+			menuItem.antialiasing = true;
+		}
 
-			FlxG.camera.follow(camFollow, null, 0.004);
+		FlxG.camera.follow(camFollow, null, 0.004);
 
 		var versionShit:FlxText = new FlxText(12, FlxG.height - 44, 0, "Psych Engine v" + psychEngineVersion, 12);
 		versionShit.scrollFactor.set();
@@ -340,7 +340,7 @@ class MainMenuState extends MusicBeatState
 					});
 				}
 			}
-			#if desktop
+			#if debug
 			else if (FlxG.keys.anyJustPressed(debugKeys))
 			{
 				selectedSomethin = true;
