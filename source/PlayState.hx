@@ -4257,7 +4257,7 @@ class PlayState extends MusicBeatState
 				totalNotesHit += 1;
 				sicks++;
 		}
-		if (score > 0) score *= ClientPrefs.dTime ? 2 : 1;
+		if (score > 0) score = Std.int(score * (ClientPrefs.dTime ? 2 : 1) * (ClientPrefs.customFeats ? 1 : 0.8));
 
 		if(daRating == 'sick' && !note.noteSplashDisabled)
 		{
