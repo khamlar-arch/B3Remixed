@@ -3172,22 +3172,15 @@ class PlayState extends MusicBeatState
 						switch (modifierThing.toLowerCase()) {
 							case 'fade in':
 								notes.forEachAlive(function(daNote:Note) {
-									if (daNote.strumTime - Conductor.songPosition < 100){
-										daNote.alpha = 1;
-									} else if (daNote.strumTime - Conductor.songPosition < 550) {
-										daNote.alpha = 1 - ((daNote.strumTime - Conductor.songPosition - 100) / 400);
-									}
+									if (daNote.strumTime - Conductor.songPosition < 550)
+										daNote.alpha = Math.min(1, 1 - ((daNote.strumTime - Conductor.songPosition - 100) / 400));
 								});
 							case 'fade out':
 								notes.forEachAlive(function(daNote:Note) {
-									if (daNote.strumTime - Conductor.songPosition < 100){
-										daNote.alpha = 0;
-									} else if (daNote.strumTime - Conductor.songPosition < 500) {
-										daNote.alpha = (daNote.strumTime - Conductor.songPosition - 100) / 400;
-									}
+									if (daNote.strumTime - Conductor.songPosition < 550)
+										daNote.alpha = Math.max(((daNote.strumTime - Conductor.songPosition - 100) / 400), 0);
 								});
 						}
-						trace((daNote.strumTime - Conductor.songPosition - 100) / 400);
 					}
 					if(daNote.copyY) {
 						if (strumScroll) {
