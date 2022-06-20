@@ -107,7 +107,7 @@ class FreeplayState extends MusicBeatState {
 		WeekData.setDirectoryFromWeek();
 
 		// LOAD CHARACTERS
-		bg = new FlxSprite().loadGraphic(Paths.image('menus/story/menuBG'));
+		bg = new FlxSprite().loadGraphic(Paths.image('menus/menuBG'));
 		add(bg);
 
 		checkerboard = new FlxBackdrop(Paths.image('menus/menuCheckerboard'), 0, 0, true, true);
