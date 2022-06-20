@@ -210,6 +210,7 @@ class PlayState extends MusicBeatState
 	public var instakillOnMiss:Bool = false;
 	public var mirrorMode:Bool = false;
 	public var randomNotes:Bool = false;
+	public var modifierThing:String = '';
 	public var cpuControlled:Bool = false;
 	public var practiceMode:Bool = false;
 
@@ -393,6 +394,7 @@ class PlayState extends MusicBeatState
 		practiceMode = ClientPrefs.getGameplaySetting('practice', false);
 		mirrorMode = ClientPrefs.getGameplaySetting('mirror', false);
 		randomNotes = ClientPrefs.getGameplaySetting('random', false);
+		modifierThing = ClientPrefs.getGameplaySetting('playmodifier', 'None');
 		cpuControlled = ClientPrefs.getGameplaySetting('botplay', false);
 		shader_chromatic_abberation = new ChromaticAberrationEffect();
 
@@ -1516,6 +1518,11 @@ class PlayState extends MusicBeatState
 		
 		cameraSpeed = ClientPrefs.camSpeed;
 
+		trace("---------------------");
+		trace("SONG: " + SONG.song);
+		trace("DIFFICULTY: " + storyDifficulty);
+		trace("---------------------");
+		
 		super.create();
 		
 		cacheCountdown();
@@ -3156,8 +3163,31 @@ class PlayState extends MusicBeatState
 					if(daNote.copyAngle) {
 						daNote.angle = strumAngle;
 					}
-					if(daNote.copyAlpha) {
-						daNote.alpha = strumAlpha;
+					if((modifierThing == 'None')) {
+						if(daNote.copyAlpha) {
+							daNote.alpha = strumAlpha;
+						}
+					}
+					if (modifierThing != 'None') {
+						switch (modifierThing.toLowerCase()) {
+							case 'fade in':
+								notes.forEachAlive(function(daNote:Note) {
+									if (daNote.strumTime - Conductor.songPosition < 100){
+										daNote.alpha = 1;
+									} else if (daNote.strumTime - Conductor.songPosition < 550) {
+										daNote.alpha = 1 - ((daNote.strumTime - Conductor.songPosition - 100) / 400);
+									}
+								});
+							case 'fade out':
+								notes.forEachAlive(function(daNote:Note) {
+									if (daNote.strumTime - Conductor.songPosition < 100){
+										daNote.alpha = 0;
+									} else if (daNote.strumTime - Conductor.songPosition < 500) {
+										daNote.alpha = (daNote.strumTime - Conductor.songPosition - 100) / 400;
+									}
+								});
+						}
+						trace((daNote.strumTime - Conductor.songPosition - 100) / 400);
 					}
 					if(daNote.copyY) {
 						if (strumScroll) {
@@ -4257,7 +4287,7 @@ class PlayState extends MusicBeatState
 				totalNotesHit += 1;
 				sicks++;
 		}
-		if (score > 0) score = Std.int(score * (ClientPrefs.dTime ? 2 : 1) * (ClientPrefs.customFeats ? 1 : 0.8));
+		if (score > 0) score = Std.int(score * (ClientPrefs.dTime ? 2 : 1) * (ClientPrefs.customFeats ? 1 : 0.8) * (modifierThing != 'None' ? 1.2 : 1));
 
 		if(daRating == 'sick' && !note.noteSplashDisabled)
 		{
