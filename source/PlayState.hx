@@ -71,6 +71,7 @@ class PlayState extends MusicBeatState
 {
 	public static var STRUM_X = 45;
 	public static var STRUM_X_MIDDLESCROLL = -278;
+	public var STRUM_OFFSET = 0;
 
 	public static var ratingStuff:Array<Dynamic> = [
 		['You Suck!', 0.2], //From 0% to 19%
@@ -4705,7 +4706,7 @@ class PlayState extends MusicBeatState
 						playerStrums.members[i].y += FlxG.random.int(70, -70);
 						opponentStrums.members[i].x += (i - 1.5) * 25;
 						tween("chompNote1" + i, opponentStrums.members[i], {x: STRUM_X + 52 + (i * 112)}, 0.1);
-						tween("chompNote2" + i, playerStrums.members[i], {x: STRUM_X + 239 + ((i + 4) * 112), y: 50}, 0.1, {startDelay: 4});
+						tween("chompNote2" + i, playerStrums.members[i], {x: STRUM_X + STRUM_OFFSET + 239 + ((i + 4) * 112), y: 50}, 0.1, {startDelay: 4});
 					}
 					health -= 0.25;
 				case "Gay Note":
