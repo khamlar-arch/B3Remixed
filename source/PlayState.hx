@@ -2271,7 +2271,7 @@ class PlayState extends MusicBeatState
 			case 'mi-opera': composeTxt.text = 'FOODIETI';
 			case 'fresh': composeTxt.text = 'BIDDLE3, PENKARU';
 			case 'mia-battle': composeTxt.text = 'BIDDLE3, JAMS3D';
-			case 'fang' | 'succ' | 'problem' | 'succd': composeTxt.text = 'BENLAB CRIMSON DIABLO';
+			case 'fang' | 'succ' | 'problem' | 'succ\'d': composeTxt.text = 'BENLAB CRIMSON DIABLO';
 			case 'dessert' | 'guh' | 'famine': composeTxt.text = 'SIRFITNESS';
 			case 'triple-b-trouble': composeTxt.text = 'BIDDLE3, BENLAB CRIMSON DIABLO, JAMS3D, DEGEN DAN,';
 			case 'f-u': composeTxt.text = 'PENKARU';
