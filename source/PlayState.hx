@@ -634,7 +634,7 @@ class PlayState extends MusicBeatState
 				filterBG.setGraphicSize(Std.int(filterBG.width * 1));
 				filterBG.updateHitbox();
 
-				dessert = new FlxSprite(-500,-400).loadGraphic(Paths.image('stages/nightmare/dream'));
+				dessert = new FlxSprite(-700,-500).loadGraphic(Paths.image('stages/nightmare/dream'));
 				dessert.setGraphicSize(Std.int(dessert.width * 2.3));
 				dessert.scrollFactor.set(0.9, 0.9);
 				dessert.visible = false;
