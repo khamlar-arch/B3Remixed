@@ -2,8 +2,8 @@ indices:default:0
 indices:smug:0
 indices:reallysmug:1
 indices:scared:2
-indices:angry:3
-indices:awkward:4
+indices:awkward:3
+indices:angry:4
 indices:death:5
 indices:donewithyourcrap:6
 indices:bruh:6
