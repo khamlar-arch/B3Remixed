@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
-	<haxedef name="NO_LOCK"/> <!-- PLEASE REMIND YALL TO REMOVE THIS WHEN UPLOADING B3 TO PUBLIC -->
+	<!-- <haxedef name="NO_LOCK"/> --> <!-- PLEASE REMIND YALL TO REMOVE THIS WHEN UPLOADING B3 TO PUBLIC -->
 	
 	<!-- _________________________ Application Settings _________________________ -->
 
