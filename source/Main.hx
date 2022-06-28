@@ -95,9 +95,6 @@ class Main extends Sprite
 			fpsVar.visible = ClientPrefs.showFPS;
 		}
 		#end
-
-		FlxG.sound.volume = FlxG.save.data.volume;
-		FlxG.sound.muted = FlxG.save.data.mute;
 		
 		FlxG.signals.focusGained.add(onFocus);
 		FlxG.signals.focusLost.add(onFocusLost);

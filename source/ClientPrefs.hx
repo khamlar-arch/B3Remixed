@@ -360,6 +360,9 @@ class ClientPrefs {
 		{
 			FlxG.sound.volume = FlxG.save.data.volume;
 		}
+		else
+			FlxG.sound.volume = 1;
+		
 		if (FlxG.save.data.mute != null)
 		{
 			FlxG.sound.muted = FlxG.save.data.mute;
