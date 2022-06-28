@@ -1,4 +1,7 @@
 local defaultNotePos = {};
+local hp;
+local iconY;
+local barDraining;
 
 function onEndSong()
 	if not allowEnd then
@@ -39,6 +42,34 @@ function onStepHit()
     end
 end
 
+function drainHealth(angle, loss)
+	doTweenAngle('drainBarHP', 'healthBar', angle, 0.1, 'linear')
+        doTweenAngle('drainBarIcon1', 'iconP1', angle, 0.1, 'linear')
+        doTweenAngle('drainBarIcon2', 'iconP2', angle, 0.1, 'linear')
+	setProperty('iconP1.y', ((iconY - (angle * 1.2) + (hp * (-6 * angle)) + (8 * angle))))
+        setProperty('iconP2.y', ((iconY + (angle * 1.25) + (hp * (-6 * angle)) + (4 * angle))))
+
+	barDraining = 0
+
+	if barDraining == 0 then
+		if angle > 0 then
+			setProperty('health', hp - (loss * 0.002))
+		end
+		if angle < 0 then
+			setProperty('health', hp + (loss * 0.002))	
+		end
+	end
+end
+
+function resetHealth()
+	doTweenAngle('drainBarHP', 'healthBar', 0, 0.1, 'linear')
+        doTweenAngle('drainBarIcon1', 'iconP1', 0, 0.1, 'linear')
+        doTweenAngle('drainBarIcon2', 'iconP2', 0, 0.1, 'linear')
+	setProperty('iconP1.y', iconY)
+        setProperty('iconP2.y', iconY)
+	barDraining = 1
+end
+
 function onGameOver()
     setProperty('health', -500);
     math.randomseed(os.clock()/4.0)
@@ -49,10 +80,19 @@ end
 
 function onUpdate()
 
+    hp = getProperty('health')
     songPos = getSongPosition()
     currentBeat = (songPos/5000)*(curBpm/60)
 
+    if hp > 2 then
+	    hp = 2
+    end
+
     if curStep > 2832 then
         -- SHAYA END
+    end
+
+    if curStep > 2895 then
+        drainHealth(4,2)
     end
 end

@@ -71,6 +71,7 @@ class PlayState extends MusicBeatState
 {
 	public static var STRUM_X = 45;
 	public static var STRUM_X_MIDDLESCROLL = -278;
+	public var STRUM_OFFSET = 0;
 
 	public static var ratingStuff:Array<Dynamic> = [
 		['You Suck!', 0.2], //From 0% to 19%
@@ -662,20 +663,20 @@ class PlayState extends MusicBeatState
 				grpTroubleObjs = new FlxTypedGroup<BGSprite>();
 				add(grpTroubleObjs);
 
-				var i:BGSprite = new BGSprite('stages/nightmare/details/' + objectsArray[0][0], -750 + (objectsArray[0][1] * 2.3), -370, 0.9, 0.9);
-				i.setGraphicSize(Std.int(i.width * 2.15), Std.int(i.height * 2.15));
-				i.updateHitbox();
-				grpTroubleObjs.add(i);
+				var tbtObject1:BGSprite = new BGSprite('stages/nightmare/details/' + objectsArray[0][0], -750 + (objectsArray[0][1] * 2.3), -370, 0.9, 0.9);
+				tbtObject1.setGraphicSize(Std.int(tbtObject1.width * 2.15), Std.int(tbtObject1.height * 2.15));
+				tbtObject1.updateHitbox();
+				grpTroubleObjs.add(tbtObject1);
 
-				var i2:BGSprite = new BGSprite('stages/nightmare/details/' + objectsArray[1][0], -750 + (objectsArray[1][1] * 2.3), -370, 0.9, 0.9);
-				i2.setGraphicSize(Std.int(i2.width * 2.15), Std.int(i2.height * 2.15));
-				i2.updateHitbox();
-				grpTroubleObjs.add(i2);
+				var tbtObject2:BGSprite = new BGSprite('stages/nightmare/details/' + objectsArray[1][0], -750 + (objectsArray[1][1] * 2.3), -370, 0.9, 0.9);
+				tbtObject2.setGraphicSize(Std.int(tbtObject2.width * 2.15), Std.int(tbtObject2.height * 2.15));
+				tbtObject2.updateHitbox();
+				grpTroubleObjs.add(tbtObject2);
 
-				var i3:BGSprite = new BGSprite('stages/nightmare/details/' + objectsArray[2][0], -750 + (objectsArray[2][1] * 2.3), -370, 0.9, 0.9);
-				i3.setGraphicSize(Std.int(i3.width * 2.15), Std.int(i3.height * 2.15));
-				i3.updateHitbox();
-				grpTroubleObjs.add(i3);
+				var tbtObject3:BGSprite = new BGSprite('stages/nightmare/details/' + objectsArray[2][0], -750 + (objectsArray[2][1] * 2.3), -370, 0.9, 0.9);
+				tbtObject3.setGraphicSize(Std.int(tbtObject3.width * 2.15), Std.int(tbtObject3.height * 2.15));
+				tbtObject3.updateHitbox();
+				grpTroubleObjs.add(tbtObject3);
 
 				var filtersArray:Array<Array<Dynamic>> = [['topfade', 0, 'ADD', 0.2], ['bottomfade', 126, 'MULTIPLY', 0.3], ['blood', 99, 'NORMAL', 0.15]];
 
@@ -2270,7 +2271,7 @@ class PlayState extends MusicBeatState
 			case 'mi-opera': composeTxt.text = 'FOODIETI';
 			case 'fresh': composeTxt.text = 'BIDDLE3, PENKARU';
 			case 'mia-battle': composeTxt.text = 'BIDDLE3, JAMS3D';
-			case 'fang' | 'succ' | 'problem' | 'succd': composeTxt.text = 'BENLAB CRIMSON DIABLO';
+			case 'fang' | 'succ' | 'problem' | 'succ\'d': composeTxt.text = 'BENLAB CRIMSON DIABLO';
 			case 'dessert' | 'guh' | 'famine': composeTxt.text = 'SIRFITNESS';
 			case 'triple-b-trouble': composeTxt.text = 'BIDDLE3, BENLAB CRIMSON DIABLO, JAMS3D, DEGEN DAN,';
 			case 'f-u': composeTxt.text = 'PENKARU';
@@ -3555,34 +3556,38 @@ class PlayState extends MusicBeatState
 							remove(miaStatic);
 						}
 					}
-				
+					grpTroubleObjs.members[0].alpha = 0;
+					grpTroubleObjs.members[1].alpha = 1;
+					grpTroubleObjs.members[2].alpha = 0;
 			case 'PicoTransition':
 				switch (Std.parseFloat(value1))
 				{
 					case 1:
 						trace('pico trans');
-							var picoStatic:FlxSprite = new FlxSprite().loadGraphic(Paths.image('picotransition'));
-							picoStatic.frames = Paths.getSparrowAtlas('picotransition');
-							picoStatic.animation.addByPrefix('ptrans', 'Phase3Static instance 1', 24, false);
-							picoStatic.screenCenter();
-					
-							picoStatic.scale.x = 4;
-							picoStatic.scale.y = 4;
-							picoStatic.alpha = 0.5;
-					
-							picoStatic.cameras = [camHUD];
-							add(picoStatic);
-							picoStatic.animation.play('ptrans');
-					
-							picoStatic.animation.finishCallback = function(pog:String)
+						var picoStatic:FlxSprite = new FlxSprite().loadGraphic(Paths.image('picotransition'));
+						picoStatic.frames = Paths.getSparrowAtlas('picotransition');
+						picoStatic.animation.addByPrefix('ptrans', 'Phase3Static instance 1', 24, false);
+						picoStatic.screenCenter();
+				
+						picoStatic.scale.x = 4;
+						picoStatic.scale.y = 4;
+						picoStatic.alpha = 0.5;
+				
+						picoStatic.cameras = [camHUD];
+						add(picoStatic);
+						picoStatic.animation.play('ptrans');
+				
+						picoStatic.animation.finishCallback = function(pog:String)
 						{
 							trace('ended funny static');
 							picoStatic.alpha = 0;
 				
 							remove(picoStatic);
 						}
-					}
-				
+				}
+				grpTroubleObjs.members[0].alpha = 0;
+				grpTroubleObjs.members[1].alpha = 1;
+				grpTroubleObjs.members[2].alpha = 1;
 			case 'PepTransition':
 				switch (Std.parseFloat(value1))
 				{
@@ -3609,6 +3614,9 @@ class PlayState extends MusicBeatState
 							remove(pepStatic);
 						}
 					}
+				grpTroubleObjs.members[0].alpha = 1;
+				grpTroubleObjs.members[1].alpha = 1;
+				grpTroubleObjs.members[2].alpha = 0;
 				
 			case 'Transition':
 				switch (Std.parseFloat(value1))
@@ -3636,6 +3644,9 @@ class PlayState extends MusicBeatState
 							remove(tStatic);
 						}
 					}
+			grpTroubleObjs.members[0].alpha = 1;
+			grpTroubleObjs.members[1].alpha = 1;
+			grpTroubleObjs.members[2].alpha = 1;
 
 			case 'Dessert':
 				switch (Std.parseFloat(value1))
@@ -4695,7 +4706,7 @@ class PlayState extends MusicBeatState
 						playerStrums.members[i].y += FlxG.random.int(70, -70);
 						opponentStrums.members[i].x += (i - 1.5) * 25;
 						tween("chompNote1" + i, opponentStrums.members[i], {x: STRUM_X + 52 + (i * 112)}, 0.1);
-						tween("chompNote2" + i, playerStrums.members[i], {x: STRUM_X + 239 + ((i + 4) * 112), y: 50}, 0.1, {startDelay: 4});
+						tween("chompNote2" + i, playerStrums.members[i], {x: STRUM_X + STRUM_OFFSET + 239 + ((i + 4) * 112), y: 50}, 0.1, {startDelay: 4});
 					}
 					health -= 0.25;
 				case "Gay Note":

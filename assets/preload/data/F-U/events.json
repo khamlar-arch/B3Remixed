@@ -3,7 +3,7 @@
 		"speed": 2.3,
 		"stage": "podcast",
 		"player1": "p-gf-playable",
-		"player2": "pico",
+		"player2": "pico-unshaded",
 		"player3": null,
 		"events": [
 			[
