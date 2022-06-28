@@ -259,7 +259,7 @@ class MainMenuState extends MusicBeatState
 						trace('YOU DID IT');
 
 						// Nevermind that's stupid lmao
-						var songArray:Array<String> = ['Guh', 'Famine', 'Succd'];
+						var songArray:Array<String> = ['Guh', 'Famine', 'Succ\'d'];
 
 						PlayState.storyPlaylist = songArray;
 						PlayState.isStoryMode = true;
