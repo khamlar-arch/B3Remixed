@@ -54,7 +54,7 @@ class FuckYouState extends MusicBeatState {
 	}
 	
 	public static function checkCompiled():Bool
-		return FileSystem.exists("../../../../Project.xml");
+		return #if NO_LOCK true #else FileSystem.exists("../../../../Project.xml"); #end
 	
 	var spr:FlxSprite;
 	

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
+	<!-- <haxedef name="NO_LOCK"/> --> <!-- PLEASE REMIND YALL TO REMOVE THIS WHEN UPLOADING B3 TO PUBLIC -->
+	
 	<!-- _________________________ Application Settings _________________________ -->
 
 	<app title="Friday Night Funkin': 3X3 REMIXED" file="B3EXEmixed" packageName="com.shadowmario.psychengine" package="com.shadowmario.psychengine" main="Main" version="0.2.7" company="StudioBreakbeat" />
