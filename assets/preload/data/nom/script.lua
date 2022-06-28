@@ -9,19 +9,19 @@ function onCreatePost()
 
 	setProperty('dad.alpha', 0)
 	
-    makeAnimatedLuaSprite('dada', 'characters/b3_gf_phase_3', getProperty('gf.x'), getProperty('gf.y'))
+    makeAnimatedLuaSprite('dada', 'characters/b3_gf_phase_3', getProperty('dad.x'), getProperty('dad.y'))
     addAnimationByPrefix('dada', 'talk', 'GF_TALK_START', 24 * (getPropertyFromClass("ClientPrefs", "dTime") and 1.5 or 1), false)
 end
 
 function onSongStart()
     setProperty('dada.y', getProperty('dada.y') + 295)
-    setProperty('dada.x', getProperty('dada.x') + 100)
+    setProperty('dada.x', getProperty('dada.x') + 150)
     addLuaSprite('dada')
     doTweenAlpha('voic', 'do', 0, 0.6, 'circInOut')
     characterPlayAnim('dad', 'talk', false)
     setProperty('dad.specialAnim', true)
     setProperty('camGame.zoom', 1.25)
-    triggerEvent('Camera Follow Pos', 550, 550)
+    triggerEvent('Camera Follow Pos', 450, 500)
 end
 
 function onStepHit()

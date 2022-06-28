@@ -195,15 +195,18 @@ class PauseSubState extends MusicBeatSubstate
 			if (menuItems == difficultyChoices)
 			{
 				if(menuItems.length - 1 != curSelected && difficultyChoices.contains(daSelected)) {
-					var name:String = PlayState.SONG.song;
-					var poop = Highscore.formatSong(name, curSelected);
-					PlayState.SONG = Song.loadFromJson(poop, name);
-					PlayState.storyDifficulty = curSelected;
-					MusicBeatState.resetState();
-					FlxG.sound.music.volume = 0;
-					PlayState.changedDifficulty = true;
-					PlayState.chartingMode = false;
-					return;
+					FlxTween.tween(transBlack, {x: 0}, 0.4, {ease: FlxEase.circInOut, onComplete: function (twn:FlxTween) {
+						var name:String = PlayState.SONG.song;
+						var poop = Highscore.formatSong(name, curSelected);
+						PlayState.SONG = Song.loadFromJson(poop, name);
+						FlxTransitionableState.skipNextTransIn = true;
+						PlayState.storyDifficulty = curSelected;
+						MusicBeatState.resetState();
+						FlxG.sound.music.volume = 0;
+						PlayState.changedDifficulty = true;
+						PlayState.chartingMode = false;
+						return;
+					}});
 				}
 
 				menuItems = menuItemsOG;

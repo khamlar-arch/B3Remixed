@@ -1503,6 +1503,13 @@ class PlayState extends MusicBeatState
 		CoolUtil.precacheMusic('breakfast');
 		Paths.image('alphabet');
 
+		if (Paths.formatToSongPath(SONG.song) == 'triple-b-trouble') {
+			Paths.image('characters/Zombie_Mia', 'shared');
+			Paths.image('characters/zombie_pico', 'shared');
+			Paths.image('characters/monster_zombie', 'shared');
+			Paths.image('characters/Monster_B3_GF', 'shared');
+		} 
+
 		#if desktop
 		// Updating Discord Rich Presence.
 		DiscordClient.changePresence(SONG.song  + " (" + storyDifficultyText + (ClientPrefs.dTime ? ", DOUBLE TIME" : "") + ")", "Score: " + songScore + " - " + songBreaks + " CBs", iconP2.getCharacter());
