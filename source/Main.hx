@@ -26,7 +26,7 @@ class Main extends Sprite
 
 	// You can pretty much ignore everything from here on - your code should go in your states.
 	
-	#if windows public static var fuckyou:Bool = false; #end
+	//#if windows public static var fuckyou:Bool = false; #end
 	public static var fullscreenKeys:Array<FlxKey> = [FlxKey.F11];
 	public static var focused:Bool = true;
 	public static var allowExit:Bool = true;

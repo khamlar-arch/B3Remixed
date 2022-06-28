@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
-	<!-- <haxedef name="NO_LOCK"/> --> <!-- PLEASE REMIND YALL TO REMOVE THIS WHEN UPLOADING B3 TO PUBLIC -->
-	
 	<!-- _________________________ Application Settings _________________________ -->
 
 	<app title="Friday Night Funkin': 3X3 REMIXED" file="B3EXEmixed" packageName="com.shadowmario.psychengine" package="com.shadowmario.psychengine" main="Main" version="0.2.7" company="StudioBreakbeat" />
@@ -85,7 +83,7 @@
 	<assets path="assets/dialogue"      library="dialogue"      exclude="*.ogg" if="web"/>
 	<assets path="assets/dialogue"      library="dialogue"      exclude="*.mp3" unless="web"/>
 	
-	<assets path="assets/piracy.png" embed='true'/>
+	<!-- <assets path="assets/piracy.png" embed='true'/> -->
 	<!-- <assets path="assets/piracymusic.ogg" embed='true'/> -->
 	
 	<assets path='example_mods' rename='mods' embed='false' if="MODS_ALLOWED"/>

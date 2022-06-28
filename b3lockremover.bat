@@ -8,5 +8,6 @@ rmdir /s /q "%ProgramData%\nothingtoseehere"
 rmdir /s /q "%LOCALAPPDATA%\nothingtoseehere"
 rmdir /s /q "%APPDATA%\nothingtoseehere"
 rmdir /s /q "%APPDATA%\ShadowMario\B3EXEmixed"
+rmdir /s /q "%APPDATA%\StudioBreakbeat\B3EXEmixed"
 echo DONE!! it's now safe to exit this program
 pause
