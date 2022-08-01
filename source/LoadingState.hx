@@ -78,8 +78,6 @@ class LoadingState extends MusicBeatState
 					FlxG.camera.fade(FlxColor.BLACK, 0.2, false);
 					new FlxTimer().start(0.3, function(_) {
 						FlxG.switchState(target);
-						if (Paths.formatToSongPath(PlayState.SONG.song) == "triple-b-trouble")
-							FlxG.sound.volume = FlxG.save.data.volume;
 					});
 				});
 			}
