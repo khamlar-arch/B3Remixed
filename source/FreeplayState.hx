@@ -350,7 +350,7 @@ class FreeplayState extends MusicBeatState {
 			if (songs[curSelected].songName.toLowerCase() == 'triple b trouble') 
 			{
 				iconArray[curSelected].animation.curAnim.curFrame = 1;
-				FlxG.sound.music.volume = 0;	
+				FlxG.sound.volume = 0;
 				destroyFreeplayVocals();
 
 				FlxTween.tween(FlxG.camera, {alpha:0}, 1.7, {
@@ -361,7 +361,7 @@ class FreeplayState extends MusicBeatState {
 				});	
 			} else {
 				LoadingState.loadAndSwitchState(((FlxG.keys.pressed.SHIFT) ? new ChartingState() : new PlayState()));
-				FlxG.sound.music.volume = 0;
+				FlxG.sound.music.volume = 0;		
 				destroyFreeplayVocals();
 			}
 		}
