@@ -1,0 +1,22 @@
+- added new b3 bf
+- added new Mia sprites and background (coded in by Pacio)
+- added secret song. code: round2
+- added markov remix - courtesy of blueglue team
+- added new bloody bedtime sprites, check out Fang and Succ
+- added new imp and melo sprites
+- fixed succ get real's chart
+- added no more noms - courtesy of LNO (Get Real chart only)
+- fixed Not a Monster dialogue
+- added new Philly charts
+- added new Philly remix
+- added new Pico charts
+- added new Pico remix
+- added Spookeez chart (HARD ONLY)
+- added new Spookeez remix
+- added new week 3 background
+- added new week 1 background
+- Fixed South dialogue
+- fixed small issues with Succ'd Get Real
+- Character editor now has a background
+- Fixed Succ and Fresh mixing
+- Added the new pause music

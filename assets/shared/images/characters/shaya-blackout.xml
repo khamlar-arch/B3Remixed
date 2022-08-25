@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="shaya-blackout.png">
+	<!-- Created with Adobe Animate version 22.0.5.191 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="shayadown0000" x="20" y="20" width="1456" height="1098" frameX="0" frameY="-24" frameWidth="1456" frameHeight="1133"/>
+	<SubTexture name="shayadown0001" x="20" y="20" width="1456" height="1098" frameX="0" frameY="-24" frameWidth="1456" frameHeight="1133"/>
+	<SubTexture name="shayadown0002" x="1496" y="20" width="1456" height="1111" frameX="0" frameY="0" frameWidth="1456" frameHeight="1133"/>
+	<SubTexture name="shayadown0003" x="1496" y="20" width="1456" height="1111" frameX="0" frameY="0" frameWidth="1456" frameHeight="1133"/>
+	<SubTexture name="shayadown0004" x="2972" y="20" width="1456" height="1093" frameX="0" frameY="-25" frameWidth="1456" frameHeight="1133"/>
+	<SubTexture name="shayadown0005" x="2972" y="20" width="1456" height="1093" frameX="0" frameY="-25" frameWidth="1456" frameHeight="1133"/>
+	<SubTexture name="shayadown0006" x="4448" y="20" width="1456" height="1109" frameX="0" frameY="-24" frameWidth="1456" frameHeight="1133"/>
+	<SubTexture name="shayadown0007" x="4448" y="20" width="1456" height="1109" frameX="0" frameY="-24" frameWidth="1456" frameHeight="1133"/>
+	<SubTexture name="shayadown0008" x="5924" y="20" width="1456" height="1109" frameX="0" frameY="-24" frameWidth="1456" frameHeight="1133"/>
+	<SubTexture name="shayadown0009" x="5924" y="20" width="1456" height="1109" frameX="0" frameY="-24" frameWidth="1456" frameHeight="1133"/>
+	<SubTexture name="shayadown0010" x="4448" y="20" width="1456" height="1109" frameX="0" frameY="-24" frameWidth="1456" frameHeight="1133"/>
+	<SubTexture name="shayadown0011" x="4448" y="20" width="1456" height="1109" frameX="0" frameY="-24" frameWidth="1456" frameHeight="1133"/>
+	<SubTexture name="shayaidle0000" x="20" y="1151" width="1456" height="1060" frameX="0" frameY="-30" frameWidth="1456" frameHeight="1094"/>
+	<SubTexture name="shayaidle0001" x="20" y="1151" width="1456" height="1060" frameX="0" frameY="-30" frameWidth="1456" frameHeight="1094"/>
+	<SubTexture name="shayaidle0002" x="1496" y="1151" width="1456" height="1075" frameX="0" frameY="-19" frameWidth="1456" frameHeight="1094"/>
+	<SubTexture name="shayaidle0003" x="1496" y="1151" width="1456" height="1075" frameX="0" frameY="-19" frameWidth="1456" frameHeight="1094"/>
+	<SubTexture name="shayaidle0004" x="2972" y="1151" width="1456" height="1094"/>
+	<SubTexture name="shayaidle0005" x="2972" y="1151" width="1456" height="1094"/>
+	<SubTexture name="shayaidle0006" x="4448" y="1151" width="1456" height="1042" frameX="0" frameY="-52" frameWidth="1456" frameHeight="1094"/>
+	<SubTexture name="shayaidle0007" x="4448" y="1151" width="1456" height="1042" frameX="0" frameY="-52" frameWidth="1456" frameHeight="1094"/>
+	<SubTexture name="shayaidle0008" x="5924" y="1151" width="1416" height="1035" frameX="-39" frameY="-56" frameWidth="1456" frameHeight="1094"/>
+	<SubTexture name="shayaidle0009" x="5924" y="1151" width="1416" height="1035" frameX="-39" frameY="-56" frameWidth="1456" frameHeight="1094"/>
+	<SubTexture name="shayaidle0010" x="20" y="2265" width="1416" height="1055" frameX="-39" frameY="-39" frameWidth="1456" frameHeight="1094"/>
+	<SubTexture name="shayaidle0011" x="20" y="2265" width="1416" height="1055" frameX="-39" frameY="-39" frameWidth="1456" frameHeight="1094"/>
+	<SubTexture name="shayaidle0012" x="1456" y="2265" width="1416" height="1055" frameX="-39" frameY="-39" frameWidth="1456" frameHeight="1094"/>
+	<SubTexture name="shayaidle0013" x="1456" y="2265" width="1416" height="1055" frameX="-39" frameY="-39" frameWidth="1456" frameHeight="1094"/>
+	<SubTexture name="shayaidle0014" x="20" y="2265" width="1416" height="1055" frameX="-39" frameY="-39" frameWidth="1456" frameHeight="1094"/>
+	<SubTexture name="shayaidle0015" x="20" y="2265" width="1416" height="1055" frameX="-39" frameY="-39" frameWidth="1456" frameHeight="1094"/>
+	<SubTexture name="shayaidle0016" x="1456" y="2265" width="1416" height="1055" frameX="-39" frameY="-39" frameWidth="1456" frameHeight="1094"/>
+	<SubTexture name="shayaidle0017" x="1456" y="2265" width="1416" height="1055" frameX="-39" frameY="-39" frameWidth="1456" frameHeight="1094"/>
+	<SubTexture name="shayaidle0018" x="20" y="2265" width="1416" height="1055" frameX="-39" frameY="-39" frameWidth="1456" frameHeight="1094"/>
+	<SubTexture name="shayaleft0000" x="2892" y="2265" width="1428" height="1094" frameX="0" frameY="-27" frameWidth="1447" frameHeight="1147"/>
+	<SubTexture name="shayaleft0001" x="2892" y="2265" width="1428" height="1094" frameX="0" frameY="-27" frameWidth="1447" frameHeight="1147"/>
+	<SubTexture name="shayaleft0002" x="4340" y="2265" width="1447" height="1145" frameX="0" frameY="-2" frameWidth="1447" frameHeight="1147"/>
+	<SubTexture name="shayaleft0003" x="4340" y="2265" width="1447" height="1145" frameX="0" frameY="-2" frameWidth="1447" frameHeight="1147"/>
+	<SubTexture name="shayaleft0004" x="5807" y="2265" width="1401" height="1065" frameX="0" frameY="-56" frameWidth="1447" frameHeight="1147"/>
+	<SubTexture name="shayaleft0005" x="5807" y="2265" width="1401" height="1065" frameX="0" frameY="-56" frameWidth="1447" frameHeight="1147"/>
+	<SubTexture name="shayaleft0006" x="20" y="3430" width="1421" height="1070" frameX="0" frameY="-31" frameWidth="1447" frameHeight="1147"/>
+	<SubTexture name="shayaleft0007" x="20" y="3430" width="1421" height="1070" frameX="0" frameY="-31" frameWidth="1447" frameHeight="1147"/>
+	<SubTexture name="shayaleft0008" x="1461" y="3430" width="1421" height="1070" frameX="0" frameY="-31" frameWidth="1447" frameHeight="1147"/>
+	<SubTexture name="shayaleft0009" x="1461" y="3430" width="1421" height="1070" frameX="0" frameY="-31" frameWidth="1447" frameHeight="1147"/>
+	<SubTexture name="shayaleft0010" x="20" y="3430" width="1421" height="1070" frameX="0" frameY="-31" frameWidth="1447" frameHeight="1147"/>
+	<SubTexture name="shayaleft0011" x="20" y="3430" width="1421" height="1070" frameX="0" frameY="-31" frameWidth="1447" frameHeight="1147"/>
+	<SubTexture name="shayaright0000" x="2902" y="3430" width="1382" height="1068" frameX="0" frameY="-14" frameWidth="1382" frameHeight="1101"/>
+	<SubTexture name="shayaright0001" x="2902" y="3430" width="1382" height="1068" frameX="0" frameY="-14" frameWidth="1382" frameHeight="1101"/>
+	<SubTexture name="shayaright0002" x="4304" y="3430" width="1382" height="1064" frameX="0" frameY="-37" frameWidth="1382" frameHeight="1101"/>
+	<SubTexture name="shayaright0003" x="4304" y="3430" width="1382" height="1064" frameX="0" frameY="-37" frameWidth="1382" frameHeight="1101"/>
+	<SubTexture name="shayaright0004" x="5706" y="3430" width="1382" height="1082" frameX="0" frameY="0" frameWidth="1382" frameHeight="1101"/>
+	<SubTexture name="shayaright0005" x="5706" y="3430" width="1382" height="1082" frameX="0" frameY="0" frameWidth="1382" frameHeight="1101"/>
+	<SubTexture name="shayaright0006" x="20" y="4532" width="1382" height="1052" frameX="0" frameY="-3" frameWidth="1382" frameHeight="1101"/>
+	<SubTexture name="shayaright0007" x="20" y="4532" width="1382" height="1052" frameX="0" frameY="-3" frameWidth="1382" frameHeight="1101"/>
+	<SubTexture name="shayaright0008" x="1422" y="4532" width="1382" height="1052" frameX="0" frameY="-3" frameWidth="1382" frameHeight="1101"/>
+	<SubTexture name="shayaright0009" x="1422" y="4532" width="1382" height="1052" frameX="0" frameY="-3" frameWidth="1382" frameHeight="1101"/>
+	<SubTexture name="shayaright0010" x="20" y="4532" width="1382" height="1052" frameX="0" frameY="-3" frameWidth="1382" frameHeight="1101"/>
+	<SubTexture name="shayaright0011" x="20" y="4532" width="1382" height="1052" frameX="0" frameY="-3" frameWidth="1382" frameHeight="1101"/>
+	<SubTexture name="shayaup0000" x="2824" y="4532" width="1347" height="1107" frameX="0" frameY="-7" frameWidth="1347" frameHeight="1114"/>
+	<SubTexture name="shayaup0001" x="2824" y="4532" width="1347" height="1107" frameX="0" frameY="-7" frameWidth="1347" frameHeight="1114"/>
+	<SubTexture name="shayaup0002" x="4191" y="4532" width="1347" height="1071" frameX="0" frameY="-28" frameWidth="1347" frameHeight="1114"/>
+	<SubTexture name="shayaup0003" x="4191" y="4532" width="1347" height="1071" frameX="0" frameY="-28" frameWidth="1347" frameHeight="1114"/>
+	<SubTexture name="shayaup0004" x="5558" y="4532" width="1347" height="1099" frameX="0" frameY="-7" frameWidth="1347" frameHeight="1114"/>
+	<SubTexture name="shayaup0005" x="5558" y="4532" width="1347" height="1099" frameX="0" frameY="-7" frameWidth="1347" frameHeight="1114"/>
+	<SubTexture name="shayaup0006" x="20" y="5659" width="1347" height="1114"/>
+	<SubTexture name="shayaup0007" x="20" y="5659" width="1347" height="1114"/>
+	<SubTexture name="shayaup0008" x="1387" y="5659" width="1347" height="1114"/>
+	<SubTexture name="shayaup0009" x="1387" y="5659" width="1347" height="1114"/>
+	<SubTexture name="shayaup0010" x="20" y="5659" width="1347" height="1114"/>
+	<SubTexture name="shayaup0011" x="20" y="5659" width="1347" height="1114"/>
+</TextureAtlas>

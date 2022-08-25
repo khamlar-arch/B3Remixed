@@ -1,78 +1,78 @@
 {
 	"animations": [
 		{
-			"offsets": [
-				-34,
-				-4
-			],
-			"loop": false,
-			"fps": 24,
-			"anim": "singRIGHT",
-			"indices": [],
-			"name": "G Right"
-		},
-		{
-			"offsets": [
-				-2,
-				2
-			],
-			"loop": false,
-			"fps": 24,
-			"anim": "singUP",
-			"indices": [],
-			"name": "G Up"
-		},
-		{
-			"offsets": [
-				18,
-				-3
-			],
-			"loop": false,
-			"fps": 24,
-			"anim": "singLEFT",
-			"indices": [],
-			"name": "G Left"
-		},
-		{
-			"offsets": [
-				0,
-				-27
-			],
-			"loop": false,
-			"fps": 24,
-			"anim": "singDOWN",
-			"indices": [],
-			"name": "G Down"
-		},
-		{
+			"loop": true,
 			"offsets": [
 				0,
 				0
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "idle",
-			"indices": [],
-			"name": "G Idle Dance"
+			"fps": 24,
+			"name": "shaya idle",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				169,
+				-23
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "shaya left",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				55,
+				-37
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "shaya down",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				21,
+				4
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "shaya up",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-22,
+				-3
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "shaya right",
+			"indices": []
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/B3_GF_Phase_2_Assets",
+	"image": "characters/shayaSucc",
 	"position": [
-		70,
-		212
+		50,
+		100
 	],
 	"healthicon": "succ",
 	"flip_x": false,
 	"healthbar_colors": [
-		235,
-		38,
-		186
+		102,
+		255,
+		0
 	],
 	"camera_position": [
-		-100,
-		10
+		-180,
+		-50
 	],
-	"sing_duration": 4,
+	"sing_duration": 6.1,
 	"scale": 1
 }

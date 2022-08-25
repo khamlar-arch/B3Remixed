@@ -233,9 +233,11 @@ class PlayState extends MusicBeatState
 	var halloweenForeground:BGSprite;
 
 	var gayStation:FlxSprite;
+	var stationLights:FlxSprite;
 	var dessert:FlxSprite;
 	var alt:FlxSprite;
 	var sunBack:BGSprite;
+	var redglow:FlxSprite;
 	var light:FlxSprite;
 	var studio:FlxSprite;
 	var glass:FlxSprite;
@@ -532,14 +534,25 @@ class PlayState extends MusicBeatState
 		switch (curStage)
 		{
 			case 'stage': //Week 1
-				var bg:BGSprite = new BGSprite('stages/stadium/bg', -15, 160, 0.95, 0.95);
-				bg.setGraphicSize(Std.int(bg.width * 2.2222));
-				add(bg);
+				var moon:BGSprite = new BGSprite('stages/stadium/sky', -1000, -500, 0.3, 0.3);
+				moon.setGraphicSize(Std.int(moon.width * 1));
+				moon.updateHitbox();
+				add(moon);
 
-				stadiumBoppers = new BGSprite('stages/stadium/chars', -800, -550,  0.95, 0.95, ['bop']);
-				stadiumBoppers.setGraphicSize(Std.int(stadiumBoppers.width * 2.2));
-				stadiumBoppers.updateHitbox();
-				add(stadiumBoppers);
+				var foreground:BGSprite = new BGSprite('stages/stadium/foreground', -1000, -500, 0.8, 0.8);
+				foreground.setGraphicSize(Std.int(foreground.width * 1));
+				foreground.updateHitbox();
+				add(foreground);
+
+				var speakers:BGSprite = new BGSprite('stages/stadium/speakers', -1000, -500, 0.8, 0.8);
+				speakers.setGraphicSize(Std.int(speakers.width * 1));
+				speakers.updateHitbox();
+				add(speakers);
+
+				var ground:BGSprite = new BGSprite('stages/stadium/ground', -1000, -500, 0.95, 0.95);
+				ground.setGraphicSize(Std.int(ground.width * 1));
+				ground.updateHitbox();
+				add(ground);
 
 			case 'stage-alt': //Week 1
 				var bg:BGSprite = new BGSprite('stages/stadium/bgsmall', -15, 160, 0.95, 0.95);
@@ -573,8 +586,8 @@ class PlayState extends MusicBeatState
 				add(halloweenGround);
 
 			case 'philly': //Week 3				
-				var subway:BGSprite = new BGSprite('stages/station/subway', -350,-500, 0.9, 0.9);
-				subway.setGraphicSize(Std.int(subway.width * 2));
+				var subway:BGSprite = new BGSprite('stages/station/station', -300,-250, 0.9, 0.9);
+				subway.setGraphicSize(Std.int(subway.width * 1));
 				subway.updateHitbox();
 
 				gayStation = new FlxSprite(-350,-500).loadGraphic(Paths.image('stages/station/subway-alt'));
@@ -583,20 +596,25 @@ class PlayState extends MusicBeatState
 				gayStation.visible = false;
 				gayStation.updateHitbox();
 
-				var pcameos:BGSprite = new BGSprite('stages/station/pcameos', -335,-551, 0.9, 0.9, ['bop'], false);
-				pcameos.antialiasing = true;
-				pcameos.setGraphicSize(Std.int(pcameos.width * 3.3));
-				pcameos.setGraphicSize(Std.int(pcameos.height * 3.3));
-				pcameos.updateHitbox();
+				var screens:BGSprite = new BGSprite('stages/station/screens', -300,-250, 0.9, 0.9, ['screens'], true);
+				screens.antialiasing = true;
+				screens.setGraphicSize(Std.int(screens.width * 1));
+				screens.updateHitbox();
 
-				var stationLights:BGSprite = new BGSprite('stages/station/lightsSheet', -350,-500, 0.9, 0.9, ['Lights'], true);
-				stationLights.antialiasing = true;
-				stationLights.setGraphicSize(Std.int(subway.width * 1));
+				var vending:BGSprite = new BGSprite('stages/station/vending', -300,-250, 0.9, 0.9, ['vending machine'], true);
+				vending.antialiasing = true;
+				vending.setGraphicSize(Std.int(vending.width * 1));
+				vending.updateHitbox();
+
+				stationLights = new FlxSprite(-300,-250).loadGraphic(Paths.image('stages/station/lights'));
+				stationLights.scrollFactor.set(0.9, 0.9);
+				stationLights.setGraphicSize(Std.int(stationLights.width * 1));
+				stationLights.animation.play('lights');
 				stationLights.updateHitbox();
 
 				add(subway);
-				add(pcameos);
-				add(stationLights);
+				add(screens);
+				add(vending);
 				add(gayStation);
 
 			case 'miaStation':
@@ -690,6 +708,33 @@ class PlayState extends MusicBeatState
 					grpTroubleFilters.add(deez);
 				} 
 		
+			case 'fof': //fof
+				var redSky:BGSprite = new BGSprite('stages/fofbg/fight or flight bg_4', 0, 0, 0.9, 0.9);
+				redSky.setGraphicSize(Std.int(redSky.width * 1));
+				redSky.updateHitbox();
+
+				var redFloor:BGSprite = new BGSprite('stages/fofbg/fight or flight bg_2', 0, 0, 0.9, 0.9);
+				redFloor.setGraphicSize(Std.int(redFloor.width * 1));
+				redFloor.updateHitbox();
+
+				var singleTree:BGSprite = new BGSprite('stages/fofbg/fight or flight bg_3', 0, 0, 0.9, 0.9);
+				singleTree.setGraphicSize(Std.int(singleTree.width * 1));
+				singleTree.updateHitbox();
+
+				var deadForest:BGSprite = new BGSprite('stages/fofbg/fight or flight bg_1', 0, 0, 0.9, 0.9);
+				deadForest.setGraphicSize(Std.int(deadForest.width * 1));
+				deadForest.updateHitbox();
+
+				redglow = new FlxSprite(-500, -200).loadGraphic(Paths.image('stages/fofbg/shader'));
+				redglow.setGraphicSize(Std.int(redglow.width * 1));
+				redglow.scrollFactor.set(0.9, 0.9);
+				redglow.updateHitbox();
+
+				add(redSky);
+				add(redFloor);
+				add(singleTree);
+				add(deadForest);
+
 			case 'podcast':
 				GameOverSubstate.deathSoundName = 'fnf_loss_sfx-shaya';
 				GameOverSubstate.loopSoundName = 'gameOver-shaya';
@@ -984,9 +1029,14 @@ class PlayState extends MusicBeatState
 			case 'podcast':
 				add(glass);
 				add(studio);
+			case 'philly':
+				add(stationLights);
 			case 'sunshine':
 				add(light);
 			case 'dream':
+				add(grpTroubleFilters);
+			case 'fof':
+				add(redglow);
 				add(grpTroubleFilters);
 				//var vcr:DansShader;
 				//vcr = new DansShader();
@@ -5246,9 +5296,6 @@ class PlayState extends MusicBeatState
 
 		switch (curStage)
 		{
-			case 'stage':
-				stadiumBoppers.dance(true);
-			
 			case 'school':
 				if(!ClientPrefs.lowQuality) {
 					bgGirls.dance();

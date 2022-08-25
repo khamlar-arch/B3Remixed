@@ -1,0 +1,149 @@
+{
+	"song": {
+		"speed": 2.3,
+		"stage": "bedroom",
+		"player1": "bf-pajamas-alt",
+		"player2": "shadowgf",
+		"player3": null,
+		"events": [
+			[
+				44383.5616438356,
+				[
+					[
+						"Change Character",
+						"1",
+						"markovgf"
+					]
+				]
+			],
+			[
+				44396.404109589,
+				[
+					[
+						"Change Scroll Speed",
+						"1.4",
+						"1"
+					]
+				]
+			],
+			[
+				44409.2465753425,
+				[
+					[
+						"Play Animation",
+						"laugh",
+						"Dad"
+					]
+				]
+			],
+			[
+				44657.5342465753,
+				[
+					[
+						"Play Animation",
+						"laugh",
+						"Dad"
+					]
+				]
+			],
+			[
+				44794.5205479452,
+				[
+					[
+						"Play Animation",
+						"laugh",
+						"Dad"
+					]
+				]
+			],
+			[
+				45000,
+				[
+					[
+						"Play Animation",
+						"laugh",
+						"Dad"
+					]
+				]
+			],
+			[
+				45205.4794520548,
+				[
+					[
+						"Play Animation",
+						"laugh",
+						"Dad"
+					]
+				]
+			],
+			[
+				45410.9589041096,
+				[
+					[
+						"Play Animation",
+						"laugh",
+						"Dad"
+					]
+				]
+			],
+			[
+				45616.4383561644,
+				[
+					[
+						"Play Animation",
+						"laugh",
+						"Dad"
+					]
+				]
+			],
+			[
+				46027.397260274,
+				[
+					[
+						"Change Character",
+						"1",
+						"p-gf-hungry-alt"
+					]
+				]
+			],
+			[
+				86827.397260274,
+				[
+					[
+						"Change Character",
+						"1",
+						"markovgf"
+					]
+				]
+			],
+			[
+				125752.397260274,
+				[
+					[
+						"Change Character",
+						"1",
+						"p-gf-hungry-alt"
+					]
+				]
+			],
+			[
+				182527.397260274,
+				[
+					[
+						"Change Character",
+						"1",
+						"markovgf"
+					]
+				]
+			]
+		],
+		"notes": [],
+		"splashSkin": null,
+		"validScore": false,
+		"gfVersion": "gf",
+		"bpm": 146,
+		"arrowSkin": null,
+		"needsVoices": true,
+		"song": "MARKOV"
+	}
+}

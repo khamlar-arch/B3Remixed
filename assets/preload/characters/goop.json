@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				-270,
+				470
+			],
+			"loop": true,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "GoopIdle"
+		},
+		{
+			"offsets": [
+				-503,
+				71
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "GoopRight"
+		},
+		{
+			"offsets": [
+				-215,
+				66
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "GoopLeft"
+		},
+		{
+			"offsets": [
+				-348,
+				536
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"indices": [],
+			"name": "GoopUp"
+		},
+		{
+			"offsets": [
+				-271,
+				-90
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "GoopDown"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/TormentGoop",
+	"position": [
+		-510,
+		60
+	],
+	"healthicon": "goop",
+	"flip_x": false,
+	"healthbar_colors": [
+		0,
+		0,
+		0
+	],
+	"camera_position": [
+		-630,
+		-240
+	],
+	"sing_duration": 4,
+	"scale": 1.5
+}

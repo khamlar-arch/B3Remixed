@@ -33,6 +33,7 @@ class MainMenuState extends MusicBeatState
 	private var camGame:FlxCamera;
 	var easterEgg:String = 'GUH';
 	var menuEgg:String = 'MENYOO';
+	var evilEgg:String = 'FOF';
 	var allowedKeys:String = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 	var easterEggKeysBuffer:String = '';
 	
@@ -252,6 +253,7 @@ class MainMenuState extends MusicBeatState
 						easterEggKeysBuffer = easterEggKeysBuffer.substring(1);
 					var word:String = 'GUH';
 					var word2:String = 'MENYOO';
+					var word3:String = 'FOF';
 					if (easterEggKeysBuffer.contains(word))
 					{
 						FlxG.save.data.guhUnlocked = true;
@@ -282,6 +284,16 @@ class MainMenuState extends MusicBeatState
 						easterEggKeysBuffer = '';
 					} else if (easterEggKeysBuffer.contains(word2)) {
 						PlayState.SONG = Song.loadFromJson('menyoo', 'menyoo');
+						PlayState.isStoryMode = false;
+						PlayState.storyDifficulty = 1;
+
+						LoadingState.loadAndSwitchState(new PlayState());
+						FlxG.sound.music.volume = 0;		
+						FreeplayState.destroyFreeplayVocals();
+						easterEggKeysBuffer = '';
+					}
+				 	if (easterEggKeysBuffer.contains(word3)) {
+						PlayState.SONG = Song.loadFromJson('fight-or-flight', 'fight-or-flight');
 						PlayState.isStoryMode = false;
 						PlayState.storyDifficulty = 1;
 
