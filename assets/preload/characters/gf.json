@@ -1,24 +1,25 @@
 {
 	"animations": [
 		{
-			"loop": false,
 			"offsets": [
 				0,
 				-83
 			],
-			"fps": 24,
+			"loop": false,
 			"anim": "cheer",
-			"indices": [],
-			"name": "GF Cheer"
+			"fps": 24,
+			"name": "GF Cheer",
+			"indices": []
 		},
 		{
-			"loop": false,
 			"offsets": [
 				-2,
 				-115
 			],
-			"fps": 24,
+			"loop": false,
 			"anim": "sad",
+			"fps": 24,
+			"name": "gf sad",
 			"indices": [
 				0,
 				1,
@@ -33,19 +34,28 @@
 				10,
 				11,
 				12
-			],
-			"name": "gf sad"
+			]
 		},
 		{
-			"loop": false,
+			"offsets": [
+				-1,
+				-89
+			],
+			"loop": true,
+			"anim": "scared",
+			"fps": 24,
+			"name": "GF FEAR",
+			"indices": []
+		},
+		{
 			"offsets": [
 				0,
 				-98
 			],
+			"loop": false,
 			"fps": 24,
 			"anim": "danceLeft",
 			"indices": [
-				30,
 				0,
 				1,
 				2,
@@ -62,14 +72,14 @@
 				13,
 				14
 			],
-			"name": "GF Dancing Beat"
+			"name": "gf idle"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				0,
 				-97
 			],
+			"loop": false,
 			"fps": 24,
 			"anim": "danceRight",
 			"indices": [
@@ -89,25 +99,14 @@
 				28,
 				29
 			],
-			"name": "GF Dancing Beat"
-		},
-		{
-			"loop": true,
-			"offsets": [
-				-1,
-				-89
-			],
-			"fps": 24,
-			"anim": "scared",
-			"indices": [],
-			"name": "GF FEAR"
+			"name": "gf idle"
 		}
 	],
-	"no_antialiasing": false,
-	"image": "characters/shaya_mini",
+	"no_antialiasing": true,
+	"image": "characters/shaya",
 	"position": [
-		-120,
-		60
+		0,
+		-60
 	],
 	"healthicon": "gf",
 	"flip_x": false,
@@ -117,8 +116,8 @@
 		186
 	],
 	"camera_position": [
-		-170,
-		120
+		-160,
+		90
 	],
 	"sing_duration": 4,
 	"scale": 1
