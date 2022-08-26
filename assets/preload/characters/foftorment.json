@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"loop": true,
+			"offsets": [
+				-250,
+				0
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "TormentIdle",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-88,
+				-6
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "TormentRight",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-139,
+				-45
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "TormentDown",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-102,
+				49
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "TormentUp",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-93,
+				-19
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "TormentLeft",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/Torment",
+	"position": [
+		0,
+		0
+	],
+	"healthicon": "torment",
+	"flip_x": false,
+	"healthbar_colors": [
+		174,
+		43,
+		136
+	],
+	"camera_position": [
+		-670,
+		-193
+	],
+	"sing_duration": 4,
+	"scale": 1.5
+}

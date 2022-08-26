@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="shayaSucc.png">
+	<!-- Created with Adobe Animate version 20.5.1.31044 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="shaya down succ0000" x="25" y="25" width="476" height="641" frameX="-5" frameY="-3" frameWidth="501" frameHeight="644"/>
+	<SubTexture name="shaya down succ0001" x="25" y="25" width="476" height="641" frameX="-5" frameY="-3" frameWidth="501" frameHeight="644"/>
+	<SubTexture name="shaya down succ0002" x="601" y="25" width="487" height="642" frameX="0" frameY="-2" frameWidth="501" frameHeight="644"/>
+	<SubTexture name="shaya down succ0003" x="601" y="25" width="487" height="642" frameX="0" frameY="-2" frameWidth="501" frameHeight="644"/>
+	<SubTexture name="shaya down succ0004" x="1188" y="25" width="476" height="642" frameX="-24" frameY="-2" frameWidth="501" frameHeight="644"/>
+	<SubTexture name="shaya down succ0005" x="1188" y="25" width="476" height="642" frameX="-24" frameY="-2" frameWidth="501" frameHeight="644"/>
+	<SubTexture name="shaya down succ0006" x="1764" y="25" width="474" height="644" frameX="-27" frameY="0" frameWidth="501" frameHeight="644"/>
+	<SubTexture name="shaya down succ0007" x="1764" y="25" width="474" height="644" frameX="-27" frameY="0" frameWidth="501" frameHeight="644"/>
+	<SubTexture name="shaya idle succ0000" x="2338" y="25" width="350" height="662" frameX="-19" frameY="-5" frameWidth="369" frameHeight="667"/>
+	<SubTexture name="shaya idle succ0001" x="2338" y="25" width="350" height="662" frameX="-19" frameY="-5" frameWidth="369" frameHeight="667"/>
+	<SubTexture name="shaya idle succ0002" x="2788" y="25" width="350" height="662" frameX="-19" frameY="-5" frameWidth="369" frameHeight="667"/>
+	<SubTexture name="shaya idle succ0003" x="2788" y="25" width="350" height="662" frameX="-19" frameY="-5" frameWidth="369" frameHeight="667"/>
+	<SubTexture name="shaya idle succ0004" x="3238" y="25" width="352" height="664" frameX="-15" frameY="-3" frameWidth="369" frameHeight="667"/>
+	<SubTexture name="shaya idle succ0005" x="3238" y="25" width="352" height="664" frameX="-15" frameY="-3" frameWidth="369" frameHeight="667"/>
+	<SubTexture name="shaya idle succ0006" x="3690" y="25" width="352" height="664" frameX="-15" frameY="-3" frameWidth="369" frameHeight="667"/>
+	<SubTexture name="shaya idle succ0007" x="3690" y="25" width="352" height="664" frameX="-15" frameY="-3" frameWidth="369" frameHeight="667"/>
+	<SubTexture name="shaya idle succ0008" x="25" y="789" width="360" height="667" frameX="-3" frameY="0" frameWidth="369" frameHeight="667"/>
+	<SubTexture name="shaya idle succ0009" x="25" y="789" width="360" height="667" frameX="-3" frameY="0" frameWidth="369" frameHeight="667"/>
+	<SubTexture name="shaya idle succ0010" x="485" y="789" width="362" height="667" frameX="0" frameY="0" frameWidth="369" frameHeight="667"/>
+	<SubTexture name="shaya idle succ0011" x="485" y="789" width="362" height="667" frameX="0" frameY="0" frameWidth="369" frameHeight="667"/>
+	<SubTexture name="shaya idle succ0012" x="947" y="789" width="361" height="667" frameX="-4" frameY="0" frameWidth="369" frameHeight="667"/>
+	<SubTexture name="shaya idle succ0013" x="947" y="789" width="361" height="667" frameX="-4" frameY="0" frameWidth="369" frameHeight="667"/>
+	<SubTexture name="shaya left succ0000" x="1408" y="789" width="522" height="636" frameX="0" frameY="-12" frameWidth="524" frameHeight="648"/>
+	<SubTexture name="shaya left succ0001" x="1408" y="789" width="522" height="636" frameX="0" frameY="-12" frameWidth="524" frameHeight="648"/>
+	<SubTexture name="shaya left succ0002" x="2030" y="789" width="514" height="643" frameX="-8" frameY="-5" frameWidth="524" frameHeight="648"/>
+	<SubTexture name="shaya left succ0003" x="2030" y="789" width="514" height="643" frameX="-8" frameY="-5" frameWidth="524" frameHeight="648"/>
+	<SubTexture name="shaya left succ0004" x="2644" y="789" width="492" height="648" frameX="-31" frameY="0" frameWidth="524" frameHeight="648"/>
+	<SubTexture name="shaya left succ0005" x="2644" y="789" width="492" height="648" frameX="-31" frameY="0" frameWidth="524" frameHeight="648"/>
+	<SubTexture name="shaya left succ0006" x="3236" y="789" width="487" height="648" frameX="-37" frameY="0" frameWidth="524" frameHeight="648"/>
+	<SubTexture name="shaya left succ0007" x="3236" y="789" width="487" height="648" frameX="-37" frameY="0" frameWidth="524" frameHeight="648"/>
+	<SubTexture name="shaya right succ0000" x="25" y="1556" width="521" height="658" frameX="-1" frameY="-7" frameWidth="523" frameHeight="665"/>
+	<SubTexture name="shaya right succ0001" x="25" y="1556" width="521" height="658" frameX="-1" frameY="-7" frameWidth="523" frameHeight="665"/>
+	<SubTexture name="shaya right succ0002" x="646" y="1556" width="522" height="654" frameX="-1" frameY="-11" frameWidth="523" frameHeight="665"/>
+	<SubTexture name="shaya right succ0003" x="646" y="1556" width="522" height="654" frameX="-1" frameY="-11" frameWidth="523" frameHeight="665"/>
+	<SubTexture name="shaya right succ0004" x="1268" y="1556" width="497" height="664" frameX="0" frameY="-1" frameWidth="523" frameHeight="665"/>
+	<SubTexture name="shaya right succ0005" x="1268" y="1556" width="497" height="664" frameX="0" frameY="-1" frameWidth="523" frameHeight="665"/>
+	<SubTexture name="shaya right succ0006" x="1865" y="1556" width="501" height="665" frameX="0" frameY="0" frameWidth="523" frameHeight="665"/>
+	<SubTexture name="shaya right succ0007" x="1865" y="1556" width="501" height="665" frameX="0" frameY="0" frameWidth="523" frameHeight="665"/>
+	<SubTexture name="shaya up succ0000" x="2466" y="1556" width="353" height="673" frameX="-3" frameY="0" frameWidth="361" frameHeight="673"/>
+	<SubTexture name="shaya up succ0001" x="2466" y="1556" width="353" height="673" frameX="-3" frameY="0" frameWidth="361" frameHeight="673"/>
+	<SubTexture name="shaya up succ0002" x="2919" y="1556" width="358" height="667" frameX="0" frameY="-6" frameWidth="361" frameHeight="673"/>
+	<SubTexture name="shaya up succ0003" x="2919" y="1556" width="358" height="667" frameX="0" frameY="-6" frameWidth="361" frameHeight="673"/>
+	<SubTexture name="shaya up succ0004" x="3377" y="1556" width="351" height="663" frameX="-7" frameY="-10" frameWidth="361" frameHeight="673"/>
+	<SubTexture name="shaya up succ0005" x="3377" y="1556" width="351" height="663" frameX="-7" frameY="-10" frameWidth="361" frameHeight="673"/>
+	<SubTexture name="shaya up succ0006" x="25" y="2329" width="352" height="663" frameX="-9" frameY="-10" frameWidth="361" frameHeight="673"/>
+	<SubTexture name="shaya up succ0007" x="25" y="2329" width="352" height="663" frameX="-9" frameY="-10" frameWidth="361" frameHeight="673"/>
+</TextureAtlas>

@@ -1,0 +1,89 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				316,
+				386
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "shayaright"
+		},
+		{
+			"offsets": [
+				364,
+				447
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"indices": [],
+			"name": "shayaup"
+		},
+		{
+			"offsets": [
+				408,
+				437
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "shayaleft"
+		},
+		{
+			"offsets": [
+				349,
+				417
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "shayadown"
+		},
+		{
+			"offsets": [
+				381,
+				440
+			],
+			"loop": true,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "shayaidle"
+		},
+		{
+			"offsets": [
+				370,
+				440
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "laugh",
+			"indices": [],
+			"name": "shayalaugh"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/shaya-markov",
+	"position": [
+		0,
+		-1550
+	],
+	"healthicon": "succ",
+	"flip_x": false,
+	"healthbar_colors": [
+		235,
+		38,
+		186
+	],
+	"camera_position": [
+		-560,
+		-390
+	],
+	"sing_duration": 4,
+	"scale": 1
+}

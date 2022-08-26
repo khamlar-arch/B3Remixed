@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				306,
+				386
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "shayaright"
+		},
+		{
+			"offsets": [
+				318,
+				452
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"indices": [],
+			"name": "shayaup"
+		},
+		{
+			"offsets": [
+				398,
+				447
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "shayaleft"
+		},
+		{
+			"offsets": [
+				349,
+				417
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "shayadown"
+		},
+		{
+			"offsets": [
+				381,
+				440
+			],
+			"loop": true,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "shayaidle"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/shaya-blackout",
+	"position": [
+		0,
+		-1500
+	],
+	"healthicon": "succ",
+	"flip_x": false,
+	"healthbar_colors": [
+		235,
+		38,
+		186
+	],
+	"camera_position": [
+		-580,
+		-310
+	],
+	"sing_duration": 4,
+	"scale": 1
+}
