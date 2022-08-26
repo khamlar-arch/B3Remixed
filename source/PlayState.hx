@@ -600,21 +600,26 @@ class PlayState extends MusicBeatState
 				add(gayStation);
 
 			case 'miaStation':
-				var stadiumBG:BGSprite = new BGSprite('stages/stage/stadium', -550, -270, 0.9, 0.9);
-				stadiumBG.setGraphicSize(Std.int(stadiumBG.width * 2));
-				stadiumBG.updateHitbox();
+				var skyBG:BGSprite = new BGSprite('stages/stage/sky', -550, -270, 0.05, 0.05);
+				skyBG.setGraphicSize(Std.int(skyBG.width * 1.0));
+				skyBG.updateHitbox();
 
-				var backBoppers:BGSprite = new BGSprite('stages/stage/mia_boppers', -550, -327, 0.9, 0.9, ['Back Crowd Bop'], true);
-				backBoppers.setGraphicSize(Std.int(backBoppers.width * 2));
-				backBoppers.updateHitbox();
+				var buildings:BGSprite = new BGSprite('stages/stage/buildings', -550, -270, 0.2, 0.2);
+				buildings.setGraphicSize(Std.int(buildings.width * 1.0));
+				buildings.updateHitbox();
 
-				var frontBoppers:BGSprite = new BGSprite('stages/stage/mia_boppers', -550, -335, 0.9, 0.9, ['Front Crowd Bop'], true);
-				frontBoppers.setGraphicSize(Std.int(frontBoppers.width * 2));
-				frontBoppers.updateHitbox();
+				var stadium:BGSprite = new BGSprite('stages/stage/stadium', -550, -270, 0.35, 0.5);
+				stadium.setGraphicSize(Std.int(stadium.width * 1.0));
+				stadium.updateHitbox();
 
-				add(stadiumBG);
-				add(backBoppers);
-				add(frontBoppers);
+				var platform:BGSprite = new BGSprite('stages/stage/platform', -550, -100, 1, 1);
+				platform.setGraphicSize(Std.int(platform.width * 1.0));
+				platform.updateHitbox();
+
+				add(skyBG);
+				add(buildings);
+				add(stadium);
+				add(platform);
 
 			case 'room':
 				GameOverSubstate.deathSoundName = 'fnf_loss_sfx-burger';
