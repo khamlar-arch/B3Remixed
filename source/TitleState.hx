@@ -220,6 +220,8 @@ class TitleState extends MusicBeatState
 	}
 
 	var logoBl:FlxSprite;
+	var colors:FlxSprite;
+	var dadDance:FlxSprite;
 	var gfDance:FlxSprite;
 	var danceLeft:Bool = false;
 	var titleText:FlxSprite;
@@ -238,37 +240,31 @@ class TitleState extends MusicBeatState
 		bg.makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		add(bg);
 
-		checkerboard = new FlxBackdrop(Paths.image('menus/menuCheckerboard'), 0, 0, true, true);
-		checkerboard.alpha = 0.85;
-		checkerboard.scale.set(5, 5);
-		checkerboard.color = 0xFF582372;
-		add(checkerboard);
+		colors = new FlxSprite(0, -20).loadGraphic(Paths.image('menus/title/b3-title-screen'));
+		colors.setGraphicSize(Std.int(colors.width * 0.70));
+		colors.updateHitbox();
+		add(colors);
 
-		checkerboard2 = new FlxBackdrop(Paths.image('menus/menuCheckerboard'), 0, 0, true, true);
-		checkerboard2.alpha = 0.85;
-		checkerboard2.scale.set(5, 5);
-		checkerboard2.color = 0xFF8D0ECA;
-		add(checkerboard2);
+		dadDance = new FlxSprite(300, -350);
+		dadDance.frames = Paths.getSparrowAtlas('menus/title/b3_title_screen_dd');
+		dadDance.animation.addByIndices('danceLeft', 'dadDance', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], "", 24, false);
+		dadDance.animation.addByIndices('danceRight', 'dadDance', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], "", 24, false);
+		dadDance.setGraphicSize(Std.int(dadDance.width * 0.68));
+		dadDance.antialiasing = ClientPrefs.globalAntialiasing;
+		add(dadDance); 
 
-		gfDance = new FlxSprite(-200, -90);
+		gfDance = new FlxSprite(100, -75);
 		gfDance.frames = Paths.getSparrowAtlas('menus/title/gfDanceTitle');
-		gfDance.animation.addByIndices('danceLeft', 'gfDance', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
-		gfDance.animation.addByIndices('danceRight', 'gfDance', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
-		gfDance.setGraphicSize(Std.int(gfDance.width * 0.75));
+		gfDance.animation.addByIndices('danceLeft', 'gfDance', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], "", 24, false);
+		gfDance.animation.addByIndices('danceRight', 'gfDance', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], "", 24, false);
+		gfDance.setGraphicSize(Std.int(gfDance.width * 0.68));
 		gfDance.antialiasing = ClientPrefs.globalAntialiasing;
 		add(gfDance);
 
-		logoBl = new FlxSprite(1400, 0).loadGraphic(Paths.image('menus/title/logo'));
+		logoBl = new FlxSprite(1400, -150).loadGraphic(Paths.image('menus/title/logo'));
 		logoBl.antialiasing = ClientPrefs.globalAntialiasing;
-		logoBl.setGraphicSize(Std.int(logoBl.width * 0.75));
-		logoBl.screenCenter(Y);
+		logoBl.setGraphicSize(Std.int(logoBl.width * 0.70));
 		add(logoBl);
-
-		pressEnter = new FlxText(0, 600, 1280, "Press ENTER to Continue", 40);
-		pressEnter.antialiasing = ClientPrefs.globalAntialiasing;
-		pressEnter.setFormat(Paths.font('mplus.ttf'), 48, 0xFFFFFFFF, "center");
-		pressEnter.setBorderStyle(FlxTextBorderStyle.OUTLINE, 0xFF000000, 3, 1);
-		add(pressEnter);
 
 		credGroup = new FlxGroup();
 		add(credGroup);
@@ -363,13 +359,8 @@ class TitleState extends MusicBeatState
 		// EASTER EGG
 
 		if (skippedIntro) {
-			logoBl.scale.set(FlxMath.lerp(logoBl.scale.x, 0.78, 0.1), FlxMath.lerp(logoBl.scale.y, 0.78, 0.1));
+			logoBl.scale.set(FlxMath.lerp(logoBl.scale.x, 0.68, 0.1), FlxMath.lerp(logoBl.scale.y, 0.68, 0.1));
 
-			checkerboard.x += (elapsed / 10) / (1 / 60);
-			checkerboard.y += (elapsed / 2) / (1 / 60);
-
-			checkerboard2.x -= (elapsed / 10) / (1 / 60);
-			checkerboard2.y -= (elapsed / 2) / (1 / 60);
 			if (!transitioning)
 			{
 				if (newTitle && !pressedEnter)
@@ -383,16 +374,8 @@ class TitleState extends MusicBeatState
 				
 				if(pressedEnter)
 				{
-					pressEnter.color = FlxColor.WHITE;
-					FlxG.camera.flash(ClientPrefs.flashing ? FlxColor.WHITE : 0x4CFFFFFF, 1, null, true);
-					FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
-
 					transitioning = true;
 					// FlxG.sound.music.stop();
-					FlxTween.tween(pressEnter, {y: 1000}, 0.9, {ease: FlxEase.elasticInOut, type: PINGPONG});
-
-					checkerboard2.color = 0xFFB5439A;
-					checkerboard.color = 0xFF87196D;
 
 					new FlxTimer().start(1, function(tmr:FlxTimer)
 					{
@@ -479,7 +462,7 @@ class TitleState extends MusicBeatState
 		super.beatHit();
 
 		if(logoBl != null)
-			logoBl.scale.set(0.85, 0.85);
+			logoBl.scale.set(0.60, 0.60);
 
 		if(gfDance != null) {
 			danceLeft = !danceLeft;
@@ -488,6 +471,15 @@ class TitleState extends MusicBeatState
 				gfDance.animation.play('danceRight');
 			else
 				gfDance.animation.play('danceLeft');
+		}
+
+		if(dadDance != null) {
+			danceLeft = !danceLeft;
+
+			if (danceLeft)
+				dadDance.animation.play('danceRight');
+			else
+				dadDance.animation.play('danceLeft');
 		}
  
 		if(!closedState) {
@@ -526,6 +518,8 @@ class TitleState extends MusicBeatState
 				case 15:
 					addMoreText('B3 REMIXED');
 				case 16:
+					addMoreText('UPDATE 4');
+				case 17:
 					skipIntro();
 			}
 		}
@@ -542,7 +536,7 @@ class TitleState extends MusicBeatState
 			FlxG.camera.flash(FlxColor.WHITE, 4);
 			remove(credGroup);
 			skippedIntro = true;
-			FlxTween.tween(logoBl, {x: 400, angle: 720}, 0.8, {ease: FlxEase.circInOut});
+			FlxTween.tween(logoBl, {x: -200, angle: 720}, 0.8, {ease: FlxEase.circInOut});
 		}
 	}
 }

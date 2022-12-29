@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="settings b3.png">
+	<!-- Created with Adobe Animate version 21.0.0.35450 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="Symbol 60000" x="5" y="5" width="248" height="249"/>
+	<SubTexture name="Symbol 60001" x="5" y="5" width="248" height="249"/>
+	<SubTexture name="Symbol 60002" x="264" y="5" width="248" height="249"/>
+	<SubTexture name="Symbol 60003" x="264" y="5" width="248" height="249"/>
+	<SubTexture name="Symbol 60004" x="523" y="5" width="248" height="249"/>
+	<SubTexture name="Symbol 60005" x="523" y="5" width="248" height="249"/>
+	<SubTexture name="Symbol 60006" x="5" y="265" width="248" height="249"/>
+	<SubTexture name="Symbol 60007" x="5" y="265" width="248" height="249"/>
+	<SubTexture name="Symbol 60008" x="264" y="265" width="248" height="249"/>
+	<SubTexture name="Symbol 60009" x="264" y="265" width="248" height="249"/>
+	<SubTexture name="Symbol 60010" x="523" y="265" width="248" height="249"/>
+	<SubTexture name="Symbol 60011" x="523" y="265" width="248" height="249"/>
+	<SubTexture name="Symbol 60012" x="5" y="525" width="248" height="249"/>
+	<SubTexture name="Symbol 60013" x="5" y="525" width="248" height="249"/>
+</TextureAtlas>

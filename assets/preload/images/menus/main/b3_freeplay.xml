@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="b3 freeplay.png">
+	<!-- Created with Adobe Animate version 21.0.0.35450 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="freeplay0000" x="5" y="5" width="951" height="679"/>
+	<SubTexture name="freeplay0001" x="967" y="5" width="951" height="679"/>
+	<SubTexture name="freeplay select0000" x="1929" y="5" width="1108" height="654" frameX="0" frameY="0" frameWidth="1121" frameHeight="654"/>
+	<SubTexture name="freeplay select0001" x="5" y="695" width="1108" height="654" frameX="0" frameY="0" frameWidth="1121" frameHeight="654"/>
+	<SubTexture name="freeplay select0002" x="1124" y="695" width="1109" height="654" frameX="-12" frameY="0" frameWidth="1121" frameHeight="654"/>
+	<SubTexture name="freeplay select0003" x="2244" y="695" width="1109" height="654" frameX="-12" frameY="0" frameWidth="1121" frameHeight="654"/>
+	<SubTexture name="freeplay select0004" x="5" y="1360" width="1109" height="654" frameX="-12" frameY="0" frameWidth="1121" frameHeight="654"/>
+	<SubTexture name="freeplay select0005" x="1125" y="1360" width="1109" height="654" frameX="-12" frameY="0" frameWidth="1121" frameHeight="654"/>
+	<SubTexture name="freeplay select0006" x="2245" y="1360" width="1109" height="654" frameX="-12" frameY="0" frameWidth="1121" frameHeight="654"/>
+	<SubTexture name="freeplay select0007" x="5" y="2025" width="1109" height="654" frameX="-12" frameY="0" frameWidth="1121" frameHeight="654"/>
+	<SubTexture name="freeplay select0008" x="1125" y="2025" width="1109" height="654" frameX="-12" frameY="0" frameWidth="1121" frameHeight="654"/>
+	<SubTexture name="freeplay select0009" x="2245" y="2025" width="1109" height="654" frameX="-12" frameY="0" frameWidth="1121" frameHeight="654"/>
+	<SubTexture name="freeplay select0010" x="2245" y="1360" width="1109" height="654" frameX="-12" frameY="0" frameWidth="1121" frameHeight="654"/>
+	<SubTexture name="freeplay select0011" x="5" y="2025" width="1109" height="654" frameX="-12" frameY="0" frameWidth="1121" frameHeight="654"/>
+	<SubTexture name="freeplay select0012" x="1125" y="2025" width="1109" height="654" frameX="-12" frameY="0" frameWidth="1121" frameHeight="654"/>
+	<SubTexture name="freeplay select0013" x="2245" y="2025" width="1109" height="654" frameX="-12" frameY="0" frameWidth="1121" frameHeight="654"/>
+</TextureAtlas>

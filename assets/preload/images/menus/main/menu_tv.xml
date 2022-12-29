@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="menu tv.png">
+	<!-- Created with Adobe Animate version 21.0.0.35450 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="tv selected0000" x="5" y="5" width="977" height="979"/>
+	<SubTexture name="tv selected0001" x="993" y="5" width="977" height="979"/>
+	<SubTexture name="tv story0000" x="1981" y="5" width="1068" height="1040"/>
+	<SubTexture name="tv story0001" x="3060" y="5" width="1068" height="1040"/>
+	<SubTexture name="tv story0002" x="4139" y="5" width="1010" height="999" frameX="-24" frameY="-30" frameWidth="1068" frameHeight="1040"/>
+	<SubTexture name="tv story0003" x="5160" y="5" width="1010" height="999" frameX="-24" frameY="-30" frameWidth="1068" frameHeight="1040"/>
+	<SubTexture name="tv story0004" x="6181" y="5" width="979" height="980" frameX="-38" frameY="-44" frameWidth="1068" frameHeight="1040"/>
+	<SubTexture name="tv story0005" x="7171" y="5" width="979" height="980" frameX="-38" frameY="-44" frameWidth="1068" frameHeight="1040"/>
+	<SubTexture name="tv story0012" x="5" y="1056" width="977" height="979" frameX="-41" frameY="-46" frameWidth="1068" frameHeight="1040"/>
+	<SubTexture name="tv story0013" x="993" y="1056" width="977" height="979" frameX="-41" frameY="-46" frameWidth="1068" frameHeight="1040"/>
+</TextureAtlas>

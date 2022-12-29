@@ -1,6 +1,6 @@
 {
 	"song": {
-		"player1": "bf-shaded-w2",
+		"player1": "b3bf",
 		"notes": [
 			{
 				"sectionNotes": [
@@ -3330,7 +3330,7 @@
 			}
 		],
 		"player2": "spooky",
-		"gfVersion": "gf-shaded-w2",
+		"gfVersion": "gf",
 		"events": [],
 		"player3": null,
 		"song": "South",

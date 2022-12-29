@@ -1,7 +1,12 @@
 sucked = false
 
+function onEvent()
+    end
+
 local defaultNotePos = {};
- 
+local angleshit = 1;
+local anglevar = 1;
+
 function onSongStart()
     for i = 0,7 do 
         x = getPropertyFromGroup('strumLineNotes', i, 'x')
@@ -12,15 +17,9 @@ end
 
 function onStepHit()
     if curStep == 1 or curStep == 64 or curStep == 640 or curStep == 704 or curStep == 1280 or curStep == 1344 then
-        setCameraPos(200, 500, true)
         setProperty('defaultCamZoom', 1.05)
         setProperty('camGame.zoom', 1.05)
-    end
-    if curStep == 32 or curStep == 96 or curStep == 672 or curStep == 736 or curStep == 1312 or curStep == 1376 then
-        setCameraPos(1000, 650, true)
-    end
-    if curStep == 128 or curStep == 768 or curStep == 1408 then
-        setCameraPos(600, 550, false)
+        setProperty('cameraSpeed', 10)
     end
     if ((curStep >= 128 and curStep < 384) or (curStep >= 768 and curStep < 1024)) and curStep % 32 == 1 then
         setProperty('defaultCamZoom', 0.7)
@@ -55,6 +54,29 @@ function onStepHit()
         addLuaSprite('botBar', true)
         doTweenY('zoomup', 'botBar', 620, 0.4, 'circInOut')
 
+        if curStep % 7 == 0 then
+			doTweenY('rrr', 'camHUD', -12, stepCrochet*0.002, 'circOut')
+			doTweenY('rtr', 'camGame.scroll', 12, stepCrochet*0.002, 'sineIn')
+        if curStep % 7 == 2
+			doTweenY('rir', 'camHUD', 0, stepCrochet*0.002, 'sineIn')
+			doTweenY('ryr', 'camGame.scroll', 0, stepCrochet*0.002, 'sineIn')
+		end
+
+        triggerEvent('Add Camera Zoom', 0.04,0.05)
+
+		if curBeat % 2 == 0 then
+			angleshit = anglevar;
+		else
+			angleshit = -anglevar;
+		end
+
+		setProperty('camHUD.angle',angleshit*3)
+		setProperty('camGame.angle',angleshit*3)
+		doTweenAngle('turn', 'camHUD', angleshit, stepCrochet*0.002, 'circOut')
+		doTweenX('tuin', 'camHUD', -angleshit*8, crochet*0.001, 'linear')
+		doTweenAngle('tt', 'camGame', angleshit, stepCrochet*0.002, 'circOut')
+		doTweenX('ttrn', 'camGame', -angleshit*8, crochet*0.001, 'linear')
+
         doTweenAlpha('bye1', 'iconP1', 0, 0.4, 'circInOut')
         doTweenAlpha('godbye', 'laneUnderlayP1', 0, 0.4, 'circInOut')
         doTweenAlpha('helo', 'laneUnderlayP2', 0, 0.4, 'circInOut')
@@ -74,6 +96,9 @@ function onStepHit()
         doTweenAlpha('dadadada', 'camHUD', 0, 0.5, 'circInOut')
         doTweenY('yeet', 'topBar', 0, 0.4, 'circInOut')
         doTweenY('gbye', 'botBar', 720, 0.4, 'circInOut')
+        setProperty('camHUD.angle',0)
+		setProperty('camHUD.x',0)
+		setProperty('camHUD.x',0)
     end
 
     if ((curStep >= 128 and curStep < 384) or (curStep >= 768 and curStep < 1024) or (sucked)) and curStep % 4 == 0 then
@@ -222,3 +247,25 @@ function onResume() -- lol put it back on
 		setPropertyFromClass('ClientPrefs', 'hideHud', true);
 	end
 end
+
+function runModifiers(data, curPos)
+	--this is where mod math gets applied to strums/notes
+	local xOffset = 0
+	local yOffset = 0
+	local zOffset = 0
+	local angle = 0
+
+	xOffset = xOffset + getProperty('strumOffset'..data..'.x') --add strum offsets
+	yOffset = yOffset + getProperty('strumOffset'..data..'.y')
+	zOffset = zOffset + getProperty('strumOffset'..data..'.angle') --using angle because
+
+	--drunk
+	if getProperty('drunk.x') ~= 0 then 
+		xOffset = xOffset + getProperty('drunk.x') * (math.cos( ((getSongPosition()*0.001) + ((data%keyCount)*0.2) + (curPos*0.45)*(10/screenHeight)) * (getProperty('drunkSpeed.x')*0.2)) * arrowSize*0.5);
+	end
+	if getProperty('drunk.y') ~= 0 then 
+		yOffset = yOffset + getProperty('drunk.y') * (math.cos( ((getSongPosition()*0.001) + ((data%keyCount)*0.2) + (curPos*0.45)*(10/screenHeight)) * (getProperty('drunkSpeed.y')*0.2)) * arrowSize*0.5);
+	end
+	if getProperty('drunk.angle') ~= 0 then 
+		zOffset = zOffset + getProperty('drunk.angle') * (math.cos( ((getSongPosition()*0.001) + ((data%keyCount)*0.2) + (curPos*0.45)*(10/screenHeight)) * (getProperty('drunkSpeed.angle')*0.2)) * arrowSize*0.5);
+	end

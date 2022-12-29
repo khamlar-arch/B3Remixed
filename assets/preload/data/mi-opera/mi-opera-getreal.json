@@ -1,6 +1,6 @@
 {
 	"song": {
-		"player1": "bf",
+		"player1": "b3bf",
 		"sectionLengths": [],
 		"events": [],
 		"gfVersion": "gf",
@@ -3992,7 +3992,7 @@
 				"mustHitSection": true
 			}
 		],
-		"player2": "mia",
+		"player2": "Mianew",
 		"player3": null,
 		"song": "mi-opera",
 		"stage": "miaStation",
