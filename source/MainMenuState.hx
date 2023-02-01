@@ -21,6 +21,7 @@ import lime.app.Application;
 import editors.MasterEditorMenu;
 import flixel.input.keyboard.FlxKey;
 import openfl.Lib;
+import flixel.animation.FlxBaseAnimation;
 
 using StringTools;
 
@@ -60,6 +61,10 @@ class MainMenuState extends MusicBeatState
 	var bg:FlxSprite;
 	var bg2:FlxSprite;
 
+	var tv:FlxSprite;
+	var arcade:FlxSprite;
+	var sett:FlxSprite;
+
 	var menuBox:FlxSprite;
 	var logoBl:FlxSprite;
 
@@ -89,7 +94,7 @@ class MainMenuState extends MusicBeatState
 
 		persistentUpdate = persistentDraw = true;
 
-		bg = new FlxSprite().loadGraphic(Paths.image('menus/menuBG'));
+		bg = new FlxSprite().loadGraphic(Paths.image('menus/new-b3-menu'));
 		bg.antialiasing = ClientPrefs.globalAntialiasing;
 		bg.scrollFactor.set(0, 0);
 		bg.color = 0xFF4AC290;
@@ -105,6 +110,15 @@ class MainMenuState extends MusicBeatState
 		bg2.scrollFactor.set(0, 0);
 		bg2.color = 0xFFB550A2;
 		//add(bg2);
+
+		tv = new FlxSprite(0, 0);
+		tv.frames = Paths.getSparrowAtlas('menus/main/menu_tv');
+		tv.animation.addByPrefix('idle', 'tv story', 24, false);
+		tv.animation.addByPrefix('select', 'tv selected', 24, false);
+		tv.setGraphicSize(Std.int(tv.width * 0.68));
+		tv.antialiasing = ClientPrefs.globalAntialiasing;
+		tv.animation.play('idle');
+		add(tv);
 
 		sideSec = new FlxSprite(1203).loadGraphic(Paths.image('menus/main/side'));
 		sideSec.scrollFactor.x = 0;

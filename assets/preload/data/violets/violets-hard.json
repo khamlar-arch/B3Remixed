@@ -1,7 +1,7 @@
 {
 	"song": {
 		"player1": "bf-pixel",
-		"player2": "senpai-angry",
+		"player2": "spirit",
 		"notes": [
 			{
 				"lengthInSteps": 16,
@@ -6463,7 +6463,7 @@
 		"gfVersion": "gf-pixel",
 		"events": [],
 		"player3": null,
-		"song": "Roses",
+		"song": "Violets",
 		"validScore": true,
 		"needsVoices": true,
 		"stage": "schoolEvil",

@@ -1,0 +1,45 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				5,
+				7
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "danceLeft",
+			"indices": [],
+			"name": "danceleft"
+		},
+		{
+			"offsets": [
+				6,
+				-5
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "danceRight",
+			"indices": [],
+			"name": "danceright"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/Minus_Shaya",
+	"position": [
+		-70,
+		30
+	],
+	"healthicon": "gf",
+	"flip_x": false,
+	"healthbar_colors": [
+		161,
+		161,
+		161
+	],
+	"camera_position": [
+		-160,
+		90
+	],
+	"sing_duration": 6.1,
+	"scale": 1
+}
