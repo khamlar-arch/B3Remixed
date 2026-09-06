@@ -87,8 +87,8 @@ class CrashHandler
 		saveErrorMessage('$m\n$stackLabel');
 		#end
 
-		showPopUp('$m\n$stackLabel', "Error!");
-		#if desktop DiscordClient.shutdown(); #end
+		SUtil.showPopUp('$m\n$stackLabel', "Error!");
+		//#if desktop DiscordClient.shutdown(); #end
 		lime.system.System.exit(1);
 	}
 
@@ -106,8 +106,8 @@ class CrashHandler
 		saveErrorMessage(log.join('\n'));
 		#end
 
-		showPopUp(log.join('\n'), "Critical Error!");
-		#if desktop DiscordClient.shutdown(); #end
+		SUtil.showPopUp(log.join('\n'), "Critical Error!");
+		//#if desktop DiscordClient.shutdown(); #end
 		lime.system.System.exit(1);
 	}
 	#end
@@ -126,13 +126,4 @@ class CrashHandler
 			trace('Couldn\'t save error message. (${e.message})');
 	}
 	#end
-
-	public static function showPopUp(message:String, title:String):Void
-	{
-		#if android
-		AndroidTools.showAlertDialog(title, message, {name: "OK", func: null}, null);
-		#else
-		flixel.FlxG.stage.window.alert(message, title);
-		#end
-	}
 }
