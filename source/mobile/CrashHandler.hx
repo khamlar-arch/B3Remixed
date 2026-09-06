@@ -114,6 +114,7 @@ class CrashHandler
 			trace('Couldn\'t save error message. (${e.message})');
 	}
 	#end
+
 	public static function showPopUp(message:String, title:String):Void
 	{
 		/*#if android
@@ -122,4 +123,4 @@ class CrashHandler
 		flixel.FlxG.stage.window.alert(message, title);
 		//#end
 	}
-      }
+}
