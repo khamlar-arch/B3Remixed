@@ -8,6 +8,18 @@ import sys.FileSystem;
 import sys.io.File;
 #end
 
+#if android
+import android.content.Context as AndroidContext;
+import android.widget.Toast as AndroidToast;
+import android.os.Environment as AndroidEnvironment;
+import android.Permissions as AndroidPermissions;
+import android.Settings as AndroidSettings;
+import android.Tools as AndroidTools;
+import android.os.Build.VERSION as AndroidVersion;
+import android.os.Build.VERSION_CODES as AndroidVersionCode;
+//import android.os.BatteryManager as AndroidBatteryManager;
+#end
+
 using StringTools;
 using flixel.util.FlxArrayUtil;
 
@@ -117,10 +129,10 @@ class CrashHandler
 
 	public static function showPopUp(message:String, title:String):Void
 	{
-		/*#if android
+		#if android
 		AndroidTools.showAlertDialog(title, message, {name: "OK", func: null}, null);
-		#else*/
+		#else
 		flixel.FlxG.stage.window.alert(message, title);
-		//#end
+		#end
 	}
-      }
+}
