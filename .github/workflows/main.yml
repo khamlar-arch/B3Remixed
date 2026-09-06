@@ -5,10 +5,10 @@ name: Build
 # Controls when the action will run. 
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
-  # push:
-    # branches: [ main ]
-  # pull_request:
-    # branches: [ main ]
+  #push:
+  #  branches: [ main ]
+  #pull_request:
+  #  branches: [ main ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -35,7 +35,7 @@ jobs:
           haxelib install hxcpp > /dev/null
           haxelib install lime 7.9.0
           haxelib install openfl 9.1.0
-          haxelib --never install flixel 4.9.0
+          haxelib install flixel 4.9.0
           haxelib run lime setup flixel
           haxelib run lime setup
           haxelib install flixel-tools
@@ -75,7 +75,7 @@ jobs:
           haxelib install hxcpp > nul
           haxelib install lime 7.9.0
           haxelib install openfl 9.1.0
-          haxelib --never install flixel 4.9.0
+          haxelib install flixel 4.9.0
           haxelib run lime setup flixel
           haxelib run lime setup
           haxelib install flixel-tools
@@ -116,7 +116,7 @@ jobs:
           haxelib install hxcpp > /dev/null
           haxelib install lime 7.9.0
           haxelib install openfl 9.1.0
-          haxelib --never install flixel 4.9.0
+          haxelib install flixel 4.9.0
           haxelib run lime setup flixel
           haxelib run lime setup
           haxelib install flixel-tools
