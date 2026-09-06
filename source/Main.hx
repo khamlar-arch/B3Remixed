@@ -92,7 +92,7 @@ class Main extends Sprite
 
 		ClientPrefs.loadDefaultKeys();
 		// the reason for this is we're going to be handling our own cache smartly
-		addChild(new FlxGame(gameWidth, gameHeight, initialState, zoom, framerate, framerate, skipSplash, startFullscreen));
+		addChild(new FlxGame(gameWidth, gameHeight, #if mobile !CopyState.checkExistingFiles() ? CopyState : #end initialState, zoom, framerate, framerate, skipSplash, startFullscreen));
 
 		// #if !mobile
 		fpsVar = new FPS(10, 3, 0xFFFFFF);
