@@ -18,6 +18,7 @@ import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.ui.FlxBar;
+import flixel.util.FlxColor;
 
 import sys.FileSystem;
 import sys.io.File;
