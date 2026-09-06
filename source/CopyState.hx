@@ -19,6 +19,11 @@ import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.ui.FlxBar;
 
+import sys.FileSystem;
+import sys.io.File;
+
+using StringTools;
+
 class CopyState extends MusicBeatState
 {
 	public static var locatedFiles:Array<String> = [];
