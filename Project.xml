@@ -154,10 +154,19 @@
 	<!--Enable this for Nape release builds for a serious peformance improvement-->
 	<haxedef name="NAPE_RELEASE_BUILD" unless="debug" />
 
+	<!-- _________________________________ Custom _______________________________ -->
+
 	<!-- Do whatever you want I'm tired uninstall and install everytime -->
 	<certificate path="key.keystore" password="psychengine" alias="psychport" alias-password="psychengine" if="android" unless="debug" />
 
-	<!-- _________________________________ Custom _______________________________ -->
+	<android permission="android.permission.ACCESS_NETWORK_STATE" />
+	<android permission="android.permission.INTERNET" />
+	<android permission="android.permission.VIBRATE" />
+	<android permission="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<android permission="android.permission.READ_EXTERNAL_STORAGE" />
+	<android permission="android.permission.READ_MEDIA_IMAGES" />
+	<android permission="android.permission.READ_MEDIA_VIDEO" />
+	<android permission="android.permission.READ_MEDIA_AUDIO" />
 
 	<!--Place custom nodes like icons here (higher priority to override the HaxeFlixel icon)-->
 	
