@@ -6,11 +6,18 @@ import openfl.utils.Assets as OpenflAssets;
 import flixel.addons.util.FlxAsyncLoop;
 import openfl.utils.ByteArray;
 import openfl.system.System;
-import funkin.states.TitleState;
 import haxe.io.Path;
 #if (target.threaded)
 import sys.thread.Thread;
 #end
+import flixel.FlxG;
+import flixel.FlxGame;
+import flixel.FlxObject;
+import flixel.FlxSprite;
+import flixel.text.FlxText;
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
+import flixel.ui.FlxBar;
 
 class CopyState extends MusicBeatState
 {
