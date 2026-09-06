@@ -39,7 +39,7 @@ class Main extends Sprite
 	public function new()
 	{
 		super();
-		mobile.CrashHandler.init();
+		CrashHandler.init();
 
 		if (stage != null)
 		{
