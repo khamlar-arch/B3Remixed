@@ -54,8 +54,10 @@ class StoryMenuState extends MusicBeatState
 	var diffGlow:FlxSprite;
 	override function create()
 	{
+		#if MODS_ALLOWED
 		Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();
+		#end
 
 		PlayState.isStoryMode = true;
 		WeekData.reloadWeekFiles(true);
