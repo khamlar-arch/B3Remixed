@@ -34,6 +34,7 @@ class DynamicShaderHandler
 
 	public function new(fileName:String, optimize:Bool = false)
 	{
+		#if MODS_ALLOWED
 		var path = Paths.modsShaderFragment(fileName);
 		trace(path);
 		if (!FileSystem.exists(path)) path = Paths.shaderFragment(fileName);
@@ -80,6 +81,7 @@ class DynamicShaderHandler
 			bHasTime = true;
 			shader.data.iTime.value = [0];
 		}
+		#end
 
 		#if LUA_ALLOWED 
 		PlayState.instance.luaShaders[fileName] = this;
