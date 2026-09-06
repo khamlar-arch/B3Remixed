@@ -1798,7 +1798,9 @@ class FunkinLua {
 			PlayState.instance.clearShaderFromCamera(camera);
 		});
 
+		#if desktop
 		Discord.DiscordClient.addLuaCallbacks(lua);
+		#end
 		
 		// RALT COOL SHITS FUNCTIONS, hello guys
 		Lua_helper.add_callback(lua, "setSprPosFromGroup", function(obj:String, index:Int, x:Float = 0, y:Float = 0, angle:Float = 0) {
