@@ -87,7 +87,7 @@ class CopyState extends MusicBeatState
 			#end
 		}
 		else
-		{;
+		{
 			//FlxTransitionableState.skipNextTransIn = FlxTransitionableState.skipNextTransOut = true;
 			MusicBeatState.switchState(new TitleState());
 		}
