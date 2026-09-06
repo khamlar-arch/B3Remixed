@@ -1,0 +1,63 @@
+name: AndroidBuild
+
+on:
+  workflow_dispatch:
+
+jobs:
+  buildAndroid:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main
+
+      - name: Setup Haxe
+        uses: krdlab/setup-haxe@master
+        with:
+          haxe-version: 4.2.5
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@main
+        with:
+          distribution: 'zulu'
+          java-version: '11'
+
+      - name: Setup Android NDK
+        uses: nttld/setup-ndk@main
+        id: setup-ndk
+        with:
+          ndk-version: r21e
+
+      - name: Install Haxelib
+        run: |
+          haxelib setup ~/haxelib
+          haxelib install hxcpp > nul
+          haxelib install lime 7.9.0
+          haxelib install openfl 9.1.0
+          haxelib install flixel 4.9.0
+          haxelib install flixel-tools
+          haxelib install flixel-ui 2.3.3
+          haxelib install flixel-addons 2.10.0
+          haxelib install tjson
+          haxelib install hxjsonast
+          haxelib git linc_luajit https://github.com/AndreiRudenko/linc_luajit
+          haxelib install hscript 
+          haxelib git hscript-ex https://github.com/ianharrigan/hscript-ex
+          haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc
+          haxelib install hxcpp-debug-server
+          haxelib list
+
+      - name: Configure Android
+        run: |
+          haxelib run lime config ANDROID_SDK $ANDROID_HOME
+          haxelib run lime config ANDROID_NDK_ROOT ${{ steps.setup-ndk.outputs.ndk-path }}
+          haxelib run lime config JAVA_HOME $JAVA_HOME
+          haxelib run lime config ANDROID_SETUP true
+
+      - name: Compile
+        run: haxelib run lime build android
+
+      - name: Publish Artifact
+        uses: actions/upload-artifact@main
+        with:
+          name: androidBuild
+          path: export/release/android/bin/app/build/outputs/apk/release/*.apk
