@@ -1,4 +1,6 @@
+#if desktop
 import Discord.DiscordClient;
+#end
 import editors.ChartingState;
 import flash.text.TextField;
 import flixel.FlxG;
