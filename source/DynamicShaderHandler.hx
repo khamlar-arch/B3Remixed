@@ -34,6 +34,7 @@ class DynamicShaderHandler
 
 	public function new(fileName:String, optimize:Bool = false)
 	{
+		#if MODS_ALLOWED
 		var path = Paths.modsShaderFragment(fileName);
 		trace(path);
 		if (!FileSystem.exists(path)) path = Paths.shaderFragment(fileName);
@@ -87,7 +88,7 @@ class DynamicShaderHandler
 		PlayState.animatedShaders[fileName] = this;
 	
 			//trace(shader.data.get('rOffset'));
-		
+		#end
 	}
 
 	public function modifyShaderProperty(property:String, value:Dynamic)
