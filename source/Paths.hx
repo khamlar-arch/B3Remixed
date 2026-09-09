@@ -284,16 +284,14 @@ class Paths
 	{
 		var songKey:String = '${song.toLowerCase().replace(' ', '-')}/Voices';
 		var voices = returnSound('songs', songKey);
-		// return voices;
-		return 'assets/songs/${song.toLowerCase().replace(' ', '-')}/Voices.$SOUND_EXT';
+		return voices;
 	}
 
 	inline static public function inst(song:String):Any
 	{
 		var songKey:String = '${song.toLowerCase().replace(' ', '-')}/Inst';
 		var inst = returnSound('songs', songKey);
-		// return inst;
-		return 'assets/songs/${song.toLowerCase().replace(' ', '-')}/Inst.$SOUND_EXT';
+		return inst;
 	}
 
 	inline static public function image(key:String, ?library:String):Dynamic
