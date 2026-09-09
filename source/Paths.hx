@@ -284,14 +284,16 @@ class Paths
 	{
 		var songKey:String = '${song.toLowerCase().replace(' ', '-')}/Voices';
 		var voices = returnSound('songs', songKey);
-		return voices;
+		// return voices;
+		return getPath('songs/$songKey.$SOUND_EXT', SOUND);
 	}
 
 	inline static public function inst(song:String):Any
 	{
 		var songKey:String = '${song.toLowerCase().replace(' ', '-')}/Inst';
 		var inst = returnSound('songs', songKey);
-		return inst;
+		// return inst;
+		return getPath('songs/$songKey.$SOUND_EXT', SOUND);
 	}
 
 	inline static public function image(key:String, ?library:String):Dynamic
@@ -455,9 +457,7 @@ class Paths
 		#end
 		// I hate this so god damn much
 		var gottenPath:String = getPath('$path/$key.$SOUND_EXT', SOUND, library);	
-		#if desktop
 		gottenPath = gottenPath.substring(gottenPath.indexOf(':') + 1, gottenPath.length);
-		#end
 		// trace(gottenPath);
 		if(!currentTrackedSounds.exists(gottenPath)) 
 		#if MODS_ALLOWED
