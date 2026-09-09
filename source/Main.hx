@@ -78,9 +78,9 @@ class Main extends Sprite
 		initialState = TitleState;
 		#end
 		
-		// Lib.current.stage.addEventListener(Event.ENTER_FRAME, onEnterFrame);
-		// Lib.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, handleInput);
-		// Lib.application.window.onClose.add(onClose);
+		Lib.current.stage.addEventListener(Event.ENTER_FRAME, onEnterFrame);
+		Lib.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, handleInput);
+		Lib.application.window.onClose.add(onClose);
 
 		ClientPrefs.loadDefaultKeys();
 		// the reason for this is we're going to be handling our own cache smartly
