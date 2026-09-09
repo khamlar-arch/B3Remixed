@@ -157,8 +157,7 @@
 	<certificate path="key.keystore" password="psychengine" alias="psychport" alias-password="psychengine" if="android" unless="debug" />
 
 	<section if="android">
-		<config:android target-sdk-version="30" />
-		<config:android minimum-sdk-version="19" />
+		<!-- <config:android target-sdk-version="30"/> -->
 	</section>
 
 
