@@ -303,11 +303,11 @@ class Paths
 	
 	static public function getTextFromFile(key:String, ?ignoreMods:Bool = false):String
 	{
-		#if (desktop && sys)
+		// #if sys
 		#if MODS_ALLOWED
 		if (!ignoreMods && FileSystem.exists(mods(key)))
 			return File.getContent(mods(key));
-		#end
+		// #end
 
 		if (FileSystem.exists(getPreloadPath(key)))
 			return File.getContent(getPreloadPath(key));
@@ -457,10 +457,13 @@ class Paths
 		var gottenPath:String = getPath('$path/$key.$SOUND_EXT', SOUND, library);	
 		gottenPath = gottenPath.substring(gottenPath.indexOf(':') + 1, gottenPath.length);
 		// trace(gottenPath);
-		if(!currentTrackedSounds.exists(gottenPath))
-			currentTrackedSounds.set(gottenPath, Sound.fromFile(gottenPath));
-		
-		localTrackedAssets.push(gottenPath);
+		if(!currentTrackedSounds.exists(gottenPath)) 
+		#if (MODS_ALLOWED || mobile)
+			currentTrackedSounds.set(gottenPath, Sound.fromFile('./' + gottenPath));
+		#else
+			currentTrackedSounds.set(gottenPath, OpenFlAssets.getSound(getPath('$path/$key.$SOUND_EXT', SOUND, library)));
+		#end
+		localTrackedAssets.push(key);
 		return currentTrackedSounds.get(gottenPath);
 	}
 	
