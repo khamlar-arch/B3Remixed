@@ -25,13 +25,14 @@ jobs:
         uses: nttld/setup-ndk@main
         id: setup-ndk
         with:
-          ndk-version: r27c
+          ndk-version: r21e
 
       - name: Install Haxelib
         run: |
           haxelib setup ~/haxelib
           haxelib install hxcpp > /dev/null
           haxelib git lime https://github.com/AnDevGo/lime7.9.0
+          haxelib run lime setup
           haxelib install openfl 9.1.0
           haxelib install flixel 4.9.0
           haxelib install flixel-tools
