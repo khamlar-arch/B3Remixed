@@ -13,7 +13,7 @@ jobs:
       - name: Setup Haxe
         uses: krdlab/setup-haxe@master
         with:
-          haxe-version: 4.2.5
+          haxe-version: 4.3.7
 
       - name: Setup Java JDK
         uses: actions/setup-java@main
@@ -25,7 +25,7 @@ jobs:
         uses: nttld/setup-ndk@main
         id: setup-ndk
         with:
-          ndk-version: r21e
+          ndk-version: r27c
 
       - name: Install Haxelib
         run: |
