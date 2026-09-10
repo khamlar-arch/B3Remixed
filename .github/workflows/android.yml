@@ -31,7 +31,7 @@ jobs:
         run: |
           haxelib setup ~/haxelib
           haxelib install hxcpp > /dev/null
-          haxelib git lime https://github.com/AnDevGo/lime7.9.0
+          haxelib install lime 7.9.0
           haxelib run lime setup
           haxelib install openfl 9.1.0
           haxelib install flixel 4.9.0
