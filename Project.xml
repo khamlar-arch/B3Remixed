@@ -156,8 +156,12 @@
 	<!-- Do whatever you want I'm tired uninstall and install everytime -->
 	<certificate path="key.keystore" password="psychengine" alias="psychport" alias-password="psychengine" if="android" unless="debug" />
 
-	<!-- <android target-sdk-version="35" /> -->
-	<!-- <android minimum-sdk-version="28" /> -->
+	<config>
+		<android gradle-version="8.7" />
+		<android gradle-plugin="8.6.0" />
+		<android minimum-sdk-version="28" />
+		<android target-sdk-version= "35" />
+	</config>
 
 	<!-- Templates to enable some stuff -->
 	<section if="android">
