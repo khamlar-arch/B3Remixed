@@ -157,11 +157,8 @@
 	<certificate path="key.keystore" password="psychengine" alias="psychport" alias-password="psychengine" if="android" unless="debug" />
 
 	<config>
-		<android gradle-version="8.7" />
-		<android gradle-plugin="8.6.0" />
 		<android minimum-sdk-version="24" />
-		<android target-sdk-version= "35" />
-		<ios deployment="13.6"/>
+		<android target-sdk-version= "31" />
 	</config>
 
 	<!-- _________________________________ Custom _______________________________ -->
