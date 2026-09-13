@@ -19,7 +19,7 @@ jobs:
         uses: actions/setup-java@main
         with:
           distribution: 'zulu'
-          java-version: '17'
+          java-version: '11'
 
       - name: Setup Android NDK
         uses: nttld/setup-ndk@main
@@ -31,7 +31,7 @@ jobs:
         run: |
           haxelib setup ~/haxelib
           haxelib install hxcpp > /dev/null
-          haxelib install lime 7.9.0
+          haxelib install lime 8.0.1
           haxelib run lime setup
           haxelib install openfl 9.1.0
           haxelib install flixel 4.9.0
