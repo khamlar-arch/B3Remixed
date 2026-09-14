@@ -45,6 +45,7 @@ jobs:
           haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc
           haxelib install hxcpp-debug-server
           haxelib install format
+          haxelib install hxp
           haxelib list
 
       - name: Configure Android
