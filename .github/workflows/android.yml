@@ -13,7 +13,7 @@ jobs:
       - name: Setup Haxe
         uses: krdlab/setup-haxe@master
         with:
-          haxe-version: 4.3.7
+          haxe-version: 4.2.5
 
       - name: Setup Java JDK
         uses: actions/setup-java@main
@@ -31,7 +31,7 @@ jobs:
         run: |
           haxelib setup ~/haxelib
           haxelib install hxcpp > /dev/null
-          haxelib install lime 7.9.0
+          haxelib install lime 8.0.1
           haxelib run lime setup
           haxelib install openfl 9.1.0
           haxelib install flixel 4.9.0
