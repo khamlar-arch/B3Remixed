@@ -163,6 +163,12 @@
 		<android target-sdk-version= "35" />
 	</config>
 
+	<section if="android">
+		<template
+			path="templates/android/app/src/main/java/org/libsdl/app/HIDDeviceManager.java"
+			rename="app/src/main/java/org/libsdl/app/HIDDeviceManager.java" />
+	</section>
+
 	<!-- _________________________________ Custom _______________________________ -->
 
 	<!--Place custom nodes like icons here (higher priority to override the HaxeFlixel icon)-->
